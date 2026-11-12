@@ -157,90 +157,101 @@ def run_pipeline(
             os.remove(fpath)
 
     excel_path = os.path.join(output_dir, "qualified_dubai_leads.xlsx")
+    top_5_csv_path = os.path.join(output_dir, "top_5_leads.csv")
+
     try:
         import pandas as pd
         import openpyxl
         from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
         from openpyxl.utils import get_column_letter
 
-        # Prepare DataFrame
-        df = pd.DataFrame(qualified_records)[export_columns]
+        # Helper function to style and populate worksheet in identical format
+        def populate_worksheet(ws, records, title, fill_color="1F497D"):
+            ws.title = title
+            header_fill = PatternFill(start_color=fill_color, end_color=fill_color, fill_type="solid")
+            header_font = Font(name="Calibri", size=11, bold=True, color="FFFFFF")
+            center_align = Alignment(horizontal="center", vertical="center", wrap_text=True)
+            left_align = Alignment(horizontal="left", vertical="center", wrap_text=True)
+            thin_border = Border(
+                left=Side(style='thin', color='D9D9D9'),
+                right=Side(style='thin', color='D9D9D9'),
+                top=Side(style='thin', color='D9D9D9'),
+                bottom=Side(style='thin', color='D9D9D9')
+            )
 
-        # Write styled Excel workbook
+            headers = [c.replace("_", " ").title() for c in export_columns]
+            ws.append(headers)
+            ws.row_dimensions[1].height = 28
+
+            for col_num in range(1, len(headers) + 1):
+                cell = ws.cell(row=1, column=col_num)
+                cell.fill = header_fill
+                cell.font = header_font
+                cell.alignment = center_align
+
+            for row_idx, rec in enumerate(records, start=2):
+                ws.row_dimensions[row_idx].height = 24
+                row_data = [rec.get(col, "") for col in export_columns]
+                ws.append(row_data)
+
+                row_fill = PatternFill(start_color="F9FAFB" if row_idx % 2 == 0 else "FFFFFF", fill_type="solid")
+                for col_idx in range(1, len(row_data) + 1):
+                    cell = ws.cell(row=row_idx, column=col_idx)
+                    cell.fill = row_fill
+                    cell.border = thin_border
+                    cell.font = Font(name="Calibri", size=10)
+                    if col_idx in (1, 2, 3, 9, 10):  # ID, Score, Status, Date, Age
+                        cell.alignment = center_align
+                    else:
+                        cell.alignment = left_align
+
+            col_width_map = {
+                1: 15,   # Record ID
+                2: 10,   # Score
+                3: 18,   # Qualification Status
+                4: 25,   # Handle
+                5: 22,   # Platform
+                6: 25,   # City/State
+                7: 35,   # Geo Evidence
+                8: 40,   # Source Link
+                9: 14,   # Signal Date
+                10: 16,  # Signal Age Days
+                11: 24,  # Budget
+                12: 30,  # Preferred Areas
+                13: 45,  # Dubai Evidence
+                14: 45,  # Qualification Reason
+                15: 35   # Unverified Information
+            }
+            for col_idx, width in col_width_map.items():
+                ws.column_dimensions[get_column_letter(col_idx)].width = width
+
+            ws.freeze_panes = "A2"
+
+        # Initialize Workbook with 2 sheets in identical format
         wb = openpyxl.Workbook()
-        ws = wb.active
-        ws.title = f"Qualified Leads (Score > {qualified_threshold})"
 
-        # Header styling
-        header_fill = PatternFill(start_color="1F497D", end_color="1F497D", fill_type="solid")
-        header_font = Font(name="Calibri", size=11, bold=True, color="FFFFFF")
-        center_align = Alignment(horizontal="center", vertical="center", wrap_text=True)
-        left_align = Alignment(horizontal="left", vertical="center", wrap_text=True)
+        # Sheet 1: All Qualified Leads (Score > 70)
+        ws1 = wb.active
+        populate_worksheet(ws1, qualified_records, f"Qualified Leads (Score > {qualified_threshold})", fill_color="1F497D")
 
-        # Write headers
-        headers = [c.replace("_", " ").title() for c in export_columns]
-        ws.append(headers)
-        ws.row_dimensions[1].height = 28
-
-        for col_num in range(1, len(headers) + 1):
-            cell = ws.cell(row=1, column=col_num)
-            cell.fill = header_fill
-            cell.font = header_font
-            cell.alignment = center_align
-
-        # Write data rows
-        thin_border = Border(
-            left=Side(style='thin', color='D9D9D9'),
-            right=Side(style='thin', color='D9D9D9'),
-            top=Side(style='thin', color='D9D9D9'),
-            bottom=Side(style='thin', color='D9D9D9')
-        )
-
-        for row_idx, rec in enumerate(qualified_records, start=2):
-            ws.row_dimensions[row_idx].height = 24
-            row_data = [rec.get(col, "") for col in export_columns]
-            ws.append(row_data)
-
-            # Row zebra striping
-            row_fill = PatternFill(start_color="F9FAFB" if row_idx % 2 == 0 else "FFFFFF", fill_type="solid")
-            for col_idx in range(1, len(row_data) + 1):
-                cell = ws.cell(row=row_idx, column=col_idx)
-                cell.fill = row_fill
-                cell.border = thin_border
-                cell.font = Font(name="Calibri", size=10)
-                if col_idx in (1, 2, 3, 9, 10):  # ID, Score, Status, Date, Age
-                    cell.alignment = center_align
-                else:
-                    cell.alignment = left_align
-
-        # Adjust column widths automatically
-        col_width_map = {
-            1: 15,   # Record ID
-            2: 10,   # Score
-            3: 18,   # Qualification Status
-            4: 25,   # Handle
-            5: 22,   # Platform
-            6: 25,   # City/State
-            7: 35,   # Geo Evidence
-            8: 40,   # Source Link
-            9: 14,   # Signal Date
-            10: 16,  # Signal Age Days
-            11: 24,  # Budget
-            12: 30,  # Preferred Areas
-            13: 45,  # Dubai Evidence
-            14: 45,  # Qualification Reason
-            15: 35   # Unverified Information
-        }
-        for col_idx, width in col_width_map.items():
-            ws.column_dimensions[get_column_letter(col_idx)].width = width
-
-        # Freeze top header row
-        ws.freeze_panes = "A2"
+        # Sheet 2: Top 5 Strongest Leads (identical format & styling)
+        top_5_records = qualified_records[:5]
+        ws2 = wb.create_sheet(title="Top 5 Shortlist")
+        populate_worksheet(ws2, top_5_records, "Top 5 Shortlist", fill_color="0B5394")
 
         wb.save(excel_path)
-        print(f"  -> Single master Excel workbook exported successfully to: {excel_path}")
+        print(f"  -> Master Excel workbook exported with 2 sheets [Qualified Leads & Top 5 Shortlist]: {excel_path}")
+
+        # Export Top 5 Leads in CSV format (no md)
+        with open(top_5_csv_path, mode="w", newline="", encoding="utf-8") as f:
+            writer = csv.DictWriter(f, fieldnames=export_columns, extrasaction="ignore")
+            writer.writeheader()
+            for rec in top_5_records:
+                writer.writerow(rec)
+        print(f"  -> Top 5 Shortlist exported in CSV format to: {top_5_csv_path}")
+
     except Exception as e:
-        print(f"  -> Excel export error: {e}")
+        print(f"  -> Export error: {e}")
 
     # Metrics Summary
     score_bands = {

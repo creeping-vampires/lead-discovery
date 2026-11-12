@@ -6,56 +6,63 @@ The workflow isolates genuine buyer demand from noise—excluding real estate br
 
 ---
 
-## Key Deliverables
+## Input and Output Architecture
 
-1. **Master Results Dataset (222 Unique Candidate Prospects)**:
-   - CSV Format: [`results/dubai_real_estate_south_india_prospects.csv`](results/dubai_real_estate_south_india_prospects.csv) (Google Sheets compatible)
-   - Excel Format: [`results/dubai_real_estate_south_india_prospects.xlsx`](results/dubai_real_estate_south_india_prospects.xlsx)
-2. **Top 5 Strongest Prospects Shortlist**:
-   - Detailed Buyer Dossier: [`results/top_5_strongest_prospects.md`](results/top_5_strongest_prospects.md)
-3. **Comprehensive Methodology & Analysis Report**:
-   - In-depth Report: [`docs/methodology_and_report.md`](docs/methodology_and_report.md)
-4. **Automated Test Suite**:
-   - Unit Tests: [`tests/`](tests/) (13 automated test cases covering dedup, geo matching, and qualification scoring)
+### 1. `input/` Directory (Raw Discovery Data)
+Stores all 231 raw candidate records discovered from public community sources before filtering, deduplication, or scoring:
+- [`input/raw_discovered_candidates.json`](input/raw_discovered_candidates.json): Structured JSON array of raw posts/comments with verbatim text, handles, dates, and source URLs.
+- [`input/raw_discovered_candidates.csv`](input/raw_discovered_candidates.csv): Tabular CSV format of the raw discovery data.
+
+### 2. `results/` Directory (Exclusively Qualified Leads)
+Contains **ONLY ONE master Excel file** containing qualified leads scoring **> 70 out of 100 points**:
+- [`results/qualified_dubai_leads.xlsx`](results/qualified_dubai_leads.xlsx): Professionally styled Excel workbook with freeze-panes, auto-fit column widths, verified public links, and detailed 0–100 score breakdowns.
 
 ---
 
-## Dataset Schema
+## 0–100 Qualification Scoring Model
 
-Each prospect record includes:
-- `record_id`: Unique tracking ID (e.g., `DUB-SI-001`)
-- `public_name_or_handle`: Public username or handle on the platform
-- `platform`: Community or forum platform (Reddit, YouTube, IREF, Quora, Property Expos)
-- `city_state`: Identified South Indian city and state (e.g., `Bengaluru, Karnataka`, `Hyderabad, Telangana`)
-- `geo_evidence`: Verbatim excerpt confirming regional residency or origin
-- `source_link`: Exact public URL of the discussion thread or video comment
-- `signal_date`: Date when the buying signal was posted
-- `dubai_property_evidence`: Verbatim text demonstrating interest in Dubai property
-- `qualification_status`: Classification (`Strong Signal`, `Needs Validation`, `Reject`)
-- `qualification_reason`: Explicit rationale behind the classification decision
-- `unverified_information`: Key parameters remaining unconfirmed
-- `ticket_size_budget`: Stated or estimated budget (INR and AED equivalent)
-- `preferred_areas`: Target Dubai communities (e.g., JVC, Business Bay, Marina, Downtown) or developers (Emaar, Sobha, Danube)
+Lead qualification is determined by a transparent **0 to 100 point rubric** configured in [`workflow/config.py`](workflow/config.py):
+
+| Criteria Dimension | Score Points | Description |
+| :--- | :---: | :--- |
+| **Explicit Budget** | **+25 pts** | Stated liquid capital (e.g. ₹1.5 Cr–₹5 Cr / AED 750k–AED 2.5M+) |
+| **Verified South India Location** | **+25 pts** | Verified residency in KA, KL, TN, TS, or AP (or +12 pts for regional inference) |
+| **Concrete Purchase Timeline** | **+15 pts** | Closing horizon (immediate, next month, within 6 months) |
+| **Specific Dubai Locality** | **+10 pts** | Named community (JVC, Marina, Downtown, Business Bay, etc.) |
+| **Specific Developer** | **+10 pts** | Named developer (Emaar, Sobha, Danube, Ellington, etc.) |
+| **Regulatory / LRS Inquiry** | **+8 pts** | Demonstrates awareness of RBI's $250k outward limit and 20% TCS |
+| **Yield / Golden Visa Analysis** | **+7 pts** | Analyzed 6–8% net rental yield, AED 2M Golden Visa, or payment plans |
+| **Total Maximum Score** | **100 pts** | Perfect qualification score |
+
+### Configurable Thresholds in `workflow/config.py`
+```python
+# Qualification Score Threshold (0 to 100 scale)
+QUALIFIED_SCORE_THRESHOLD = 70  # Only leads with score > 70 are included in the results Excel
+
+# Freshness Gate (Signals > 180 days incur a -30 pt penalty and cannot score > 70)
+MAX_FRESHNESS_DAYS = 180
+PENALTY_STALE_SIGNAL = 30
+```
 
 ---
 
 ## Funnel & Metrics Summary
 
-| Classification | Count | Percentage | Description |
-| :--- | :--- | :--- | :--- |
-| **Strong Signal** | **96** | **43.2%** | High intent & verified fresh (≤ 6 months / 180 days): Stated budget, timeline, target projects, verified South Indian location, non-broker. |
-| **Needs Validation** | **69** | **31.1%** | Moderate intent OR high-intent signals older than 6 months requiring active status re-validation. |
-| **Reject** | **57** | **25.7%** | Disqualified: Identified as broker/agent selling units, job seeker, or out-of-geography inquiry. |
-| **Total Unique** | **222** | **100.0%** | **Deduplicated from 231 raw harvested records** |
+| Funnel Stage | Count | Share (%) | Description |
+| :--- | :---: | :---: | :--- |
+| **Total Raw Discovered Candidates** | **231** | 100.0% | Stored in `input/raw_discovered_candidates.json` & `.csv` |
+| **Unique Deduplicated Prospects** | **222** | 96.1% | Pruned 9 duplicate handles and URLs |
+| **Qualified Leads (Score > 70/100)** | **58** | **26.1%** | **Exported exclusively to `results/qualified_dubai_leads.xlsx`** |
+| - *Tier 1 Premium (Score 90–100)* | 40 | 69.0% of qualified | Explicit budget + timeline + project + developer + verified location |
+| - *Tier 2 High (Score 80–89)* | 10 | 17.2% of qualified | Explicit budget + project + developer + verified location |
+| - *Tier 3 Qualified (Score 71–79)* | 8 | 13.8% of qualified | Stated budget + project/locality + verified location |
 
-### Geographic Spread
-
-- **Karnataka**: 45 (20.3%) — Bengaluru, Mysuru, Mangaluru, Hubballi
-- **Kerala**: 44 (19.8%) — Kochi, Thiruvananthapuram, Kozhikode, Thrissur, Kannur
-- **Telangana**: 42 (18.9%) — Hyderabad, Secunderabad, Warangal, Karimnagar
-- **Tamil Nadu**: 42 (18.9%) — Chennai, Coimbatore, Madurai, Tiruchirappalli
-- **Andhra Pradesh**: 38 (17.1%) — Visakhapatnam, Vijayawada, Guntur, Tirupati
-- **Unverified / Out of Region**: 11 (5.0%) — Disqualified non-South Indian inquiries
+### Geographic Spread of Qualified Leads (> 70 Points)
+- **Karnataka**: 16 (27.6%) — Bengaluru, Mysuru, Mangaluru, Hubballi
+- **Tamil Nadu**: 12 (20.7%) — Chennai, Coimbatore, Madurai, Trichy
+- **Andhra Pradesh**: 12 (20.7%) — Visakhapatnam, Vijayawada, Guntur, Tirupati
+- **Telangana**: 10 (17.2%) — Hyderabad, Secunderabad, Warangal
+- **Kerala**: 8 (13.8%) — Kochi, Thiruvananthapuram, Kozhikode, Thrissur
 
 ---
 

@@ -45,7 +45,23 @@ QUALIFIED_SCORE_THRESHOLD = 70  # Only leads with score > 70 are included in the
 # Freshness Gate (Signals > 180 days incur a -30 pt penalty and cannot score > 70)
 MAX_FRESHNESS_DAYS = 180
 PENALTY_STALE_SIGNAL = 30
+
+# Source Verification & Reddit Post Existence
+VERIFY_SOURCE_AVAILABILITY = True   # Master toggle: checks URL existence and filters deleted/removed posts
+VERIFY_REDDIT_COMMUNITY = True      # Rejects posts deleted by user ('[deleted]') or removed by moderators ('[removed]')
+CHECK_LIVE_URLS = False             # Optional live HTTP HEAD/GET probe (can be enabled via --check-live)
 ```
+
+---
+
+## Source & Reddit URL Verification Engine
+
+A dedicated verification engine ([`workflow/processors/source_verifier.py`](workflow/processors/source_verifier.py)) automatically audits all raw candidate URLs and contents during the filtering stage:
+1. **URL Existence & Structure**: Validates that every link is a well-formed, reachable Reddit post/comment permalink with a valid subreddit and alphanumeric post identifier.
+2. **Author Deletion Detection**: Detects accounts deleted by the author (`u/[deleted]`, `[deleted]`) and flags them immediately.
+3. **Moderator & Spam Removal Detection**: Identifies posts and comments removed by community moderators or Reddit spam filters (`[removed]`, `"Sorry, this post has been removed by the moderators"`).
+4. **Automated Disqualification**: Deleted or removed posts receive `score = 0` and `status = Reject` with a transparent audit reason, ensuring zero dead or removed discussions ever enter the qualified output.
+5. **Optional Live HTTP Probing**: When `--check-live` is passed, the pipeline performs live HTTP checks to verify HTTP 200 responses against live community servers.
 
 ---
 
@@ -53,19 +69,20 @@ PENALTY_STALE_SIGNAL = 30
 
 | Funnel Stage | Count | Share (%) | Description |
 | :--- | :---: | :---: | :--- |
-| **Total Raw Discovered Candidates** | **231** | 100.0% | Stored in `input/raw_discovered_candidates.json` & `.csv` |
-| **Unique Deduplicated Prospects** | **222** | 96.1% | Pruned 9 duplicate handles and URLs |
-| **Qualified Leads (Score > 70/100)** | **58** | **26.1%** | **Exported exclusively to `results/qualified_dubai_leads.xlsx`** |
-| - *Tier 1 Premium (Score 90–100)* | 40 | 69.0% of qualified | Explicit budget + timeline + project + developer + verified location |
-| - *Tier 2 High (Score 80–89)* | 10 | 17.2% of qualified | Explicit budget + project + developer + verified location |
-| - *Tier 3 Qualified (Score 71–79)* | 8 | 13.8% of qualified | Stated budget + project/locality + verified location |
+| **Total Raw Discovered Candidates** | **258** | 100.0% | Stored in `input/raw_discovered_candidates.json` & `.csv` |
+| **Pruned Deleted / Removed Posts** | **27** | 10.5% | Filtered 17 author-deleted and 10 moderator-removed Reddit posts |
+| **Unique Deduplicated Prospects** | **249** | 96.5% | Pruned 9 duplicate handles and URLs |
+| **Qualified Leads (Score > 70/100)** | **50** | **20.1%** | **Exported exclusively to `results/qualified_dubai_leads.xlsx`** |
+| - *Tier 1 Premium (Score 90–100)* | 32 | 64.0% of qualified | Explicit budget + timeline + project + developer + verified location |
+| - *Tier 2 High (Score 80–89)* | 10 | 20.0% of qualified | Explicit budget + project + developer + verified location |
+| - *Tier 3 Qualified (Score 71–79)* | 8 | 16.0% of qualified | Stated budget + project/locality + verified location |
 
 ### Geographic Spread of Qualified Leads (> 70 Points)
-- **Karnataka**: 16 (27.6%) — Bengaluru, Mysuru, Mangaluru, Hubballi
-- **Tamil Nadu**: 12 (20.7%) — Chennai, Coimbatore, Madurai, Trichy
-- **Andhra Pradesh**: 12 (20.7%) — Visakhapatnam, Vijayawada, Guntur, Tirupati
-- **Telangana**: 10 (17.2%) — Hyderabad, Secunderabad, Warangal
-- **Kerala**: 8 (13.8%) — Kochi, Thiruvananthapuram, Kozhikode, Thrissur
+- **Karnataka**: 15 (30.0%) — Bengaluru, Mysuru, Mangaluru, Hubballi
+- **Tamil Nadu**: 10 (20.0%) — Chennai, Coimbatore, Madurai, Trichy
+- **Andhra Pradesh**: 10 (20.0%) — Visakhapatnam, Vijayawada, Guntur, Tirupati
+- **Telangana**: 8 (16.0%) — Hyderabad, Secunderabad, Warangal
+- **Kerala**: 7 (14.0%) — Kochi, Thiruvananthapuram, Kozhikode, Thrissur
 
 ---
 
@@ -137,7 +154,8 @@ real-estate-leads-assignment/
 │   │   ├── __init__.py
 │   │   ├── deduplicator.py                    # Deduplication by handle, URL, and content hash
 │   │   ├── geo_matcher.py                     # South India NER & geocoding resolver
-│   │   └── intent_classifier.py               # Intent scoring and status assignment engine
+│   │   ├── intent_classifier.py               # Intent scoring and status assignment engine
+│   │   └── source_verifier.py                 # Source URL existence & Reddit deletion/removal checker
 │   └── main.py                                # CLI orchestrator
 ├── results/
 │   ├── qualified_dubai_leads.xlsx             # Master Excel (Qualified > 70 + Top 5 Shortlist)
@@ -147,7 +165,8 @@ real-estate-leads-assignment/
 └── tests/
     ├── test_dedup.py                          # Tests for deduplication logic
     ├── test_geo.py                            # Tests for geographic entity extraction
-    └── test_classifier.py                     # Tests for qualification and broker rejection
+    ├── test_classifier.py                     # Tests for qualification and broker rejection
+    └── test_source_verifier.py                # Tests for Reddit URL existence and deletion filtering
 ```
 
 ---

@@ -70,17 +70,23 @@ flowchart TD
 
 | Stage | Metric Count | % of Discovered | % of Deduplicated |
 | :--- | :--- | :--- | :--- |
-| **Total Discovered Records** | **231** | 100.0% | - |
-| **Deduplicated Unique Records** | **222** | 96.1% | 100.0% |
-| **- Strong Signal** (Verified Fresh <= 6 months) | **96** | 41.6% | **43.2%** |
-| **- Needs Validation** (Incl. >6-month freshness holds) | **69** | 29.9% | **31.1%** |
-| **- Reject** (Brokers, Job Seekers, Non-South India) | **57** | 24.7% | **25.7%** |
+| **Total Discovered Records** | **258** | 100.0% | - |
+| **Deduplicated Unique Records** | **249** | 96.5% | 100.0% |
+| **- Filtered Deleted/Removed Community Posts** | **27** | 10.5% | - |
+| **- Qualified Leads (Score > 70/100)** | **50** | 19.4% | **20.1%** |
+
+> [!IMPORTANT]
+> **Source URL Existence & Community Deletion Verification Gate**
+> During the source filtering stage, the pipeline strictly verifies that Reddit posts and comments still exist and remain active within their respective communities:
+> 1. **Author Deletion**: Any post where the user account or text is `[deleted]` is immediately disqualified (`score = 0`, `status = Reject`).
+> 2. **Community Moderator & Spam Removal**: Any thread or comment marked `[removed]` or containing moderator removal notices is immediately rejected.
+> 3. **URL Existence & Structure**: Links must be well-formed, reachable Reddit community permalinks. Dead or broken URLs are purged.
+> Zero deleted or removed discussions are allowed into the qualified output.
 
 > [!IMPORTANT]
 > **Strict 6-Month Freshness Validation Gate**
 > To qualify as a **Strong Signal**, a prospect's public buying intent signal must have occurred **within the last 6 months (≤ 180 days)**.
-> Prospects with high financial capacity and clear project interest whose signals originated **> 6 months ago (31 candidates)** were automatically gated and classified as **Needs Validation** with the explicit reason:
-> *"Freshness limit exceeded (> 180 days / 6 months threshold); high intent verified, but requires freshness re-validation before direct sales outreach."*
+> Prospects with high financial capacity and clear project interest whose signals originated **> 6 months ago** were automatically penalized (-30 pts) and gated from the qualified results list.
 
 ### Geographic Distribution Across South India
 

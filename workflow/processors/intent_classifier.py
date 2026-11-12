@@ -6,6 +6,7 @@ Calculates qualification score, categorizes status, and documents clear rational
 import re
 from datetime import datetime, date
 from typing import Dict, List, Tuple, Optional
+from workflow.processors.source_verifier import SourceVerifier
 from workflow.config import (
     DUBAI_LOCALITIES,
     DUBAI_DEVELOPERS,
@@ -22,7 +23,8 @@ from workflow.config import (
     QUALIFIED_SCORE_THRESHOLD,
     MAX_FRESHNESS_DAYS,
     ENFORCE_FRESHNESS,
-    PENALTY_STALE_SIGNAL
+    PENALTY_STALE_SIGNAL,
+    VERIFY_SOURCE_AVAILABILITY
 )
 
 
@@ -31,11 +33,15 @@ class IntentClassifier:
         self,
         max_freshness_days: int = MAX_FRESHNESS_DAYS,
         enforce_freshness: bool = ENFORCE_FRESHNESS,
-        qualified_threshold: int = QUALIFIED_SCORE_THRESHOLD
+        qualified_threshold: int = QUALIFIED_SCORE_THRESHOLD,
+        verify_sources: bool = VERIFY_SOURCE_AVAILABILITY,
+        source_verifier: Optional[SourceVerifier] = None
     ):
         self.max_freshness_days = max_freshness_days
         self.enforce_freshness = enforce_freshness
         self.qualified_threshold = qualified_threshold
+        self.verify_sources = verify_sources
+        self.source_verifier = source_verifier or SourceVerifier()
 
         # Budget patterns (AED, INR Cr/Lakh, USD)
         self.budget_pattern = re.compile(
@@ -79,11 +85,16 @@ class IntentClassifier:
         geo_info: Dict[str, any],
         platform_context: str = "",
         signal_date_str: str = "",
-        reference_date: Optional[date] = None
+        reference_date: Optional[date] = None,
+        source_link: str = "",
+        public_name_or_handle: str = "",
+        platform: str = "",
+        check_live: Optional[bool] = None
     ) -> Dict[str, any]:
         """
         Classifies candidate lead text into Strong Signal, Needs Validation, or Reject.
-        Enforces strict 6-month freshness gate. Returns detailed scoring, reasons, and unverified data points.
+        Enforces strict 6-month freshness gate and verifies source existence (excluding deleted/removed posts).
+        Returns detailed scoring, reasons, and unverified data points.
         """
         full_text = f"{text} {platform_context}".strip()
         reasons = []
@@ -104,6 +115,31 @@ class IntentClassifier:
                     is_fresh = False
             except Exception:
                 pass
+
+        # 0. Source URL & Community Existence Check (Reddit deletion & removal validation)
+        source_verification = None
+        if self.verify_sources and (source_link or text or public_name_or_handle):
+            source_verification = self.source_verifier.verify_record({
+                "source_link": source_link,
+                "raw_text": text,
+                "public_name_or_handle": public_name_or_handle,
+                "platform": platform,
+                "platform_context": platform_context
+            }, check_live=check_live)
+
+            if not source_verification["is_valid"]:
+                return {
+                    "qualification_status": "Reject",
+                    "qualification_reason": f"Disqualified: {source_verification['reason']}",
+                    "unverified_information": "N/A - source deleted or removed from community.",
+                    "ticket_size_budget": "N/A",
+                    "preferred_areas": "N/A",
+                    "score": 0,
+                    "signal_age_days": age_days if age_days is not None else "Unverified",
+                    "is_fresh": is_fresh,
+                    "is_qualified": False,
+                    "source_verification": source_verification
+                }
 
         # 1. Negative Filter: Check for broker / seller / job hunter behavior
         negative_match = self.negative_pattern.search(full_text)
@@ -217,5 +253,6 @@ class IntentClassifier:
             "score": score,
             "is_qualified": (score > self.qualified_threshold),
             "signal_age_days": age_days if age_days is not None else "Unverified",
-            "is_fresh": is_fresh
+            "is_fresh": is_fresh,
+            "source_verification": source_verification
         }

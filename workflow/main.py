@@ -14,7 +14,9 @@ from datetime import datetime
 from workflow.config import (
     MAX_FRESHNESS_DAYS,
     ENFORCE_FRESHNESS,
-    QUALIFIED_SCORE_THRESHOLD
+    QUALIFIED_SCORE_THRESHOLD,
+    VERIFY_SOURCE_AVAILABILITY,
+    CHECK_LIVE_URLS
 )
 from workflow.harvesters.reddit_harvester import RedditHarvester
 from workflow.harvesters.youtube_harvester import YouTubeHarvester
@@ -22,18 +24,24 @@ from workflow.harvesters.forum_harvester import ForumHarvester
 from workflow.processors.deduplicator import Deduplicator
 from workflow.processors.geo_matcher import GeoMatcher
 from workflow.processors.intent_classifier import IntentClassifier
+from workflow.processors.source_verifier import SourceVerifier
 
 
 def run_pipeline(
     input_dir: str = "input",
     output_dir: str = "results",
     max_freshness_days: int = MAX_FRESHNESS_DAYS,
-    qualified_threshold: int = QUALIFIED_SCORE_THRESHOLD
+    qualified_threshold: int = QUALIFIED_SCORE_THRESHOLD,
+    verify_sources: bool = VERIFY_SOURCE_AVAILABILITY,
+    check_live: bool = CHECK_LIVE_URLS
 ) -> Dict[str, any]:
     print("=" * 70)
     print("DUBAI REAL ESTATE LEAD DISCOVERY & QUALIFICATION PIPELINE (SOUTH INDIA)")
     print(f"Freshness Window: {max_freshness_days} days ({max_freshness_days // 30} months)")
     print(f"Qualification Threshold: Score > {qualified_threshold} / 100 points")
+    print(f"Source Verification: {'ENABLED (Filtering deleted/removed Reddit posts & dead URLs)' if verify_sources else 'DISABLED'}")
+    if check_live:
+        print("Live URL Probe: ENABLED (Checking HTTP response status)")
     print("=" * 70)
 
     os.makedirs(input_dir, exist_ok=True)
@@ -47,9 +55,12 @@ def run_pipeline(
     ]
     deduplicator = Deduplicator()
     geo_matcher = GeoMatcher()
+    source_verifier = SourceVerifier(check_live=check_live)
     intent_classifier = IntentClassifier(
         max_freshness_days=max_freshness_days,
-        qualified_threshold=qualified_threshold
+        qualified_threshold=qualified_threshold,
+        verify_sources=verify_sources,
+        source_verifier=source_verifier
     )
 
     # 2. Stage 1: Harvesting raw candidate records
@@ -76,34 +87,55 @@ def run_pipeline(
             writer.writerow(r)
     print(f"  -> Raw discovery data stored in: {raw_json_path} & {raw_csv_path}")
 
-    # 3. Stage 2: Processing, Geo-Matching & 0-100 Intent Scoring
-    print("\n[Stage 2/4] Running Geographic Matching & 0-100 Intent Scoring...")
+    # 3. Stage 2: Processing, Geo-Matching, Source URL Verification & 0-100 Intent Scoring
+    print("\n[Stage 2/4] Running Source Verification, Geographic Matching & 0-100 Intent Scoring...")
     processed_records = []
+    deleted_author_count = 0
+    removed_mod_count = 0
+    invalid_url_count = 0
+
     for rec in raw_records:
         text = rec.get("raw_text", "")
         platform_ctx = rec.get("platform_context", "")
+        source_link = rec.get("source_link", "").strip()
+        handle = rec.get("public_name_or_handle", "").strip()
+        platform = rec.get("platform", "").strip()
 
         # Geographic resolution
         geo_info = geo_matcher.extract_geo(text, platform_ctx)
 
-        # Intent classification with strict freshness validation & 0-100 scoring
+        # Intent classification with source existence verification & 0-100 scoring
         sig_date_str = rec.get("signal_date", "").strip()
         classification = intent_classifier.classify_lead(
             text=text,
             geo_info=geo_info,
             platform_context=platform_ctx,
-            signal_date_str=sig_date_str
+            signal_date_str=sig_date_str,
+            source_link=source_link,
+            public_name_or_handle=handle,
+            platform=platform,
+            check_live=check_live
         )
 
+        # Track source filtering stats
+        src_ver = classification.get("source_verification")
+        if src_ver and not src_ver["is_valid"]:
+            if src_ver.get("is_deleted"):
+                deleted_author_count += 1
+            elif src_ver.get("is_removed"):
+                removed_mod_count += 1
+            elif not src_ver.get("url_exists"):
+                invalid_url_count += 1
+
         combined = {
-            "public_name_or_handle": rec.get("public_name_or_handle", "").strip(),
+            "public_name_or_handle": handle,
             "score": classification["score"],
             "qualification_status": classification["qualification_status"],
-            "platform": rec.get("platform", "").strip(),
+            "platform": platform,
             "city_state": geo_info["city_state"],
             "state": geo_info["state"],
             "geo_evidence": geo_info["geo_evidence"],
-            "source_link": rec.get("source_link", "").strip(),
+            "source_link": source_link,
             "signal_date": sig_date_str,
             "signal_age_days": classification.get("signal_age_days", "Unverified"),
             "ticket_size_budget": classification["ticket_size_budget"],
@@ -114,6 +146,14 @@ def run_pipeline(
             "is_qualified": classification.get("is_qualified", False)
         }
         processed_records.append(combined)
+
+    total_disqualified_sources = deleted_author_count + removed_mod_count + invalid_url_count
+    if verify_sources:
+        print(f"  -> Source Filter: Pruned {total_disqualified_sources} deleted/removed Reddit posts/comments:")
+        print(f"     • Deleted by Author     : {deleted_author_count}")
+        print(f"     • Removed by Moderators : {removed_mod_count}")
+        if invalid_url_count > 0:
+            print(f"     • Invalid / Dead URLs   : {invalid_url_count}")
 
     # 4. Stage 3: Deduplication
     print("\n[Stage 3/4] Deduplicating records by public handle, URL, and content hash...")
@@ -278,6 +318,8 @@ def run_pipeline(
     print("=" * 70)
     print(f"Total Raw Discovered Records (in 'input/'): {len(raw_records)}")
     print(f"Total Unique Candidates Evaluated:        {len(unique_records)}")
+    if verify_sources:
+        print(f"Pruned Deleted/Removed Sources:           {total_disqualified_sources} ({deleted_author_count} author deleted, {removed_mod_count} mod removed)")
     print(f"Qualified Leads (Score > {qualified_threshold}/100):          {len(qualified_records)} (in 'results/qualified_dubai_leads.xlsx')")
     print("\nQualified Leads Score Distribution (0 to 100 scale):")
     for band, count in score_bands.items():
@@ -292,6 +334,7 @@ def run_pipeline(
     return {
         "total_raw": len(raw_records),
         "total_unique": len(unique_records),
+        "disqualified_sources": total_disqualified_sources if verify_sources else 0,
         "total_qualified": len(qualified_records),
         "qualified_excel": excel_path
     }
@@ -324,10 +367,22 @@ if __name__ == "__main__":
         default="results",
         help="Output directory containing the single qualified leads Excel (default: results)"
     )
+    parser.add_argument(
+        "--no-verify-sources",
+        action="store_true",
+        help="Disable Reddit post/comment deletion and removal verification"
+    )
+    parser.add_argument(
+        "--check-live",
+        action="store_true",
+        help="Enable live HTTP probing of Reddit URLs"
+    )
     args = parser.parse_args()
     run_pipeline(
         input_dir=args.input_dir,
         output_dir=args.output_dir,
         max_freshness_days=args.freshness_days,
-        qualified_threshold=args.min_score
+        qualified_threshold=args.min_score,
+        verify_sources=not args.no_verify_sources,
+        check_live=args.check_live
     )

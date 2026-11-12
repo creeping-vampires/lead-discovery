@@ -107,6 +107,7 @@ FRESHNESS_WINDOW_MONTHS: int = 6
 DAYS_PER_MONTH: int = 30
 
 # Maximum age in days for a signal to qualify as 'Strong Signal'
+# Configurable constant: change this single value to adjust the freshness window across the entire pipeline
 MAX_FRESHNESS_DAYS: int = FRESHNESS_WINDOW_MONTHS * DAYS_PER_MONTH  # Default: 180 days (6 months)
 
 # Master toggle to enable or disable freshness gating
@@ -115,24 +116,21 @@ ENFORCE_FRESHNESS: bool = True
 # Score penalty for signals older than MAX_FRESHNESS_DAYS (prevents stale leads from scoring > 70)
 PENALTY_STALE_SIGNAL: int = 30
 
-
-
-
 # ==============================================================================
-# FRESHNESS CONFIGURATION CONSTANTS
+# SOURCE URL & REDDIT AVAILABILITY VERIFICATION CONSTANTS
 # ==============================================================================
-# Number of months a buying intent signal remains valid for qualification
-FRESHNESS_WINDOW_MONTHS: int = 6
+# Master toggle to enforce source URL existence & deletion filtering
+VERIFY_SOURCE_AVAILABILITY: bool = True
 
-# Average days per month calculation
-DAYS_PER_MONTH: int = 30
+# Enforce Reddit posts & comments are not deleted by author or removed by moderators
+VERIFY_REDDIT_COMMUNITY: bool = True
 
-# Maximum age in days for a signal to qualify as 'Strong Signal'
-# Configurable constant: change this single value to adjust the freshness window across the entire pipeline
-MAX_FRESHNESS_DAYS: int = FRESHNESS_WINDOW_MONTHS * DAYS_PER_MONTH  # Default: 180 days (6 months)
+# Optional live network HTTP probe of URLs (can be enabled via CLI flag --check-live)
+CHECK_LIVE_URLS: bool = False
 
-# Master toggle to enable or disable freshness gating
-ENFORCE_FRESHNESS: bool = True
+# Timeout for live HTTP requests in seconds
+LIVE_PROBE_TIMEOUT: float = 3.0
+
 
 
 

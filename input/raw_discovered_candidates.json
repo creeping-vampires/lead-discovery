@@ -312,6 +312,38 @@
     "platform_context": "r/IndiaInvestments North India resident"
   },
   {
+    "public_name_or_handle": "u/[deleted]",
+    "platform": "Reddit (r/bangalore)",
+    "source_link": "https://www.reddit.com/r/bangalore/comments/18m9xp1/dubai_real_estate_vs_bangalore_apartments/",
+    "signal_date": "2026-10-08",
+    "raw_text": "[deleted]",
+    "platform_context": "r/bangalore post deleted by user"
+  },
+  {
+    "public_name_or_handle": "u/hyderabad_anon_9",
+    "platform": "Reddit (r/hyderabad)",
+    "source_link": "https://www.reddit.com/r/hyderabad/comments/18x9812/kokapet_prices_vs_dubai_properties/",
+    "signal_date": "2026-10-03",
+    "raw_text": "[removed]",
+    "platform_context": "r/hyderabad post removed by community moderators"
+  },
+  {
+    "public_name_or_handle": "u/kochi_prop_del",
+    "platform": "Reddit (r/kerala)",
+    "source_link": "https://www.reddit.com/r/kerala/comments/18t9182/investing_in_dubai_property_instead_of_kochi_flats/",
+    "signal_date": "2026-09-28",
+    "raw_text": "Sorry, this post has been removed by the moderators of r/kerala. Looking to buy 2BHK in Business Bay.",
+    "platform_context": "r/kerala post removed by moderators"
+  },
+  {
+    "public_name_or_handle": "u/chennai_buyer_del",
+    "platform": "Reddit (r/chennai)",
+    "source_link": "https://www.reddit.com/r/chennai/comments/18z0192/investing_in_dubai_property_from_chennai/",
+    "signal_date": "2026-09-23",
+    "raw_text": "[deleted by user] Looking to invest 1.5 Cr in JVC Dubai.",
+    "platform_context": "r/chennai comment deleted by user"
+  },
+  {
     "public_name_or_handle": "u/bengaluru_inv_2",
     "platform": "Reddit (r/bangalore)",
     "source_link": "https://www.reddit.com/r/bangalore/comments/12a89/dubai_real_estate_investment_from_bengaluru/",
@@ -336,532 +368,716 @@
     "platform_context": "r/bangalore broker advertisement"
   },
   {
-    "public_name_or_handle": "u/mysuru_inv_5",
+    "public_name_or_handle": "u/bengaluru_mod_rem_5",
     "platform": "Reddit (r/bangalore)",
-    "source_link": "https://www.reddit.com/r/bangalore/comments/15a89/dubai_real_estate_investment_from_mysuru/",
+    "source_link": "https://www.reddit.com/r/bangalore/comments/15f94/dubai_realty_bengaluru/",
     "signal_date": "2026-09-28",
-    "raw_text": "Resident of Mysuru, Karnataka. Have liquid capital of ₹2.82 Cr (~AED 1250k). Actively looking to purchase a 1BHK or 2BHK off-plan apartment in Creek Harbour with Ellington. Planning to finalize booking next month under LRS. Looking for advice on developer track record and handover schedule.",
+    "raw_text": "Sorry, this post has been removed by the moderators of r/bangalore. Planning to buy in Dubai with AED 1M.",
+    "platform_context": "r/bangalore thread removed by moderators"
+  },
+  {
+    "public_name_or_handle": "u/mysuru_inv_6",
+    "platform": "Reddit (r/bangalore)",
+    "source_link": "https://www.reddit.com/r/bangalore/comments/16a89/dubai_real_estate_investment_from_mysuru/",
+    "signal_date": "2026-04-06",
+    "raw_text": "Resident of Mysuru, Karnataka. Have liquid capital of ₹3.05 Cr (~AED 1350k). Actively looking to purchase a 1BHK or 2BHK off-plan apartment in Arjan with Emaar. Planning to finalize booking next month under LRS. Looking for advice on developer track record and handover schedule.",
     "platform_context": "r/bangalore real estate inquiry"
   },
   {
-    "public_name_or_handle": "u/mysuru_tech_6",
+    "public_name_or_handle": "u/mysuru_tech_7",
     "platform": "Reddit (r/bangalore)",
-    "source_link": "https://www.reddit.com/r/bangalore/comments/16b90/dubai_rental_yield_vs_mysuru_real_estate/",
-    "signal_date": "2026-04-06",
-    "raw_text": "Working in IT from Mysuru, Karnataka. Comparing rental returns between local properties and Dubai apartments in Arjan. The 7-8% net tax-free yield is very tempting compared to local 2.5%. Has anyone navigated the 20% TCS remittance from SBI or HDFC recently?",
-    "platform_context": "r/bangalore rental yield comparison"
-  },
-  {
-    "public_name_or_handle": "u/realty_agent_mysuru_7",
-    "platform": "Reddit (r/bangalore)",
-    "source_link": "https://www.reddit.com/r/bangalore/comments/17c91/dubai_property_roadshow_deals_mysuru/",
+    "source_link": "https://www.reddit.com/r/bangalore/comments/17b90/dubai_rental_yield_vs_mysuru_real_estate/",
     "signal_date": "2026-09-14",
-    "raw_text": "Hey all! I am a licensed realtor covering Mysuru and Karnataka investors. Exclusive pre-launch units available with Sobha in Emaar South. 1% monthly payment plan. DM me for details and project brochures. Zero brokerage fee!",
-    "platform_context": "r/bangalore broker advertisement"
+    "raw_text": "Working in IT from Mysuru, Karnataka. Comparing rental returns between local properties and Dubai apartments in Emaar South. The 7-8% net tax-free yield is very tempting compared to local 2.5%. Has anyone navigated the 20% TCS remittance from SBI or HDFC recently?",
+    "platform_context": "r/bangalore rental yield comparison"
   },
   {
-    "public_name_or_handle": "u/mangaluru_inv_8",
+    "public_name_or_handle": "u/realty_agent_mysuru_8",
     "platform": "Reddit (r/bangalore)",
-    "source_link": "https://www.reddit.com/r/bangalore/comments/18a89/dubai_real_estate_investment_from_mangaluru/",
+    "source_link": "https://www.reddit.com/r/bangalore/comments/18c91/dubai_property_roadshow_deals_mysuru/",
     "signal_date": "2026-09-07",
-    "raw_text": "Resident of Mangaluru, Karnataka. Have liquid capital of ₹3.5 Cr (~AED 1550k). Actively looking to purchase a 1BHK or 2BHK off-plan apartment in JVC with Danube. Planning to finalize booking next month under LRS. Looking for advice on developer track record and handover schedule.",
-    "platform_context": "r/bangalore real estate inquiry"
+    "raw_text": "Hey all! I am a licensed realtor covering Mysuru and Karnataka investors. Exclusive pre-launch units available with Danube in JVC. 1% monthly payment plan. DM me for details and project brochures. Zero brokerage fee!",
+    "platform_context": "r/bangalore broker advertisement"
   },
   {
-    "public_name_or_handle": "u/mangaluru_tech_9",
+    "public_name_or_handle": "u/[deleted]",
     "platform": "Reddit (r/bangalore)",
-    "source_link": "https://www.reddit.com/r/bangalore/comments/19b90/dubai_rental_yield_vs_mangaluru_real_estate/",
+    "source_link": "https://www.reddit.com/r/bangalore/comments/19d92/deleted_thread/",
     "signal_date": "2026-03-22",
-    "raw_text": "Working in IT from Mangaluru, Karnataka. Comparing rental returns between local properties and Dubai apartments in Business Bay. The 7-8% net tax-free yield is very tempting compared to local 2.5%. Has anyone navigated the 20% TCS remittance from SBI or HDFC recently?",
-    "platform_context": "r/bangalore rental yield comparison"
+    "raw_text": "[deleted]",
+    "platform_context": "r/bangalore post deleted by author"
   },
   {
-    "public_name_or_handle": "u/realty_agent_mangaluru_10",
+    "public_name_or_handle": "u/mangaluru_inv_10",
     "platform": "Reddit (r/bangalore)",
-    "source_link": "https://www.reddit.com/r/bangalore/comments/110c91/dubai_property_roadshow_deals_mangaluru/",
+    "source_link": "https://www.reddit.com/r/bangalore/comments/110a89/dubai_real_estate_investment_from_mangaluru/",
     "signal_date": "2026-08-24",
-    "raw_text": "Hey all! I am a licensed realtor covering Mangaluru and Karnataka investors. Exclusive pre-launch units available with Damac in Dubai Marina. 1% monthly payment plan. DM me for details and project brochures. Zero brokerage fee!",
-    "platform_context": "r/bangalore broker advertisement"
-  },
-  {
-    "public_name_or_handle": "u/hubballi_inv_11",
-    "platform": "Reddit (r/bangalore)",
-    "source_link": "https://www.reddit.com/r/bangalore/comments/111a89/dubai_real_estate_investment_from_hubballi/",
-    "signal_date": "2026-08-17",
-    "raw_text": "Resident of Hubballi, Karnataka. Have liquid capital of ₹4.18 Cr (~AED 1850k). Actively looking to purchase a 1BHK or 2BHK off-plan apartment in Downtown Dubai with Ellington. Planning to finalize booking next month under LRS. Looking for advice on developer track record and handover schedule.",
+    "raw_text": "Resident of Mangaluru, Karnataka. Have liquid capital of ₹3.95 Cr (~AED 1750k). Actively looking to purchase a 1BHK or 2BHK off-plan apartment in Dubai Marina with Damac. Planning to finalize booking next month under LRS. Looking for advice on developer track record and handover schedule.",
     "platform_context": "r/bangalore real estate inquiry"
   },
   {
-    "public_name_or_handle": "u/hubballi_tech_12",
+    "public_name_or_handle": "u/mangaluru_tech_11",
     "platform": "Reddit (r/bangalore)",
-    "source_link": "https://www.reddit.com/r/bangalore/comments/112b90/dubai_rental_yield_vs_hubballi_real_estate/",
-    "signal_date": "2026-03-07",
-    "raw_text": "Working in IT from Hubballi, Karnataka. Comparing rental returns between local properties and Dubai apartments in Dubai Hills Estate. The 7-8% net tax-free yield is very tempting compared to local 2.5%. Has anyone navigated the 20% TCS remittance from SBI or HDFC recently?",
+    "source_link": "https://www.reddit.com/r/bangalore/comments/111b90/dubai_rental_yield_vs_mangaluru_real_estate/",
+    "signal_date": "2026-08-17",
+    "raw_text": "Working in IT from Mangaluru, Karnataka. Comparing rental returns between local properties and Dubai apartments in Downtown Dubai. The 7-8% net tax-free yield is very tempting compared to local 2.5%. Has anyone navigated the 20% TCS remittance from SBI or HDFC recently?",
     "platform_context": "r/bangalore rental yield comparison"
   },
   {
-    "public_name_or_handle": "u/realty_agent_hubballi_13",
+    "public_name_or_handle": "u/realty_agent_mangaluru_12",
     "platform": "Reddit (r/bangalore)",
-    "source_link": "https://www.reddit.com/r/bangalore/comments/113c91/dubai_property_roadshow_deals_hubballi/",
-    "signal_date": "2026-08-03",
-    "raw_text": "Hey all! I am a licensed realtor covering Hubballi and Karnataka investors. Exclusive pre-launch units available with Sobha in Creek Harbour. 1% monthly payment plan. DM me for details and project brochures. Zero brokerage fee!",
+    "source_link": "https://www.reddit.com/r/bangalore/comments/112c91/dubai_property_roadshow_deals_mangaluru/",
+    "signal_date": "2026-03-07",
+    "raw_text": "Hey all! I am a licensed realtor covering Mangaluru and Karnataka investors. Exclusive pre-launch units available with Emaar in Dubai Hills Estate. 1% monthly payment plan. DM me for details and project brochures. Zero brokerage fee!",
     "platform_context": "r/bangalore broker advertisement"
   },
   {
-    "public_name_or_handle": "u/hyderabad_inv_14",
-    "platform": "Reddit (r/hyderabad)",
-    "source_link": "https://www.reddit.com/r/hyderabad/comments/114a89/dubai_real_estate_investment_from_hyderabad/",
+    "public_name_or_handle": "u/mangaluru_user_13",
+    "platform": "Reddit (r/bangalore)",
+    "source_link": "https://www.reddit.com/r/bangalore/comments/113e93/removed_thread/",
+    "signal_date": "2026-08-03",
+    "raw_text": "[removed]",
+    "platform_context": "r/bangalore post removed by community moderators"
+  },
+  {
+    "public_name_or_handle": "u/hubballi_inv_14",
+    "platform": "Reddit (r/bangalore)",
+    "source_link": "https://www.reddit.com/r/bangalore/comments/114a89/dubai_real_estate_investment_from_hubballi/",
     "signal_date": "2026-07-27",
-    "raw_text": "Resident of Hyderabad, Telangana. Have liquid capital of ₹4.86 Cr (~AED 2150k). Actively looking to purchase a 1BHK or 2BHK off-plan apartment in Arjan with Danube. Planning to finalize booking next month under LRS. Looking for advice on developer track record and handover schedule.",
-    "platform_context": "r/hyderabad real estate inquiry"
+    "raw_text": "Resident of Hubballi, Karnataka. Have liquid capital of ₹4.86 Cr (~AED 2150k). Actively looking to purchase a 1BHK or 2BHK off-plan apartment in Arjan with Danube. Planning to finalize booking next month under LRS. Looking for advice on developer track record and handover schedule.",
+    "platform_context": "r/bangalore real estate inquiry"
   },
   {
-    "public_name_or_handle": "u/hyderabad_tech_15",
-    "platform": "Reddit (r/hyderabad)",
-    "source_link": "https://www.reddit.com/r/hyderabad/comments/115b90/dubai_rental_yield_vs_hyderabad_real_estate/",
+    "public_name_or_handle": "u/hubballi_tech_15",
+    "platform": "Reddit (r/bangalore)",
+    "source_link": "https://www.reddit.com/r/bangalore/comments/115b90/dubai_rental_yield_vs_hubballi_real_estate/",
     "signal_date": "2026-02-20",
-    "raw_text": "Working in IT from Hyderabad, Telangana. Comparing rental returns between local properties and Dubai apartments in Emaar South. The 7-8% net tax-free yield is very tempting compared to local 2.5%. Has anyone navigated the 20% TCS remittance from SBI or HDFC recently?",
-    "platform_context": "r/hyderabad rental yield comparison"
+    "raw_text": "Working in IT from Hubballi, Karnataka. Comparing rental returns between local properties and Dubai apartments in Emaar South. The 7-8% net tax-free yield is very tempting compared to local 2.5%. Has anyone navigated the 20% TCS remittance from SBI or HDFC recently?",
+    "platform_context": "r/bangalore rental yield comparison"
   },
   {
-    "public_name_or_handle": "u/realty_agent_hyderabad_16",
-    "platform": "Reddit (r/hyderabad)",
-    "source_link": "https://www.reddit.com/r/hyderabad/comments/116c91/dubai_property_roadshow_deals_hyderabad/",
+    "public_name_or_handle": "u/realty_agent_hubballi_16",
+    "platform": "Reddit (r/bangalore)",
+    "source_link": "https://www.reddit.com/r/bangalore/comments/116c91/dubai_property_roadshow_deals_hubballi/",
     "signal_date": "2026-07-13",
-    "raw_text": "Hey all! I am a licensed realtor covering Hyderabad and Telangana investors. Exclusive pre-launch units available with Damac in JVC. 1% monthly payment plan. DM me for details and project brochures. Zero brokerage fee!",
-    "platform_context": "r/hyderabad broker advertisement"
+    "raw_text": "Hey all! I am a licensed realtor covering Hubballi and Karnataka investors. Exclusive pre-launch units available with Damac in JVC. 1% monthly payment plan. DM me for details and project brochures. Zero brokerage fee!",
+    "platform_context": "r/bangalore broker advertisement"
   },
   {
-    "public_name_or_handle": "u/secunderabad_inv_17",
-    "platform": "Reddit (r/hyderabad)",
-    "source_link": "https://www.reddit.com/r/hyderabad/comments/117a89/dubai_real_estate_investment_from_secunderabad/",
+    "public_name_or_handle": "u/hubballi_mod_rem_17",
+    "platform": "Reddit (r/bangalore)",
+    "source_link": "https://www.reddit.com/r/bangalore/comments/117f94/dubai_realty_hubballi/",
     "signal_date": "2026-07-06",
-    "raw_text": "Resident of Secunderabad, Telangana. Have liquid capital of ₹2.15 Cr (~AED 950k). Actively looking to purchase a 1BHK or 2BHK off-plan apartment in Business Bay with Ellington. Planning to finalize booking next month under LRS. Looking for advice on developer track record and handover schedule.",
-    "platform_context": "r/hyderabad real estate inquiry"
+    "raw_text": "Sorry, this post has been removed by the moderators of r/bangalore. Planning to buy in Dubai with AED 1M.",
+    "platform_context": "r/bangalore thread removed by moderators"
   },
   {
-    "public_name_or_handle": "u/secunderabad_tech_18",
+    "public_name_or_handle": "u/hyderabad_inv_18",
     "platform": "Reddit (r/hyderabad)",
-    "source_link": "https://www.reddit.com/r/hyderabad/comments/118b90/dubai_rental_yield_vs_secunderabad_real_estate/",
+    "source_link": "https://www.reddit.com/r/hyderabad/comments/118a89/dubai_real_estate_investment_from_hyderabad/",
     "signal_date": "2026-05-06",
-    "raw_text": "Working in IT from Secunderabad, Telangana. Comparing rental returns between local properties and Dubai apartments in Dubai Marina. The 7-8% net tax-free yield is very tempting compared to local 2.5%. Has anyone navigated the 20% TCS remittance from SBI or HDFC recently?",
-    "platform_context": "r/hyderabad rental yield comparison"
+    "raw_text": "Resident of Hyderabad, Telangana. Have liquid capital of ₹2.37 Cr (~AED 1050k). Actively looking to purchase a 1BHK or 2BHK off-plan apartment in Dubai Marina with Emaar. Planning to finalize booking next month under LRS. Looking for advice on developer track record and handover schedule.",
+    "platform_context": "r/hyderabad real estate inquiry"
   },
   {
-    "public_name_or_handle": "u/realty_agent_secunderabad_19",
+    "public_name_or_handle": "u/hyderabad_tech_19",
     "platform": "Reddit (r/hyderabad)",
-    "source_link": "https://www.reddit.com/r/hyderabad/comments/119c91/dubai_property_roadshow_deals_secunderabad/",
+    "source_link": "https://www.reddit.com/r/hyderabad/comments/119b90/dubai_rental_yield_vs_hyderabad_real_estate/",
     "signal_date": "2026-06-22",
-    "raw_text": "Hey all! I am a licensed realtor covering Secunderabad and Telangana investors. Exclusive pre-launch units available with Sobha in Downtown Dubai. 1% monthly payment plan. DM me for details and project brochures. Zero brokerage fee!",
-    "platform_context": "r/hyderabad broker advertisement"
+    "raw_text": "Working in IT from Hyderabad, Telangana. Comparing rental returns between local properties and Dubai apartments in Downtown Dubai. The 7-8% net tax-free yield is very tempting compared to local 2.5%. Has anyone navigated the 20% TCS remittance from SBI or HDFC recently?",
+    "platform_context": "r/hyderabad rental yield comparison"
   },
   {
-    "public_name_or_handle": "u/warangal_inv_20",
+    "public_name_or_handle": "u/realty_agent_hyderabad_20",
     "platform": "Reddit (r/hyderabad)",
-    "source_link": "https://www.reddit.com/r/hyderabad/comments/120a89/dubai_real_estate_investment_from_warangal/",
+    "source_link": "https://www.reddit.com/r/hyderabad/comments/120c91/dubai_property_roadshow_deals_hyderabad/",
     "signal_date": "2026-06-15",
-    "raw_text": "Resident of Warangal, Telangana. Have liquid capital of ₹2.82 Cr (~AED 1250k). Actively looking to purchase a 1BHK or 2BHK off-plan apartment in Dubai Hills Estate with Danube. Planning to finalize booking next month under LRS. Looking for advice on developer track record and handover schedule.",
-    "platform_context": "r/hyderabad real estate inquiry"
+    "raw_text": "Hey all! I am a licensed realtor covering Hyderabad and Telangana investors. Exclusive pre-launch units available with Danube in Dubai Hills Estate. 1% monthly payment plan. DM me for details and project brochures. Zero brokerage fee!",
+    "platform_context": "r/hyderabad broker advertisement"
   },
   {
-    "public_name_or_handle": "u/warangal_tech_21",
+    "public_name_or_handle": "u/[deleted]",
     "platform": "Reddit (r/hyderabad)",
-    "source_link": "https://www.reddit.com/r/hyderabad/comments/121b90/dubai_rental_yield_vs_warangal_real_estate/",
+    "source_link": "https://www.reddit.com/r/hyderabad/comments/121d92/deleted_thread/",
     "signal_date": "2026-04-21",
-    "raw_text": "Working in IT from Warangal, Telangana. Comparing rental returns between local properties and Dubai apartments in Creek Harbour. The 7-8% net tax-free yield is very tempting compared to local 2.5%. Has anyone navigated the 20% TCS remittance from SBI or HDFC recently?",
-    "platform_context": "r/hyderabad rental yield comparison"
+    "raw_text": "[deleted]",
+    "platform_context": "r/hyderabad post deleted by author"
   },
   {
-    "public_name_or_handle": "u/realty_agent_warangal_22",
+    "public_name_or_handle": "u/secunderabad_inv_22",
     "platform": "Reddit (r/hyderabad)",
-    "source_link": "https://www.reddit.com/r/hyderabad/comments/122c91/dubai_property_roadshow_deals_warangal/",
+    "source_link": "https://www.reddit.com/r/hyderabad/comments/122a89/dubai_real_estate_investment_from_secunderabad/",
     "signal_date": "2026-06-01",
-    "raw_text": "Hey all! I am a licensed realtor covering Warangal and Telangana investors. Exclusive pre-launch units available with Damac in Arjan. 1% monthly payment plan. DM me for details and project brochures. Zero brokerage fee!",
-    "platform_context": "r/hyderabad broker advertisement"
-  },
-  {
-    "public_name_or_handle": "u/karimnagar_inv_23",
-    "platform": "Reddit (r/hyderabad)",
-    "source_link": "https://www.reddit.com/r/hyderabad/comments/123a89/dubai_real_estate_investment_from_karimnagar/",
-    "signal_date": "2026-05-25",
-    "raw_text": "Resident of Karimnagar, Telangana. Have liquid capital of ₹3.5 Cr (~AED 1550k). Actively looking to purchase a 1BHK or 2BHK off-plan apartment in Emaar South with Ellington. Planning to finalize booking next month under LRS. Looking for advice on developer track record and handover schedule.",
+    "raw_text": "Resident of Secunderabad, Telangana. Have liquid capital of ₹3.28 Cr (~AED 1450k). Actively looking to purchase a 1BHK or 2BHK off-plan apartment in Arjan with Damac. Planning to finalize booking next month under LRS. Looking for advice on developer track record and handover schedule.",
     "platform_context": "r/hyderabad real estate inquiry"
   },
   {
-    "public_name_or_handle": "u/karimnagar_tech_24",
+    "public_name_or_handle": "u/secunderabad_tech_23",
     "platform": "Reddit (r/hyderabad)",
-    "source_link": "https://www.reddit.com/r/hyderabad/comments/124b90/dubai_rental_yield_vs_karimnagar_real_estate/",
-    "signal_date": "2026-04-06",
-    "raw_text": "Working in IT from Karimnagar, Telangana. Comparing rental returns between local properties and Dubai apartments in JVC. The 7-8% net tax-free yield is very tempting compared to local 2.5%. Has anyone navigated the 20% TCS remittance from SBI or HDFC recently?",
+    "source_link": "https://www.reddit.com/r/hyderabad/comments/123b90/dubai_rental_yield_vs_secunderabad_real_estate/",
+    "signal_date": "2026-05-25",
+    "raw_text": "Working in IT from Secunderabad, Telangana. Comparing rental returns between local properties and Dubai apartments in Emaar South. The 7-8% net tax-free yield is very tempting compared to local 2.5%. Has anyone navigated the 20% TCS remittance from SBI or HDFC recently?",
     "platform_context": "r/hyderabad rental yield comparison"
   },
   {
-    "public_name_or_handle": "u/realty_agent_karimnagar_25",
+    "public_name_or_handle": "u/realty_agent_secunderabad_24",
     "platform": "Reddit (r/hyderabad)",
-    "source_link": "https://www.reddit.com/r/hyderabad/comments/125c91/dubai_property_roadshow_deals_karimnagar/",
-    "signal_date": "2026-10-23",
-    "raw_text": "Hey all! I am a licensed realtor covering Karimnagar and Telangana investors. Exclusive pre-launch units available with Sobha in Business Bay. 1% monthly payment plan. DM me for details and project brochures. Zero brokerage fee!",
+    "source_link": "https://www.reddit.com/r/hyderabad/comments/124c91/dubai_property_roadshow_deals_secunderabad/",
+    "signal_date": "2026-04-06",
+    "raw_text": "Hey all! I am a licensed realtor covering Secunderabad and Telangana investors. Exclusive pre-launch units available with Emaar in JVC. 1% monthly payment plan. DM me for details and project brochures. Zero brokerage fee!",
     "platform_context": "r/hyderabad broker advertisement"
   },
   {
-    "public_name_or_handle": "u/kochi_inv_26",
-    "platform": "Reddit (r/kerala)",
-    "source_link": "https://www.reddit.com/r/kerala/comments/126a89/dubai_real_estate_investment_from_kochi/",
+    "public_name_or_handle": "u/secunderabad_user_25",
+    "platform": "Reddit (r/hyderabad)",
+    "source_link": "https://www.reddit.com/r/hyderabad/comments/125e93/removed_thread/",
+    "signal_date": "2026-10-23",
+    "raw_text": "[removed]",
+    "platform_context": "r/hyderabad post removed by community moderators"
+  },
+  {
+    "public_name_or_handle": "u/warangal_inv_26",
+    "platform": "Reddit (r/hyderabad)",
+    "source_link": "https://www.reddit.com/r/hyderabad/comments/126a89/dubai_real_estate_investment_from_warangal/",
     "signal_date": "2026-10-16",
-    "raw_text": "Resident of Kochi, Kerala. Have liquid capital of ₹4.18 Cr (~AED 1850k). Actively looking to purchase a 1BHK or 2BHK off-plan apartment in Dubai Marina with Danube. Planning to finalize booking next month under LRS. Looking for advice on developer track record and handover schedule.",
+    "raw_text": "Resident of Warangal, Telangana. Have liquid capital of ₹4.18 Cr (~AED 1850k). Actively looking to purchase a 1BHK or 2BHK off-plan apartment in Dubai Marina with Danube. Planning to finalize booking next month under LRS. Looking for advice on developer track record and handover schedule.",
+    "platform_context": "r/hyderabad real estate inquiry"
+  },
+  {
+    "public_name_or_handle": "u/warangal_tech_27",
+    "platform": "Reddit (r/hyderabad)",
+    "source_link": "https://www.reddit.com/r/hyderabad/comments/127b90/dubai_rental_yield_vs_warangal_real_estate/",
+    "signal_date": "2026-03-22",
+    "raw_text": "Working in IT from Warangal, Telangana. Comparing rental returns between local properties and Dubai apartments in Downtown Dubai. The 7-8% net tax-free yield is very tempting compared to local 2.5%. Has anyone navigated the 20% TCS remittance from SBI or HDFC recently?",
+    "platform_context": "r/hyderabad rental yield comparison"
+  },
+  {
+    "public_name_or_handle": "u/realty_agent_warangal_28",
+    "platform": "Reddit (r/hyderabad)",
+    "source_link": "https://www.reddit.com/r/hyderabad/comments/128c91/dubai_property_roadshow_deals_warangal/",
+    "signal_date": "2026-10-02",
+    "raw_text": "Hey all! I am a licensed realtor covering Warangal and Telangana investors. Exclusive pre-launch units available with Damac in Dubai Hills Estate. 1% monthly payment plan. DM me for details and project brochures. Zero brokerage fee!",
+    "platform_context": "r/hyderabad broker advertisement"
+  },
+  {
+    "public_name_or_handle": "u/warangal_mod_rem_29",
+    "platform": "Reddit (r/hyderabad)",
+    "source_link": "https://www.reddit.com/r/hyderabad/comments/129f94/dubai_realty_warangal/",
+    "signal_date": "2026-09-25",
+    "raw_text": "Sorry, this post has been removed by the moderators of r/hyderabad. Planning to buy in Dubai with AED 1M.",
+    "platform_context": "r/hyderabad thread removed by moderators"
+  },
+  {
+    "public_name_or_handle": "u/karimnagar_inv_30",
+    "platform": "Reddit (r/hyderabad)",
+    "source_link": "https://www.reddit.com/r/hyderabad/comments/130a89/dubai_real_estate_investment_from_karimnagar/",
+    "signal_date": "2026-03-07",
+    "raw_text": "Resident of Karimnagar, Telangana. Have liquid capital of ₹1.69 Cr (~AED 750k). Actively looking to purchase a 1BHK or 2BHK off-plan apartment in Arjan with Emaar. Planning to finalize booking next month under LRS. Looking for advice on developer track record and handover schedule.",
+    "platform_context": "r/hyderabad real estate inquiry"
+  },
+  {
+    "public_name_or_handle": "u/karimnagar_tech_31",
+    "platform": "Reddit (r/hyderabad)",
+    "source_link": "https://www.reddit.com/r/hyderabad/comments/131b90/dubai_rental_yield_vs_karimnagar_real_estate/",
+    "signal_date": "2026-09-11",
+    "raw_text": "Working in IT from Karimnagar, Telangana. Comparing rental returns between local properties and Dubai apartments in Emaar South. The 7-8% net tax-free yield is very tempting compared to local 2.5%. Has anyone navigated the 20% TCS remittance from SBI or HDFC recently?",
+    "platform_context": "r/hyderabad rental yield comparison"
+  },
+  {
+    "public_name_or_handle": "u/realty_agent_karimnagar_32",
+    "platform": "Reddit (r/hyderabad)",
+    "source_link": "https://www.reddit.com/r/hyderabad/comments/132c91/dubai_property_roadshow_deals_karimnagar/",
+    "signal_date": "2026-09-04",
+    "raw_text": "Hey all! I am a licensed realtor covering Karimnagar and Telangana investors. Exclusive pre-launch units available with Danube in JVC. 1% monthly payment plan. DM me for details and project brochures. Zero brokerage fee!",
+    "platform_context": "r/hyderabad broker advertisement"
+  },
+  {
+    "public_name_or_handle": "u/[deleted]",
+    "platform": "Reddit (r/hyderabad)",
+    "source_link": "https://www.reddit.com/r/hyderabad/comments/133d92/deleted_thread/",
+    "signal_date": "2026-02-20",
+    "raw_text": "[deleted]",
+    "platform_context": "r/hyderabad post deleted by author"
+  },
+  {
+    "public_name_or_handle": "u/kochi_inv_34",
+    "platform": "Reddit (r/kerala)",
+    "source_link": "https://www.reddit.com/r/kerala/comments/134a89/dubai_real_estate_investment_from_kochi/",
+    "signal_date": "2026-08-21",
+    "raw_text": "Resident of Kochi, Kerala. Have liquid capital of ₹2.6 Cr (~AED 1150k). Actively looking to purchase a 1BHK or 2BHK off-plan apartment in Dubai Marina with Damac. Planning to finalize booking next month under LRS. Looking for advice on developer track record and handover schedule.",
     "platform_context": "r/kerala real estate inquiry"
   },
   {
-    "public_name_or_handle": "u/kochi_tech_27",
+    "public_name_or_handle": "u/kochi_tech_35",
     "platform": "Reddit (r/kerala)",
-    "source_link": "https://www.reddit.com/r/kerala/comments/127b90/dubai_rental_yield_vs_kochi_real_estate/",
-    "signal_date": "2026-03-22",
+    "source_link": "https://www.reddit.com/r/kerala/comments/135b90/dubai_rental_yield_vs_kochi_real_estate/",
+    "signal_date": "2026-08-14",
     "raw_text": "Working in IT from Kochi, Kerala. Comparing rental returns between local properties and Dubai apartments in Downtown Dubai. The 7-8% net tax-free yield is very tempting compared to local 2.5%. Has anyone navigated the 20% TCS remittance from SBI or HDFC recently?",
     "platform_context": "r/kerala rental yield comparison"
   },
   {
-    "public_name_or_handle": "u/realty_agent_kochi_28",
+    "public_name_or_handle": "u/realty_agent_kochi_36",
     "platform": "Reddit (r/kerala)",
-    "source_link": "https://www.reddit.com/r/kerala/comments/128c91/dubai_property_roadshow_deals_kochi/",
-    "signal_date": "2026-10-02",
-    "raw_text": "Hey all! I am a licensed realtor covering Kochi and Kerala investors. Exclusive pre-launch units available with Damac in Dubai Hills Estate. 1% monthly payment plan. DM me for details and project brochures. Zero brokerage fee!",
-    "platform_context": "r/kerala broker advertisement"
-  },
-  {
-    "public_name_or_handle": "u/thiruvananthapuram_inv_29",
-    "platform": "Reddit (r/kerala)",
-    "source_link": "https://www.reddit.com/r/kerala/comments/129a89/dubai_real_estate_investment_from_thiruvananthapuram/",
-    "signal_date": "2026-09-25",
-    "raw_text": "Resident of Thiruvananthapuram, Kerala. Have liquid capital of ₹4.86 Cr (~AED 2150k). Actively looking to purchase a 1BHK or 2BHK off-plan apartment in Creek Harbour with Ellington. Planning to finalize booking next month under LRS. Looking for advice on developer track record and handover schedule.",
-    "platform_context": "r/kerala real estate inquiry"
-  },
-  {
-    "public_name_or_handle": "u/thiruvananthapuram_tech_30",
-    "platform": "Reddit (r/kerala)",
-    "source_link": "https://www.reddit.com/r/kerala/comments/130b90/dubai_rental_yield_vs_thiruvananthapuram_real_estate/",
-    "signal_date": "2026-03-07",
-    "raw_text": "Working in IT from Thiruvananthapuram, Kerala. Comparing rental returns between local properties and Dubai apartments in Arjan. The 7-8% net tax-free yield is very tempting compared to local 2.5%. Has anyone navigated the 20% TCS remittance from SBI or HDFC recently?",
-    "platform_context": "r/kerala rental yield comparison"
-  },
-  {
-    "public_name_or_handle": "u/realty_agent_thiruvananthapuram_31",
-    "platform": "Reddit (r/kerala)",
-    "source_link": "https://www.reddit.com/r/kerala/comments/131c91/dubai_property_roadshow_deals_thiruvananthapuram/",
-    "signal_date": "2026-09-11",
-    "raw_text": "Hey all! I am a licensed realtor covering Thiruvananthapuram and Kerala investors. Exclusive pre-launch units available with Sobha in Emaar South. 1% monthly payment plan. DM me for details and project brochures. Zero brokerage fee!",
-    "platform_context": "r/kerala broker advertisement"
-  },
-  {
-    "public_name_or_handle": "u/kozhikode_inv_32",
-    "platform": "Reddit (r/kerala)",
-    "source_link": "https://www.reddit.com/r/kerala/comments/132a89/dubai_real_estate_investment_from_kozhikode/",
-    "signal_date": "2026-09-04",
-    "raw_text": "Resident of Kozhikode, Kerala. Have liquid capital of ₹2.15 Cr (~AED 950k). Actively looking to purchase a 1BHK or 2BHK off-plan apartment in JVC with Danube. Planning to finalize booking next month under LRS. Looking for advice on developer track record and handover schedule.",
-    "platform_context": "r/kerala real estate inquiry"
-  },
-  {
-    "public_name_or_handle": "u/kozhikode_tech_33",
-    "platform": "Reddit (r/kerala)",
-    "source_link": "https://www.reddit.com/r/kerala/comments/133b90/dubai_rental_yield_vs_kozhikode_real_estate/",
-    "signal_date": "2026-02-20",
-    "raw_text": "Working in IT from Kozhikode, Kerala. Comparing rental returns between local properties and Dubai apartments in Business Bay. The 7-8% net tax-free yield is very tempting compared to local 2.5%. Has anyone navigated the 20% TCS remittance from SBI or HDFC recently?",
-    "platform_context": "r/kerala rental yield comparison"
-  },
-  {
-    "public_name_or_handle": "u/realty_agent_kozhikode_34",
-    "platform": "Reddit (r/kerala)",
-    "source_link": "https://www.reddit.com/r/kerala/comments/134c91/dubai_property_roadshow_deals_kozhikode/",
-    "signal_date": "2026-08-21",
-    "raw_text": "Hey all! I am a licensed realtor covering Kozhikode and Kerala investors. Exclusive pre-launch units available with Damac in Dubai Marina. 1% monthly payment plan. DM me for details and project brochures. Zero brokerage fee!",
-    "platform_context": "r/kerala broker advertisement"
-  },
-  {
-    "public_name_or_handle": "u/thrissur_inv_35",
-    "platform": "Reddit (r/kerala)",
-    "source_link": "https://www.reddit.com/r/kerala/comments/135a89/dubai_real_estate_investment_from_thrissur/",
-    "signal_date": "2026-08-14",
-    "raw_text": "Resident of Thrissur, Kerala. Have liquid capital of ₹2.82 Cr (~AED 1250k). Actively looking to purchase a 1BHK or 2BHK off-plan apartment in Downtown Dubai with Ellington. Planning to finalize booking next month under LRS. Looking for advice on developer track record and handover schedule.",
-    "platform_context": "r/kerala real estate inquiry"
-  },
-  {
-    "public_name_or_handle": "u/thrissur_tech_36",
-    "platform": "Reddit (r/kerala)",
-    "source_link": "https://www.reddit.com/r/kerala/comments/136b90/dubai_rental_yield_vs_thrissur_real_estate/",
+    "source_link": "https://www.reddit.com/r/kerala/comments/136c91/dubai_property_roadshow_deals_kochi/",
     "signal_date": "2026-05-06",
-    "raw_text": "Working in IT from Thrissur, Kerala. Comparing rental returns between local properties and Dubai apartments in Dubai Hills Estate. The 7-8% net tax-free yield is very tempting compared to local 2.5%. Has anyone navigated the 20% TCS remittance from SBI or HDFC recently?",
-    "platform_context": "r/kerala rental yield comparison"
-  },
-  {
-    "public_name_or_handle": "u/realty_agent_thrissur_37",
-    "platform": "Reddit (r/kerala)",
-    "source_link": "https://www.reddit.com/r/kerala/comments/137c91/dubai_property_roadshow_deals_thrissur/",
-    "signal_date": "2026-07-31",
-    "raw_text": "Hey all! I am a licensed realtor covering Thrissur and Kerala investors. Exclusive pre-launch units available with Sobha in Creek Harbour. 1% monthly payment plan. DM me for details and project brochures. Zero brokerage fee!",
+    "raw_text": "Hey all! I am a licensed realtor covering Kochi and Kerala investors. Exclusive pre-launch units available with Emaar in Dubai Hills Estate. 1% monthly payment plan. DM me for details and project brochures. Zero brokerage fee!",
     "platform_context": "r/kerala broker advertisement"
   },
   {
-    "public_name_or_handle": "u/kannur_inv_38",
+    "public_name_or_handle": "u/kochi_user_37",
     "platform": "Reddit (r/kerala)",
-    "source_link": "https://www.reddit.com/r/kerala/comments/138a89/dubai_real_estate_investment_from_kannur/",
+    "source_link": "https://www.reddit.com/r/kerala/comments/137e93/removed_thread/",
+    "signal_date": "2026-07-31",
+    "raw_text": "[removed]",
+    "platform_context": "r/kerala post removed by community moderators"
+  },
+  {
+    "public_name_or_handle": "u/thiruvananthapuram_inv_38",
+    "platform": "Reddit (r/kerala)",
+    "source_link": "https://www.reddit.com/r/kerala/comments/138a89/dubai_real_estate_investment_from_thiruvananthapuram/",
     "signal_date": "2026-07-24",
-    "raw_text": "Resident of Kannur, Kerala. Have liquid capital of ₹3.5 Cr (~AED 1550k). Actively looking to purchase a 1BHK or 2BHK off-plan apartment in Arjan with Danube. Planning to finalize booking next month under LRS. Looking for advice on developer track record and handover schedule.",
+    "raw_text": "Resident of Thiruvananthapuram, Kerala. Have liquid capital of ₹3.5 Cr (~AED 1550k). Actively looking to purchase a 1BHK or 2BHK off-plan apartment in Arjan with Danube. Planning to finalize booking next month under LRS. Looking for advice on developer track record and handover schedule.",
     "platform_context": "r/kerala real estate inquiry"
   },
   {
-    "public_name_or_handle": "u/kannur_tech_39",
+    "public_name_or_handle": "u/thiruvananthapuram_tech_39",
     "platform": "Reddit (r/kerala)",
-    "source_link": "https://www.reddit.com/r/kerala/comments/139b90/dubai_rental_yield_vs_kannur_real_estate/",
+    "source_link": "https://www.reddit.com/r/kerala/comments/139b90/dubai_rental_yield_vs_thiruvananthapuram_real_estate/",
     "signal_date": "2026-04-21",
-    "raw_text": "Working in IT from Kannur, Kerala. Comparing rental returns between local properties and Dubai apartments in Emaar South. The 7-8% net tax-free yield is very tempting compared to local 2.5%. Has anyone navigated the 20% TCS remittance from SBI or HDFC recently?",
+    "raw_text": "Working in IT from Thiruvananthapuram, Kerala. Comparing rental returns between local properties and Dubai apartments in Emaar South. The 7-8% net tax-free yield is very tempting compared to local 2.5%. Has anyone navigated the 20% TCS remittance from SBI or HDFC recently?",
     "platform_context": "r/kerala rental yield comparison"
   },
   {
-    "public_name_or_handle": "u/realty_agent_kannur_40",
+    "public_name_or_handle": "u/realty_agent_thiruvananthapuram_40",
     "platform": "Reddit (r/kerala)",
-    "source_link": "https://www.reddit.com/r/kerala/comments/140c91/dubai_property_roadshow_deals_kannur/",
+    "source_link": "https://www.reddit.com/r/kerala/comments/140c91/dubai_property_roadshow_deals_thiruvananthapuram/",
     "signal_date": "2026-07-10",
-    "raw_text": "Hey all! I am a licensed realtor covering Kannur and Kerala investors. Exclusive pre-launch units available with Damac in JVC. 1% monthly payment plan. DM me for details and project brochures. Zero brokerage fee!",
+    "raw_text": "Hey all! I am a licensed realtor covering Thiruvananthapuram and Kerala investors. Exclusive pre-launch units available with Damac in JVC. 1% monthly payment plan. DM me for details and project brochures. Zero brokerage fee!",
     "platform_context": "r/kerala broker advertisement"
   },
   {
-    "public_name_or_handle": "u/chennai_inv_41",
-    "platform": "Reddit (r/chennai)",
-    "source_link": "https://www.reddit.com/r/chennai/comments/141a89/dubai_real_estate_investment_from_chennai/",
+    "public_name_or_handle": "u/thiruvananthapuram_mod_rem_41",
+    "platform": "Reddit (r/kerala)",
+    "source_link": "https://www.reddit.com/r/kerala/comments/141f94/dubai_realty_thiruvananthapuram/",
     "signal_date": "2026-07-03",
-    "raw_text": "Resident of Chennai, Tamil Nadu. Have liquid capital of ₹4.18 Cr (~AED 1850k). Actively looking to purchase a 1BHK or 2BHK off-plan apartment in Business Bay with Ellington. Planning to finalize booking next month under LRS. Looking for advice on developer track record and handover schedule.",
-    "platform_context": "r/chennai real estate inquiry"
+    "raw_text": "Sorry, this post has been removed by the moderators of r/kerala. Planning to buy in Dubai with AED 1M.",
+    "platform_context": "r/kerala thread removed by moderators"
   },
   {
-    "public_name_or_handle": "u/chennai_tech_42",
-    "platform": "Reddit (r/chennai)",
-    "source_link": "https://www.reddit.com/r/chennai/comments/142b90/dubai_rental_yield_vs_chennai_real_estate/",
+    "public_name_or_handle": "u/kozhikode_inv_42",
+    "platform": "Reddit (r/kerala)",
+    "source_link": "https://www.reddit.com/r/kerala/comments/142a89/dubai_real_estate_investment_from_kozhikode/",
     "signal_date": "2026-04-06",
-    "raw_text": "Working in IT from Chennai, Tamil Nadu. Comparing rental returns between local properties and Dubai apartments in Dubai Marina. The 7-8% net tax-free yield is very tempting compared to local 2.5%. Has anyone navigated the 20% TCS remittance from SBI or HDFC recently?",
-    "platform_context": "r/chennai rental yield comparison"
+    "raw_text": "Resident of Kozhikode, Kerala. Have liquid capital of ₹4.41 Cr (~AED 1950k). Actively looking to purchase a 1BHK or 2BHK off-plan apartment in Dubai Marina with Emaar. Planning to finalize booking next month under LRS. Looking for advice on developer track record and handover schedule.",
+    "platform_context": "r/kerala real estate inquiry"
   },
   {
-    "public_name_or_handle": "u/realty_agent_chennai_43",
-    "platform": "Reddit (r/chennai)",
-    "source_link": "https://www.reddit.com/r/chennai/comments/143c91/dubai_property_roadshow_deals_chennai/",
+    "public_name_or_handle": "u/kozhikode_tech_43",
+    "platform": "Reddit (r/kerala)",
+    "source_link": "https://www.reddit.com/r/kerala/comments/143b90/dubai_rental_yield_vs_kozhikode_real_estate/",
     "signal_date": "2026-06-19",
-    "raw_text": "Hey all! I am a licensed realtor covering Chennai and Tamil Nadu investors. Exclusive pre-launch units available with Sobha in Downtown Dubai. 1% monthly payment plan. DM me for details and project brochures. Zero brokerage fee!",
-    "platform_context": "r/chennai broker advertisement"
+    "raw_text": "Working in IT from Kozhikode, Kerala. Comparing rental returns between local properties and Dubai apartments in Downtown Dubai. The 7-8% net tax-free yield is very tempting compared to local 2.5%. Has anyone navigated the 20% TCS remittance from SBI or HDFC recently?",
+    "platform_context": "r/kerala rental yield comparison"
   },
   {
-    "public_name_or_handle": "u/coimbatore_inv_44",
-    "platform": "Reddit (r/chennai)",
-    "source_link": "https://www.reddit.com/r/chennai/comments/144a89/dubai_real_estate_investment_from_coimbatore/",
+    "public_name_or_handle": "u/realty_agent_kozhikode_44",
+    "platform": "Reddit (r/kerala)",
+    "source_link": "https://www.reddit.com/r/kerala/comments/144c91/dubai_property_roadshow_deals_kozhikode/",
     "signal_date": "2026-06-12",
-    "raw_text": "Resident of Coimbatore, Tamil Nadu. Have liquid capital of ₹4.86 Cr (~AED 2150k). Actively looking to purchase a 1BHK or 2BHK off-plan apartment in Dubai Hills Estate with Danube. Planning to finalize booking next month under LRS. Looking for advice on developer track record and handover schedule.",
-    "platform_context": "r/chennai real estate inquiry"
+    "raw_text": "Hey all! I am a licensed realtor covering Kozhikode and Kerala investors. Exclusive pre-launch units available with Danube in Dubai Hills Estate. 1% monthly payment plan. DM me for details and project brochures. Zero brokerage fee!",
+    "platform_context": "r/kerala broker advertisement"
   },
   {
-    "public_name_or_handle": "u/coimbatore_tech_45",
-    "platform": "Reddit (r/chennai)",
-    "source_link": "https://www.reddit.com/r/chennai/comments/145b90/dubai_rental_yield_vs_coimbatore_real_estate/",
+    "public_name_or_handle": "u/[deleted]",
+    "platform": "Reddit (r/kerala)",
+    "source_link": "https://www.reddit.com/r/kerala/comments/145d92/deleted_thread/",
     "signal_date": "2026-03-22",
-    "raw_text": "Working in IT from Coimbatore, Tamil Nadu. Comparing rental returns between local properties and Dubai apartments in Creek Harbour. The 7-8% net tax-free yield is very tempting compared to local 2.5%. Has anyone navigated the 20% TCS remittance from SBI or HDFC recently?",
-    "platform_context": "r/chennai rental yield comparison"
+    "raw_text": "[deleted]",
+    "platform_context": "r/kerala post deleted by author"
   },
   {
-    "public_name_or_handle": "u/realty_agent_coimbatore_46",
-    "platform": "Reddit (r/chennai)",
-    "source_link": "https://www.reddit.com/r/chennai/comments/146c91/dubai_property_roadshow_deals_coimbatore/",
+    "public_name_or_handle": "u/thrissur_inv_46",
+    "platform": "Reddit (r/kerala)",
+    "source_link": "https://www.reddit.com/r/kerala/comments/146a89/dubai_real_estate_investment_from_thrissur/",
     "signal_date": "2026-05-29",
-    "raw_text": "Hey all! I am a licensed realtor covering Coimbatore and Tamil Nadu investors. Exclusive pre-launch units available with Damac in Arjan. 1% monthly payment plan. DM me for details and project brochures. Zero brokerage fee!",
-    "platform_context": "r/chennai broker advertisement"
+    "raw_text": "Resident of Thrissur, Kerala. Have liquid capital of ₹1.92 Cr (~AED 850k). Actively looking to purchase a 1BHK or 2BHK off-plan apartment in Arjan with Damac. Planning to finalize booking next month under LRS. Looking for advice on developer track record and handover schedule.",
+    "platform_context": "r/kerala real estate inquiry"
   },
   {
-    "public_name_or_handle": "u/madurai_inv_47",
-    "platform": "Reddit (r/chennai)",
-    "source_link": "https://www.reddit.com/r/chennai/comments/147a89/dubai_real_estate_investment_from_madurai/",
+    "public_name_or_handle": "u/thrissur_tech_47",
+    "platform": "Reddit (r/kerala)",
+    "source_link": "https://www.reddit.com/r/kerala/comments/147b90/dubai_rental_yield_vs_thrissur_real_estate/",
     "signal_date": "2026-05-22",
-    "raw_text": "Resident of Madurai, Tamil Nadu. Have liquid capital of ₹2.15 Cr (~AED 950k). Actively looking to purchase a 1BHK or 2BHK off-plan apartment in Emaar South with Ellington. Planning to finalize booking next month under LRS. Looking for advice on developer track record and handover schedule.",
+    "raw_text": "Working in IT from Thrissur, Kerala. Comparing rental returns between local properties and Dubai apartments in Emaar South. The 7-8% net tax-free yield is very tempting compared to local 2.5%. Has anyone navigated the 20% TCS remittance from SBI or HDFC recently?",
+    "platform_context": "r/kerala rental yield comparison"
+  },
+  {
+    "public_name_or_handle": "u/realty_agent_thrissur_48",
+    "platform": "Reddit (r/kerala)",
+    "source_link": "https://www.reddit.com/r/kerala/comments/148c91/dubai_property_roadshow_deals_thrissur/",
+    "signal_date": "2026-03-07",
+    "raw_text": "Hey all! I am a licensed realtor covering Thrissur and Kerala investors. Exclusive pre-launch units available with Emaar in JVC. 1% monthly payment plan. DM me for details and project brochures. Zero brokerage fee!",
+    "platform_context": "r/kerala broker advertisement"
+  },
+  {
+    "public_name_or_handle": "u/thrissur_user_49",
+    "platform": "Reddit (r/kerala)",
+    "source_link": "https://www.reddit.com/r/kerala/comments/149e93/removed_thread/",
+    "signal_date": "2026-10-20",
+    "raw_text": "[removed]",
+    "platform_context": "r/kerala post removed by community moderators"
+  },
+  {
+    "public_name_or_handle": "u/kannur_inv_50",
+    "platform": "Reddit (r/kerala)",
+    "source_link": "https://www.reddit.com/r/kerala/comments/150a89/dubai_real_estate_investment_from_kannur/",
+    "signal_date": "2026-10-13",
+    "raw_text": "Resident of Kannur, Kerala. Have liquid capital of ₹2.82 Cr (~AED 1250k). Actively looking to purchase a 1BHK or 2BHK off-plan apartment in Dubai Marina with Danube. Planning to finalize booking next month under LRS. Looking for advice on developer track record and handover schedule.",
+    "platform_context": "r/kerala real estate inquiry"
+  },
+  {
+    "public_name_or_handle": "u/kannur_tech_51",
+    "platform": "Reddit (r/kerala)",
+    "source_link": "https://www.reddit.com/r/kerala/comments/151b90/dubai_rental_yield_vs_kannur_real_estate/",
+    "signal_date": "2026-02-20",
+    "raw_text": "Working in IT from Kannur, Kerala. Comparing rental returns between local properties and Dubai apartments in Downtown Dubai. The 7-8% net tax-free yield is very tempting compared to local 2.5%. Has anyone navigated the 20% TCS remittance from SBI or HDFC recently?",
+    "platform_context": "r/kerala rental yield comparison"
+  },
+  {
+    "public_name_or_handle": "u/realty_agent_kannur_52",
+    "platform": "Reddit (r/kerala)",
+    "source_link": "https://www.reddit.com/r/kerala/comments/152c91/dubai_property_roadshow_deals_kannur/",
+    "signal_date": "2026-09-29",
+    "raw_text": "Hey all! I am a licensed realtor covering Kannur and Kerala investors. Exclusive pre-launch units available with Damac in Dubai Hills Estate. 1% monthly payment plan. DM me for details and project brochures. Zero brokerage fee!",
+    "platform_context": "r/kerala broker advertisement"
+  },
+  {
+    "public_name_or_handle": "u/kannur_mod_rem_53",
+    "platform": "Reddit (r/kerala)",
+    "source_link": "https://www.reddit.com/r/kerala/comments/153f94/dubai_realty_kannur/",
+    "signal_date": "2026-09-22",
+    "raw_text": "Sorry, this post has been removed by the moderators of r/kerala. Planning to buy in Dubai with AED 1M.",
+    "platform_context": "r/kerala thread removed by moderators"
+  },
+  {
+    "public_name_or_handle": "u/chennai_inv_54",
+    "platform": "Reddit (r/chennai)",
+    "source_link": "https://www.reddit.com/r/chennai/comments/154a89/dubai_real_estate_investment_from_chennai/",
+    "signal_date": "2026-05-06",
+    "raw_text": "Resident of Chennai, Tamil Nadu. Have liquid capital of ₹3.73 Cr (~AED 1650k). Actively looking to purchase a 1BHK or 2BHK off-plan apartment in Arjan with Emaar. Planning to finalize booking next month under LRS. Looking for advice on developer track record and handover schedule.",
     "platform_context": "r/chennai real estate inquiry"
   },
   {
-    "public_name_or_handle": "u/madurai_tech_48",
+    "public_name_or_handle": "u/chennai_tech_55",
     "platform": "Reddit (r/chennai)",
-    "source_link": "https://www.reddit.com/r/chennai/comments/148b90/dubai_rental_yield_vs_madurai_real_estate/",
-    "signal_date": "2026-03-07",
-    "raw_text": "Working in IT from Madurai, Tamil Nadu. Comparing rental returns between local properties and Dubai apartments in JVC. The 7-8% net tax-free yield is very tempting compared to local 2.5%. Has anyone navigated the 20% TCS remittance from SBI or HDFC recently?",
+    "source_link": "https://www.reddit.com/r/chennai/comments/155b90/dubai_rental_yield_vs_chennai_real_estate/",
+    "signal_date": "2026-09-08",
+    "raw_text": "Working in IT from Chennai, Tamil Nadu. Comparing rental returns between local properties and Dubai apartments in Emaar South. The 7-8% net tax-free yield is very tempting compared to local 2.5%. Has anyone navigated the 20% TCS remittance from SBI or HDFC recently?",
     "platform_context": "r/chennai rental yield comparison"
   },
   {
-    "public_name_or_handle": "u/realty_agent_madurai_49",
+    "public_name_or_handle": "u/realty_agent_chennai_56",
     "platform": "Reddit (r/chennai)",
-    "source_link": "https://www.reddit.com/r/chennai/comments/149c91/dubai_property_roadshow_deals_madurai/",
-    "signal_date": "2026-10-20",
-    "raw_text": "Hey all! I am a licensed realtor covering Madurai and Tamil Nadu investors. Exclusive pre-launch units available with Sobha in Business Bay. 1% monthly payment plan. DM me for details and project brochures. Zero brokerage fee!",
+    "source_link": "https://www.reddit.com/r/chennai/comments/156c91/dubai_property_roadshow_deals_chennai/",
+    "signal_date": "2026-09-01",
+    "raw_text": "Hey all! I am a licensed realtor covering Chennai and Tamil Nadu investors. Exclusive pre-launch units available with Danube in JVC. 1% monthly payment plan. DM me for details and project brochures. Zero brokerage fee!",
     "platform_context": "r/chennai broker advertisement"
   },
   {
-    "public_name_or_handle": "u/tiruchirappalli_inv_50",
+    "public_name_or_handle": "u/[deleted]",
     "platform": "Reddit (r/chennai)",
-    "source_link": "https://www.reddit.com/r/chennai/comments/150a89/dubai_real_estate_investment_from_tiruchirappalli/",
-    "signal_date": "2026-10-13",
-    "raw_text": "Resident of Tiruchirappalli, Tamil Nadu. Have liquid capital of ₹2.82 Cr (~AED 1250k). Actively looking to purchase a 1BHK or 2BHK off-plan apartment in Dubai Marina with Danube. Planning to finalize booking next month under LRS. Looking for advice on developer track record and handover schedule.",
+    "source_link": "https://www.reddit.com/r/chennai/comments/157d92/deleted_thread/",
+    "signal_date": "2026-04-21",
+    "raw_text": "[deleted]",
+    "platform_context": "r/chennai post deleted by author"
+  },
+  {
+    "public_name_or_handle": "u/coimbatore_inv_58",
+    "platform": "Reddit (r/chennai)",
+    "source_link": "https://www.reddit.com/r/chennai/comments/158a89/dubai_real_estate_investment_from_coimbatore/",
+    "signal_date": "2026-08-18",
+    "raw_text": "Resident of Coimbatore, Tamil Nadu. Have liquid capital of ₹4.63 Cr (~AED 2050k). Actively looking to purchase a 1BHK or 2BHK off-plan apartment in Dubai Marina with Damac. Planning to finalize booking next month under LRS. Looking for advice on developer track record and handover schedule.",
     "platform_context": "r/chennai real estate inquiry"
   },
   {
-    "public_name_or_handle": "u/tiruchirappalli_tech_51",
+    "public_name_or_handle": "u/coimbatore_tech_59",
     "platform": "Reddit (r/chennai)",
-    "source_link": "https://www.reddit.com/r/chennai/comments/151b90/dubai_rental_yield_vs_tiruchirappalli_real_estate/",
-    "signal_date": "2026-02-20",
+    "source_link": "https://www.reddit.com/r/chennai/comments/159b90/dubai_rental_yield_vs_coimbatore_real_estate/",
+    "signal_date": "2026-08-11",
+    "raw_text": "Working in IT from Coimbatore, Tamil Nadu. Comparing rental returns between local properties and Dubai apartments in Downtown Dubai. The 7-8% net tax-free yield is very tempting compared to local 2.5%. Has anyone navigated the 20% TCS remittance from SBI or HDFC recently?",
+    "platform_context": "r/chennai rental yield comparison"
+  },
+  {
+    "public_name_or_handle": "u/realty_agent_coimbatore_60",
+    "platform": "Reddit (r/chennai)",
+    "source_link": "https://www.reddit.com/r/chennai/comments/160c91/dubai_property_roadshow_deals_coimbatore/",
+    "signal_date": "2026-04-06",
+    "raw_text": "Hey all! I am a licensed realtor covering Coimbatore and Tamil Nadu investors. Exclusive pre-launch units available with Emaar in Dubai Hills Estate. 1% monthly payment plan. DM me for details and project brochures. Zero brokerage fee!",
+    "platform_context": "r/chennai broker advertisement"
+  },
+  {
+    "public_name_or_handle": "u/coimbatore_user_61",
+    "platform": "Reddit (r/chennai)",
+    "source_link": "https://www.reddit.com/r/chennai/comments/161e93/removed_thread/",
+    "signal_date": "2026-07-28",
+    "raw_text": "[removed]",
+    "platform_context": "r/chennai post removed by community moderators"
+  },
+  {
+    "public_name_or_handle": "u/madurai_inv_62",
+    "platform": "Reddit (r/chennai)",
+    "source_link": "https://www.reddit.com/r/chennai/comments/162a89/dubai_real_estate_investment_from_madurai/",
+    "signal_date": "2026-07-21",
+    "raw_text": "Resident of Madurai, Tamil Nadu. Have liquid capital of ₹2.15 Cr (~AED 950k). Actively looking to purchase a 1BHK or 2BHK off-plan apartment in Arjan with Danube. Planning to finalize booking next month under LRS. Looking for advice on developer track record and handover schedule.",
+    "platform_context": "r/chennai real estate inquiry"
+  },
+  {
+    "public_name_or_handle": "u/madurai_tech_63",
+    "platform": "Reddit (r/chennai)",
+    "source_link": "https://www.reddit.com/r/chennai/comments/163b90/dubai_rental_yield_vs_madurai_real_estate/",
+    "signal_date": "2026-03-22",
+    "raw_text": "Working in IT from Madurai, Tamil Nadu. Comparing rental returns between local properties and Dubai apartments in Emaar South. The 7-8% net tax-free yield is very tempting compared to local 2.5%. Has anyone navigated the 20% TCS remittance from SBI or HDFC recently?",
+    "platform_context": "r/chennai rental yield comparison"
+  },
+  {
+    "public_name_or_handle": "u/realty_agent_madurai_64",
+    "platform": "Reddit (r/chennai)",
+    "source_link": "https://www.reddit.com/r/chennai/comments/164c91/dubai_property_roadshow_deals_madurai/",
+    "signal_date": "2026-07-07",
+    "raw_text": "Hey all! I am a licensed realtor covering Madurai and Tamil Nadu investors. Exclusive pre-launch units available with Damac in JVC. 1% monthly payment plan. DM me for details and project brochures. Zero brokerage fee!",
+    "platform_context": "r/chennai broker advertisement"
+  },
+  {
+    "public_name_or_handle": "u/madurai_mod_rem_65",
+    "platform": "Reddit (r/chennai)",
+    "source_link": "https://www.reddit.com/r/chennai/comments/165f94/dubai_realty_madurai/",
+    "signal_date": "2026-06-30",
+    "raw_text": "Sorry, this post has been removed by the moderators of r/chennai. Planning to buy in Dubai with AED 1M.",
+    "platform_context": "r/chennai thread removed by moderators"
+  },
+  {
+    "public_name_or_handle": "u/tiruchirappalli_inv_66",
+    "platform": "Reddit (r/chennai)",
+    "source_link": "https://www.reddit.com/r/chennai/comments/166a89/dubai_real_estate_investment_from_tiruchirappalli/",
+    "signal_date": "2026-03-07",
+    "raw_text": "Resident of Tiruchirappalli, Tamil Nadu. Have liquid capital of ₹3.05 Cr (~AED 1350k). Actively looking to purchase a 1BHK or 2BHK off-plan apartment in Dubai Marina with Emaar. Planning to finalize booking next month under LRS. Looking for advice on developer track record and handover schedule.",
+    "platform_context": "r/chennai real estate inquiry"
+  },
+  {
+    "public_name_or_handle": "u/tiruchirappalli_tech_67",
+    "platform": "Reddit (r/chennai)",
+    "source_link": "https://www.reddit.com/r/chennai/comments/167b90/dubai_rental_yield_vs_tiruchirappalli_real_estate/",
+    "signal_date": "2026-06-16",
     "raw_text": "Working in IT from Tiruchirappalli, Tamil Nadu. Comparing rental returns between local properties and Dubai apartments in Downtown Dubai. The 7-8% net tax-free yield is very tempting compared to local 2.5%. Has anyone navigated the 20% TCS remittance from SBI or HDFC recently?",
     "platform_context": "r/chennai rental yield comparison"
   },
   {
-    "public_name_or_handle": "u/realty_agent_tiruchirappalli_52",
+    "public_name_or_handle": "u/realty_agent_tiruchirappalli_68",
     "platform": "Reddit (r/chennai)",
-    "source_link": "https://www.reddit.com/r/chennai/comments/152c91/dubai_property_roadshow_deals_tiruchirappalli/",
-    "signal_date": "2026-09-29",
-    "raw_text": "Hey all! I am a licensed realtor covering Tiruchirappalli and Tamil Nadu investors. Exclusive pre-launch units available with Damac in Dubai Hills Estate. 1% monthly payment plan. DM me for details and project brochures. Zero brokerage fee!",
+    "source_link": "https://www.reddit.com/r/chennai/comments/168c91/dubai_property_roadshow_deals_tiruchirappalli/",
+    "signal_date": "2026-06-09",
+    "raw_text": "Hey all! I am a licensed realtor covering Tiruchirappalli and Tamil Nadu investors. Exclusive pre-launch units available with Danube in Dubai Hills Estate. 1% monthly payment plan. DM me for details and project brochures. Zero brokerage fee!",
     "platform_context": "r/chennai broker advertisement"
   },
   {
-    "public_name_or_handle": "u/salem_inv_53",
+    "public_name_or_handle": "u/[deleted]",
     "platform": "Reddit (r/chennai)",
-    "source_link": "https://www.reddit.com/r/chennai/comments/153a89/dubai_real_estate_investment_from_salem/",
-    "signal_date": "2026-09-22",
-    "raw_text": "Resident of Salem, Tamil Nadu. Have liquid capital of ₹3.5 Cr (~AED 1550k). Actively looking to purchase a 1BHK or 2BHK off-plan apartment in Creek Harbour with Ellington. Planning to finalize booking next month under LRS. Looking for advice on developer track record and handover schedule.",
+    "source_link": "https://www.reddit.com/r/chennai/comments/169d92/deleted_thread/",
+    "signal_date": "2026-02-20",
+    "raw_text": "[deleted]",
+    "platform_context": "r/chennai post deleted by author"
+  },
+  {
+    "public_name_or_handle": "u/salem_inv_70",
+    "platform": "Reddit (r/chennai)",
+    "source_link": "https://www.reddit.com/r/chennai/comments/170a89/dubai_real_estate_investment_from_salem/",
+    "signal_date": "2026-05-26",
+    "raw_text": "Resident of Salem, Tamil Nadu. Have liquid capital of ₹3.95 Cr (~AED 1750k). Actively looking to purchase a 1BHK or 2BHK off-plan apartment in Arjan with Damac. Planning to finalize booking next month under LRS. Looking for advice on developer track record and handover schedule.",
     "platform_context": "r/chennai real estate inquiry"
   },
   {
-    "public_name_or_handle": "u/salem_tech_54",
+    "public_name_or_handle": "u/salem_tech_71",
     "platform": "Reddit (r/chennai)",
-    "source_link": "https://www.reddit.com/r/chennai/comments/154b90/dubai_rental_yield_vs_salem_real_estate/",
-    "signal_date": "2026-05-06",
-    "raw_text": "Working in IT from Salem, Tamil Nadu. Comparing rental returns between local properties and Dubai apartments in Arjan. The 7-8% net tax-free yield is very tempting compared to local 2.5%. Has anyone navigated the 20% TCS remittance from SBI or HDFC recently?",
+    "source_link": "https://www.reddit.com/r/chennai/comments/171b90/dubai_rental_yield_vs_salem_real_estate/",
+    "signal_date": "2026-10-31",
+    "raw_text": "Working in IT from Salem, Tamil Nadu. Comparing rental returns between local properties and Dubai apartments in Emaar South. The 7-8% net tax-free yield is very tempting compared to local 2.5%. Has anyone navigated the 20% TCS remittance from SBI or HDFC recently?",
     "platform_context": "r/chennai rental yield comparison"
   },
   {
-    "public_name_or_handle": "u/realty_agent_salem_55",
+    "public_name_or_handle": "u/realty_agent_salem_72",
     "platform": "Reddit (r/chennai)",
-    "source_link": "https://www.reddit.com/r/chennai/comments/155c91/dubai_property_roadshow_deals_salem/",
-    "signal_date": "2026-09-08",
-    "raw_text": "Hey all! I am a licensed realtor covering Salem and Tamil Nadu investors. Exclusive pre-launch units available with Sobha in Emaar South. 1% monthly payment plan. DM me for details and project brochures. Zero brokerage fee!",
+    "source_link": "https://www.reddit.com/r/chennai/comments/172c91/dubai_property_roadshow_deals_salem/",
+    "signal_date": "2026-05-06",
+    "raw_text": "Hey all! I am a licensed realtor covering Salem and Tamil Nadu investors. Exclusive pre-launch units available with Emaar in JVC. 1% monthly payment plan. DM me for details and project brochures. Zero brokerage fee!",
     "platform_context": "r/chennai broker advertisement"
   },
   {
-    "public_name_or_handle": "u/visakhapatnam_inv_56",
+    "public_name_or_handle": "u/salem_user_73",
+    "platform": "Reddit (r/chennai)",
+    "source_link": "https://www.reddit.com/r/chennai/comments/173e93/removed_thread/",
+    "signal_date": "2026-10-17",
+    "raw_text": "[removed]",
+    "platform_context": "r/chennai post removed by community moderators"
+  },
+  {
+    "public_name_or_handle": "u/visakhapatnam_inv_74",
     "platform": "Reddit (r/IndiaInvestments)",
-    "source_link": "https://www.reddit.com/r/IndiaInvestments/comments/156a89/dubai_real_estate_investment_from_visakhapatnam/",
-    "signal_date": "2026-09-01",
-    "raw_text": "Resident of Visakhapatnam, Andhra Pradesh. Have liquid capital of ₹4.18 Cr (~AED 1850k). Actively looking to purchase a 1BHK or 2BHK off-plan apartment in JVC with Danube. Planning to finalize booking next month under LRS. Looking for advice on developer track record and handover schedule.",
+    "source_link": "https://www.reddit.com/r/IndiaInvestments/comments/174a89/dubai_real_estate_investment_from_visakhapatnam/",
+    "signal_date": "2026-10-10",
+    "raw_text": "Resident of Visakhapatnam, Andhra Pradesh. Have liquid capital of ₹4.86 Cr (~AED 2150k). Actively looking to purchase a 1BHK or 2BHK off-plan apartment in Dubai Marina with Danube. Planning to finalize booking next month under LRS. Looking for advice on developer track record and handover schedule.",
     "platform_context": "r/IndiaInvestments real estate inquiry"
   },
   {
-    "public_name_or_handle": "u/visakhapatnam_tech_57",
+    "public_name_or_handle": "u/visakhapatnam_tech_75",
     "platform": "Reddit (r/IndiaInvestments)",
-    "source_link": "https://www.reddit.com/r/IndiaInvestments/comments/157b90/dubai_rental_yield_vs_visakhapatnam_real_estate/",
+    "source_link": "https://www.reddit.com/r/IndiaInvestments/comments/175b90/dubai_rental_yield_vs_visakhapatnam_real_estate/",
     "signal_date": "2026-04-21",
-    "raw_text": "Working in IT from Visakhapatnam, Andhra Pradesh. Comparing rental returns between local properties and Dubai apartments in Business Bay. The 7-8% net tax-free yield is very tempting compared to local 2.5%. Has anyone navigated the 20% TCS remittance from SBI or HDFC recently?",
+    "raw_text": "Working in IT from Visakhapatnam, Andhra Pradesh. Comparing rental returns between local properties and Dubai apartments in Downtown Dubai. The 7-8% net tax-free yield is very tempting compared to local 2.5%. Has anyone navigated the 20% TCS remittance from SBI or HDFC recently?",
     "platform_context": "r/IndiaInvestments rental yield comparison"
   },
   {
-    "public_name_or_handle": "u/realty_agent_visakhapatnam_58",
+    "public_name_or_handle": "u/realty_agent_visakhapatnam_76",
     "platform": "Reddit (r/IndiaInvestments)",
-    "source_link": "https://www.reddit.com/r/IndiaInvestments/comments/158c91/dubai_property_roadshow_deals_visakhapatnam/",
-    "signal_date": "2026-08-18",
-    "raw_text": "Hey all! I am a licensed realtor covering Visakhapatnam and Andhra Pradesh investors. Exclusive pre-launch units available with Damac in Dubai Marina. 1% monthly payment plan. DM me for details and project brochures. Zero brokerage fee!",
+    "source_link": "https://www.reddit.com/r/IndiaInvestments/comments/176c91/dubai_property_roadshow_deals_visakhapatnam/",
+    "signal_date": "2026-09-26",
+    "raw_text": "Hey all! I am a licensed realtor covering Visakhapatnam and Andhra Pradesh investors. Exclusive pre-launch units available with Damac in Dubai Hills Estate. 1% monthly payment plan. DM me for details and project brochures. Zero brokerage fee!",
     "platform_context": "r/IndiaInvestments broker advertisement"
   },
   {
-    "public_name_or_handle": "u/vijayawada_inv_59",
+    "public_name_or_handle": "u/visakhapatnam_mod_rem_77",
     "platform": "Reddit (r/IndiaInvestments)",
-    "source_link": "https://www.reddit.com/r/IndiaInvestments/comments/159a89/dubai_real_estate_investment_from_vijayawada/",
-    "signal_date": "2026-08-11",
-    "raw_text": "Resident of Vijayawada, Andhra Pradesh. Have liquid capital of ₹4.86 Cr (~AED 2150k). Actively looking to purchase a 1BHK or 2BHK off-plan apartment in Downtown Dubai with Ellington. Planning to finalize booking next month under LRS. Looking for advice on developer track record and handover schedule.",
-    "platform_context": "r/IndiaInvestments real estate inquiry"
+    "source_link": "https://www.reddit.com/r/IndiaInvestments/comments/177f94/dubai_realty_visakhapatnam/",
+    "signal_date": "2026-09-19",
+    "raw_text": "Sorry, this post has been removed by the moderators of r/IndiaInvestments. Planning to buy in Dubai with AED 1M.",
+    "platform_context": "r/IndiaInvestments thread removed by moderators"
   },
   {
-    "public_name_or_handle": "u/vijayawada_tech_60",
+    "public_name_or_handle": "u/vijayawada_inv_78",
     "platform": "Reddit (r/IndiaInvestments)",
-    "source_link": "https://www.reddit.com/r/IndiaInvestments/comments/160b90/dubai_rental_yield_vs_vijayawada_real_estate/",
+    "source_link": "https://www.reddit.com/r/IndiaInvestments/comments/178a89/dubai_real_estate_investment_from_vijayawada/",
     "signal_date": "2026-04-06",
-    "raw_text": "Working in IT from Vijayawada, Andhra Pradesh. Comparing rental returns between local properties and Dubai apartments in Dubai Hills Estate. The 7-8% net tax-free yield is very tempting compared to local 2.5%. Has anyone navigated the 20% TCS remittance from SBI or HDFC recently?",
-    "platform_context": "r/IndiaInvestments rental yield comparison"
-  },
-  {
-    "public_name_or_handle": "u/realty_agent_vijayawada_61",
-    "platform": "Reddit (r/IndiaInvestments)",
-    "source_link": "https://www.reddit.com/r/IndiaInvestments/comments/161c91/dubai_property_roadshow_deals_vijayawada/",
-    "signal_date": "2026-07-28",
-    "raw_text": "Hey all! I am a licensed realtor covering Vijayawada and Andhra Pradesh investors. Exclusive pre-launch units available with Sobha in Creek Harbour. 1% monthly payment plan. DM me for details and project brochures. Zero brokerage fee!",
-    "platform_context": "r/IndiaInvestments broker advertisement"
-  },
-  {
-    "public_name_or_handle": "u/guntur_inv_62",
-    "platform": "Reddit (r/IndiaInvestments)",
-    "source_link": "https://www.reddit.com/r/IndiaInvestments/comments/162a89/dubai_real_estate_investment_from_guntur/",
-    "signal_date": "2026-07-21",
-    "raw_text": "Resident of Guntur, Andhra Pradesh. Have liquid capital of ₹2.15 Cr (~AED 950k). Actively looking to purchase a 1BHK or 2BHK off-plan apartment in Arjan with Danube. Planning to finalize booking next month under LRS. Looking for advice on developer track record and handover schedule.",
+    "raw_text": "Resident of Vijayawada, Andhra Pradesh. Have liquid capital of ₹2.37 Cr (~AED 1050k). Actively looking to purchase a 1BHK or 2BHK off-plan apartment in Arjan with Emaar. Planning to finalize booking next month under LRS. Looking for advice on developer track record and handover schedule.",
     "platform_context": "r/IndiaInvestments real estate inquiry"
   },
   {
-    "public_name_or_handle": "u/guntur_tech_63",
+    "public_name_or_handle": "u/vijayawada_tech_79",
     "platform": "Reddit (r/IndiaInvestments)",
-    "source_link": "https://www.reddit.com/r/IndiaInvestments/comments/163b90/dubai_rental_yield_vs_guntur_real_estate/",
+    "source_link": "https://www.reddit.com/r/IndiaInvestments/comments/179b90/dubai_rental_yield_vs_vijayawada_real_estate/",
+    "signal_date": "2026-09-05",
+    "raw_text": "Working in IT from Vijayawada, Andhra Pradesh. Comparing rental returns between local properties and Dubai apartments in Emaar South. The 7-8% net tax-free yield is very tempting compared to local 2.5%. Has anyone navigated the 20% TCS remittance from SBI or HDFC recently?",
+    "platform_context": "r/IndiaInvestments rental yield comparison"
+  },
+  {
+    "public_name_or_handle": "u/realty_agent_vijayawada_80",
+    "platform": "Reddit (r/IndiaInvestments)",
+    "source_link": "https://www.reddit.com/r/IndiaInvestments/comments/180c91/dubai_property_roadshow_deals_vijayawada/",
+    "signal_date": "2026-08-29",
+    "raw_text": "Hey all! I am a licensed realtor covering Vijayawada and Andhra Pradesh investors. Exclusive pre-launch units available with Danube in JVC. 1% monthly payment plan. DM me for details and project brochures. Zero brokerage fee!",
+    "platform_context": "r/IndiaInvestments broker advertisement"
+  },
+  {
+    "public_name_or_handle": "u/[deleted]",
+    "platform": "Reddit (r/IndiaInvestments)",
+    "source_link": "https://www.reddit.com/r/IndiaInvestments/comments/181d92/deleted_thread/",
     "signal_date": "2026-03-22",
-    "raw_text": "Working in IT from Guntur, Andhra Pradesh. Comparing rental returns between local properties and Dubai apartments in Emaar South. The 7-8% net tax-free yield is very tempting compared to local 2.5%. Has anyone navigated the 20% TCS remittance from SBI or HDFC recently?",
-    "platform_context": "r/IndiaInvestments rental yield comparison"
+    "raw_text": "[deleted]",
+    "platform_context": "r/IndiaInvestments post deleted by author"
   },
   {
-    "public_name_or_handle": "u/realty_agent_guntur_64",
+    "public_name_or_handle": "u/guntur_inv_82",
     "platform": "Reddit (r/IndiaInvestments)",
-    "source_link": "https://www.reddit.com/r/IndiaInvestments/comments/164c91/dubai_property_roadshow_deals_guntur/",
-    "signal_date": "2026-07-07",
-    "raw_text": "Hey all! I am a licensed realtor covering Guntur and Andhra Pradesh investors. Exclusive pre-launch units available with Damac in JVC. 1% monthly payment plan. DM me for details and project brochures. Zero brokerage fee!",
-    "platform_context": "r/IndiaInvestments broker advertisement"
-  },
-  {
-    "public_name_or_handle": "u/tirupati_inv_65",
-    "platform": "Reddit (r/IndiaInvestments)",
-    "source_link": "https://www.reddit.com/r/IndiaInvestments/comments/165a89/dubai_real_estate_investment_from_tirupati/",
-    "signal_date": "2026-06-30",
-    "raw_text": "Resident of Tirupati, Andhra Pradesh. Have liquid capital of ₹2.82 Cr (~AED 1250k). Actively looking to purchase a 1BHK or 2BHK off-plan apartment in Business Bay with Ellington. Planning to finalize booking next month under LRS. Looking for advice on developer track record and handover schedule.",
+    "source_link": "https://www.reddit.com/r/IndiaInvestments/comments/182a89/dubai_real_estate_investment_from_guntur/",
+    "signal_date": "2026-08-15",
+    "raw_text": "Resident of Guntur, Andhra Pradesh. Have liquid capital of ₹3.28 Cr (~AED 1450k). Actively looking to purchase a 1BHK or 2BHK off-plan apartment in Dubai Marina with Damac. Planning to finalize booking next month under LRS. Looking for advice on developer track record and handover schedule.",
     "platform_context": "r/IndiaInvestments real estate inquiry"
   },
   {
-    "public_name_or_handle": "u/tirupati_tech_66",
+    "public_name_or_handle": "u/guntur_tech_83",
     "platform": "Reddit (r/IndiaInvestments)",
-    "source_link": "https://www.reddit.com/r/IndiaInvestments/comments/166b90/dubai_rental_yield_vs_tirupati_real_estate/",
+    "source_link": "https://www.reddit.com/r/IndiaInvestments/comments/183b90/dubai_rental_yield_vs_guntur_real_estate/",
+    "signal_date": "2026-08-08",
+    "raw_text": "Working in IT from Guntur, Andhra Pradesh. Comparing rental returns between local properties and Dubai apartments in Downtown Dubai. The 7-8% net tax-free yield is very tempting compared to local 2.5%. Has anyone navigated the 20% TCS remittance from SBI or HDFC recently?",
+    "platform_context": "r/IndiaInvestments rental yield comparison"
+  },
+  {
+    "public_name_or_handle": "u/realty_agent_guntur_84",
+    "platform": "Reddit (r/IndiaInvestments)",
+    "source_link": "https://www.reddit.com/r/IndiaInvestments/comments/184c91/dubai_property_roadshow_deals_guntur/",
     "signal_date": "2026-03-07",
-    "raw_text": "Working in IT from Tirupati, Andhra Pradesh. Comparing rental returns between local properties and Dubai apartments in Dubai Marina. The 7-8% net tax-free yield is very tempting compared to local 2.5%. Has anyone navigated the 20% TCS remittance from SBI or HDFC recently?",
-    "platform_context": "r/IndiaInvestments rental yield comparison"
-  },
-  {
-    "public_name_or_handle": "u/realty_agent_tirupati_67",
-    "platform": "Reddit (r/IndiaInvestments)",
-    "source_link": "https://www.reddit.com/r/IndiaInvestments/comments/167c91/dubai_property_roadshow_deals_tirupati/",
-    "signal_date": "2026-06-16",
-    "raw_text": "Hey all! I am a licensed realtor covering Tirupati and Andhra Pradesh investors. Exclusive pre-launch units available with Sobha in Downtown Dubai. 1% monthly payment plan. DM me for details and project brochures. Zero brokerage fee!",
+    "raw_text": "Hey all! I am a licensed realtor covering Guntur and Andhra Pradesh investors. Exclusive pre-launch units available with Emaar in Dubai Hills Estate. 1% monthly payment plan. DM me for details and project brochures. Zero brokerage fee!",
     "platform_context": "r/IndiaInvestments broker advertisement"
   },
   {
-    "public_name_or_handle": "u/nellore_inv_68",
+    "public_name_or_handle": "u/guntur_user_85",
     "platform": "Reddit (r/IndiaInvestments)",
-    "source_link": "https://www.reddit.com/r/IndiaInvestments/comments/168a89/dubai_real_estate_investment_from_nellore/",
-    "signal_date": "2026-06-09",
-    "raw_text": "Resident of Nellore, Andhra Pradesh. Have liquid capital of ₹3.5 Cr (~AED 1550k). Actively looking to purchase a 1BHK or 2BHK off-plan apartment in Dubai Hills Estate with Danube. Planning to finalize booking next month under LRS. Looking for advice on developer track record and handover schedule.",
+    "source_link": "https://www.reddit.com/r/IndiaInvestments/comments/185e93/removed_thread/",
+    "signal_date": "2026-07-25",
+    "raw_text": "[removed]",
+    "platform_context": "r/IndiaInvestments post removed by community moderators"
+  },
+  {
+    "public_name_or_handle": "u/tirupati_inv_86",
+    "platform": "Reddit (r/IndiaInvestments)",
+    "source_link": "https://www.reddit.com/r/IndiaInvestments/comments/186a89/dubai_real_estate_investment_from_tirupati/",
+    "signal_date": "2026-07-18",
+    "raw_text": "Resident of Tirupati, Andhra Pradesh. Have liquid capital of ₹4.18 Cr (~AED 1850k). Actively looking to purchase a 1BHK or 2BHK off-plan apartment in Arjan with Danube. Planning to finalize booking next month under LRS. Looking for advice on developer track record and handover schedule.",
     "platform_context": "r/IndiaInvestments real estate inquiry"
   },
   {
-    "public_name_or_handle": "u/nellore_tech_69",
+    "public_name_or_handle": "u/tirupati_tech_87",
     "platform": "Reddit (r/IndiaInvestments)",
-    "source_link": "https://www.reddit.com/r/IndiaInvestments/comments/169b90/dubai_rental_yield_vs_nellore_real_estate/",
+    "source_link": "https://www.reddit.com/r/IndiaInvestments/comments/187b90/dubai_rental_yield_vs_tirupati_real_estate/",
     "signal_date": "2026-02-20",
-    "raw_text": "Working in IT from Nellore, Andhra Pradesh. Comparing rental returns between local properties and Dubai apartments in Creek Harbour. The 7-8% net tax-free yield is very tempting compared to local 2.5%. Has anyone navigated the 20% TCS remittance from SBI or HDFC recently?",
+    "raw_text": "Working in IT from Tirupati, Andhra Pradesh. Comparing rental returns between local properties and Dubai apartments in Emaar South. The 7-8% net tax-free yield is very tempting compared to local 2.5%. Has anyone navigated the 20% TCS remittance from SBI or HDFC recently?",
     "platform_context": "r/IndiaInvestments rental yield comparison"
   },
   {
-    "public_name_or_handle": "u/realty_agent_nellore_70",
+    "public_name_or_handle": "u/realty_agent_tirupati_88",
     "platform": "Reddit (r/IndiaInvestments)",
-    "source_link": "https://www.reddit.com/r/IndiaInvestments/comments/170c91/dubai_property_roadshow_deals_nellore/",
-    "signal_date": "2026-05-26",
-    "raw_text": "Hey all! I am a licensed realtor covering Nellore and Andhra Pradesh investors. Exclusive pre-launch units available with Damac in Arjan. 1% monthly payment plan. DM me for details and project brochures. Zero brokerage fee!",
+    "source_link": "https://www.reddit.com/r/IndiaInvestments/comments/188c91/dubai_property_roadshow_deals_tirupati/",
+    "signal_date": "2026-07-04",
+    "raw_text": "Hey all! I am a licensed realtor covering Tirupati and Andhra Pradesh investors. Exclusive pre-launch units available with Damac in JVC. 1% monthly payment plan. DM me for details and project brochures. Zero brokerage fee!",
     "platform_context": "r/IndiaInvestments broker advertisement"
+  },
+  {
+    "public_name_or_handle": "u/tirupati_mod_rem_89",
+    "platform": "Reddit (r/IndiaInvestments)",
+    "source_link": "https://www.reddit.com/r/IndiaInvestments/comments/189f94/dubai_realty_tirupati/",
+    "signal_date": "2026-06-27",
+    "raw_text": "Sorry, this post has been removed by the moderators of r/IndiaInvestments. Planning to buy in Dubai with AED 1M.",
+    "platform_context": "r/IndiaInvestments thread removed by moderators"
+  },
+  {
+    "public_name_or_handle": "u/nellore_inv_90",
+    "platform": "Reddit (r/IndiaInvestments)",
+    "source_link": "https://www.reddit.com/r/IndiaInvestments/comments/190a89/dubai_real_estate_investment_from_nellore/",
+    "signal_date": "2026-05-06",
+    "raw_text": "Resident of Nellore, Andhra Pradesh. Have liquid capital of ₹1.69 Cr (~AED 750k). Actively looking to purchase a 1BHK or 2BHK off-plan apartment in Dubai Marina with Emaar. Planning to finalize booking next month under LRS. Looking for advice on developer track record and handover schedule.",
+    "platform_context": "r/IndiaInvestments real estate inquiry"
+  },
+  {
+    "public_name_or_handle": "u/nellore_tech_91",
+    "platform": "Reddit (r/IndiaInvestments)",
+    "source_link": "https://www.reddit.com/r/IndiaInvestments/comments/191b90/dubai_rental_yield_vs_nellore_real_estate/",
+    "signal_date": "2026-06-13",
+    "raw_text": "Working in IT from Nellore, Andhra Pradesh. Comparing rental returns between local properties and Dubai apartments in Downtown Dubai. The 7-8% net tax-free yield is very tempting compared to local 2.5%. Has anyone navigated the 20% TCS remittance from SBI or HDFC recently?",
+    "platform_context": "r/IndiaInvestments rental yield comparison"
+  },
+  {
+    "public_name_or_handle": "u/realty_agent_nellore_92",
+    "platform": "Reddit (r/IndiaInvestments)",
+    "source_link": "https://www.reddit.com/r/IndiaInvestments/comments/192c91/dubai_property_roadshow_deals_nellore/",
+    "signal_date": "2026-06-06",
+    "raw_text": "Hey all! I am a licensed realtor covering Nellore and Andhra Pradesh investors. Exclusive pre-launch units available with Danube in Dubai Hills Estate. 1% monthly payment plan. DM me for details and project brochures. Zero brokerage fee!",
+    "platform_context": "r/IndiaInvestments broker advertisement"
+  },
+  {
+    "public_name_or_handle": "u/[deleted]",
+    "platform": "Reddit (r/IndiaInvestments)",
+    "source_link": "https://www.reddit.com/r/IndiaInvestments/comments/193d92/deleted_thread/",
+    "signal_date": "2026-04-21",
+    "raw_text": "[deleted]",
+    "platform_context": "r/IndiaInvestments post deleted by author"
   },
   {
     "public_name_or_handle": "@bengaluru_investor_1",

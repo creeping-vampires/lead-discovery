@@ -1,0 +1,10 @@
+{
+  "raw_discovered_candidates.csv": {
+    "filename": "raw_discovered_candidates.csv",
+    "status": "PROCESSED",
+    "file_path": "input/raw_discovered_candidates.csv",
+    "processed_at": "2026-11-13T00:16:42.042973",
+    "records_count": 258,
+    "checksum_md5": "5635e759447a4e272363c74357b7495f"
+  }
+}

@@ -1,20 +1,24 @@
 """
 Main CLI Orchestrator for Dubai Real Estate Lead Discovery, Qualification & Evidence Auditing Pipeline.
-- Ingests raw candidate records directly from `input/raw_discovered_candidates.csv`
+- Ingests raw candidate records from `input/` (.csv and .json)
+- Records processed files with status in `results/processed.json`
+- Supports incremental processing: skips already processed files and updates existing results
 - Validates source URL presence, permitted public use, and original post reference
 - Preserves original publication date separately from discovery date
 - Flags deleted, inaccessible, contradictory, or unsupported evidence for human review
 - Intra-platform deduplication of repeated URLs and handles (zero speculative cross-platform merges)
-- Produces:
+- Produces in `results/`:
   1. all_candidates.csv
   2. qualified_dubai_leads.xlsx
   3. top_5_leads.csv
   4. audit_report.json
+  5. processed.json
 """
 
 import os
 import csv
 import json
+import ast
 from typing import List, Dict, Any, Optional
 from datetime import datetime, date
 from collections import Counter
@@ -39,6 +43,7 @@ from workflow.processors.geo_matcher import GeoMatcher
 from workflow.processors.intent_classifier import IntentClassifier
 from workflow.processors.source_verifier import SourceVerifier
 from workflow.processors.evidence_auditor import EvidenceAuditor
+from workflow.processors.file_tracker import InputFileTracker
 
 
 ALL_CANDIDATE_COLUMNS = [
@@ -121,22 +126,96 @@ QUALIFIED_COLUMNS = [
 ]
 
 
+def load_existing_candidates(all_candidates_path: str) -> List[Dict[str, Any]]:
+    """Loads existing unique candidate records from results/all_candidates.csv for incremental updates."""
+    if not os.path.exists(all_candidates_path):
+        return []
+    records = []
+    with open(all_candidates_path, mode="r", encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            rec = dict(row)
+            try:
+                rec["score"] = int(rec["score"]) if rec["score"].isdigit() else float(rec["score"])
+            except Exception:
+                rec["score"] = 0
+            try:
+                rec["pre_freshness_score"] = int(rec["pre_freshness_score"]) if rec.get("pre_freshness_score", "").isdigit() else rec["score"]
+            except Exception:
+                rec["pre_freshness_score"] = rec["score"]
+            try:
+                rec["signal_age_days"] = int(rec["signal_age_days"]) if str(rec.get("signal_age_days", "")).isdigit() else 0
+            except Exception:
+                rec["signal_age_days"] = 0
+
+            for b_col in [
+                "is_qualified",
+                "url_present",
+                "url_permitted_use",
+                "url_points_to_correct_post",
+                "is_fresh",
+                "all_mandatory_gates_pass",
+                "is_deleted",
+                "is_inaccessible",
+                "is_contradictory",
+                "is_unsupported",
+                "requires_human_review"
+            ]:
+                val = rec.get(b_col)
+                rec[b_col] = val in (True, "True", "true", "1", 1)
+
+            if "human_review_flags" in rec and isinstance(rec["human_review_flags"], str):
+                try:
+                    rec["human_review_flags"] = ast.literal_eval(rec["human_review_flags"])
+                except Exception:
+                    rec["human_review_flags"] = [f.strip() for f in rec["human_review_flags"].strip("[]").replace("'", "").split(";") if f.strip()]
+
+            rec["all_mandatory_gates_pass"] = (rec.get("qualification_status") == "Strong Signal" or rec.get("all_mandatory_gates_pass", False))
+            records.append(rec)
+    return records
+
+
 def run_pipeline(
     input_dir: str = "input",
     output_dir: str = "results",
     input_csv: Optional[str] = None,
+    input_file: Optional[str] = None,
+    reprocess_all: bool = False,
     max_freshness_days: int = MAX_FRESHNESS_DAYS,
     qualified_threshold: int = STRONG_SIGNAL_THRESHOLD,
     verify_sources: bool = VERIFY_SOURCE_AVAILABILITY,
     check_live: bool = CHECK_LIVE_URLS,
     discovery_date: str = DEFAULT_DISCOVERY_DATE
 ) -> Dict[str, Any]:
-    # Resolve raw input CSV path (only CSV is parsed)
-    csv_input_path = input_csv or os.path.join(input_dir, "raw_discovered_candidates.csv")
+    os.makedirs(output_dir, exist_ok=True)
+    file_tracker = InputFileTracker(results_dir=output_dir)
+
+    all_candidates_path = os.path.join(output_dir, "all_candidates.csv")
+    excel_path = os.path.join(output_dir, "qualified_dubai_leads.xlsx")
+    top_5_csv_path = os.path.join(output_dir, "top_5_leads.csv")
+    audit_report_path = os.path.join(output_dir, "audit_report.json")
+
+    # Determine input files to process
+    explicit_file = input_file or input_csv
+    if explicit_file:
+        target_files = [explicit_file]
+        existing_candidates = [] if reprocess_all else load_existing_candidates(all_candidates_path)
+    elif reprocess_all:
+        file_tracker.processed_data.clear()
+        target_files = sorted([
+            os.path.join(input_dir, f) for f in os.listdir(input_dir)
+            if (f.lower().endswith(".csv") or f.lower().endswith(".json")) and not f.startswith(".")
+        ]) if os.path.exists(input_dir) else []
+        existing_candidates = []
+    else:
+        unprocessed_files = file_tracker.get_unprocessed_files(input_dir)
+        target_files = unprocessed_files
+        existing_candidates = load_existing_candidates(all_candidates_path)
 
     print("=" * 75)
     print("DUBAI REAL ESTATE LEAD DISCOVERY, QUALIFICATION & AUDITING PIPELINE")
-    print(f"Raw Input CSV:           {csv_input_path}")
+    print(f"Input Directory:         {input_dir}")
+    print(f"Processed State File:    {file_tracker.processed_path}")
     print(f"Discovery Run Date:      {discovery_date}")
     print(f"Freshness Window:        {max_freshness_days} days ({max_freshness_days // 30} months)")
     print(f"Qualification Threshold: Score >= {qualified_threshold} / 100 points")
@@ -145,19 +224,42 @@ def run_pipeline(
         print("Live URL Probe:          ENABLED (Checking HTTP response status)")
     print("=" * 75)
 
-    if not os.path.exists(csv_input_path):
-        raise FileNotFoundError(
-            f"Raw input CSV not found at '{csv_input_path}'. "
-            f"Please ensure the raw candidate CSV file is placed at '{csv_input_path}'."
-        )
-
-    os.makedirs(output_dir, exist_ok=True)
+    if not target_files:
+        if os.path.exists(all_candidates_path) and os.path.exists(audit_report_path):
+            print(f"\n[Stage 1/5] All input files in '{input_dir}' are already recorded as PROCESSED in '{file_tracker.processed_path}'.")
+            print("  -> Zero new files to process. Existing result files are up to date.")
+            try:
+                with open(audit_report_path, "r", encoding="utf-8") as f:
+                    audit_report = json.load(f)
+            except Exception:
+                audit_report = {}
+            return {
+                "status": "UP_TO_DATE",
+                "new_files_processed": [],
+                "total_processed_files": len(file_tracker.processed_data),
+                "unique_candidates": audit_report.get("funnel_reconciliation", {}).get("unique_candidates", 0),
+                "strong_signal_count": audit_report.get("funnel_reconciliation", {}).get("strong_signal_count", 0),
+                "needs_validation_count": audit_report.get("funnel_reconciliation", {}).get("needs_validation_count", 0),
+                "reject_count": audit_report.get("funnel_reconciliation", {}).get("reject_count", 0),
+                "audit_report_path": audit_report_path,
+                "all_candidates_path": all_candidates_path,
+                "qualified_excel": excel_path,
+                "top_5_csv_path": top_5_csv_path,
+                "processed_json_path": file_tracker.processed_path,
+                "is_reconciled": audit_report.get("funnel_reconciliation", {}).get("is_reconciled", True)
+            }
+        else:
+            default_csv = os.path.join(input_dir, "raw_discovered_candidates.csv")
+            if os.path.exists(default_csv):
+                target_files = [default_csv]
+            else:
+                raise FileNotFoundError(f"No input files found in '{input_dir}' to process.")
 
     # 1. Initialize Components
     harvesters = [
-        RedditHarvester(csv_path=csv_input_path),
-        YouTubeHarvester(csv_path=csv_input_path),
-        ForumHarvester(csv_path=csv_input_path)
+        RedditHarvester(),
+        YouTubeHarvester(),
+        ForumHarvester()
     ]
     deduplicator = Deduplicator()
     geo_matcher = GeoMatcher()
@@ -180,16 +282,20 @@ def run_pipeline(
         source_verifier=source_verifier
     )
 
-    # 2. Stage 1: Parsing raw candidate records directly from the input CSV
+    # 2. Stage 1: Parsing raw candidate records directly from target input files
     raw_records: List[Dict[str, Any]] = []
-    print(f"\n[Stage 1/5] Parsing raw candidate records directly from '{csv_input_path}'...")
-    for h in harvesters:
-        harvested = h.harvest()
-        print(f"  -> Harvester '{h.name}': Parsed {len(harvested)} raw records from CSV")
-        raw_records.extend(harvested)
+    file_record_counts: Dict[str, int] = {}
+    print(f"\n[Stage 1/5] Parsing raw candidate records from {len(target_files)} new/target input file(s)...")
+    for t_file in target_files:
+        f_recs = []
+        for h in harvesters:
+            h_recs = h.harvest(custom_path=t_file)
+            print(f"  -> Harvester '{h.name}' [{os.path.basename(t_file)}]: Parsed {len(h_recs)} raw records")
+            f_recs.extend(h_recs)
+        file_record_counts[t_file] = len(f_recs)
+        raw_records.extend(f_recs)
 
-    total_discovered_records = len(raw_records)
-    print(f"Total raw candidate records discovered: {total_discovered_records}")
+    print(f"Total new raw candidate records discovered from {len(target_files)} file(s): {len(raw_records)}")
 
     # 3. Stage 2: Processing, Geo-Matching, Source URL Audit & Dual Intent Scoring
     print("\n[Stage 2/5] Running Source URL Audit, Geographic Extraction & Dual 100-Point Intent Scoring...")
@@ -304,12 +410,12 @@ def run_pipeline(
         if invalid_url_count > 0:
             print(f"     • Invalid / Dead URLs   : {invalid_url_count}")
 
-    # 4. Stage 3: Deduplication
-    print("\n[Stage 3/5] Deduplicating repeated URLs and canonical public handles within the same platform...")
-    unique_records = deduplicator.process(processed_records)
-    duplicates_pruned = len(processed_records) - len(unique_records)
+    # 4. Stage 3: Deduplication & Merge with Existing Candidates
+    print("\n[Stage 3/5] Merging with existing candidates and deduplicating intra-platform...")
+    combined_pool = existing_candidates + processed_records
+    unique_records = deduplicator.process(combined_pool)
     unique_candidates_count = len(unique_records)
-    print(f"Unique candidates count: {unique_candidates_count} (pruned {duplicates_pruned} intra-platform duplicates)")
+    print(f"Unique candidates count: {unique_candidates_count} (existing: {len(existing_candidates)}, new processed: {len(processed_records)})")
 
     # Renumber unique candidate IDs sequentially
     for idx, rec in enumerate(unique_records, 1):
@@ -519,6 +625,13 @@ def run_pipeline(
         for r in top_5_candidates
     ]
 
+    previously_discovered = sum(
+        e.get("records_count", 0) for f, e in file_tracker.processed_data.items()
+        if f not in [os.path.basename(t) for t in target_files]
+    )
+    total_discovered_records = previously_discovered + len(raw_records)
+    duplicates_pruned = total_discovered_records - unique_candidates_count
+
     audit_report = {
         "report_metadata": {
             "title": "Dubai Real Estate Lead Discovery & Evidence Audit Report",
@@ -592,6 +705,15 @@ def run_pipeline(
         json.dump(audit_report, f, indent=2)
     print(f"  -> Exported audit report JSON: {audit_report_path}")
 
+    # 5. Record Processed Files in results/processed.json
+    for t_file in target_files:
+        file_tracker.mark_processed(
+            filepath=t_file,
+            records_count=file_record_counts.get(t_file, 0),
+            status="PROCESSED"
+        )
+    print(f"  -> Recorded processed status for {len(target_files)} file(s) in: {file_tracker.processed_path}")
+
     # Metrics Summary Printout
     print("\n" + "=" * 75)
     print("PIPELINE EXECUTION & EVIDENCE AUDIT METRICS SUMMARY")
@@ -622,6 +744,8 @@ def run_pipeline(
     print(f"  - Top 5 Leads Human-Reviewed Status:             {top_5_candidates[0]['human_review_status']} (100% human-reviewed)")
 
     return {
+        "status": "PROCESSED",
+        "new_files_processed": [os.path.basename(t) for t in target_files],
         "total_discovered_records": total_discovered_records,
         "duplicates_pruned": duplicates_pruned,
         "unique_candidates": unique_candidates_count,
@@ -637,6 +761,7 @@ def run_pipeline(
         "all_candidates_path": all_candidates_path,
         "qualified_excel": excel_path,
         "top_5_csv_path": top_5_csv_path,
+        "processed_json_path": file_tracker.processed_path,
         "qualified_results_path": excel_path,
         "top_five_path": top_5_csv_path
     }
@@ -646,22 +771,33 @@ if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser(description="Dubai Real Estate Lead Discovery & Auditing Pipeline")
     parser.add_argument(
+        "--input-file",
+        type=str,
+        default=None,
+        help="Path to specific raw candidate input file (CSV or JSON)"
+    )
+    parser.add_argument(
         "--input-csv",
         type=str,
         default=None,
-        help="Path to raw candidate CSV file (default: <input-dir>/raw_discovered_candidates.csv)"
+        help="Path to raw candidate CSV file (for backwards compatibility)"
     )
     parser.add_argument(
         "--input-dir",
         type=str,
         default="input",
-        help="Input directory containing raw_discovered_candidates.csv (default: input)"
+        help="Input directory containing raw candidate files (default: input)"
     )
     parser.add_argument(
         "--output-dir",
         type=str,
         default="results",
         help="Output directory (default: results)"
+    )
+    parser.add_argument(
+        "--reprocess-all",
+        action="store_true",
+        help="Force reprocessing of all files in input-dir, ignoring processed.json"
     )
     parser.add_argument(
         "--freshness-days",
@@ -690,7 +826,9 @@ if __name__ == "__main__":
     run_pipeline(
         input_dir=args.input_dir,
         output_dir=args.output_dir,
+        input_file=args.input_file,
         input_csv=args.input_csv,
+        reprocess_all=args.reprocess_all,
         max_freshness_days=args.freshness_days,
         qualified_threshold=args.min_score,
         check_live=args.check_live,

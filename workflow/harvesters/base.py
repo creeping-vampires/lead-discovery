@@ -4,6 +4,7 @@ Base harvester interface for parsing raw candidate records from input CSV files.
 
 import os
 import csv
+import json
 from abc import ABC, abstractmethod
 from typing import List, Dict, Any, Optional
 
@@ -15,17 +16,42 @@ class BaseHarvester(ABC):
 
     def load_all_records(self, custom_path: Optional[str] = None) -> List[Dict[str, Any]]:
         """
-        Parses raw candidate records directly from the input CSV file.
+        Parses raw candidate records directly from the input CSV or JSON file.
         Returns a list of dictionaries with raw lead attributes.
         """
         path = custom_path or self.csv_path
         if not os.path.exists(path):
             raise FileNotFoundError(
-                f"Raw input CSV file not found at: '{path}'. "
+                f"Raw input file not found at: '{path}'. "
                 f"Please ensure '{path}' exists before running the harvester."
             )
 
         records: List[Dict[str, Any]] = []
+
+        # Parse JSON format if extension is .json
+        if path.lower().endswith(".json"):
+            with open(path, mode="r", encoding="utf-8", errors="replace") as f:
+                data = json.load(f)
+
+            if isinstance(data, list):
+                raw_items = data
+            elif isinstance(data, dict):
+                for key in ["leads", "candidates", "records", "data"]:
+                    if key in data and isinstance(data[key], list):
+                        raw_items = data[key]
+                        break
+                else:
+                    raw_items = [v for v in data.values() if isinstance(v, dict)]
+            else:
+                raw_items = []
+
+            for item in raw_items:
+                if isinstance(item, dict):
+                    cleaned = {str(k).strip(): (str(v).strip() if v is not None else "") for k, v in item.items() if k}
+                    records.append(cleaned)
+            return records
+
+        # Otherwise parse as standard CSV
         with open(path, mode="r", encoding="utf-8", errors="replace") as f:
             reader = csv.DictReader(f)
             for row in reader:
@@ -63,8 +89,8 @@ class BaseHarvester(ABC):
         return matched
 
     @abstractmethod
-    def harvest(self) -> List[Dict[str, Any]]:
+    def harvest(self, custom_path: Optional[str] = None) -> List[Dict[str, Any]]:
         """
-        Parses raw prospect records from the input CSV for this harvester's platform.
+        Parses raw prospect records from the input file for this harvester's platform.
         """
         pass

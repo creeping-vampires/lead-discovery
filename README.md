@@ -19,6 +19,7 @@ Stores all output datasets and audit artifacts (no result files in repo root):
 - [`results/qualified_dubai_leads.xlsx`](results/qualified_dubai_leads.xlsx): Master formatted Excel workbook containing all 24 qualified Strong Signal leads scoring >= 75 points with verified `CURRENT_RESIDENT` status, across two formatted sheets (`Qualified Leads` and `Top 5 Shortlist`).
 - [`results/top_5_leads.csv`](results/top_5_leads.csv): The top 5 human-reviewed Strong Signal leads in CSV format with complete attributes and auditor verification notes.
 - [`results/audit_report.json`](results/audit_report.json): Reconciled funnel report with pre-freshness vs final breakdown, 180-day downgrade audit, and manual review sampling.
+- [`results/processed.json`](results/processed.json): Incremental processing state file recording filename, processed status (`PROCESSED`), records count, and MD5 checksum of every processed input file.
 
 ---
 
@@ -161,14 +162,18 @@ To run discovery, normalization, geo matching, intent classification, deduplicat
 python -m workflow.main
 ```
 
-The output will automatically generate in `results/`:
-- `results/all_candidates.csv` (All 249 unique candidate records evaluated)
+The output will automatically generate / update in `results/`:
+- `results/all_candidates.csv` (All unique candidate records evaluated)
 - `results/qualified_dubai_leads.xlsx` (Master workbook with `Qualified Leads` & `Top 5 Shortlist` tabs)
 - `results/top_5_leads.csv` (Top 5 human-reviewed Strong Signal leads in CSV format)
 - `results/audit_report.json` (Reconciled funnel report & manual review sampling)
+- `results/processed.json` (Registry of processed input files and `PROCESSED` status)
+
+> **Incremental Pipeline Execution**:
+> The orchestrator tracks processed files in `results/processed.json`. If you add new raw JSON or CSV files to `input/` and re-run `python -m workflow.main`, the pipeline automatically identifies only the new unprocessed files, parses their leads, merges them into existing results, and updates all deliverables without redundant re-processing.
 
 ### 3. Run Automated Tests
-To run the automated test suite (42 unit tests):
+To run the automated test suite (45 unit tests):
 
 ```bash
 python -m unittest discover tests
@@ -199,13 +204,15 @@ real-estate-leads-assignment/
 │   │   ├── geo_matcher.py                     # South India NER & geocoding resolver
 │   │   ├── intent_classifier.py               # 100-point weighted scoring and mandatory gates engine
 │   │   ├── source_verifier.py                 # Source URL existence, permitted use & post checker
-│   │   └── evidence_auditor.py                # Evidence auditing, anomaly flagging & manual sampling
+│   │   ├── evidence_auditor.py                # Evidence auditing, anomaly flagging & manual sampling
+│   │   └── file_tracker.py                    # Processed file tracking & incremental state management
 │   └── main.py                                # CLI orchestrator
 ├── results/
 │   ├── all_candidates.csv                     # Master evaluated candidates CSV
 │   ├── qualified_dubai_leads.xlsx             # Master Excel (Qualified >= 75 + Top 5 Shortlist)
 │   ├── top_5_leads.csv                        # Top 5 human-reviewed Strong Signal leads (CSV)
-│   └── audit_report.json                      # Comprehensive audit & reconciled funnel metrics JSON
+│   ├── audit_report.json                      # Comprehensive audit & reconciled funnel metrics JSON
+│   └── processed.json                         # Processed input files tracking (incremental pipeline state)
 ├── docs/
 │   └── methodology_and_report.md              # In-depth report on sourcing, rules, and ethics
 └── tests/
@@ -214,7 +221,8 @@ real-estate-leads-assignment/
     ├── test_classifier.py                     # Tests for qualification and broker rejection
     ├── test_source_verifier.py                # Tests for Reddit URL existence and deletion filtering
     ├── test_harvesters.py                     # Tests for CSV-based harvesters (zero hardcoded data)
-    └── test_audit.py                          # Tests for evidence auditing, dates, and funnel reconciliation
+    ├── test_audit.py                          # Tests for evidence auditing, dates, and funnel reconciliation
+    └── test_incremental.py                    # Tests for processed.json tracking and incremental execution
 ```
 
 ---

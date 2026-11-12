@@ -80,22 +80,23 @@ NEGATIVE_KEYWORDS: List[str] = [
 ]
 
 # ==============================================================================
-# SCORING CONFIGURATION (0 to 100 Scale)
+# WEIGHTED SCORING CONFIGURATION (100 Points Scale)
 # ==============================================================================
-SCORE_EXPLICIT_BUDGET: int = 25              # Stated financial budget (INR / AED)
-SCORE_EXPLICIT_TIMELINE: int = 15            # Concrete timeline (immediate / next month / within 6 mos)
-SCORE_SPECIFIC_LOCALITY: int = 10            # Specific Dubai community (JVC, Marina, Downtown, etc.)
-SCORE_SPECIFIC_DEVELOPER: int = 10           # Specific developer (Emaar, Sobha, Danube, Ellington, etc.)
-SCORE_VERIFIED_GEO_HIGH: int = 25            # Verified South Indian residency/origin in text
-SCORE_VERIFIED_GEO_MEDIUM: int = 12          # Regional South India connection inferred from community
-SCORE_REGULATORY_LRS: int = 8                # Inquiring about LRS $250k / TCS / remittance rules
-SCORE_INVESTMENT_YIELD: int = 7              # Yield / Golden Visa / payment plan analysis
+SCORE_PERSONAL_INTENT: int = 30              # Explicit first-person purchase/investment intent
+SCORE_PURCHASE_READINESS: int = 20           # Transactional readiness (token, down payment, LRS 15CA, SPA, travel)
+SCORE_BUDGET_FINANCING: int = 15             # Stated financial budget (AED/INR/USD) or explicit payment plan
+SCORE_PURCHASE_TIMELINE: int = 15            # Concrete purchase timeline horizon (immediate, next month, Q3, etc.)
+SCORE_PROJECT_REQUIREMENTS: int = 10         # Specific Dubai micro-market, developer, or unit type
+SCORE_FRESHNESS: int = 10                    # Buying-intent signal within last 180 days (<= 180 days)
 
-# Total theoretical maximum = 25 + 15 + 10 + 10 + 25 + 8 + 7 = 100 points.
+# Total theoretical maximum = 30 + 20 + 15 + 15 + 10 + 10 = 100 points.
 
-# Qualification Score Threshold (0 to 100 scale)
-# Only candidates with score > QUALIFIED_SCORE_THRESHOLD are included in the results Excel
-QUALIFIED_SCORE_THRESHOLD: int = 70
+# Strong Signal Score Threshold (0 to 100 scale)
+# Strong Signal requires all 5 mandatory gates to pass AND score >= STRONG_SIGNAL_THRESHOLD
+STRONG_SIGNAL_THRESHOLD: int = 75
+
+# Backward compatibility alias for results export filtering
+QUALIFIED_SCORE_THRESHOLD: int = STRONG_SIGNAL_THRESHOLD
 
 # ==============================================================================
 # FRESHNESS CONFIGURATION CONSTANTS

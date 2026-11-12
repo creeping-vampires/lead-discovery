@@ -123,6 +123,9 @@ def run_pipeline(
             elif not src_ver.get("url_exists"):
                 invalid_url_count += 1
 
+        comp_ev = classification.get("component_evidence", {})
+        gates = classification.get("mandatory_gates", {})
+
         combined = {
             "public_name_or_handle": handle,
             "score": classification["score"],
@@ -134,6 +137,13 @@ def run_pipeline(
             "geo_evidence": classification["location_evidence_text"],
             "location_evidence_text": classification["location_evidence_text"],
             "location_evidence_url": classification["location_evidence_url"],
+            "intent_evidence": comp_ev.get("intent_evidence", "None"),
+            "readiness_evidence": comp_ev.get("readiness_evidence", "None"),
+            "budget_evidence": comp_ev.get("budget_evidence", "None"),
+            "timeline_evidence": comp_ev.get("timeline_evidence", "None"),
+            "project_evidence": comp_ev.get("project_evidence", "None"),
+            "freshness_evidence": comp_ev.get("freshness_evidence", "None"),
+            "all_mandatory_gates_pass": gates.get("all_mandatory_gates_pass", False),
             "source_link": source_link,
             "signal_date": sig_date_str,
             "signal_age_days": classification.get("signal_age_days", "Unverified"),
@@ -180,7 +190,12 @@ def run_pipeline(
         "platform",
         "city_state",
         "location_evidence_text",
-        "location_evidence_url",
+        "intent_evidence",
+        "readiness_evidence",
+        "budget_evidence",
+        "timeline_evidence",
+        "project_evidence",
+        "source_link",
         "signal_date",
         "signal_age_days",
         "ticket_size_budget",
@@ -240,7 +255,7 @@ def run_pipeline(
                     cell.fill = row_fill
                     cell.border = thin_border
                     cell.font = Font(name="Calibri", size=10)
-                    if col_idx in (1, 2, 3, 9, 10):  # ID, Score, Status, Date, Age
+                    if col_idx in (1, 2, 3, 4, 15, 16):  # ID, Score, Status, Loc Status, Date, Age
                         cell.alignment = center_align
                     else:
                         cell.alignment = left_align
@@ -249,18 +264,24 @@ def run_pipeline(
                 1: 15,   # Record ID
                 2: 10,   # Score
                 3: 18,   # Qualification Status
-                4: 25,   # Handle
-                5: 22,   # Platform
-                6: 25,   # City/State
-                7: 35,   # Geo Evidence
-                8: 40,   # Source Link
-                9: 14,   # Signal Date
-                10: 16,  # Signal Age Days
-                11: 24,  # Budget
-                12: 30,  # Preferred Areas
-                13: 45,  # Dubai Evidence
-                14: 45,  # Qualification Reason
-                15: 35   # Unverified Information
+                4: 22,   # Location Verification Status
+                5: 25,   # Handle
+                6: 22,   # Platform
+                7: 25,   # City/State
+                8: 30,   # Location Evidence
+                9: 30,   # Intent Evidence
+                10: 30,  # Readiness Evidence
+                11: 25,  # Budget Evidence
+                12: 20,  # Timeline Evidence
+                13: 30,  # Project Evidence
+                14: 35,  # Source Link
+                15: 14,  # Signal Date
+                16: 16,  # Signal Age Days
+                17: 24,  # Budget
+                18: 30,  # Preferred Areas
+                19: 45,  # Dubai Evidence
+                20: 45,  # Qualification Reason
+                21: 35   # Unverified Information
             }
             for col_idx, width in col_width_map.items():
                 ws.column_dimensions[get_column_letter(col_idx)].width = width
@@ -270,9 +291,9 @@ def run_pipeline(
         # Initialize Workbook with 2 sheets in identical format
         wb = openpyxl.Workbook()
 
-        # Sheet 1: All Qualified Leads (Score > 70)
+        # Sheet 1: All Qualified Leads (Score >= 75 & All 5 Mandatory Gates Passed)
         ws1 = wb.active
-        populate_worksheet(ws1, qualified_records, f"Qualified Leads (Score > {qualified_threshold})", fill_color="1F497D")
+        populate_worksheet(ws1, qualified_records, f"Qualified Leads (Score >= {qualified_threshold})", fill_color="1F497D")
 
         # Sheet 2: Top 5 Strongest Leads (identical format & styling)
         top_5_records = qualified_records[:5]
@@ -297,7 +318,7 @@ def run_pipeline(
     score_bands = {
         "90 - 100 (Tier 1 Premium)": 0,
         "80 - 89  (Tier 2 High)": 0,
-        "71 - 79  (Tier 3 Qualified)": 0
+        "75 - 79  (Tier 3 Qualified)": 0
     }
     for r in qualified_records:
         s = r["score"]
@@ -306,7 +327,7 @@ def run_pipeline(
         elif s >= 80:
             score_bands["80 - 89  (Tier 2 High)"] += 1
         else:
-            score_bands["71 - 79  (Tier 3 Qualified)"] += 1
+            score_bands["75 - 79  (Tier 3 Qualified)"] += 1
 
     state_counts = {}
     for r in qualified_records:
@@ -339,8 +360,10 @@ def run_pipeline(
         print(f"  - {qst:25s}: {count:3d} ({pct:5.1f}%)")
 
     unverified_strong_count = sum(1 for r in unique_records if r["qualification_status"] == "Strong Signal" and r["location_verification_status"] != "CURRENT_RESIDENT")
+    failed_gate_strong_count = sum(1 for r in unique_records if r["qualification_status"] == "Strong Signal" and not r.get("all_mandatory_gates_pass", True))
     print(f"\nStrong Signal Leads with Unverified Location: {unverified_strong_count} (Verification Guarantee: 100%)")
-    print(f"Master Qualified Leads (in 'results/'):       {len(qualified_records)} (Score > {qualified_threshold} + Verified CURRENT_RESIDENT)")
+    print(f"Strong Signal Leads Failing Mandatory Gates: {failed_gate_strong_count} (Mandatory Gate Compliance: 100%)")
+    print(f"Master Qualified Leads (in 'results/'):       {len(qualified_records)} (Score >= {qualified_threshold} + All 5 Mandatory Gates Passed)")
 
     print("\nQualified Leads Score Distribution (0 to 100 scale):")
     for band, count in score_bands.items():

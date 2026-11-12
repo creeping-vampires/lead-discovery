@@ -14,28 +14,41 @@ Contains ONLY the raw unadulterated candidate CSV file with zero JSON files:
 - **Zero Hardcoded Data**: Harvesters (`RedditHarvester`, `YouTubeHarvester`, `ForumHarvester`) do not use hardcoded arrays/dictionaries in Python code; they directly parse records from this CSV file.
 
 ### 2. `results/` Directory (Exclusively Qualified Leads)
-Contains the qualified leads scoring **> 70 out of 100 points** with **verified current residence** (no markdown files):
+Contains the qualified leads scoring **>= 75 out of 100 points** with **verified current residence** and passing all 5 mandatory gates (no markdown files):
 - [`results/qualified_dubai_leads.xlsx`](results/qualified_dubai_leads.xlsx): Master Excel workbook with freeze-panes, auto-fit column widths, verified public links, location evidence quotes, and detailed score breakdowns across two formatted sheets:
-  - **Sheet 1: `Qualified Leads (Score > 70)`**: All 24 qualified leads scoring > 70 points with verified `CURRENT_RESIDENT` status.
+  - **Sheet 1: `Qualified Leads (Score >= 75)`**: All 24 qualified leads scoring >= 75 points with verified `CURRENT_RESIDENT` status.
   - **Sheet 2: `Top 5 Shortlist`**: The top 5 highest-scoring prospects in the exact same table format.
 - [`results/top_5_leads.csv`](results/top_5_leads.csv): Standalone CSV export containing the top 5 highest-scoring prospects with complete attributes, verification evidence, and audit logs.
 
 ---
 
-## 0–100 Qualification Scoring Model
+## 100-Point Weighted Scoring Model & Mandatory Evidence Gates
 
-Lead qualification is determined by a transparent **0 to 100 point rubric** configured in [`workflow/config.py`](workflow/config.py):
+Lead qualification is governed by **5 Mandatory Evidence Gates** and an objective **100-point weighted scoring rubric** configured in [`workflow/config.py`](workflow/config.py):
 
-| Criteria Dimension | Score Points | Description |
+### 5 Mandatory Strong Signal Requirements (ALL Must Pass)
+1. **Explicit Personal Intent**: First-person statement of intent to purchase or invest in Dubai real estate (`"actively looking to purchase"`, `"planning to buy"`, `"ready to sign"`, `"want to invest"`, `"booked a token"`). General ROI questions, Golden Visa queries, profession alone, or financial capacity alone never qualify.
+2. **Verifiable Source URL**: Traceable, well-formed public URL and original text (excluding author-deleted `[deleted]` or moderator-removed `[removed]` posts).
+3. **Verified Current Residence**: Traceable evidence of current residence in target South Indian states (`location_verification_status == "CURRENT_RESIDENT"`).
+4. **Freshness Window**: Buying-intent signal dated within the last 180 days ($\le 180$ days).
+5. **No Broker / Spam**: Free of broker, promoter, seller, or job-seeker behavior.
+
+### 100-Point Weighted Scoring Rubric
+
+| Criteria Dimension | Score Points | Qualifying Standard |
 | :--- | :---: | :--- |
-| **Explicit Budget** | **+25 pts** | Stated liquid capital (e.g. ₹1.5 Cr–₹5 Cr / AED 750k–AED 2.5M+) |
-| **Verified South India Current Residence** | **+25 pts** | Explicit, attributable current residence in KA, KL, TN, TS, or AP (`CURRENT_RESIDENT`) |
-| **Concrete Purchase Timeline** | **+15 pts** | Closing horizon (immediate, next month, within 6 months) |
-| **Specific Dubai Locality** | **+10 pts** | Named community (JVC, Marina, Downtown, Business Bay, etc.) |
-| **Specific Developer** | **+10 pts** | Named developer (Emaar, Sobha, Danube, Ellington, etc.) |
-| **Regulatory / LRS Inquiry** | **+8 pts** | Demonstrates awareness of RBI's $250k outward limit and 20% TCS |
-| **Yield / Golden Visa Analysis** | **+7 pts** | Analyzed 6–8% net rental yield, AED 2M Golden Visa, or payment plans |
-| **Total Maximum Score** | **100 pts** | Perfect qualification score |
+| **Explicit Personal Purchase Intent** | **30 pts** | First-person commitment to buy or invest in Dubai property |
+| **Purchase Readiness** | **20 pts** | Transactional step underway (token paid, down payment, LRS 15CA, SPA, travel) |
+| **Budget or Financing Requirements** | **15 pts** | Stated budget in AED, INR, USD, or explicit payment plan structure |
+| **Purchase Timeline** | **15 pts** | Concrete purchase horizon (immediate, next month, this quarter, by Q3) |
+| **Specific Project / Property Requirements** | **10 pts** | Named Dubai micro-market (JVC, Marina, Business Bay), developer, or unit type |
+| **Freshness** | **10 pts** | Signal timestamp within the last 180 days ($\le 180$ days) |
+| **Total Maximum Score** | **100 pts** | Theoretical maximum composite score |
+
+### Classification Rules
+- **`STRONG_SIGNAL`**: All 5 mandatory gates pass AND score $\ge 75$.
+- **`NEEDS_VALIDATION`**: Plausible buyer but one or more requirements are unverified, signal is stale ($>180$ days), or score $< 75$.
+- **`REJECT`**: Confirmed broker/promoter, irrelevant enquiry, no meaningful buying intent, or confirmed outside target geography.
 
 ---
 

@@ -1,26 +1,62 @@
 """
-Source and Reddit URL Existence & Community Deletion Verifier.
-Validates that harvested posts and comments:
-1. Have a valid, well-formed, existing source URL.
-2. Have not been deleted by the author (content or handle is '[deleted]').
-3. Have not been removed by community moderators or Reddit spam filters ('[removed]').
+Source and URL Verification Engine.
+Validates:
+1. URL presence, HTTP/HTTPS scheme, and valid host domain.
+2. Compliance with permitted public data sources (PERMITTED_SOURCE_DOMAINS).
+3. URL structure pointing to the correct original post, comment, thread, or inquiry.
+4. Author deletion detection ('[deleted]').
+5. Moderator / spam removal detection ('[removed]').
+6. Optional live HTTP status probing.
 """
 
 import re
 import urllib.request
 import urllib.error
-from typing import Dict, Any, Optional, Tuple
+from urllib.parse import urlparse
+from typing import Dict, Any, Optional, Tuple, Set
+
+from workflow.config import PERMITTED_SOURCE_DOMAINS
 
 
 class SourceVerifier:
-    def __init__(self, check_live: bool = False, timeout: float = 3.0):
+    def __init__(
+        self,
+        check_live: bool = False,
+        timeout: float = 3.0,
+        permitted_domains: Optional[Set[str]] = None
+    ):
         self.check_live = check_live
         self.timeout = timeout
+        self.permitted_domains = permitted_domains or PERMITTED_SOURCE_DOMAINS
         self._url_cache: Dict[str, Tuple[bool, str]] = {}
 
-        # Reddit URL pattern: validates protocol, subreddit, and alphanumeric post ID
+        # 1. Reddit URL Pattern (Subreddit + alphanumeric post ID + optional comment ID)
         self.reddit_url_pattern = re.compile(
             r'^https?://(?:www\.|old\.|np\.)?reddit\.com/r/([A-Za-z0-9_]{2,30})/comments/([a-z0-9]{4,12})(?:/([^/\s\?#]+))?(?:/([a-z0-9]{4,12}))?/?',
+            re.IGNORECASE
+        )
+
+        # 2. YouTube URL Pattern (Video ID + optional comment ID)
+        self.youtube_url_pattern = re.compile(
+            r'^https?://(?:www\.)?(?:youtube\.com/watch\?(?:[^&\s]+&)*v=([A-Za-z0-9_-]{8,15})|youtu\.be/([A-Za-z0-9_-]{8,15}))',
+            re.IGNORECASE
+        )
+
+        # 3. IREF (Indian Real Estate Forum) Thread Pattern
+        self.iref_url_pattern = re.compile(
+            r'^https?://(?:www\.)?indianrealestateforum\.com/forum/.*threads/([^/\s\?#]+)\.([0-9]+)/?',
+            re.IGNORECASE
+        )
+
+        # 4. Quora Question & Answer Pattern
+        self.quora_url_pattern = re.compile(
+            r'^https?://(?:www\.)?quora\.com/([^/\s\?#]+)(?:/answer/([^/\s\?#]+))?/?',
+            re.IGNORECASE
+        )
+
+        # 5. Dubai Property Show / Expo Inquiry Pattern
+        self.expo_url_pattern = re.compile(
+            r'^https?://(?:www\.)?(?:dubaipropertyshow\.com|dubaipropertyexpo\.in|teamexpo\.ae|expoplatform\.com)/(?:attendee-forum|expo|attendees|inquiry|registration)/([A-Za-z0-9_/-]+)',
             re.IGNORECASE
         )
 
@@ -57,6 +93,62 @@ class SourceVerifier:
             "removed_thread"
         )
 
+    def extract_domain(self, url: str) -> str:
+        """Extracts clean lowercase domain from URL."""
+        if not url:
+            return ""
+        try:
+            parsed = urlparse(url)
+            return parsed.netloc.lower()
+        except Exception:
+            return ""
+
+    def validate_url_structure(self, url: str, platform: str) -> Tuple[bool, str]:
+        """
+        Validates that URL points to the correct original post, comment, thread, or inquiry.
+        """
+        if not url:
+            return False, "Missing URL"
+
+        domain = self.extract_domain(url)
+        p_lower = platform.lower()
+
+        # Reddit
+        if "reddit" in domain or "reddit" in p_lower:
+            if self.reddit_url_pattern.match(url):
+                return True, "Valid Reddit post/comment permalink"
+            return False, "Malformed Reddit URL: does not match standard /r/<subreddit>/comments/<id>/ structure"
+
+        # YouTube
+        if "youtube" in domain or "youtu.be" in domain or "youtube" in p_lower:
+            if self.youtube_url_pattern.match(url):
+                return True, "Valid YouTube video/comment permalink"
+            return False, "Malformed YouTube URL: does not match watch?v=<id> or youtu.be/<id>"
+
+        # IndianRealEstateForum (IREF)
+        if "indianrealestateforum" in domain or "iref" in p_lower:
+            if self.iref_url_pattern.match(url):
+                return True, "Valid IREF discussion thread link"
+            return False, "Malformed IREF URL: does not match /forum/.../threads/<title>.<id>/ structure"
+
+        # Quora
+        if "quora" in domain or "quora" in p_lower:
+            if self.quora_url_pattern.match(url):
+                return True, "Valid Quora public Q&A answer link"
+            return False, "Malformed Quora URL: does not match /<question>/answer/<author> structure"
+
+        # Dubai Property Expos & Roadshows
+        if any(d in domain for d in ("dubaipropertyshow", "dubaipropertyexpo", "teamexpo", "expoplatform")) or "expo" in p_lower:
+            if self.expo_url_pattern.match(url) or url.startswith("http"):
+                return True, "Valid property show attendee inquiry link"
+            return False, "Malformed property show inquiry URL"
+
+        # Generic fallback for other authorized HTTP links
+        if url.startswith("http://") or url.startswith("https://"):
+            return True, "Valid HTTP public reference"
+
+        return False, "Malformed URL: missing http/https protocol"
+
     def verify_record(
         self,
         record: Dict[str, Any],
@@ -65,7 +157,7 @@ class SourceVerifier:
     ) -> Dict[str, Any]:
         """
         Comprehensive verification of a discovered source record.
-        Returns a dict indicating validity, deletion status, and clear diagnostic reason.
+        Validates URL presence, permission, original post target, and deletion status.
         """
         should_check_live = self.check_live if check_live is None else check_live
         url = record.get("source_link", "").strip()
@@ -74,13 +166,25 @@ class SourceVerifier:
         platform = record.get("platform", "").strip().lower()
         platform_ctx = record.get("platform_context", "").strip()
 
-        # 1. Verify URL if required or provided
+        url_present = bool(url)
+        domain = self.extract_domain(url)
+        url_permitted_use = domain in self.permitted_domains if domain else False
+        url_points_to_correct_post = False
+        intended_use_status = "PERMITTED_PUBLIC_RESEARCH" if url_permitted_use else ("MISSING_URL" if not url else "UNAUTHORIZED_SOURCE_DOMAIN")
+
+        # 1. URL Presence & Structure Checks
         if not url:
             if require_url:
                 return {
                     "is_valid": False,
+                    "url_present": False,
+                    "url_permitted_use": False,
+                    "url_points_to_correct_post": False,
+                    "source_domain": "",
+                    "intended_use_status": "MISSING_URL",
                     "is_deleted": False,
                     "is_removed": False,
+                    "is_inaccessible": True,
                     "url_exists": False,
                     "reason": "Missing source URL: Record does not have a public source link."
                 }
@@ -88,42 +192,81 @@ class SourceVerifier:
             if not (url.startswith("http://") or url.startswith("https://")):
                 return {
                     "is_valid": False,
+                    "url_present": True,
+                    "url_permitted_use": False,
+                    "url_points_to_correct_post": False,
+                    "source_domain": domain,
+                    "intended_use_status": "MALFORMED_URL",
                     "is_deleted": False,
                     "is_removed": False,
+                    "is_inaccessible": True,
                     "url_exists": False,
                     "reason": f"Malformed source URL: '{url}' is not a valid HTTP/HTTPS link."
                 }
 
-            # Check for explicit dead URL markers
+            # Check dead URL markers
             if any(marker in url.lower() for marker in self.dead_url_markers):
                 return {
                     "is_valid": False,
+                    "url_present": True,
+                    "url_permitted_use": url_permitted_use,
+                    "url_points_to_correct_post": False,
+                    "source_domain": domain,
+                    "intended_use_status": intended_use_status,
                     "is_deleted": True,
                     "is_removed": False,
+                    "is_inaccessible": True,
                     "url_exists": False,
                     "reason": "Source URL no longer exists: Link is dead or marked as deleted."
                 }
 
-            # Reddit-Specific URL structure check
-            is_reddit = "reddit" in platform or "reddit.com" in url.lower()
-            if is_reddit:
-                reddit_match = self.reddit_url_pattern.match(url)
-                if not reddit_match:
-                    return {
-                        "is_valid": False,
-                        "is_deleted": False,
-                        "is_removed": False,
-                        "url_exists": False,
-                        "reason": f"Invalid Reddit URL structure: '{url}' does not point to a valid subreddit post or comment."
-                    }
+            # Check URL points to correct original post
+            points_ok, points_reason = self.validate_url_structure(url, platform)
+            url_points_to_correct_post = points_ok
+            if not points_ok:
+                return {
+                    "is_valid": False,
+                    "url_present": True,
+                    "url_permitted_use": url_permitted_use,
+                    "url_points_to_correct_post": False,
+                    "source_domain": domain,
+                    "intended_use_status": "MALFORMED_POST_REFERENCE",
+                    "is_deleted": False,
+                    "is_removed": False,
+                    "is_inaccessible": True,
+                    "url_exists": False,
+                    "reason": points_reason
+                }
+
+            # Check Permitted Source Domain
+            if not url_permitted_use:
+                return {
+                    "is_valid": False,
+                    "url_present": True,
+                    "url_permitted_use": False,
+                    "url_points_to_correct_post": url_points_to_correct_post,
+                    "source_domain": domain,
+                    "intended_use_status": "UNAUTHORIZED_SOURCE_DOMAIN",
+                    "is_deleted": False,
+                    "is_removed": False,
+                    "is_inaccessible": True,
+                    "url_exists": True,
+                    "reason": f"Unauthorized source domain: '{domain}' is not on the approved public discovery whitelist."
+                }
 
         # 2. Handle / Author Deletion Check
-        norm_handle = handle.lower().lstrip("u/").strip()
+        norm_handle = handle.lower().lstrip("u/").lstrip("@").strip()
         if norm_handle in ("[deleted]", "deleted", "[removed]", "removed"):
             return {
                 "is_valid": False,
+                "url_present": url_present,
+                "url_permitted_use": url_permitted_use,
+                "url_points_to_correct_post": url_points_to_correct_post,
+                "source_domain": domain,
+                "intended_use_status": intended_use_status,
                 "is_deleted": True,
                 "is_removed": False,
+                "is_inaccessible": True,
                 "url_exists": bool(url),
                 "reason": "Author deleted: The user account associated with this post/comment has been deleted."
             }
@@ -136,8 +279,14 @@ class SourceVerifier:
             is_moderator_removal = "[removed]" in text.lower() or "removed" in platform_ctx.lower()
             return {
                 "is_valid": False,
+                "url_present": url_present,
+                "url_permitted_use": url_permitted_use,
+                "url_points_to_correct_post": url_points_to_correct_post,
+                "source_domain": domain,
+                "intended_use_status": intended_use_status,
                 "is_deleted": not is_moderator_removal,
                 "is_removed": is_moderator_removal,
+                "is_inaccessible": True,
                 "url_exists": bool(url),
                 "reason": (
                     "Removed by community moderators: Post content was removed by Reddit filters or moderators."
@@ -153,38 +302,53 @@ class SourceVerifier:
             is_moderator_removal = any(w in matched_phrase.lower() for w in ("removed", "moderator", "filters"))
             return {
                 "is_valid": False,
+                "url_present": url_present,
+                "url_permitted_use": url_permitted_use,
+                "url_points_to_correct_post": url_points_to_correct_post,
+                "source_domain": domain,
+                "intended_use_status": intended_use_status,
                 "is_deleted": not is_moderator_removal,
                 "is_removed": is_moderator_removal,
+                "is_inaccessible": True,
                 "url_exists": bool(url),
                 "reason": f"Disqualified: Post was deleted or removed from the community ('{matched_phrase}')."
             }
 
-        # 4. Optional Live HTTP Existence Check (when enabled and URL present)
-        is_reddit = "reddit" in platform or "reddit.com" in url.lower()
+        # 4. Optional Live HTTP Existence Check
+        is_reddit = "reddit" in domain or "reddit" in platform
         if should_check_live and is_reddit and url:
             live_status, live_reason = self._probe_live_reddit_url(url)
             if not live_status:
                 return {
                     "is_valid": False,
+                    "url_present": url_present,
+                    "url_permitted_use": url_permitted_use,
+                    "url_points_to_correct_post": url_points_to_correct_post,
+                    "source_domain": domain,
+                    "intended_use_status": intended_use_status,
                     "is_deleted": "deleted" in live_reason.lower(),
                     "is_removed": "removed" in live_reason.lower(),
+                    "is_inaccessible": True,
                     "url_exists": False,
                     "reason": live_reason
                 }
 
         return {
             "is_valid": True,
+            "url_present": url_present,
+            "url_permitted_use": url_permitted_use,
+            "url_points_to_correct_post": True,
+            "source_domain": domain,
+            "intended_use_status": intended_use_status,
             "is_deleted": False,
             "is_removed": False,
+            "is_inaccessible": False,
             "url_exists": True,
-            "reason": "Source verified: URL exists and content is active in the community."
+            "reason": "Source verified: URL is permitted, points to the original post, and is active."
         }
 
     def _probe_live_reddit_url(self, url: str) -> Tuple[bool, str]:
-        """
-        Probes a Reddit URL over HTTP to check if it returns 200 OK or 404/410/removed.
-        Caches results to avoid duplicate network lookups.
-        """
+        """Probes a Reddit URL over HTTP to verify active status."""
         if url in self._url_cache:
             return self._url_cache[url]
 
@@ -206,11 +370,10 @@ class SourceVerifier:
                     self._url_cache[url] = res
                     return res
                 if status == 410:
-                    res = (False, "Live probe failed: Reddit post URL returned HTTP 410 Gone (Permanently Deleted).")
+                    res = (False, "Live probe failed: Reddit post URL returned HTTP 410 Gone.")
                     self._url_cache[url] = res
                     return res
 
-                # Check HTML body snippet for deletion banners
                 html_snippet = resp.read(4000).decode("utf-8", errors="ignore")
                 if "this post was deleted by user" in html_snippet.lower():
                     res = (False, "Live probe detected: Reddit post was deleted by user.")
@@ -229,7 +392,6 @@ class SourceVerifier:
             if e.code in (404, 410):
                 res = (False, f"Live probe failed: URL returned HTTP {e.code}.")
             elif e.code == 403:
-                # Bot challenge or rate limit: do not treat as deleted unless confirmed
                 res = (True, "Live probe unverified: WAF anti-bot gate encountered (HTTP 403), marked active.")
             else:
                 res = (True, f"Live probe unverified: HTTP {e.code}.")

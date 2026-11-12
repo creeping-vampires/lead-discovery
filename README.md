@@ -6,19 +6,19 @@ The workflow isolates genuine buyer demand from noise—excluding real estate br
 
 ---
 
-## Input and Output Architecture
+## Input and Output Architectureqs
 
 ### 1. `input/` Directory (Raw Input Discovery CSV)
 Contains ONLY the raw unadulterated candidate CSV file with zero JSON files:
 - [`input/raw_discovered_candidates.csv`](input/raw_discovered_candidates.csv): Master tabular CSV containing all 258 raw candidate records discovered from public discussions before any filtering, deduplication, or scoring.
 - **Zero Hardcoded Data**: Harvesters (`RedditHarvester`, `YouTubeHarvester`, `ForumHarvester`) do not use hardcoded arrays/dictionaries in Python code; they directly parse records from this CSV file.
 
-### 2. `results/` Directory (Exclusively Qualified Leads)
-Contains the qualified leads scoring **>= 75 out of 100 points** with **verified current residence** and passing all 5 mandatory gates (no markdown files):
-- [`results/qualified_dubai_leads.xlsx`](results/qualified_dubai_leads.xlsx): Master Excel workbook with freeze-panes, auto-fit column widths, verified public links, location evidence quotes, and detailed score breakdowns across two formatted sheets:
-  - **Sheet 1: `Qualified Leads (Score >= 75)`**: All 24 qualified leads scoring >= 75 points with verified `CURRENT_RESIDENT` status.
-  - **Sheet 2: `Top 5 Shortlist`**: The top 5 highest-scoring prospects in the exact same table format.
-- [`results/top_5_leads.csv`](results/top_5_leads.csv): Standalone CSV export containing the top 5 highest-scoring prospects with complete attributes, verification evidence, and audit logs.
+### 2. `results/` Directory (Exclusively Results Files)
+Stores all output datasets and audit artifacts (no result files in repo root):
+- [`results/all_candidates.csv`](results/all_candidates.csv): Master CSV containing all 249 unique candidate records with source audits, date separation, and anomaly review flags.
+- [`results/qualified_dubai_leads.xlsx`](results/qualified_dubai_leads.xlsx): Master formatted Excel workbook containing all 24 qualified Strong Signal leads scoring >= 75 points with verified `CURRENT_RESIDENT` status, across two formatted sheets (`Qualified Leads` and `Top 5 Shortlist`).
+- [`results/top_5_leads.csv`](results/top_5_leads.csv): The top 5 human-reviewed Strong Signal leads in CSV format with complete attributes and auditor verification notes.
+- [`results/audit_report.json`](results/audit_report.json): Reconciled funnel report with pre-freshness vs final breakdown, 180-day downgrade audit, and manual review sampling.
 
 ---
 
@@ -161,12 +161,14 @@ To run discovery, normalization, geo matching, intent classification, deduplicat
 python -m workflow.main
 ```
 
-The output will automatically generate:
-- `results/qualified_dubai_leads.xlsx` (Master workbook with `Qualified Leads (Score > 70)` & `Top 5 Shortlist` tabs)
-- `results/top_5_leads.csv` (Top 5 highest scoring leads in CSV format, no markdown)
+The output will automatically generate in `results/`:
+- `results/all_candidates.csv` (All 249 unique candidate records evaluated)
+- `results/qualified_dubai_leads.xlsx` (Master workbook with `Qualified Leads` & `Top 5 Shortlist` tabs)
+- `results/top_5_leads.csv` (Top 5 human-reviewed Strong Signal leads in CSV format)
+- `results/audit_report.json` (Reconciled funnel report & manual review sampling)
 
 ### 3. Run Automated Tests
-To run the automated test suite (36 unit tests):
+To run the automated test suite (42 unit tests):
 
 ```bash
 python -m unittest discover tests
@@ -193,14 +195,17 @@ real-estate-leads-assignment/
 │   │   └── forum_harvester.py                 # IREF, Quora, and South India Property Expos CSV parser
 │   ├── processors/
 │   │   ├── __init__.py
-│   │   ├── deduplicator.py                    # Deduplication by handle, URL, and content hash
+│   │   ├── deduplicator.py                    # Intra-platform deduplication by handle and URL
 │   │   ├── geo_matcher.py                     # South India NER & geocoding resolver
-│   │   ├── intent_classifier.py               # Intent scoring and status assignment engine
-│   │   └── source_verifier.py                 # Source URL existence & Reddit deletion/removal checker
+│   │   ├── intent_classifier.py               # 100-point weighted scoring and mandatory gates engine
+│   │   ├── source_verifier.py                 # Source URL existence, permitted use & post checker
+│   │   └── evidence_auditor.py                # Evidence auditing, anomaly flagging & manual sampling
 │   └── main.py                                # CLI orchestrator
 ├── results/
-│   ├── qualified_dubai_leads.xlsx             # Master Excel (Qualified > 70 + Top 5 Shortlist)
-│   └── top_5_leads.csv                        # Top 5 highest-scoring qualified leads (CSV)
+│   ├── all_candidates.csv                     # Master evaluated candidates CSV
+│   ├── qualified_dubai_leads.xlsx             # Master Excel (Qualified >= 75 + Top 5 Shortlist)
+│   ├── top_5_leads.csv                        # Top 5 human-reviewed Strong Signal leads (CSV)
+│   └── audit_report.json                      # Comprehensive audit & reconciled funnel metrics JSON
 ├── docs/
 │   └── methodology_and_report.md              # In-depth report on sourcing, rules, and ethics
 └── tests/
@@ -208,7 +213,8 @@ real-estate-leads-assignment/
     ├── test_geo.py                            # Tests for geographic entity extraction
     ├── test_classifier.py                     # Tests for qualification and broker rejection
     ├── test_source_verifier.py                # Tests for Reddit URL existence and deletion filtering
-    └── test_harvesters.py                     # Tests for CSV-based harvesters (zero hardcoded data)
+    ├── test_harvesters.py                     # Tests for CSV-based harvesters (zero hardcoded data)
+    └── test_audit.py                          # Tests for evidence auditing, dates, and funnel reconciliation
 ```
 
 ---

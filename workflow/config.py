@@ -132,6 +132,40 @@ CHECK_LIVE_URLS: bool = False
 # Timeout for live HTTP requests in seconds
 LIVE_PROBE_TIMEOUT: float = 3.0
 
+# ==============================================================================
+# EVIDENCE AUDITING, PERMITTED SOURCES & REPRODUCIBILITY CONSTANTS
+# ==============================================================================
+# Permitted public source domains authorized for non-invasive market research
+PERMITTED_SOURCE_DOMAINS: Set[str] = {
+    "reddit.com",
+    "www.reddit.com",
+    "old.reddit.com",
+    "youtube.com",
+    "www.youtube.com",
+    "youtu.be",
+    "indianrealestateforum.com",
+    "www.indianrealestateforum.com",
+    "quora.com",
+    "www.quora.com",
+    "dubaipropertyshow.com",
+    "www.dubaipropertyshow.com",
+    "dubaipropertyexpo.in",
+    "www.dubaipropertyexpo.in",
+    "teamexpo.ae",
+    "www.teamexpo.ae",
+    "expoplatform.com",
+    "www.expoplatform.com"
+}
+
+# Manual review sampling targets
+SAMPLE_STRONG_COUNT: int = 30
+SAMPLE_NEEDS_VAL_COUNT: int = 20
+SAMPLE_REJECT_COUNT: int = 10
+
+# Default discovery run date
+DEFAULT_DISCOVERY_DATE: str = "2026-11-12"
+
+
 
 
 

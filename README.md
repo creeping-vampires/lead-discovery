@@ -14,8 +14,11 @@ Stores all 231 raw candidate records discovered from public community sources be
 - [`input/raw_discovered_candidates.csv`](input/raw_discovered_candidates.csv): Tabular CSV format of the raw discovery data.
 
 ### 2. `results/` Directory (Exclusively Qualified Leads)
-Contains **ONLY ONE master Excel file** containing qualified leads scoring **> 70 out of 100 points**:
-- [`results/qualified_dubai_leads.xlsx`](results/qualified_dubai_leads.xlsx): Professionally styled Excel workbook with freeze-panes, auto-fit column widths, verified public links, and detailed 0–100 score breakdowns.
+Contains the qualified leads scoring **> 70 out of 100 points** (no markdown files):
+- [`results/qualified_dubai_leads.xlsx`](results/qualified_dubai_leads.xlsx): Master Excel workbook with freeze-panes, auto-fit column widths, verified public links, and detailed score breakdowns across two formatted sheets:
+  - **Sheet 1: `Qualified Leads (Score > 70)`**: All 58 qualified leads scoring > 70 points.
+  - **Sheet 2: `Top 5 Shortlist`**: The top 5 highest-scoring prospects in the exact same table format.
+- [`results/top_5_leads.csv`](results/top_5_leads.csv): Standalone CSV export containing the top 5 highest-scoring prospects with complete attributes, verification evidence, and audit logs.
 
 ---
 
@@ -98,9 +101,10 @@ python -m workflow.main
 ```
 
 The output will automatically generate:
-- `results/dubai_real_estate_south_india_prospects.csv`
-- `results/dubai_real_estate_south_india_prospects.xlsx`
-- `results/top_5_strongest_prospects.md`
+- `input/raw_discovered_candidates.json` (Full 231 raw discovery posts before filtering)
+- `input/raw_discovered_candidates.csv` (Tabular raw candidates)
+- `results/qualified_dubai_leads.xlsx` (Master workbook with `Qualified Leads (Score > 70)` & `Top 5 Shortlist` tabs)
+- `results/top_5_leads.csv` (Top 5 highest scoring leads in CSV format, no markdown)
 
 ### 3. Run Automated Tests
 To run the automated test suite:
@@ -117,6 +121,9 @@ python -m unittest discover tests
 real-estate-leads-assignment/
 ├── README.md                                  # Setup, overview & documentation
 ├── requirements.txt                           # Dependencies (pandas, openpyxl, python-dateutil)
+├── input/
+│   ├── raw_discovered_candidates.json         # Raw unadulterated discovery corpus
+│   └── raw_discovered_candidates.csv          # Raw candidates tabular export
 ├── workflow/
 │   ├── __init__.py
 │   ├── config.py                              # Target geographies, keywords, micro-markets, developers
@@ -133,9 +140,8 @@ real-estate-leads-assignment/
 │   │   └── intent_classifier.py               # Intent scoring and status assignment engine
 │   └── main.py                                # CLI orchestrator
 ├── results/
-│   ├── dubai_real_estate_south_india_prospects.csv   # Master dataset (CSV)
-│   ├── dubai_real_estate_south_india_prospects.xlsx  # Master dataset (Excel)
-│   └── top_5_strongest_prospects.md           # Dossier of top 5 strongest prospects
+│   ├── qualified_dubai_leads.xlsx             # Master Excel (Qualified > 70 + Top 5 Shortlist)
+│   └── top_5_leads.csv                        # Top 5 highest-scoring qualified leads (CSV)
 ├── docs/
 │   └── methodology_and_report.md              # In-depth report on sourcing, rules, and ethics
 └── tests/

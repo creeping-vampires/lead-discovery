@@ -138,7 +138,10 @@ class IntentClassifier:
                     "signal_age_days": age_days if age_days is not None else "Unverified",
                     "is_fresh": is_fresh,
                     "is_qualified": False,
-                    "source_verification": source_verification
+                    "source_verification": source_verification,
+                    "location_verification_status": geo_info.get("location_verification_status", "LOCATION_UNVERIFIED"),
+                    "location_evidence_text": geo_info.get("location_evidence_text", "None - unverified"),
+                    "location_evidence_url": geo_info.get("location_evidence_url", source_link)
                 }
 
         # 1. Negative Filter: Check for broker / seller / job hunter behavior
@@ -153,7 +156,12 @@ class IntentClassifier:
                 "preferred_areas": "N/A",
                 "score": 0,
                 "signal_age_days": age_days if age_days is not None else "Unverified",
-                "is_fresh": is_fresh
+                "is_fresh": is_fresh,
+                "is_qualified": False,
+                "source_verification": source_verification,
+                "location_verification_status": geo_info.get("location_verification_status", "LOCATION_UNVERIFIED"),
+                "location_evidence_text": geo_info.get("location_evidence_text", "None - unverified"),
+                "location_evidence_url": geo_info.get("location_evidence_url", source_link)
             }
 
         # 2. Extract Budget / Ticket Size
@@ -213,15 +221,39 @@ class IntentClassifier:
             reasons.append("Evaluated cashflow/ROI, Golden Visa eligibility, or payment plan structures")
 
         # 8. Cross-reference Geo Evidence
-        geo_confidence = geo_info.get("confidence", "NONE")
-        if geo_confidence == "HIGH":
+        loc_status = geo_info.get("location_verification_status")
+        if not loc_status:
+            if geo_info.get("confidence") == "HIGH":
+                loc_status = "CURRENT_RESIDENT"
+            elif geo_info.get("confidence") == "LOW":
+                loc_status = "ORIGIN_ONLY"
+            else:
+                loc_status = "LOCATION_UNVERIFIED"
+
+        if loc_status == "CURRENT_RESIDENT":
             score += SCORE_VERIFIED_GEO_HIGH
-            reasons.append(f"Verified residency/origin in {geo_info.get('city_state')}")
-        elif geo_confidence == "MEDIUM":
-            score += SCORE_VERIFIED_GEO_MEDIUM
-            reasons.append(f"Regional South India connection indicated ({geo_info.get('city_state')})")
+            reasons.append(f"Verified current residence in {geo_info.get('city_state')} ('{geo_info.get('location_evidence_text')}')")
+        elif loc_status == "ORIGIN_ONLY":
+            reasons.append(f"Origin indicated in {geo_info.get('city_state')}; current residence unverified")
+            unverified.append(f"Origin in {geo_info.get('city_state')}, but current South Indian residence is unverified")
+        elif loc_status == "OUTSIDE_TARGET":
+            return {
+                "qualification_status": "Reject",
+                "qualification_reason": f"Disqualified: Explicit current residence is outside target geography ({geo_info.get('location_evidence_text', 'Outside South India')}).",
+                "unverified_information": "N/A - record rejected.",
+                "ticket_size_budget": "N/A",
+                "preferred_areas": "N/A",
+                "score": 0,
+                "signal_age_days": age_days if age_days is not None else "Unverified",
+                "is_fresh": is_fresh,
+                "is_qualified": False,
+                "source_verification": source_verification,
+                "location_verification_status": "OUTSIDE_TARGET",
+                "location_evidence_text": geo_info.get("location_evidence_text", "None"),
+                "location_evidence_url": geo_info.get("location_evidence_url", source_link)
+            }
         else:
-            unverified.append("South Indian residency not directly verified from public text")
+            unverified.append("Current residence in target South Indian states is unverified from public text")
 
         # 9. Apply Freshness Gate & Stale Signal Penalty
         if self.enforce_freshness and not is_fresh and age_days is not None:
@@ -232,17 +264,40 @@ class IntentClassifier:
         # Clamp normalized score strictly to [0, 100]
         score = max(0, min(100, score))
 
-        # Determine Final Status based on score and threshold
-        if score > self.qualified_threshold:
-            status = "Strong Signal"
-            fresh_badge = f"Verified fresh ({age_days} days old <= {self.max_freshness_days} days)" if age_days is not None else "Freshness verified"
-            reason_str = f"Qualified [{score}/100 pts, {fresh_badge}]: " + "; ".join(reasons)
-        elif score >= 25:
+        # Determine Final Status based on score, freshness, and strict geographic verification
+        # Rule 5: If a prospect has clear buying intent but unverified location, classify as NEEDS_VALIDATION, not REJECT
+        has_buying_intent = (
+            extracted_budget is not None or
+            extracted_timeline is not None or
+            bool(preferred_areas) or
+            score >= 25
+        )
+
+        if loc_status == "OUTSIDE_TARGET":
+            status = "Reject"
+            reason_str = f"Disqualified: Explicit current residence is outside target geography ({geo_info.get('location_evidence_text', 'Outside South India')})."
+        elif score > self.qualified_threshold:
+            # Acceptance Criterion 1: No Strong Signal lead has unverified current residence
+            if loc_status == "CURRENT_RESIDENT":
+                status = "Strong Signal"
+                fresh_badge = f"Verified fresh ({age_days} days old <= {self.max_freshness_days} days)" if age_days is not None else "Freshness verified"
+                reason_str = f"Qualified [{score}/100 pts, {fresh_badge}]: " + "; ".join(reasons)
+            else:
+                # Clear buying intent, but unverified South Indian current residence -> Must be Needs Validation
+                status = "Needs Validation"
+                reason_str = (
+                    f"Needs Validation [{score}/100 pts, High Buying Intent]: "
+                    f"Strong purchase signals verified, but South Indian current residence is {loc_status.lower().replace('_', ' ')} "
+                    f"(requires address verification before sales outreach)."
+                )
+        elif score >= 25 or (has_buying_intent and loc_status in ("LOCATION_UNVERIFIED", "ORIGIN_ONLY")):
             status = "Needs Validation"
             reason_str = f"Needs Validation [{score}/100 pts]: " + "; ".join(reasons)
         else:
             status = "Reject"
             reason_str = f"Rejected [{score}/100 pts]: " + ("; ".join(reasons) if reasons else "Score below threshold")
+
+        is_qualified = (status == "Strong Signal" and score > self.qualified_threshold)
 
         return {
             "qualification_status": status,
@@ -251,8 +306,11 @@ class IntentClassifier:
             "ticket_size_budget": extracted_budget or "Not explicitly stated",
             "preferred_areas": ", ".join(preferred_areas) if preferred_areas else "General Dubai Property",
             "score": score,
-            "is_qualified": (score > self.qualified_threshold),
+            "is_qualified": is_qualified,
             "signal_age_days": age_days if age_days is not None else "Unverified",
             "is_fresh": is_fresh,
-            "source_verification": source_verification
+            "source_verification": source_verification,
+            "location_verification_status": loc_status,
+            "location_evidence_text": geo_info.get("location_evidence_text", "None - unverified"),
+            "location_evidence_url": geo_info.get("location_evidence_url", source_link)
         }

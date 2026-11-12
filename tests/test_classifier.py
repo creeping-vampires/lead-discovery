@@ -145,6 +145,66 @@ class TestIntentClassifier(unittest.TestCase):
         self.assertLessEqual(res_low["score"], 70)
         self.assertFalse(res_low["is_qualified"])
 
+    def test_strong_signal_strictly_requires_current_resident(self):
+        high_intent_text = "Ready to buy off-plan 1BHK in JVC with Danube. Budget AED 850k. Remitting under LRS."
+
+        # Case 1: CURRENT_RESIDENT -> Strong Signal
+        geo_resident = {
+            "location_verification_status": "CURRENT_RESIDENT",
+            "state": "Karnataka",
+            "city": "Bengaluru",
+            "city_state": "Bengaluru, Karnataka",
+            "confidence": "HIGH",
+            "location_evidence_text": "Living in HSR Layout Bangalore",
+            "location_evidence_url": "https://reddit.com/r/bangalore/comments/1"
+        }
+        res_res = self.classifier.classify_lead(high_intent_text, geo_resident)
+        self.assertEqual(res_res["qualification_status"], "Strong Signal")
+        self.assertTrue(res_res["is_qualified"])
+
+        # Case 2: LOCATION_UNVERIFIED -> Needs Validation (Never Strong Signal, Never Reject)
+        geo_unverified = {
+            "location_verification_status": "LOCATION_UNVERIFIED",
+            "state": "Unverified",
+            "city": "Unverified",
+            "city_state": "Unverified",
+            "confidence": "NONE",
+            "location_evidence_text": "None - unverified",
+            "location_evidence_url": "https://reddit.com/r/bangalore/comments/1"
+        }
+        res_unver = self.classifier.classify_lead(high_intent_text, geo_unverified)
+        self.assertEqual(res_unver["qualification_status"], "Needs Validation")
+        self.assertFalse(res_unver["is_qualified"])
+
+        # Case 3: ORIGIN_ONLY -> Needs Validation (Never Strong Signal, Never Reject)
+        geo_origin = {
+            "location_verification_status": "ORIGIN_ONLY",
+            "state": "Kerala",
+            "city": "Thrissur",
+            "city_state": "Thrissur, Kerala (Origin Only)",
+            "confidence": "LOW",
+            "location_evidence_text": "Thrissur native",
+            "location_evidence_url": "https://reddit.com/r/kerala/comments/1"
+        }
+        res_orig = self.classifier.classify_lead(high_intent_text, geo_origin)
+        self.assertEqual(res_orig["qualification_status"], "Needs Validation")
+        self.assertFalse(res_orig["is_qualified"])
+
+        # Case 4: OUTSIDE_TARGET -> Reject
+        geo_outside = {
+            "location_verification_status": "OUTSIDE_TARGET",
+            "state": "Outside Target",
+            "city": "Delhi",
+            "city_state": "Delhi (Outside Target)",
+            "confidence": "NONE",
+            "location_evidence_text": "Living in South Delhi / Gurgaon",
+            "location_evidence_url": "https://reddit.com/r/IndiaInvestments/comments/1"
+        }
+        res_out = self.classifier.classify_lead(high_intent_text, geo_outside)
+        self.assertEqual(res_out["qualification_status"], "Reject")
+        self.assertEqual(res_out["score"], 0)
+        self.assertFalse(res_out["is_qualified"])
+
 
 if __name__ == "__main__":
     unittest.main()

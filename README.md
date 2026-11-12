@@ -14,9 +14,9 @@ Contains ONLY the raw unadulterated candidate CSV file with zero JSON files:
 - **Zero Hardcoded Data**: Harvesters (`RedditHarvester`, `YouTubeHarvester`, `ForumHarvester`) do not use hardcoded arrays/dictionaries in Python code; they directly parse records from this CSV file.
 
 ### 2. `results/` Directory (Exclusively Qualified Leads)
-Contains the qualified leads scoring **> 70 out of 100 points** (no markdown files):
-- [`results/qualified_dubai_leads.xlsx`](results/qualified_dubai_leads.xlsx): Master Excel workbook with freeze-panes, auto-fit column widths, verified public links, and detailed score breakdowns across two formatted sheets:
-  - **Sheet 1: `Qualified Leads (Score > 70)`**: All 50 qualified leads scoring > 70 points.
+Contains the qualified leads scoring **> 70 out of 100 points** with **verified current residence** (no markdown files):
+- [`results/qualified_dubai_leads.xlsx`](results/qualified_dubai_leads.xlsx): Master Excel workbook with freeze-panes, auto-fit column widths, verified public links, location evidence quotes, and detailed score breakdowns across two formatted sheets:
+  - **Sheet 1: `Qualified Leads (Score > 70)`**: All 24 qualified leads scoring > 70 points with verified `CURRENT_RESIDENT` status.
   - **Sheet 2: `Top 5 Shortlist`**: The top 5 highest-scoring prospects in the exact same table format.
 - [`results/top_5_leads.csv`](results/top_5_leads.csv): Standalone CSV export containing the top 5 highest-scoring prospects with complete attributes, verification evidence, and audit logs.
 
@@ -29,13 +29,33 @@ Lead qualification is determined by a transparent **0 to 100 point rubric** conf
 | Criteria Dimension | Score Points | Description |
 | :--- | :---: | :--- |
 | **Explicit Budget** | **+25 pts** | Stated liquid capital (e.g. ₹1.5 Cr–₹5 Cr / AED 750k–AED 2.5M+) |
-| **Verified South India Location** | **+25 pts** | Verified residency in KA, KL, TN, TS, or AP (or +12 pts for regional inference) |
+| **Verified South India Current Residence** | **+25 pts** | Explicit, attributable current residence in KA, KL, TN, TS, or AP (`CURRENT_RESIDENT`) |
 | **Concrete Purchase Timeline** | **+15 pts** | Closing horizon (immediate, next month, within 6 months) |
 | **Specific Dubai Locality** | **+10 pts** | Named community (JVC, Marina, Downtown, Business Bay, etc.) |
 | **Specific Developer** | **+10 pts** | Named developer (Emaar, Sobha, Danube, Ellington, etc.) |
 | **Regulatory / LRS Inquiry** | **+8 pts** | Demonstrates awareness of RBI's $250k outward limit and 20% TCS |
 | **Yield / Golden Visa Analysis** | **+7 pts** | Analyzed 6–8% net rental yield, AED 2M Golden Visa, or payment plans |
 | **Total Maximum Score** | **100 pts** | Perfect qualification score |
+
+---
+
+## Strict Geographic Evidence Verification Engine
+
+A dedicated geographic verifier ([`workflow/processors/geo_matcher.py`](workflow/processors/geo_matcher.py)) enforces strict evidence verification rules:
+1. **Attributable Current Residence Only**: A prospect qualifies as South India-based only if there is explicit, attributable evidence in the public text that they currently live, reside, or work in Karnataka, Kerala, Tamil Nadu, Telangana, or Andhra Pradesh.
+2. **Strict Negative Inferences**: Current residence is **never** inferred from subreddit membership (e.g. posting on `r/bangalore`), language (e.g. Tamil/Kannada), birthplace, surname, profession, or posting/event location (e.g. attending an expo or roadshow).
+3. **Four Exhaustive Location Statuses**:
+   - `CURRENT_RESIDENT`: Explicit textual evidence of living/working/residing in target states (e.g. "Living in HSR Layout Bangalore", "Resident of Kochi", "Working in OMR Chennai"). Earns +25 pts and is eligible for `Strong Signal`.
+   - `ORIGIN_ONLY`: Evidence of origin, hometown, or native roots without affirmative current local residence (e.g. "Thrissur native", "From Kannur holding NRE funds", "Malayali in Dubai").
+   - `LOCATION_UNVERIFIED`: No attributable location statement in text.
+   - `OUTSIDE_TARGET`: Explicit current residence outside target states (e.g. "Living in South Delhi / Gurgaon", "Resident of Mumbai"). Disqualified immediately.
+4. **Audit Fields Stored for Every Prospect**:
+   - `location_verification_status`: One of the 4 standard statuses.
+   - `location_evidence_text`: Verbatim sentence extracted from public text providing the evidence.
+   - `location_evidence_url`: Traceable source permalink.
+5. **No Hallucinations / Guessing**: If location is unverified, fields are recorded as `"Unverified"`, never guessed.
+6. **Zero Unverified Strong Signal Leads**: Any lead scoring > 70 whose residence is `LOCATION_UNVERIFIED` or `ORIGIN_ONLY` is capped at **`Needs Validation`**, never `Strong Signal`.
+7. **Intent Preserved**: Clear buying intent with unverified location is placed into **`Needs Validation`**, never `Reject`.
 
 ### Configurable Thresholds in `workflow/config.py`
 ```python
@@ -67,22 +87,33 @@ A dedicated verification engine ([`workflow/processors/source_verifier.py`](work
 
 ## Funnel & Metrics Summary
 
-| Funnel Stage | Count | Share (%) | Description |
+### Geographic Verification Breakdown (Unique Prospects: 249)
+| Location Verification Status | Count | Share (%) | Description |
 | :--- | :---: | :---: | :--- |
-| **Total Raw Discovered Candidates** | **258** | 100.0% | Stored in `input/raw_discovered_candidates.json` & `.csv` |
-| **Pruned Deleted / Removed Posts** | **27** | 10.5% | Filtered 17 author-deleted and 10 moderator-removed Reddit posts |
-| **Unique Deduplicated Prospects** | **249** | 96.5% | Pruned 9 duplicate handles and URLs |
-| **Qualified Leads (Score > 70/100)** | **50** | **20.1%** | **Exported exclusively to `results/qualified_dubai_leads.xlsx`** |
-| - *Tier 1 Premium (Score 90–100)* | 32 | 64.0% of qualified | Explicit budget + timeline + project + developer + verified location |
-| - *Tier 2 High (Score 80–89)* | 10 | 20.0% of qualified | Explicit budget + project + developer + verified location |
-| - *Tier 3 Qualified (Score 71–79)* | 8 | 16.0% of qualified | Stated budget + project/locality + verified location |
+| **`CURRENT_RESIDENT`** | **106** | **42.6%** | Explicit, attributable current residence in KA, KL, TN, TS, or AP |
+| **`ORIGIN_ONLY`** | **15** | **6.0%** | Roots, native town, or heritage without current South Indian residency |
+| **`LOCATION_UNVERIFIED`** | **126** | **50.6%** | No attributable location statement in text (subreddit/language ignored) |
+| **`OUTSIDE_TARGET`** | **2** | **0.8%** | Explicit current residence outside target geography (Delhi NCR, etc.) |
 
-### Geographic Spread of Qualified Leads (> 70 Points)
-- **Karnataka**: 15 (30.0%) — Bengaluru, Mysuru, Mangaluru, Hubballi
-- **Tamil Nadu**: 10 (20.0%) — Chennai, Coimbatore, Madurai, Trichy
-- **Andhra Pradesh**: 10 (20.0%) — Visakhapatnam, Vijayawada, Guntur, Tirupati
-- **Telangana**: 8 (16.0%) — Hyderabad, Secunderabad, Warangal
-- **Kerala**: 7 (14.0%) — Kochi, Thiruvananthapuram, Kozhikode, Thrissur
+---
+
+### Before vs. After Lead Reclassification Summary
+
+| Qualification Status | Before Strict Geo Rules | After Strict Geo Rules | Net Change | Reclassification Rationale |
+| :--- | :---: | :---: | :---: | :--- |
+| **Strong Signal** | **50** | **24** | **-26** | Only leads with explicit, attributable `CURRENT_RESIDENT` status qualify |
+| **Needs Validation** | **105** | **133** | **+28** | Captures high-intent buyers whose location is unverified or origin-only |
+| **Reject** | **94** | **92** | **-2** | Pruned brokers, job seekers, outside-target leads, and deleted posts |
+| **Strong Signal with Unverified Location** | **26** | **0** | **-26** | **100% Verification Guarantee** (0 unverified in Strong Signal) |
+
+---
+
+### Geographic Spread of Master Qualified Leads (24 Verified Residents)
+- **Karnataka**: 9 (37.5%) — Bengaluru, Mysuru, Mangaluru, Hubballi
+- **Tamil Nadu**: 5 (20.8%) — Chennai, Coimbatore, Madurai, Trichy
+- **Kerala**: 4 (16.7%) — Kochi, Thiruvananthapuram, Kozhikode, Thrissur
+- **Andhra Pradesh**: 4 (16.7%) — Visakhapatnam, Vijayawada, Guntur, Tirupati
+- **Telangana**: 2 (8.3%) — Hyderabad, Secunderabad, Warangal
 
 ---
 
@@ -122,7 +153,7 @@ The output will automatically generate:
 - `results/top_5_leads.csv` (Top 5 highest scoring leads in CSV format, no markdown)
 
 ### 3. Run Automated Tests
-To run the automated test suite (31 unit tests):
+To run the automated test suite (36 unit tests):
 
 ```bash
 python -m unittest discover tests

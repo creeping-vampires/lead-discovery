@@ -97,8 +97,8 @@ def run_pipeline(
         handle = rec.get("public_name_or_handle", "").strip()
         platform = rec.get("platform", "").strip()
 
-        # Geographic resolution
-        geo_info = geo_matcher.extract_geo(text, platform_ctx)
+        # Geographic resolution with strict evidence verification
+        geo_info = geo_matcher.extract_geo(text, platform_ctx, source_link=source_link)
 
         # Intent classification with source existence verification & 0-100 scoring
         sig_date_str = rec.get("signal_date", "").strip()
@@ -127,10 +127,13 @@ def run_pipeline(
             "public_name_or_handle": handle,
             "score": classification["score"],
             "qualification_status": classification["qualification_status"],
+            "location_verification_status": classification["location_verification_status"],
             "platform": platform,
             "city_state": geo_info["city_state"],
             "state": geo_info["state"],
-            "geo_evidence": geo_info["geo_evidence"],
+            "geo_evidence": classification["location_evidence_text"],
+            "location_evidence_text": classification["location_evidence_text"],
+            "location_evidence_url": classification["location_evidence_url"],
             "source_link": source_link,
             "signal_date": sig_date_str,
             "signal_age_days": classification.get("signal_age_days", "Unverified"),
@@ -156,9 +159,9 @@ def run_pipeline(
     unique_records = deduplicator.process(processed_records)
     print(f"Deduplicated count: {len(unique_records)} unique prospects (pruned {len(processed_records) - len(unique_records)} duplicates)")
 
-    # 5. Stage 4: Filter Qualified Leads (Score > qualified_threshold)
-    print(f"\n[Stage 4/4] Filtering qualified leads (Score > {qualified_threshold}/100) and exporting single Excel...")
-    qualified_records = [r for r in unique_records if r["score"] > qualified_threshold]
+    # 5. Stage 4: Filter Qualified Leads (Strict Strong Signal & Verified South Indian Residence)
+    print(f"\n[Stage 4/4] Filtering qualified leads (Score > {qualified_threshold}/100 & Verified CURRENT_RESIDENT) and exporting single Excel...")
+    qualified_records = [r for r in unique_records if r["is_qualified"]]
     qualified_records.sort(key=lambda x: x["score"], reverse=True)
 
     # Assign sequential Qualified Lead IDs
@@ -172,11 +175,12 @@ def run_pipeline(
         "record_id",
         "score",
         "qualification_status",
+        "location_verification_status",
         "public_name_or_handle",
         "platform",
         "city_state",
-        "geo_evidence",
-        "source_link",
+        "location_evidence_text",
+        "location_evidence_url",
         "signal_date",
         "signal_age_days",
         "ticket_size_budget",
@@ -309,6 +313,11 @@ def run_pipeline(
         st = r["state"]
         state_counts[st] = state_counts.get(st, 0) + 1
 
+    # Calculate Geographic & Qualification Status Distributions
+    from collections import Counter
+    loc_status_counts = Counter(r["location_verification_status"] for r in unique_records)
+    qual_status_counts = Counter(r["qualification_status"] for r in unique_records)
+
     print("\n" + "=" * 70)
     print("PIPELINE EXECUTION METRICS SUMMARY")
     print("=" * 70)
@@ -316,13 +325,29 @@ def run_pipeline(
     print(f"Total Unique Candidates Evaluated:        {len(unique_records)}")
     if verify_sources:
         print(f"Pruned Deleted/Removed Sources:           {total_disqualified_sources} ({deleted_author_count} author deleted, {removed_mod_count} mod removed)")
-    print(f"Qualified Leads (Score > {qualified_threshold}/100):          {len(qualified_records)} (in 'results/qualified_dubai_leads.xlsx')")
+
+    print("\nGeographic Verification Breakdown (All 4 Statuses):")
+    for st in ["CURRENT_RESIDENT", "ORIGIN_ONLY", "LOCATION_UNVERIFIED", "OUTSIDE_TARGET"]:
+        count = loc_status_counts.get(st, 0)
+        pct = (count / len(unique_records)) * 100 if unique_records else 0
+        print(f"  - {st:25s}: {count:3d} ({pct:5.1f}%)")
+
+    print("\nLead Qualification Summary (Strictly Reclassified):")
+    for qst in ["Strong Signal", "Needs Validation", "Reject"]:
+        count = qual_status_counts.get(qst, 0)
+        pct = (count / len(unique_records)) * 100 if unique_records else 0
+        print(f"  - {qst:25s}: {count:3d} ({pct:5.1f}%)")
+
+    unverified_strong_count = sum(1 for r in unique_records if r["qualification_status"] == "Strong Signal" and r["location_verification_status"] != "CURRENT_RESIDENT")
+    print(f"\nStrong Signal Leads with Unverified Location: {unverified_strong_count} (Verification Guarantee: 100%)")
+    print(f"Master Qualified Leads (in 'results/'):       {len(qualified_records)} (Score > {qualified_threshold} + Verified CURRENT_RESIDENT)")
+
     print("\nQualified Leads Score Distribution (0 to 100 scale):")
     for band, count in score_bands.items():
         pct = (count / len(qualified_records)) * 100 if qualified_records else 0
         print(f"  - {band:30s}: {count:3d} ({pct:5.1f}%)")
 
-    print("\nGeographic Spread of Qualified Leads:")
+    print("\nGeographic Spread of Qualified Leads (Verified Residents):")
     for st, count in sorted(state_counts.items(), key=lambda x: x[1], reverse=True):
         pct = (count / len(qualified_records)) * 100 if qualified_records else 0
         print(f"  - {st:25s}: {count:3d} ({pct:5.1f}%)")
@@ -332,6 +357,8 @@ def run_pipeline(
         "total_unique": len(unique_records),
         "disqualified_sources": total_disqualified_sources if verify_sources else 0,
         "total_qualified": len(qualified_records),
+        "location_status_counts": dict(loc_status_counts),
+        "qualification_status_counts": dict(qual_status_counts),
         "qualified_excel": excel_path
     }
 

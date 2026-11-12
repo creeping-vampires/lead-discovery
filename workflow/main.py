@@ -30,13 +30,18 @@ from workflow.processors.source_verifier import SourceVerifier
 def run_pipeline(
     input_dir: str = "input",
     output_dir: str = "results",
+    input_csv: Optional[str] = None,
     max_freshness_days: int = MAX_FRESHNESS_DAYS,
     qualified_threshold: int = QUALIFIED_SCORE_THRESHOLD,
     verify_sources: bool = VERIFY_SOURCE_AVAILABILITY,
     check_live: bool = CHECK_LIVE_URLS
 ) -> Dict[str, any]:
+    # Resolve raw input CSV path (only CSV is parsed; no JSON input)
+    csv_input_path = input_csv or os.path.join(input_dir, "raw_discovered_candidates.csv")
+
     print("=" * 70)
     print("DUBAI REAL ESTATE LEAD DISCOVERY & QUALIFICATION PIPELINE (SOUTH INDIA)")
+    print(f"Raw Input CSV: {csv_input_path}")
     print(f"Freshness Window: {max_freshness_days} days ({max_freshness_days // 30} months)")
     print(f"Qualification Threshold: Score > {qualified_threshold} / 100 points")
     print(f"Source Verification: {'ENABLED (Filtering deleted/removed Reddit posts & dead URLs)' if verify_sources else 'DISABLED'}")
@@ -44,14 +49,19 @@ def run_pipeline(
         print("Live URL Probe: ENABLED (Checking HTTP response status)")
     print("=" * 70)
 
-    os.makedirs(input_dir, exist_ok=True)
+    if not os.path.exists(csv_input_path):
+        raise FileNotFoundError(
+            f"Raw input CSV not found at '{csv_input_path}'. "
+            f"Please ensure the raw candidate CSV file is placed at '{csv_input_path}'."
+        )
+
     os.makedirs(output_dir, exist_ok=True)
 
     # 1. Initialize Components
     harvesters = [
-        RedditHarvester(),
-        YouTubeHarvester(),
-        ForumHarvester()
+        RedditHarvester(csv_path=csv_input_path),
+        YouTubeHarvester(csv_path=csv_input_path),
+        ForumHarvester(csv_path=csv_input_path)
     ]
     deduplicator = Deduplicator()
     geo_matcher = GeoMatcher()
@@ -63,29 +73,15 @@ def run_pipeline(
         source_verifier=source_verifier
     )
 
-    # 2. Stage 1: Harvesting raw candidate records
+    # 2. Stage 1: Parsing raw candidate records directly from the input CSV
     raw_records: List[Dict[str, any]] = []
-    print("\n[Stage 1/4] Harvesting raw candidate prospects across public channels...")
+    print(f"\n[Stage 1/4] Parsing raw candidate records directly from '{csv_input_path}'...")
     for h in harvesters:
         harvested = h.harvest()
-        print(f"  -> Harvester '{h.name}': Discovered {len(harvested)} raw records")
+        print(f"  -> Harvester '{h.name}': Parsed {len(harvested)} raw records from CSV")
         raw_records.extend(harvested)
 
-    print(f"Total raw candidate records harvested: {len(raw_records)}")
-
-    # Store raw unadulterated data in input/
-    raw_json_path = os.path.join(input_dir, "raw_discovered_candidates.json")
-    with open(raw_json_path, "w", encoding="utf-8") as f:
-        json.dump(raw_records, f, indent=2, ensure_ascii=False)
-
-    raw_csv_path = os.path.join(input_dir, "raw_discovered_candidates.csv")
-    raw_keys = ["public_name_or_handle", "platform", "signal_date", "source_link", "platform_context", "raw_text"]
-    with open(raw_csv_path, "w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=raw_keys, extrasaction="ignore")
-        writer.writeheader()
-        for r in raw_records:
-            writer.writerow(r)
-    print(f"  -> Raw discovery data stored in: {raw_json_path} & {raw_csv_path}")
+    print(f"Total raw candidate records parsed: {len(raw_records)}")
 
     # 3. Stage 2: Processing, Geo-Matching, Source URL Verification & 0-100 Intent Scoring
     print("\n[Stage 2/4] Running Source Verification, Geographic Matching & 0-100 Intent Scoring...")
@@ -356,10 +352,16 @@ if __name__ == "__main__":
         help=f"Minimum score threshold to qualify (default: {QUALIFIED_SCORE_THRESHOLD} from config.py)"
     )
     parser.add_argument(
+        "--input-csv",
+        type=str,
+        default=None,
+        help="Path to raw candidate CSV file (default: <input-dir>/raw_discovered_candidates.csv)"
+    )
+    parser.add_argument(
         "--input-dir",
         type=str,
         default="input",
-        help="Input directory for raw harvested records (default: input)"
+        help="Input directory containing raw_discovered_candidates.csv (default: input)"
     )
     parser.add_argument(
         "--output-dir",
@@ -381,6 +383,7 @@ if __name__ == "__main__":
     run_pipeline(
         input_dir=args.input_dir,
         output_dir=args.output_dir,
+        input_csv=args.input_csv,
         max_freshness_days=args.freshness_days,
         qualified_threshold=args.min_score,
         verify_sources=not args.no_verify_sources,

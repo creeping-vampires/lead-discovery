@@ -8,15 +8,15 @@ The workflow isolates genuine buyer demand from noise—excluding real estate br
 
 ## Input and Output Architecture
 
-### 1. `input/` Directory (Raw Discovery Data)
-Stores all 231 raw candidate records discovered from public community sources before filtering, deduplication, or scoring:
-- [`input/raw_discovered_candidates.json`](input/raw_discovered_candidates.json): Structured JSON array of raw posts/comments with verbatim text, handles, dates, and source URLs.
-- [`input/raw_discovered_candidates.csv`](input/raw_discovered_candidates.csv): Tabular CSV format of the raw discovery data.
+### 1. `input/` Directory (Raw Input Discovery CSV)
+Contains ONLY the raw unadulterated candidate CSV file with zero JSON files:
+- [`input/raw_discovered_candidates.csv`](input/raw_discovered_candidates.csv): Master tabular CSV containing all 258 raw candidate records discovered from public discussions before any filtering, deduplication, or scoring.
+- **Zero Hardcoded Data**: Harvesters (`RedditHarvester`, `YouTubeHarvester`, `ForumHarvester`) do not use hardcoded arrays/dictionaries in Python code; they directly parse records from this CSV file.
 
 ### 2. `results/` Directory (Exclusively Qualified Leads)
 Contains the qualified leads scoring **> 70 out of 100 points** (no markdown files):
 - [`results/qualified_dubai_leads.xlsx`](results/qualified_dubai_leads.xlsx): Master Excel workbook with freeze-panes, auto-fit column widths, verified public links, and detailed score breakdowns across two formatted sheets:
-  - **Sheet 1: `Qualified Leads (Score > 70)`**: All 58 qualified leads scoring > 70 points.
+  - **Sheet 1: `Qualified Leads (Score > 70)`**: All 50 qualified leads scoring > 70 points.
   - **Sheet 2: `Top 5 Shortlist`**: The top 5 highest-scoring prospects in the exact same table format.
 - [`results/top_5_leads.csv`](results/top_5_leads.csv): Standalone CSV export containing the top 5 highest-scoring prospects with complete attributes, verification evidence, and audit logs.
 
@@ -118,13 +118,11 @@ python -m workflow.main
 ```
 
 The output will automatically generate:
-- `input/raw_discovered_candidates.json` (Full 231 raw discovery posts before filtering)
-- `input/raw_discovered_candidates.csv` (Tabular raw candidates)
 - `results/qualified_dubai_leads.xlsx` (Master workbook with `Qualified Leads (Score > 70)` & `Top 5 Shortlist` tabs)
 - `results/top_5_leads.csv` (Top 5 highest scoring leads in CSV format, no markdown)
 
 ### 3. Run Automated Tests
-To run the automated test suite:
+To run the automated test suite (31 unit tests):
 
 ```bash
 python -m unittest discover tests
@@ -139,17 +137,16 @@ real-estate-leads-assignment/
 ├── README.md                                  # Setup, overview & documentation
 ├── requirements.txt                           # Dependencies (pandas, openpyxl, python-dateutil)
 ├── input/
-│   ├── raw_discovered_candidates.json         # Raw unadulterated discovery corpus
-│   └── raw_discovered_candidates.csv          # Raw candidates tabular export
+│   └── raw_discovered_candidates.csv          # Raw candidates tabular CSV (only CSV, no JSON)
 ├── workflow/
 │   ├── __init__.py
 │   ├── config.py                              # Target geographies, keywords, micro-markets, developers
-│   ├── harvesters/
+│   ├── harvesters/                            # Harvesters parse directly from raw input CSV (no hardcoded data)
 │   │   ├── __init__.py
-│   │   ├── base.py                            # Harvester base class
-│   │   ├── reddit_harvester.py                # Reddit discovery across regional & finance subs
-│   │   ├── youtube_harvester.py               # YouTube public webinars and comment feeds
-│   │   └── forum_harvester.py                 # IREF, Quora, and South India Property Expos
+│   │   ├── base.py                            # Base CSV harvester & platform partitioner
+│   │   ├── reddit_harvester.py                # Reddit CSV parser (South India & Dubai subs)
+│   │   ├── youtube_harvester.py               # YouTube webinar & video comment CSV parser
+│   │   └── forum_harvester.py                 # IREF, Quora, and South India Property Expos CSV parser
 │   ├── processors/
 │   │   ├── __init__.py
 │   │   ├── deduplicator.py                    # Deduplication by handle, URL, and content hash
@@ -166,7 +163,8 @@ real-estate-leads-assignment/
     ├── test_dedup.py                          # Tests for deduplication logic
     ├── test_geo.py                            # Tests for geographic entity extraction
     ├── test_classifier.py                     # Tests for qualification and broker rejection
-    └── test_source_verifier.py                # Tests for Reddit URL existence and deletion filtering
+    ├── test_source_verifier.py                # Tests for Reddit URL existence and deletion filtering
+    └── test_harvesters.py                     # Tests for CSV-based harvesters (zero hardcoded data)
 ```
 
 ---

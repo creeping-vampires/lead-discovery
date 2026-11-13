@@ -1,18 +1,18 @@
 {
   "report_metadata": {
     "title": "Dubai Real Estate Lead Discovery & Evidence Audit Report",
-    "audit_timestamp": "2026-11-14T02:36:55.534750",
+    "audit_timestamp": "2026-11-14T02:47:17.138900",
     "discovery_run_date": "2026-11-12",
     "pipeline_version": "2.0.0-audit",
     "status": "PASSED"
   },
   "funnel_reconciliation": {
-    "total_discovered_records": 62,
+    "total_discovered_records": 82,
     "duplicates_pruned": 6,
-    "unique_candidates": 56,
+    "unique_candidates": 76,
     "strong_signal_count": 8,
-    "needs_validation_count": 28,
-    "reject_count": 20,
+    "needs_validation_count": 44,
+    "reject_count": 24,
     "reconciliation_formula": "unique_candidates == strong_signal_count + needs_validation_count + reject_count",
     "is_reconciled": true,
     "unreconciled_delta": 0
@@ -21,24 +21,24 @@
     "freshness_window_days": 180,
     "pre_freshness_counts": {
       "strong_signal": 5,
-      "needs_validation": 31,
-      "reject": 20,
-      "total": 56
+      "needs_validation": 47,
+      "reject": 24,
+      "total": 76
     },
     "final_counts": {
       "strong_signal": 8,
-      "needs_validation": 28,
-      "reject": 20,
-      "total": 56
+      "needs_validation": 44,
+      "reject": 24,
+      "total": 76
     },
     "records_downgraded_by_180_day_rule": 0,
     "downgraded_records_list": []
   },
   "geographic_verification_audit": {
-    "total_unique_candidates": 56,
-    "verified_current_south_india_residence_count": 36,
-    "origin_only_count": 7,
-    "location_unverified_count": 12,
+    "total_unique_candidates": 76,
+    "verified_current_south_india_residence_count": 53,
+    "origin_only_count": 9,
+    "location_unverified_count": 13,
     "outside_target_count": 1,
     "strong_signal_unverified_location_count": 0,
     "verification_guarantee": "100% of Strong Signal leads have verified CURRENT_RESIDENT status"
@@ -60,10 +60,10 @@
     "evidence_integrity_passed": true
   },
   "source_url_and_permission_audit": {
-    "total_urls_audited": 56,
-    "urls_present_count": 56,
-    "urls_permitted_use_count": 56,
-    "urls_pointing_to_correct_post_count": 56,
+    "total_urls_audited": 76,
+    "urls_present_count": 76,
+    "urls_permitted_use_count": 76,
+    "urls_pointing_to_correct_post_count": 76,
     "deleted_author_count": 0,
     "removed_moderator_count": 0,
     "invalid_dead_urls_count": 0,
@@ -287,6 +287,19 @@
         "human_review_notes": "Requires outreach/validation before sales routing: Concrete purchase readiness step (token/remittance/SPA) unconfirmed; Purchase timeline horizon undefined. Score 65/100. Stated preference: Dubai Marina, Jlt, Unit: 1BHK."
       },
       {
+        "candidate_id": "CAND-075",
+        "public_name_or_handle": "u/imronFD",
+        "platform": "Reddit (r/dubairealestate)",
+        "score": 65,
+        "qualification_status": "Needs Validation",
+        "location_verification_status": "CURRENT_RESIDENT",
+        "original_publication_date": "2026-11-12",
+        "discovery_date": "2026-11-12",
+        "human_review_status": "REVIEWED_NEEDS_MORE_INFO",
+        "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
+        "human_review_notes": "Requires outreach/validation before sales routing: Concrete purchase readiness step (token/remittance/SPA) unconfirmed; Purchase timeline horizon undefined. Score 65/100. Stated preference: Unit: STUDIO, Unit: APARTMENT."
+      },
+      {
         "candidate_id": "CAND-004",
         "public_name_or_handle": "u/Boring-Base-1966",
         "platform": "Reddit (r/bangalore)",
@@ -339,6 +352,19 @@
         "human_review_notes": "Requires outreach/validation before sales routing: Concrete purchase readiness step (token/remittance/SPA) unconfirmed; Purchase budget / financing requirements not specified; Purchase timeline horizon undefined; Current residence in target South Indian states is unverified from public text. Score 50/100. Stated preference: Unit: 1BHK."
       },
       {
+        "candidate_id": "CAND-072",
+        "public_name_or_handle": "u/compyy23",
+        "platform": "Reddit (r/dubairealestate)",
+        "score": 50,
+        "qualification_status": "Needs Validation",
+        "location_verification_status": "CURRENT_RESIDENT",
+        "original_publication_date": "2026-11-12",
+        "discovery_date": "2026-11-12",
+        "human_review_status": "REVIEWED_NEEDS_MORE_INFO",
+        "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
+        "human_review_notes": "Requires outreach/validation before sales routing: Explicit first-person purchase intent not stated; Concrete purchase readiness step (token/remittance/SPA) unconfirmed. Score 50/100. Stated preference: Al Barsha, Unit: TOWNHOUSE."
+      },
+      {
         "candidate_id": "CAND-016",
         "public_name_or_handle": "u/proprobin",
         "platform": "Reddit (r/dubairealestate)",
@@ -358,89 +384,63 @@
         "score": 40,
         "qualification_status": "Needs Validation",
         "location_verification_status": "ORIGIN_ONLY",
-        "original_publication_date": "2026-10-15",
+        "original_publication_date": "Unverified",
         "discovery_date": "2026-11-12",
         "human_review_status": "REVIEWED_NEEDS_MORE_INFO",
         "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
         "human_review_notes": "Requires outreach/validation before sales routing: Explicit first-person purchase intent not stated; Purchase budget / financing requirements not specified; Purchase timeline horizon undefined; Origin indicated in Chennai, Tamil Nadu (Origin Only), but current South Indian residence is unverified. Score 40/100. Stated preference: Unit: OFF-PLAN, Unit: APARTMENT."
       },
       {
-        "candidate_id": "CAND-020",
-        "public_name_or_handle": "u/theronakmehta",
+        "candidate_id": "CAND-057",
+        "public_name_or_handle": "u/ninjasoar",
         "platform": "Reddit (r/dubairealestate)",
-        "score": 30,
-        "qualification_status": "Needs Validation",
-        "location_verification_status": "LOCATION_UNVERIFIED",
-        "original_publication_date": "Unverified",
-        "discovery_date": "2026-11-12",
-        "human_review_status": "REVIEWED_NEEDS_MORE_INFO",
-        "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
-        "human_review_notes": "Requires outreach/validation before sales routing: Explicit first-person purchase intent not stated; Purchase budget / financing requirements not specified; Purchase timeline horizon undefined; Specific Dubai community or developer preference not specified; Current residence in target South Indian states is unverified from public text. Score 30/100. Stated preference: General Dubai Property."
-      },
-      {
-        "candidate_id": "CAND-009",
-        "public_name_or_handle": "u/Clear-Syrup-9861",
-        "platform": "Reddit (r/indianrealestate)",
-        "score": 20,
+        "score": 40,
         "qualification_status": "Needs Validation",
         "location_verification_status": "CURRENT_RESIDENT",
-        "original_publication_date": "Unverified",
+        "original_publication_date": "2026-11-13",
         "discovery_date": "2026-11-12",
         "human_review_status": "REVIEWED_NEEDS_MORE_INFO",
         "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
-        "human_review_notes": "Requires outreach/validation before sales routing: Explicit first-person purchase intent not stated; Concrete purchase readiness step (token/remittance/SPA) unconfirmed; Purchase budget / financing requirements not specified; Purchase timeline horizon undefined. Score 20/100. Stated preference: Dubai South, Unit: OFF-PLAN."
+        "human_review_notes": "Requires outreach/validation before sales routing: Explicit first-person purchase intent not stated; Concrete purchase readiness step (token/remittance/SPA) unconfirmed; Specific Dubai community or developer preference not specified. Score 40/100. Stated preference: General Dubai Property."
       },
       {
-        "candidate_id": "CAND-017",
-        "public_name_or_handle": "u/Altruistic_Earth_558",
+        "candidate_id": "CAND-058",
+        "public_name_or_handle": "u/TopVillage1687",
         "platform": "Reddit (r/dubairealestate)",
-        "score": 20,
+        "score": 35,
         "qualification_status": "Needs Validation",
-        "location_verification_status": "LOCATION_UNVERIFIED",
-        "original_publication_date": "Unverified",
+        "location_verification_status": "CURRENT_RESIDENT",
+        "original_publication_date": "2026-11-13",
         "discovery_date": "2026-11-12",
         "human_review_status": "REVIEWED_NEEDS_MORE_INFO",
         "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
-        "human_review_notes": "Requires outreach/validation before sales routing: Explicit first-person purchase intent not stated; Concrete purchase readiness step (token/remittance/SPA) unconfirmed; Purchase budget / financing requirements not specified; Purchase timeline horizon undefined; Current residence in target South Indian states is unverified from public text. Score 20/100. Stated preference: Unit: APARTMENT."
+        "human_review_notes": "Requires outreach/validation before sales routing: Explicit first-person purchase intent not stated; Concrete purchase readiness step (token/remittance/SPA) unconfirmed; Purchase timeline horizon undefined. Score 35/100. Stated preference: Unit: READY UNIT."
       },
       {
-        "candidate_id": "CAND-022",
-        "public_name_or_handle": "u/Mother_Sand7900",
+        "candidate_id": "CAND-059",
+        "public_name_or_handle": "u/No_Actuator8351",
         "platform": "Reddit (r/dubairealestate)",
-        "score": 20,
+        "score": 35,
         "qualification_status": "Needs Validation",
-        "location_verification_status": "LOCATION_UNVERIFIED",
-        "original_publication_date": "Unverified",
+        "location_verification_status": "CURRENT_RESIDENT",
+        "original_publication_date": "2026-11-13",
         "discovery_date": "2026-11-12",
         "human_review_status": "REVIEWED_NEEDS_MORE_INFO",
         "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
-        "human_review_notes": "Requires outreach/validation before sales routing: Explicit first-person purchase intent not stated; Concrete purchase readiness step (token/remittance/SPA) unconfirmed; Purchase budget / financing requirements not specified; Purchase timeline horizon undefined; Current residence in target South Indian states is unverified from public text. Score 20/100. Stated preference: Developer: Emaar, Developer: Sobha, Developer: Danube."
+        "human_review_notes": "Requires outreach/validation before sales routing: Explicit first-person purchase intent not stated; Concrete purchase readiness step (token/remittance/SPA) unconfirmed; Purchase timeline horizon undefined. Score 35/100. Stated preference: Unit: READY UNIT, Unit: APARTMENT."
       },
       {
-        "candidate_id": "CAND-026",
-        "public_name_or_handle": "Gulf News Property Desk",
-        "platform": "Gulf News",
-        "score": 20,
+        "candidate_id": "CAND-060",
+        "public_name_or_handle": "u/Majestic_Windows",
+        "platform": "Reddit (r/dubairealestate)",
+        "score": 35,
         "qualification_status": "Needs Validation",
-        "location_verification_status": "LOCATION_UNVERIFIED",
-        "original_publication_date": "Unverified",
+        "location_verification_status": "CURRENT_RESIDENT",
+        "original_publication_date": "2026-11-13",
         "discovery_date": "2026-11-12",
         "human_review_status": "REVIEWED_NEEDS_MORE_INFO",
         "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
-        "human_review_notes": "Requires outreach/validation before sales routing: Explicit first-person purchase intent not stated; Concrete purchase readiness step (token/remittance/SPA) unconfirmed; Purchase budget / financing requirements not specified; Purchase timeline horizon undefined; Current residence in target South Indian states is unverified from public text. Score 20/100. Stated preference: Unit: OFF-PLAN."
-      },
-      {
-        "candidate_id": "CAND-027",
-        "public_name_or_handle": "Anarock Research / Economic Times",
-        "platform": "The Economic Times",
-        "score": 20,
-        "qualification_status": "Needs Validation",
-        "location_verification_status": "ORIGIN_ONLY",
-        "original_publication_date": "Unverified",
-        "discovery_date": "2026-11-12",
-        "human_review_status": "REVIEWED_NEEDS_MORE_INFO",
-        "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
-        "human_review_notes": "Requires outreach/validation before sales routing: Explicit first-person purchase intent not stated; Concrete purchase readiness step (token/remittance/SPA) unconfirmed; Purchase budget / financing requirements not specified; Purchase timeline horizon undefined; Origin indicated in Bengaluru, Karnataka (Origin Only), but current South Indian residence is unverified. Score 20/100. Stated preference: Dubai South, Unit: 1BHK, Unit: 2BHK, Unit: OFF-PLAN."
+        "human_review_notes": "Requires outreach/validation before sales routing: Explicit first-person purchase intent not stated; Concrete purchase readiness step (token/remittance/SPA) unconfirmed; Purchase timeline horizon undefined. Score 35/100. Stated preference: Unit: VILLA."
       },
       {
         "candidate_id": "CAND-007",

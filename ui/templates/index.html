@@ -1,0 +1,1563 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-slate-50">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dubai Real Estate Leads Qualification Dashboard | Executive Auditor Desk</title>
+  
+  <!-- Inter font & Tailwind CSS CDN -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
+          },
+          colors: {
+            brand: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              500: '#0284c7',
+              600: '#0369a1',
+              700: '#075985',
+              800: '#0c4a6e',
+              900: '#082f49',
+            }
+          },
+          boxShadow: {
+            'elevation-1': '0 1px 3px 0 rgba(15, 23, 42, 0.06), 0 1px 2px 0 rgba(15, 23, 42, 0.04)',
+            'elevation-2': '0 4px 6px -1px rgba(15, 23, 42, 0.08), 0 2px 4px -1px rgba(15, 23, 42, 0.04)',
+            'elevation-3': '0 10px 15px -3px rgba(15, 23, 42, 0.08), 0 4px 6px -2px rgba(15, 23, 42, 0.04)',
+            'elevation-modal': '0 25px 50px -12px rgba(15, 23, 42, 0.25)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Executive Operate Mode Craft Details */
+    * {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
+    
+    .tabular-nums {
+      font-variant-numeric: tabular-nums;
+    }
+    
+    /* Scrollbar Polish */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+      padding: 0.2rem 0.65rem;
+      border-radius: 9999px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.015em;
+      line-height: 1.2;
+    }
+
+    .pulse-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 9999px;
+      flex-shrink: 0;
+    }
+
+    /* Skeleton shimmer */
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+    .skeleton {
+      background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+    }
+  </style>
+</head>
+<body class="h-full flex flex-col font-sans bg-slate-50 text-slate-800">
+
+  <!-- ========================================================================= -->
+  <!-- Top Navigation Header -->
+  <!-- ========================================================================= -->
+  <header class="bg-white border-b border-slate-200/90 sticky top-0 z-30 shadow-xs backdrop-blur-md bg-white/95">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      
+      <!-- Brand & Pipeline Identifier -->
+      <div class="flex items-center space-x-3.5">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-slate-900 via-sky-900 to-indigo-900 flex items-center justify-center text-white shadow-elevation-1 ring-1 ring-white/20">
+          <i data-lucide="building-2" class="w-5 h-5 text-sky-300"></i>
+        </div>
+        <div>
+          <div class="flex items-center space-x-2">
+            <h1 class="text-base font-bold text-slate-900 tracking-tight">Dubai Real Estate Leads Desk</h1>
+            <span class="badge-pill bg-sky-50 text-sky-800 border border-sky-200/60 hidden sm:inline-flex">
+              <span class="pulse-dot bg-sky-500 animate-pulse"></span>
+              South India NRI Corridors
+            </span>
+          </div>
+          <p class="text-xs text-slate-500 font-medium">KA &bull; KL &bull; TN &bull; TS &bull; AP High-Intent Buyer Discovery Pipeline</p>
+        </div>
+      </div>
+
+      <!-- Action Group -->
+      <div class="flex items-center space-x-2.5">
+
+        <!-- Keyboard Search Hint (Desktop) -->
+        <button onclick="focusSearch()" class="hidden md:flex items-center space-x-2 px-3 py-1.5 text-xs text-slate-500 bg-slate-100/80 hover:bg-slate-200/60 border border-slate-200/80 rounded-lg transition">
+          <i data-lucide="search" class="w-3.5 h-3.5 text-slate-400"></i>
+          <span>Search leads</span>
+          <kbd class="font-mono text-[10px] px-1.5 py-0.5 bg-white border border-slate-300 rounded text-slate-600 shadow-2xs">/</kbd>
+        </button>
+
+        <!-- Download Deliverables Dropdown -->
+        <div class="relative inline-block text-left" id="downloadDropdownContainer">
+          <button id="downloadBtn" onclick="toggleDownloadMenu()" class="inline-flex items-center px-3.5 py-2 text-xs font-semibold text-slate-700 bg-white border border-slate-300 hover:border-slate-400 rounded-lg shadow-2xs hover:bg-slate-50/80 transition focus:outline-none focus:ring-2 focus:ring-sky-500/20">
+            <i data-lucide="download" class="w-3.5 h-3.5 mr-2 text-slate-500"></i>
+            <span>Export Deliverables</span>
+            <i data-lucide="chevron-down" class="w-3.5 h-3.5 ml-1.5 text-slate-400"></i>
+          </button>
+          
+          <div id="downloadMenu" class="hidden absolute right-0 mt-2 w-72 bg-white rounded-xl shadow-elevation-3 border border-slate-200/90 py-1.5 z-50">
+            <div class="px-3.5 py-1.5">
+              <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Export Deliverables</p>
+            </div>
+            <div class="py-0.5">
+              <a href="/api/download/excel" download class="group flex items-center px-3.5 py-2.5 text-slate-700 hover:bg-sky-50/80 hover:text-sky-900 transition">
+                <div class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center mr-3 group-hover:scale-105 transition-transform">
+                  <i data-lucide="file-spreadsheet" class="w-4 h-4"></i>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <p class="text-xs font-semibold text-slate-900 group-hover:text-sky-900">Qualified Leads</p>
+                  <p class="text-[11px] font-mono text-slate-400 truncate">qualified_dubai_leads.xlsx</p>
+                </div>
+              </a>
+              <a href="/api/download/top5" download class="group flex items-center px-3.5 py-2.5 text-slate-700 hover:bg-sky-50/80 hover:text-sky-900 transition">
+                <div class="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center mr-3 group-hover:scale-105 transition-transform">
+                  <i data-lucide="star" class="w-4 h-4"></i>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <p class="text-xs font-semibold text-slate-900 group-hover:text-sky-900">Top 5 Leads</p>
+                  <p class="text-[11px] font-mono text-slate-400 truncate">top_5_leads.csv</p>
+                </div>
+              </a>
+              <a href="/api/download/all" download class="group flex items-center px-3.5 py-2.5 text-slate-700 hover:bg-sky-50/80 hover:text-sky-900 transition">
+                <div class="w-8 h-8 rounded-lg bg-slate-100 text-slate-600 flex items-center justify-center mr-3 group-hover:scale-105 transition-transform">
+                  <i data-lucide="users" class="w-4 h-4"></i>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <p class="text-xs font-semibold text-slate-900 group-hover:text-sky-900">All evaluated Leads</p>
+                  <p class="text-[11px] font-mono text-slate-400 truncate">all_candidates.csv</p>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Trigger Pipeline Button -->
+        <button onclick="openPipelineModal()" class="inline-flex items-center px-4 py-2 text-xs font-semibold text-white bg-slate-900 hover:bg-slate-800 rounded-lg shadow-elevation-1 transition focus:outline-none focus:ring-2 focus:ring-sky-500/20 active:scale-98">
+          <i data-lucide="play" class="w-3.5 h-3.5 mr-1.5 text-sky-400 fill-current"></i>
+          <span>Run Pipeline</span>
+        </button>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- Main Workspace -->
+  <!-- ========================================================================= -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1 w-full space-y-5">
+
+    <!-- Interactive Metric Selection Cards Row -->
+    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3.5" id="statsCardsContainer">
+      
+      <!-- Card 1: Qualified Leads (24) -->
+      <div onclick="setTab('qualified')" id="card-qualified" role="button" tabindex="0" class="card-selector p-4 rounded-xl transition cursor-pointer relative select-none bg-emerald-50/50 border-2 border-emerald-500 shadow-elevation-2">
+        <div class="flex items-center justify-between text-slate-500 mb-2">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-slate-700">Qualified Leads</span>
+          <div class="w-7 h-7 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center transition-transform">
+            <i data-lucide="badge-check" class="w-4 h-4"></i>
+          </div>
+        </div>
+        <div class="flex items-baseline justify-between">
+          <div class="text-2xl font-extrabold text-slate-900 tabular-nums tracking-tight" id="statStrongCount">-</div>
+          <span class="text-xs font-bold text-emerald-800 bg-emerald-100/80 px-2 py-0.5 rounded-full" id="statStrongPct">--%</span>
+        </div>
+        <div class="text-[11px] text-slate-500 font-medium mt-1.5 flex items-center justify-between">
+          <span class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-1.5"></span>Score &ge; 75 &bull; Verified</span>
+          <span class="card-active-indicator text-[10px] font-bold uppercase text-emerald-700">Active</span>
+        </div>
+      </div>
+
+      <!-- Card 2: Needs Review (127) -->
+      <div onclick="setTab('needs_review')" id="card-needs_review" role="button" tabindex="0" class="card-selector bg-white p-4 rounded-xl border border-slate-200/90 shadow-elevation-1 hover:border-slate-300 hover:shadow-elevation-2 transition cursor-pointer relative select-none opacity-85 hover:opacity-100">
+        <div class="flex items-center justify-between text-slate-500 mb-2">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-slate-600">Needs Review</span>
+          <div class="w-7 h-7 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center transition-transform">
+            <i data-lucide="help-circle" class="w-4 h-4"></i>
+          </div>
+        </div>
+        <div class="flex items-baseline justify-between">
+          <div class="text-2xl font-extrabold text-slate-900 tabular-nums tracking-tight" id="statNeedsValCount">-</div>
+          <span class="text-[11px] font-semibold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full">Review Queue</span>
+        </div>
+        <div class="text-[11px] text-slate-500 font-medium mt-1.5 flex items-center justify-between">
+          <span class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-amber-500 mr-1.5"></span>Plausible / Pending</span>
+          <span class="card-active-indicator text-[10px] font-bold uppercase text-amber-700 hidden">Active</span>
+        </div>
+      </div>
+
+      <!-- Card 3: All Candidates (253) -->
+      <div onclick="setTab('all')" id="card-all" role="button" tabindex="0" class="card-selector bg-white p-4 rounded-xl border border-slate-200/90 shadow-elevation-1 hover:border-slate-300 hover:shadow-elevation-2 transition cursor-pointer relative select-none opacity-85 hover:opacity-100">
+        <div class="flex items-center justify-between text-slate-500 mb-2">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-slate-600">All Candidates</span>
+          <div class="w-7 h-7 rounded-lg bg-sky-50 text-sky-600 flex items-center justify-center transition-transform">
+            <i data-lucide="layers" class="w-4 h-4"></i>
+          </div>
+        </div>
+        <div class="flex items-baseline justify-between">
+          <div class="text-2xl font-extrabold text-slate-900 tabular-nums tracking-tight" id="statAllCount">-</div>
+          <span class="text-[11px] font-semibold text-sky-700 bg-sky-50 px-2 py-0.5 rounded-full">Total Pool</span>
+        </div>
+        <div class="text-[11px] text-slate-500 font-medium mt-1.5 flex items-center justify-between">
+          <span class="flex items-center truncate"><span class="w-1.5 h-1.5 rounded-full bg-sky-500 mr-1.5"></span>Evaluated Leads</span>
+          <span class="card-active-indicator text-[10px] font-bold uppercase text-sky-700 hidden">Active</span>
+        </div>
+      </div>
+
+      <!-- Card 4: Rejected Leads (102) -->
+      <div onclick="setTab('reject')" id="card-reject" role="button" tabindex="0" class="card-selector bg-white p-4 rounded-xl border border-slate-200/90 shadow-elevation-1 hover:border-slate-300 hover:shadow-elevation-2 transition cursor-pointer relative select-none opacity-85 hover:opacity-100">
+        <div class="flex items-center justify-between text-slate-500 mb-2">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-slate-600">Rejected Leads</span>
+          <div class="w-7 h-7 rounded-lg bg-rose-50 text-rose-600 flex items-center justify-center transition-transform">
+            <i data-lucide="x-circle" class="w-4 h-4"></i>
+          </div>
+        </div>
+        <div class="flex items-baseline justify-between">
+          <div class="text-2xl font-extrabold text-slate-900 tabular-nums tracking-tight" id="statRejectCount">-</div>
+          <span class="text-[11px] font-semibold text-rose-700 bg-rose-50 px-2 py-0.5 rounded-full">Disqualified</span>
+        </div>
+        <div class="text-[11px] text-slate-500 font-medium mt-1.5 flex items-center justify-between">
+          <span class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-rose-500 mr-1.5"></span>Brokers / Spam</span>
+          <span class="card-active-indicator text-[10px] font-bold uppercase text-rose-700 hidden">Active</span>
+        </div>
+      </div>
+
+      <!-- Card 5: Processed Files (4) -->
+      <div onclick="setTab('files')" id="card-files" role="button" tabindex="0" class="card-selector bg-white p-4 rounded-xl border border-slate-200/90 shadow-elevation-1 hover:border-slate-300 hover:shadow-elevation-2 transition cursor-pointer relative select-none col-span-2 md:col-span-4 lg:col-span-1 opacity-85 hover:opacity-100">
+        <div class="flex items-center justify-between text-slate-500 mb-2">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-slate-600">Processed Files</span>
+          <div class="w-7 h-7 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center transition-transform">
+            <i data-lucide="folder-check" class="w-4 h-4"></i>
+          </div>
+        </div>
+        <div class="flex items-baseline space-x-2">
+          <span class="text-2xl font-extrabold text-slate-900 tabular-nums tracking-tight" id="statProcessedFiles">-</span>
+          <span class="text-xs text-slate-500 font-medium">files</span>
+        </div>
+        <div class="text-[11px] font-medium mt-1.5 flex items-center justify-between" id="statUnprocessedAlertContainer">
+          <div id="statUnprocessedAlert"><span class="text-slate-400">Loading...</span></div>
+          <span class="card-active-indicator text-[10px] font-bold uppercase text-purple-700 hidden">Active</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ======================================================================= -->
+    <!-- Primary Content Card -->
+    <!-- ======================================================================= -->
+    <div class="bg-white border border-slate-200/90 rounded-2xl shadow-elevation-1 overflow-hidden">
+
+      <!-- Filtration & Search Toolbelt (Clean header: search & filters only, selected via cards) -->
+      <div class="border-b border-slate-200 px-4 sm:px-6 py-3.5 flex flex-col md:flex-row md:items-center md:justify-between gap-3.5 bg-slate-50/60">
+        
+        <!-- Active View Status Indicator (Left) -->
+        <div class="flex items-center space-x-2.5">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-400">View:</span>
+          <span id="currentViewTitle" class="text-xs font-bold text-slate-900">Qualified Leads</span>
+          <span id="currentViewBadge" class="badge-pill bg-emerald-100 text-emerald-800 font-bold tabular-nums">0 leads</span>
+        </div>
+
+        <!-- Filter & Search Controls (Right) -->
+        <div id="leadsFilterControls" class="flex flex-wrap items-center gap-2.5">
+          
+          <!-- State Filter -->
+          <div class="relative">
+            <select id="stateFilter" onchange="applyFilters()" class="text-xs bg-white border border-slate-300 rounded-lg pl-2.5 pr-8 py-1.5 text-slate-700 font-medium appearance-none focus:outline-none focus:ring-2 focus:ring-sky-500/20 focus:border-sky-500 shadow-2xs">
+              <option value="all">All States</option>
+              <option value="Karnataka">Karnataka</option>
+              <option value="Kerala">Kerala</option>
+              <option value="Tamil Nadu">Tamil Nadu</option>
+              <option value="Telangana">Telangana</option>
+              <option value="Andhra Pradesh">Andhra Pradesh</option>
+            </select>
+            <i data-lucide="chevron-down" class="w-3 h-3 text-slate-400 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none"></i>
+          </div>
+
+          <!-- Location Status Filter -->
+          <div class="relative">
+            <select id="locationStatusFilter" onchange="applyFilters()" class="text-xs bg-white border border-slate-300 rounded-lg pl-2.5 pr-8 py-1.5 text-slate-700 font-medium appearance-none focus:outline-none focus:ring-2 focus:ring-sky-500/20 focus:border-sky-500 shadow-2xs">
+              <option value="all">All Location Statuses</option>
+              <option value="CURRENT_RESIDENT">CURRENT_RESIDENT</option>
+              <option value="LOCATION_UNVERIFIED">LOCATION_UNVERIFIED</option>
+              <option value="ORIGIN_ONLY">ORIGIN_ONLY</option>
+              <option value="OUTSIDE_TARGET">OUTSIDE_TARGET</option>
+            </select>
+            <i data-lucide="chevron-down" class="w-3 h-3 text-slate-400 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none"></i>
+          </div>
+
+          <!-- Live Text Search Input -->
+          <div class="relative flex-1 sm:w-60">
+            <i data-lucide="search" class="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+            <input type="text" id="searchInput" oninput="debounceSearch()" placeholder="Search handle, area, budget..." class="w-full text-xs pl-8 pr-7 py-1.5 bg-white border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500/20 focus:border-sky-500 font-medium placeholder:text-slate-400 shadow-2xs">
+            <button id="clearSearchBtn" onclick="clearSearch()" class="hidden absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600">
+              <i data-lucide="x" class="w-3 h-3"></i>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ===================================================================== -->
+      <!-- Leads Data Table View -->
+      <!-- ===================================================================== -->
+      <div id="leadsTableSection">
+        <div class="overflow-x-auto min-h-[440px]">
+          <table class="min-w-full divide-y divide-slate-200 text-left text-xs">
+            <thead class="bg-slate-50/90 text-slate-500 font-bold uppercase tracking-wider text-[11px] border-b border-slate-200">
+              <tr>
+                <th scope="col" class="py-3 px-4 w-32">Score &amp; ID</th>
+                <th scope="col" class="py-3 px-4 w-48">Prospect &amp; Source</th>
+                <th scope="col" class="py-3 px-4 w-52">Geographic Verification</th>
+                <th scope="col" class="py-3 px-4">Statement &amp; Buying Intent</th>
+                <th scope="col" class="py-3 px-4 w-40">Financials &amp; Area</th>
+                <th scope="col" class="py-3 px-4 w-28">Freshness</th>
+                <th scope="col" class="py-3 px-4 w-28 text-right">Audit Action</th>
+              </tr>
+            </thead>
+            <tbody id="leadsTableBody" class="divide-y divide-slate-100 bg-white">
+              <!-- Populated dynamically via JS -->
+              <tr>
+                <td colspan="7" class="py-16 text-center text-slate-400">
+                  <div class="flex flex-col items-center justify-center space-y-2">
+                    <i data-lucide="loader-2" class="w-6 h-6 animate-spin text-sky-600"></i>
+                    <span class="text-xs font-medium">Retrieving candidates dossier...</span>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Pagination & Footer Stats -->
+        <div class="px-4 sm:px-6 py-3 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500 bg-slate-50/50">
+          <div>
+            Showing <span id="pageShowingStart" class="font-bold text-slate-700 tabular-nums">0</span> to <span id="pageShowingEnd" class="font-bold text-slate-700 tabular-nums">0</span> of <span id="pageTotalCount" class="font-bold text-slate-700 tabular-nums">0</span> evaluated leads
+          </div>
+          <div class="flex items-center space-x-2">
+            <button id="prevPageBtn" onclick="changePage(-1)" class="px-3 py-1.5 border border-slate-300 rounded-lg hover:bg-slate-100 disabled:opacity-40 disabled:cursor-not-allowed font-medium text-slate-700 shadow-2xs transition">
+              Previous
+            </button>
+            <span class="px-2 font-medium text-slate-600">
+              Page <span id="currentPageNum" class="font-bold text-slate-900 tabular-nums">1</span> of <span id="totalPagesNum" class="font-bold text-slate-900 tabular-nums">1</span>
+            </span>
+            <button id="nextPageBtn" onclick="changePage(1)" class="px-3 py-1.5 border border-slate-300 rounded-lg hover:bg-slate-100 disabled:opacity-40 disabled:cursor-not-allowed font-medium text-slate-700 shadow-2xs transition">
+              Next
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===================================================================== -->
+      <!-- Processed Files Registry View -->
+      <!-- ===================================================================== -->
+      <div id="processedFilesSection" class="hidden p-6 space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-3 border-b border-slate-200">
+          <div>
+            <h3 class="text-sm font-bold text-slate-900">Incremental Processing Registry</h3>
+            <p class="text-xs text-slate-500">Tracked in <code class="font-mono bg-slate-100 px-1 py-0.5 rounded text-slate-700">results/processed.json</code> to ensure idempotent batch processing.</p>
+          </div>
+          <button onclick="triggerPipelineRun(false)" class="inline-flex items-center px-3.5 py-1.5 text-xs font-semibold text-sky-700 bg-sky-50 border border-sky-200 rounded-lg hover:bg-sky-100 transition shadow-2xs">
+            <i data-lucide="refresh-cw" class="w-3.5 h-3.5 mr-1.5"></i>
+            Scan for New Input Files
+          </button>
+        </div>
+
+        <div class="overflow-x-auto border border-slate-200 rounded-xl shadow-2xs">
+          <table class="min-w-full divide-y divide-slate-200 text-left text-xs">
+            <thead class="bg-slate-50 text-slate-600 font-bold uppercase tracking-wider text-[11px]">
+              <tr>
+                <th class="py-3 px-4">Filename</th>
+                <th class="py-3 px-4">Status</th>
+                <th class="py-3 px-4">Ingested Records</th>
+                <th class="py-3 px-4">Processed Timestamp</th>
+                <th class="py-3 px-4 font-mono">MD5 Checksum</th>
+              </tr>
+            </thead>
+            <tbody id="processedFilesTableBody" class="divide-y divide-slate-100 bg-white">
+              <!-- Populated dynamically via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- Comprehensive Human Auditor Lead Review Modal -->
+  <!-- ========================================================================= -->
+  <div id="reviewModal" class="hidden fixed inset-0 z-50 overflow-y-auto bg-slate-950/70 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4">
+    <div class="bg-white rounded-2xl shadow-elevation-modal max-w-4xl w-full border border-slate-200 overflow-hidden transform transition-all my-6 flex flex-col max-h-[92vh]">
+      
+      <!-- Modal Executive Header -->
+      <div class="bg-gradient-to-r from-slate-900 via-slate-800 to-indigo-950 text-white px-6 py-4 flex items-center justify-between border-b border-slate-800">
+        <div class="flex items-center space-x-3.5">
+          <div class="w-11 h-11 rounded-xl bg-sky-500/10 text-sky-400 border border-sky-500/30 flex flex-col items-center justify-center font-extrabold tabular-nums">
+            <span class="text-sm leading-none" id="modalHeaderScore">--</span>
+            <span class="text-[9px] uppercase font-bold text-slate-400 tracking-wider">pts</span>
+          </div>
+          <div>
+            <div class="flex items-center space-x-2">
+              <h3 class="text-base font-bold text-white tracking-tight" id="modalHeaderHandle">u/candidate</h3>
+              <span id="modalHeaderStatusBadge" class="badge-pill">Status</span>
+            </div>
+            <p class="text-xs text-slate-300 font-medium" id="modalHeaderMeta">Platform &bull; ID: CAND-000</p>
+          </div>
+        </div>
+        
+        <div class="flex items-center space-x-2">
+          <span class="text-[10px] text-slate-400 font-mono hidden sm:inline">ESC to close</span>
+          <button onclick="closeReviewModal()" class="text-slate-400 hover:text-white rounded-lg p-1.5 hover:bg-slate-800 transition">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Modal Body (Two-Column Desktop Workspace) -->
+      <div class="p-6 overflow-y-auto space-y-6 flex-1">
+        
+        <!-- Verbatim Statement Card -->
+        <div class="bg-slate-50 border border-slate-200/90 rounded-xl p-4.5 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500 flex items-center">
+              <i data-lucide="quote" class="w-3.5 h-3.5 mr-1.5 text-sky-600"></i>
+              Original Attributable Statement
+            </span>
+            <a id="modalSourceLink" href="#" target="_blank" rel="noopener noreferrer" class="text-xs font-semibold text-sky-600 hover:text-sky-800 inline-flex items-center hover:underline">
+              <span>View Source Post</span>
+              <i data-lucide="external-link" class="w-3 h-3 ml-1"></i>
+            </a>
+          </div>
+          <blockquote class="text-sm text-slate-900 leading-relaxed font-normal italic border-l-2 border-sky-500 pl-3 py-0.5" id="modalVerbatimStatement">
+            "Loading statement..."
+          </blockquote>
+        </div>
+
+        <!-- 6-Point Weighted Evidence Matrix -->
+        <div>
+          <div class="flex items-center justify-between mb-2.5">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-700 flex items-center">
+              <i data-lucide="sliders" class="w-3.5 h-3.5 mr-1.5 text-indigo-600"></i>
+              100-Point Buyer Intent &amp; Evidence Audit
+            </h4>
+            <span class="text-[11px] text-slate-500 font-medium">Non-cumulative strict attribution</span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            
+            <!-- Box 1: Purchase Intent (30) -->
+            <div class="p-3 bg-white border border-slate-200 rounded-lg shadow-2xs">
+              <div class="flex justify-between items-center text-xs font-bold mb-1">
+                <span class="text-slate-800">Purchase Intent</span>
+                <span class="badge-pill bg-sky-50 text-sky-800 border border-sky-200/60 font-mono" id="modalPillIntent">30 / 30</span>
+              </div>
+              <p class="text-[11px] text-slate-600 italic line-clamp-3" id="modalEvidenceIntent">--</p>
+            </div>
+
+            <!-- Box 2: Transactional Readiness (20) -->
+            <div class="p-3 bg-white border border-slate-200 rounded-lg shadow-2xs">
+              <div class="flex justify-between items-center text-xs font-bold mb-1">
+                <span class="text-slate-800">Readiness / LRS</span>
+                <span class="badge-pill bg-sky-50 text-sky-800 border border-sky-200/60 font-mono" id="modalPillReadiness">20 / 20</span>
+              </div>
+              <p class="text-[11px] text-slate-600 italic line-clamp-3" id="modalEvidenceReadiness">--</p>
+            </div>
+
+            <!-- Box 3: Budget & Financing (15) -->
+            <div class="p-3 bg-white border border-slate-200 rounded-lg shadow-2xs">
+              <div class="flex justify-between items-center text-xs font-bold mb-1">
+                <span class="text-slate-800">Budget / Ticket Size</span>
+                <span class="badge-pill bg-sky-50 text-sky-800 border border-sky-200/60 font-mono" id="modalPillBudget">15 / 15</span>
+              </div>
+              <p class="text-[11px] text-slate-600 italic line-clamp-3" id="modalEvidenceBudget">--</p>
+            </div>
+
+            <!-- Box 4: Purchase Timeline (15) -->
+            <div class="p-3 bg-white border border-slate-200 rounded-lg shadow-2xs">
+              <div class="flex justify-between items-center text-xs font-bold mb-1">
+                <span class="text-slate-800">Purchase Timeline</span>
+                <span class="badge-pill bg-sky-50 text-sky-800 border border-sky-200/60 font-mono" id="modalPillTimeline">15 / 15</span>
+              </div>
+              <p class="text-[11px] text-slate-600 italic line-clamp-3" id="modalEvidenceTimeline">--</p>
+            </div>
+
+            <!-- Box 5: Property / Projects (10) -->
+            <div class="p-3 bg-white border border-slate-200 rounded-lg shadow-2xs">
+              <div class="flex justify-between items-center text-xs font-bold mb-1">
+                <span class="text-slate-800">Property / Developer</span>
+                <span class="badge-pill bg-sky-50 text-sky-800 border border-sky-200/60 font-mono" id="modalPillProject">10 / 10</span>
+              </div>
+              <p class="text-[11px] text-slate-600 italic line-clamp-3" id="modalEvidenceProject">--</p>
+            </div>
+
+            <!-- Box 6: Freshness Window (10) -->
+            <div class="p-3 bg-white border border-slate-200 rounded-lg shadow-2xs">
+              <div class="flex justify-between items-center text-xs font-bold mb-1">
+                <span class="text-slate-800">Freshness (180-day)</span>
+                <span class="badge-pill bg-sky-50 text-sky-800 border border-sky-200/60 font-mono" id="modalPillFreshness">10 / 10</span>
+              </div>
+              <p class="text-[11px] text-slate-600 italic line-clamp-3" id="modalEvidenceFreshness">--</p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Human Auditor Decision Console -->
+        <div class="p-4.5 bg-gradient-to-b from-sky-50/70 to-indigo-50/40 border border-sky-200/80 rounded-xl space-y-4">
+          <div class="flex items-center justify-between">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-sky-950 flex items-center">
+              <i data-lucide="user-check" class="w-4 h-4 mr-1.5 text-sky-700"></i>
+              Auditor Decision Console
+            </h4>
+            <span class="text-[11px] font-semibold text-sky-800">Strict Rule: Strong Signal requires verified CURRENT_RESIDENT</span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            
+            <!-- Location Verification Selector -->
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1">
+                Geographic Verification Status
+              </label>
+              <select id="modalInputLocStatus" onchange="handleLocStatusChange()" class="w-full text-xs bg-white border border-slate-300 rounded-lg p-2 font-medium text-slate-900 focus:ring-2 focus:ring-sky-500/20 focus:border-sky-500 shadow-2xs">
+                <option value="CURRENT_RESIDENT">CURRENT_RESIDENT (Explicit residence in KA, KL, TN, TS, AP)</option>
+                <option value="LOCATION_UNVERIFIED">LOCATION_UNVERIFIED (Plausible intent, location unverified)</option>
+                <option value="ORIGIN_ONLY">ORIGIN_ONLY (Birthplace/ancestry without current residence)</option>
+                <option value="OUTSIDE_TARGET">OUTSIDE_TARGET (Confirmed resident outside 5 target states)</option>
+              </select>
+            </div>
+
+            <!-- Score Adjustment -->
+            <div>
+              <div class="flex justify-between items-center mb-1">
+                <label class="text-xs font-bold text-slate-700">Audit Score (0 - 100)</label>
+                <span class="text-[11px] text-slate-500 font-medium">Strong threshold &ge; 75</span>
+              </div>
+              <input type="number" min="0" max="100" id="modalInputScore" class="w-full text-xs font-mono font-bold bg-white border border-slate-300 rounded-lg p-2 text-slate-900 focus:ring-2 focus:ring-sky-500/20 focus:border-sky-500 shadow-2xs" placeholder="Score (e.g. 85)">
+            </div>
+
+          </div>
+
+          <!-- Traceable Location Evidence Text Input -->
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">
+              Traceable Location Evidence Snippet
+            </label>
+            <input type="text" id="modalInputLocEvidence" class="w-full text-xs bg-white border border-slate-300 rounded-lg p-2 text-slate-900 focus:ring-2 focus:ring-sky-500/20 focus:border-sky-500 shadow-2xs placeholder:text-slate-400" placeholder="e.g. Working in Whitefield Tech Park; Resident of HSR Layout Bengaluru">
+          </div>
+
+          <!-- Auditor Notes with Quick Preset Chips -->
+          <div>
+            <div class="flex items-center justify-between mb-1">
+              <label class="text-xs font-bold text-slate-700">Auditor Audit Notes</label>
+              <div class="flex items-center space-x-1">
+                <span class="text-[10px] text-slate-400 font-medium">Quick presets:</span>
+                <button type="button" onclick="insertNotePreset('Verified booking token / transfer remittance confirmed.')" class="text-[10px] bg-white border border-slate-200 px-1.5 py-0.5 rounded hover:bg-slate-50 text-slate-600">+ Token Paid</button>
+                <button type="button" onclick="insertNotePreset('Verified current Bangalore tech resident with active LRS intention.')" class="text-[10px] bg-white border border-slate-200 px-1.5 py-0.5 rounded hover:bg-slate-50 text-slate-600">+ Resident BLR</button>
+                <button type="button" onclick="insertNotePreset('Confirmed real estate broker / channel partner self-promotion.')" class="text-[10px] bg-white border border-slate-200 px-1.5 py-0.5 rounded hover:bg-slate-50 text-slate-600">+ Broker/Spam</button>
+              </div>
+            </div>
+            <textarea id="modalInputNotes" rows="2" class="w-full text-xs bg-white border border-slate-300 rounded-lg p-2 text-slate-900 focus:ring-2 focus:ring-sky-500/20 focus:border-sky-500 shadow-2xs placeholder:text-slate-400" placeholder="Document specific justification, verification method, or reasoning..."></textarea>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Modal Footer Action Bar -->
+      <div class="bg-slate-50 border-t border-slate-200 px-6 py-3.5 flex flex-wrap items-center justify-between gap-3">
+        <button onclick="closeReviewModal()" class="px-4 py-2 text-xs font-semibold text-slate-600 bg-white border border-slate-300 rounded-lg hover:bg-slate-100 transition shadow-2xs">
+          Cancel
+        </button>
+
+        <div class="flex items-center space-x-2">
+          <!-- Mark as Reject -->
+          <button onclick="submitReviewAction('reject')" class="px-3.5 py-2 text-xs font-semibold text-rose-700 bg-rose-50 border border-rose-200 rounded-lg hover:bg-rose-100 transition shadow-2xs flex items-center">
+            <i data-lucide="x" class="w-3.5 h-3.5 mr-1.5"></i>
+            <span>Mark Reject</span>
+          </button>
+
+          <!-- Save Edits (Keep in Needs Validation) -->
+          <button onclick="submitReviewAction('update')" class="px-3.5 py-2 text-xs font-semibold text-slate-700 bg-white border border-slate-300 rounded-lg hover:bg-slate-100 transition shadow-2xs flex items-center">
+            <i data-lucide="save" class="w-3.5 h-3.5 mr-1.5"></i>
+            <span>Save Edits</span>
+          </button>
+
+          <!-- Approve as Qualified Lead -->
+          <button onclick="submitReviewAction('approve')" class="px-5 py-2 text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 active:scale-98 rounded-lg shadow-elevation-1 transition flex items-center">
+            <i data-lucide="check-check" class="w-4 h-4 mr-1.5"></i>
+            <span>Approve as Qualified Lead</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- Pipeline Execution Modal -->
+  <!-- ========================================================================= -->
+  <div id="pipelineModal" class="hidden fixed inset-0 z-50 overflow-y-auto bg-slate-950/70 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4">
+    <div class="bg-white rounded-2xl shadow-elevation-modal max-w-2xl w-full border border-slate-200 overflow-hidden transform transition-all my-6">
+      
+      <!-- Modal Header -->
+      <div class="bg-gradient-to-r from-slate-900 to-indigo-950 text-white px-6 py-4 flex items-center justify-between border-b border-slate-800">
+        <div class="flex items-center space-x-2.5">
+          <div class="w-8 h-8 rounded-lg bg-sky-500/20 text-sky-400 flex items-center justify-center">
+            <i data-lucide="cpu" class="w-4 h-4"></i>
+          </div>
+          <div>
+            <h3 class="text-sm font-bold text-white tracking-tight">Run Qualification &amp; Evidence Engine</h3>
+            <p class="text-[11px] text-slate-400 font-medium">Harvesters &bull; URL Audit &bull; Geo Verification &bull; Scoring</p>
+          </div>
+        </div>
+        <button onclick="closePipelineModal()" class="text-slate-400 hover:text-white rounded-lg p-1.5 hover:bg-slate-800 transition">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="p-6 space-y-4">
+        
+        <!-- Workflow Stage Stepper Visualization -->
+        <div class="grid grid-cols-5 gap-1.5 text-center text-[10px] font-bold text-slate-500 pb-2">
+          <div class="p-2 bg-slate-100 rounded-lg">1. Ingest Raw</div>
+          <div class="p-2 bg-slate-100 rounded-lg">2. URL Audit</div>
+          <div class="p-2 bg-slate-100 rounded-lg">3. Geo Verify</div>
+          <div class="p-2 bg-slate-100 rounded-lg">4. Intent Score</div>
+          <div class="p-2 bg-slate-100 rounded-lg">5. Sync Results</div>
+        </div>
+
+        <!-- Raw Input File Upload Section -->
+        <div class="space-y-2">
+          <div class="flex items-center justify-between">
+            <label class="text-xs font-bold text-slate-800 flex items-center">
+              <i data-lucide="upload-cloud" class="w-4 h-4 mr-1.5 text-sky-600"></i>
+              Upload Raw Input CSV (Optional)
+            </label>
+            <span class="text-[11px] text-slate-400 font-medium">Supports .csv or .json</span>
+          </div>
+
+          <!-- Drag & Drop / File Input Box -->
+          <div id="dropZone" onclick="document.getElementById('pipelineFileInput').click()" class="border-2 border-dashed border-slate-300 hover:border-sky-500 rounded-xl p-4 text-center cursor-pointer bg-slate-50/70 hover:bg-sky-50/40 transition group relative">
+            <input type="file" id="pipelineFileInput" accept=".csv,.json" class="hidden" onchange="handleFileSelected(event)">
+            
+            <div id="uploadPrompt" class="flex flex-col items-center justify-center space-y-1.5">
+              <div class="w-9 h-9 rounded-lg bg-white border border-slate-200 shadow-2xs flex items-center justify-center text-slate-500 group-hover:text-sky-600 group-hover:border-sky-300 transition-colors">
+                <i data-lucide="file-up" class="w-5 h-5"></i>
+              </div>
+              <p class="text-xs font-semibold text-slate-700 group-hover:text-sky-900">
+                Click to browse or drag and drop raw CSV file
+              </p>
+              <p class="text-[11px] text-slate-400">
+                New files will be automatically moved to <code class="font-mono bg-slate-200/70 px-1 py-0.5 rounded text-slate-700">input/</code> and ingested
+              </p>
+            </div>
+
+            <!-- Selected File Preview Badge -->
+            <div id="selectedFileInfo" class="hidden flex items-center justify-between bg-white border border-slate-200 rounded-lg p-2.5 shadow-2xs text-left" onclick="event.stopPropagation()">
+              <div class="flex items-center space-x-2.5 truncate mr-2">
+                <div class="w-8 h-8 rounded-lg bg-sky-50 text-sky-600 flex items-center justify-center shrink-0">
+                  <i data-lucide="file-spreadsheet" class="w-4 h-4"></i>
+                </div>
+                <div class="truncate">
+                  <p class="text-xs font-bold text-slate-800 truncate" id="selectedFileName">filename.csv</p>
+                  <p class="text-[10px] text-slate-400 font-mono" id="selectedFileSize">0 KB</p>
+                </div>
+              </div>
+              
+              <div class="flex items-center space-x-2 shrink-0">
+                <span id="selectedFileStatusBadge" class="hidden text-[10px] font-bold px-2 py-0.5 rounded-full"></span>
+                <button type="button" onclick="clearSelectedFile(event)" class="text-slate-400 hover:text-slate-600 p-1 rounded hover:bg-slate-100" title="Remove file">
+                  <i data-lucide="x" class="w-3.5 h-3.5"></i>
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- File Status Alert (Already Processed vs New) -->
+          <div id="fileStatusAlert" class="hidden p-3 rounded-xl border text-xs transition-all"></div>
+        </div>
+
+        <!-- Reset Checkbox Card -->
+        <div class="p-4 bg-amber-50/80 border border-amber-200 rounded-xl flex items-start space-x-3.5">
+          <input type="checkbox" id="pipelineResetCheckbox" class="mt-1 w-4 h-4 text-sky-600 border-slate-300 rounded focus:ring-sky-500">
+          <div>
+            <label for="pipelineResetCheckbox" class="text-xs font-bold text-amber-950 cursor-pointer">
+              Reset &amp; Reprocess All (Rerun Qualifications &amp; Reset processed.json)
+            </label>
+            <p class="text-[11px] text-amber-800 mt-1 leading-relaxed">
+              When checked, completely clears <code class="font-mono bg-amber-100 px-1 py-0.5 rounded text-amber-900">results/processed.json</code>, re-parses every raw CSV and JSON file in <code class="font-mono bg-amber-100 px-1 py-0.5 rounded text-amber-900">input/</code> from scratch, recalculates intent scores, and regenerates all deliverable artifacts.
+            </p>
+          </div>
+        </div>
+
+        <!-- Live Terminal Log Output -->
+        <div id="pipelineLogsContainer" class="hidden space-y-1.5">
+          <div class="flex items-center justify-between text-[11px] font-bold text-slate-600">
+            <span>Execution Terminal Output:</span>
+            <button onclick="copyLogsToClipboard()" class="text-sky-600 hover:text-sky-800 flex items-center">
+              <i data-lucide="copy" class="w-3 h-3 mr-1"></i> Copy
+            </button>
+          </div>
+          <pre id="pipelineLogsOutput" class="p-4 bg-slate-950 text-slate-200 font-mono text-[11px] rounded-xl overflow-x-auto max-h-64 leading-relaxed border border-slate-800 select-all"></pre>
+        </div>
+
+        <!-- Running Indicator Spinner -->
+        <div id="pipelineRunningStatus" class="hidden p-8 text-center space-y-3">
+          <i data-lucide="loader-2" class="w-8 h-8 animate-spin text-sky-600 mx-auto"></i>
+          <div>
+            <p class="text-xs font-bold text-slate-800">Processing pipeline execution...</p>
+            <p class="text-[11px] text-slate-500 mt-0.5">Harvesting, auditing evidence gates, and updating deliverables.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Footer Actions -->
+      <div class="bg-slate-50 border-t border-slate-200 px-6 py-3.5 flex items-center justify-between">
+        <button onclick="closePipelineModal()" class="px-4 py-2 text-xs font-semibold text-slate-600 bg-white border border-slate-300 rounded-lg hover:bg-slate-100 transition shadow-2xs">
+          Close
+        </button>
+        <button id="startPipelineBtn" onclick="runPipelineTrigger()" class="px-5 py-2 text-xs font-bold text-white bg-slate-900 hover:bg-slate-800 rounded-lg shadow-elevation-1 transition flex items-center active:scale-98">
+          <i data-lucide="play" class="w-3.5 h-3.5 mr-1.5 text-sky-400 fill-current"></i>
+          <span>Execute Pipeline</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Toast Notification System -->
+  <div id="toastNotification" class="hidden fixed bottom-5 right-5 z-50 bg-slate-900 text-white px-4 py-3 rounded-xl shadow-elevation-3 border border-slate-800 flex items-center space-x-3 transition-all transform duration-200">
+    <div id="toastIcon" class="text-emerald-400">
+      <i data-lucide="check-circle-2" class="w-4 h-4"></i>
+    </div>
+    <div class="text-xs font-medium" id="toastMessage">Action completed successfully.</div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- JavaScript Client Controller -->
+  <!-- ========================================================================= -->
+  <script>
+    let currentTab = 'qualified';
+    let currentPage = 1;
+    const pageSize = 25;
+    let currentActiveCandidateId = null;
+    let searchDebounceTimeout = null;
+
+    // Initialization
+    document.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+      loadStats();
+      setTab('qualified');
+
+      // Keyboard navigation
+      window.addEventListener('keydown', (e) => {
+        // ESC to close modal
+        if (e.key === 'Escape') {
+          closeReviewModal();
+          closePipelineModal();
+        }
+        // Slash or Cmd+K to focus search (when not in modal)
+        if ((e.key === '/' || ((e.metaKey || e.ctrlKey) && e.key === 'k')) && document.getElementById('reviewModal').classList.contains('hidden')) {
+          e.preventDefault();
+          focusSearch();
+        }
+        // Cmd + Enter in review modal triggers Approve
+        if ((e.metaKey || e.ctrlKey) && e.key === 'Enter' && !document.getElementById('reviewModal').classList.contains('hidden')) {
+          e.preventDefault();
+          submitReviewAction('approve');
+        }
+      });
+
+      // Close dropdowns on outside click
+      window.addEventListener('click', (e) => {
+        const container = document.getElementById('downloadDropdownContainer');
+        if (container && !container.contains(e.target)) {
+          document.getElementById('downloadMenu').classList.add('hidden');
+        }
+      });
+
+      // DropZone drag-and-drop file upload listeners
+      const dropZone = document.getElementById('dropZone');
+      if (dropZone) {
+        ['dragenter', 'dragover'].forEach(eventName => {
+          dropZone.addEventListener(eventName, (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            dropZone.classList.add('border-sky-500', 'bg-sky-50/70');
+          }, false);
+        });
+        ['dragleave', 'drop'].forEach(eventName => {
+          dropZone.addEventListener(eventName, (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            dropZone.classList.remove('border-sky-500', 'bg-sky-50/70');
+          }, false);
+        });
+        dropZone.addEventListener('drop', (e) => {
+          handleFileSelected(e);
+        }, false);
+      }
+    });
+
+    function toggleDownloadMenu() {
+      const menu = document.getElementById('downloadMenu');
+      menu.classList.toggle('hidden');
+    }
+
+    function focusSearch() {
+      const input = document.getElementById('searchInput');
+      if (input) {
+        input.focus();
+        input.select();
+      }
+    }
+
+    function clearSearch() {
+      const input = document.getElementById('searchInput');
+      input.value = '';
+      document.getElementById('clearSearchBtn').classList.add('hidden');
+      applyFilters();
+    }
+
+    function showToast(message, isError = false) {
+      const toast = document.getElementById('toastNotification');
+      const msgElem = document.getElementById('toastMessage');
+      const iconElem = document.getElementById('toastIcon');
+
+      msgElem.textContent = message;
+      if (isError) {
+        iconElem.innerHTML = '<i data-lucide="alert-circle" class="w-4 h-4 text-rose-400"></i>';
+      } else {
+        iconElem.innerHTML = '<i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>';
+      }
+      lucide.createIcons();
+
+      toast.classList.remove('hidden');
+      setTimeout(() => {
+        toast.classList.add('hidden');
+      }, 4000);
+    }
+
+    function insertNotePreset(text) {
+      const noteInput = document.getElementById('modalInputNotes');
+      const cur = noteInput.value.trim();
+      noteInput.value = cur ? cur + ' ' + text : text;
+    }
+
+    function handleLocStatusChange() {
+      const val = document.getElementById('modalInputLocStatus').value;
+      const scoreInput = document.getElementById('modalInputScore');
+      if (val === 'CURRENT_RESIDENT' && parseInt(scoreInput.value || 0) < 75) {
+        scoreInput.value = 75;
+      }
+    }
+
+    const tabMetadata = {
+      qualified: {
+        title: 'Qualified Leads',
+        badgeBg: 'bg-emerald-100 text-emerald-800 border border-emerald-200/80',
+        activeCardClass: 'card-selector p-4 rounded-xl transition cursor-pointer relative select-none bg-emerald-50/50 border-2 border-emerald-500 shadow-elevation-2',
+        activeText: 'text-emerald-700'
+      },
+      needs_review: {
+        title: 'Needs Review',
+        badgeBg: 'bg-amber-100 text-amber-800 border border-amber-200/80',
+        activeCardClass: 'card-selector p-4 rounded-xl transition cursor-pointer relative select-none bg-amber-50/50 border-2 border-amber-500 shadow-elevation-2',
+        activeText: 'text-amber-700'
+      },
+      all: {
+        title: 'All Candidates',
+        badgeBg: 'bg-sky-100 text-sky-800 border border-sky-200/80',
+        activeCardClass: 'card-selector p-4 rounded-xl transition cursor-pointer relative select-none bg-sky-50/50 border-2 border-sky-500 shadow-elevation-2',
+        activeText: 'text-sky-700'
+      },
+      reject: {
+        title: 'Rejected Leads',
+        badgeBg: 'bg-rose-100 text-rose-800 border border-rose-200/80',
+        activeCardClass: 'card-selector p-4 rounded-xl transition cursor-pointer relative select-none bg-rose-50/50 border-2 border-rose-500 shadow-elevation-2',
+        activeText: 'text-rose-700'
+      },
+      files: {
+        title: 'Processed Files Registry',
+        badgeBg: 'bg-purple-100 text-purple-800 border border-purple-200/80',
+        activeCardClass: 'card-selector p-4 rounded-xl transition cursor-pointer relative select-none bg-purple-50/50 border-2 border-purple-500 shadow-elevation-2 col-span-2 md:col-span-4 lg:col-span-1',
+        activeText: 'text-purple-700'
+      }
+    };
+
+    // 1. Load Stats
+    async function loadStats() {
+      try {
+        const res = await fetch('/api/stats');
+        if (!res.ok) return;
+        const data = await res.json();
+
+        document.getElementById('statStrongCount').textContent = data.funnel.strong_signal_count;
+        document.getElementById('statNeedsValCount').textContent = data.funnel.needs_validation_count;
+        document.getElementById('statAllCount').textContent = data.funnel.unique_candidates;
+        document.getElementById('statRejectCount').textContent = data.funnel.reject_count;
+        document.getElementById('statProcessedFiles').textContent = data.files.processed_count;
+
+        const totalUniq = data.funnel.unique_candidates || 1;
+        const strongPct = ((data.funnel.strong_signal_count / totalUniq) * 100).toFixed(1);
+        document.getElementById('statStrongPct').textContent = `${strongPct}%`;
+
+        const unprocessedAlert = document.getElementById('statUnprocessedAlert');
+        if (data.files.unprocessed_count > 0) {
+          unprocessedAlert.innerHTML = `<span class="text-amber-600 font-bold flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-amber-500 mr-1 animate-ping"></span>${data.files.unprocessed_count} new in input/</span>`;
+        } else {
+          unprocessedAlert.innerHTML = '<span class="text-emerald-700 font-medium flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-1"></span>All synchronized</span>';
+        }
+
+      } catch (err) {
+        console.error('Error fetching stats:', err);
+      }
+    }
+
+    // 2. Tab Navigation
+    function setTab(tab) {
+      currentTab = tab;
+      currentPage = 1;
+
+      ['qualified', 'needs_review', 'all', 'reject', 'files'].forEach(t => {
+        const card = document.getElementById(`card-${t}`);
+        if (!card) return;
+        const indicator = card.querySelector('.card-active-indicator');
+        
+        if (t === tab) {
+          const meta = tabMetadata[t] || tabMetadata.qualified;
+          card.className = meta.activeCardClass;
+          if (indicator) {
+            indicator.className = `card-active-indicator text-[10px] font-bold uppercase tracking-wider ${meta.activeText}`;
+            indicator.classList.remove('hidden');
+          }
+        } else {
+          card.className = `card-selector bg-white p-4 rounded-xl border border-slate-200/90 shadow-elevation-1 hover:border-slate-300 hover:shadow-elevation-2 transition cursor-pointer relative select-none opacity-80 hover:opacity-100 ${t === 'files' ? 'col-span-2 md:col-span-4 lg:col-span-1' : ''}`;
+          if (indicator) {
+            indicator.classList.add('hidden');
+          }
+        }
+      });
+
+      const meta = tabMetadata[tab] || tabMetadata.qualified;
+      const titleElem = document.getElementById('currentViewTitle');
+      if (titleElem) titleElem.textContent = meta.title;
+
+      const leadsSection = document.getElementById('leadsTableSection');
+      const filesSection = document.getElementById('processedFilesSection');
+      const leadsFilterControls = document.getElementById('leadsFilterControls');
+
+      if (tab === 'files') {
+        leadsSection.classList.add('hidden');
+        leadsFilterControls.classList.add('hidden');
+        filesSection.classList.remove('hidden');
+        loadProcessedFiles();
+      } else {
+        filesSection.classList.add('hidden');
+        leadsFilterControls.classList.remove('hidden');
+        leadsSection.classList.remove('hidden');
+        loadLeads();
+      }
+    }
+
+    function debounceSearch() {
+      const val = document.getElementById('searchInput').value;
+      document.getElementById('clearSearchBtn').classList.toggle('hidden', !val);
+
+      clearTimeout(searchDebounceTimeout);
+      searchDebounceTimeout = setTimeout(() => {
+        currentPage = 1;
+        loadLeads();
+      }, 250);
+    }
+
+    function applyFilters() {
+      currentPage = 1;
+      loadLeads();
+    }
+
+    function changePage(delta) {
+      currentPage += delta;
+      loadLeads();
+    }
+
+    // 3. Load Leads Table
+    async function loadLeads() {
+      const search = document.getElementById('searchInput').value;
+      const state = document.getElementById('stateFilter').value;
+      const locStatus = document.getElementById('locationStatusFilter').value;
+
+      const url = `/api/leads?tab=${currentTab}&search=${encodeURIComponent(search)}&state=${encodeURIComponent(state)}&location_status=${encodeURIComponent(locStatus)}&page=${currentPage}&limit=${pageSize}`;
+
+      const tbody = document.getElementById('leadsTableBody');
+      tbody.innerHTML = `
+        <tr>
+          <td colspan="7" class="py-16 text-center text-slate-400">
+            <div class="flex flex-col items-center justify-center space-y-2">
+              <i data-lucide="loader-2" class="w-6 h-6 animate-spin text-sky-600"></i>
+              <span class="text-xs font-medium">Filtering candidates...</span>
+            </div>
+          </td>
+        </tr>
+      `;
+      lucide.createIcons();
+
+      try {
+        const res = await fetch(url);
+        const data = await res.json();
+
+        const meta = tabMetadata[currentTab] || tabMetadata.qualified;
+        const viewBadge = document.getElementById('currentViewBadge');
+        if (viewBadge) {
+          viewBadge.textContent = `${data.total} leads`;
+          viewBadge.className = `badge-pill ${meta.badgeBg} font-bold tabular-nums`;
+        }
+
+        document.getElementById('pageTotalCount').textContent = data.total;
+        const start = data.total === 0 ? 0 : (data.page - 1) * data.limit + 1;
+        const end = Math.min(data.page * data.limit, data.total);
+        document.getElementById('pageShowingStart').textContent = start;
+        document.getElementById('pageShowingEnd').textContent = end;
+        document.getElementById('currentPageNum').textContent = data.page;
+        document.getElementById('totalPagesNum').textContent = data.total_pages;
+
+        document.getElementById('prevPageBtn').disabled = data.page <= 1;
+        document.getElementById('nextPageBtn').disabled = data.page >= data.total_pages;
+
+        if (!data.leads || data.leads.length === 0) {
+          tbody.innerHTML = `
+            <tr>
+              <td colspan="7" class="py-16 text-center text-slate-400">
+                <i data-lucide="filter-x" class="w-8 h-8 mx-auto mb-2 text-slate-300"></i>
+                <p class="font-semibold text-slate-700 text-xs">No prospects found matching your active criteria.</p>
+                <button onclick="clearAllFilters()" class="mt-2 text-xs text-sky-600 font-semibold hover:underline">Clear all active filters</button>
+              </td>
+            </tr>
+          `;
+          lucide.createIcons();
+          return;
+        }
+
+        tbody.innerHTML = data.leads.map(lead => {
+          // Status Pill
+          let statusBadge = '';
+          if (lead.qualification_status === 'Strong Signal') {
+            statusBadge = '<span class="badge-pill bg-emerald-50 text-emerald-800 border border-emerald-200/80"><span class="pulse-dot bg-emerald-500"></span>Strong Signal</span>';
+          } else if (lead.qualification_status === 'Needs Validation') {
+            statusBadge = '<span class="badge-pill bg-amber-50 text-amber-800 border border-amber-200/80"><span class="pulse-dot bg-amber-500"></span>Needs Validation</span>';
+          } else {
+            statusBadge = '<span class="badge-pill bg-rose-50 text-rose-800 border border-rose-200/80"><span class="pulse-dot bg-rose-500"></span>Reject</span>';
+          }
+
+          // Location Pill
+          let locBadge = '';
+          if (lead.location_verification_status === 'CURRENT_RESIDENT') {
+            locBadge = '<span class="badge-pill bg-sky-50 text-sky-800 border border-sky-200 font-medium"><i data-lucide="map-pin" class="w-2.5 h-2.5 text-sky-600"></i>Resident</span>';
+          } else if (lead.location_verification_status === 'LOCATION_UNVERIFIED') {
+            locBadge = '<span class="badge-pill bg-amber-50/70 text-amber-700 border border-amber-200 font-medium">Unverified</span>';
+          } else if (lead.location_verification_status === 'ORIGIN_ONLY') {
+            locBadge = '<span class="badge-pill bg-purple-50 text-purple-700 border border-purple-200 font-medium">Origin Only</span>';
+          } else {
+            locBadge = '<span class="badge-pill bg-slate-100 text-slate-600 font-medium">Outside</span>';
+          }
+
+          // Score Badge Color
+          const score = lead.score || 0;
+          let scoreClass = 'bg-slate-100 text-slate-700 border-slate-200';
+          if (score >= 75) scoreClass = 'bg-emerald-50 text-emerald-800 border-emerald-200 font-bold';
+          else if (score >= 50) scoreClass = 'bg-amber-50 text-amber-800 border-amber-200 font-bold';
+          else scoreClass = 'bg-rose-50 text-rose-800 border-rose-200';
+
+          const statement = lead.dubai_property_evidence || '';
+          const truncatedStatement = statement.length > 130 ? statement.substring(0, 130) + '...' : statement;
+
+          return `
+            <tr class="hover:bg-slate-50/90 transition group">
+              
+              <!-- Score & ID -->
+              <td class="py-3 px-4 whitespace-nowrap">
+                <div class="flex items-center space-x-2.5">
+                  <span class="w-8 h-8 rounded-lg flex items-center justify-center font-mono text-xs border ${scoreClass} tabular-nums shadow-2xs">
+                    ${score}
+                  </span>
+                  <span class="font-mono text-xs font-semibold text-slate-700">${lead.candidate_id || lead.record_id}</span>
+                </div>
+              </td>
+
+              <!-- Prospect & Platform -->
+              <td class="py-3 px-4">
+                <div class="font-bold text-slate-900 truncate max-w-[180px]">${lead.public_name_or_handle || 'Anonymous'}</div>
+                <div class="text-[11px] text-slate-500 flex items-center space-x-1.5 mt-0.5">
+                  <span class="font-medium truncate max-w-[150px]">${lead.platform || 'Online Post'}</span>
+                </div>
+              </td>
+
+              <!-- Geographic Verification -->
+              <td class="py-3 px-4">
+                <div class="flex items-center space-x-1.5">
+                  ${locBadge}
+                  <span class="font-semibold text-slate-800 truncate max-w-[130px]">${lead.city_state || lead.state || 'Unspecified'}</span>
+                </div>
+                ${lead.location_evidence_text ? `<div class="text-[11px] text-slate-500 italic truncate max-w-[180px] mt-1 pl-1 border-l border-slate-300">"${lead.location_evidence_text}"</div>` : ''}
+              </td>
+
+              <!-- Statement Excerpt -->
+              <td class="py-3 px-4 max-w-sm">
+                <p class="text-xs text-slate-700 italic line-clamp-2 leading-relaxed">"${truncatedStatement}"</p>
+                ${lead.intent_evidence && lead.intent_evidence !== 'None' ? `<div class="text-[11px] text-indigo-700 font-medium mt-1 truncate">Intent: "${lead.intent_evidence}"</div>` : ''}
+              </td>
+
+              <!-- Financials & Target Areas -->
+              <td class="py-3 px-4 whitespace-nowrap">
+                <div class="font-semibold text-emerald-800 tabular-nums">
+                  ${lead.ticket_size_budget && lead.ticket_size_budget !== 'None' ? lead.ticket_size_budget : '<span class="text-slate-400 font-normal">Budget unstated</span>'}
+                </div>
+                <div class="text-[11px] text-slate-500 truncate max-w-[150px] mt-0.5">
+                  ${lead.preferred_areas && lead.preferred_areas !== 'None' ? lead.preferred_areas : '<span class="text-slate-400">Area unspecified</span>'}
+                </div>
+              </td>
+
+              <!-- Freshness -->
+              <td class="py-3 px-4 whitespace-nowrap">
+                <div class="font-mono text-xs font-semibold text-slate-700 tabular-nums">${lead.signal_age_days !== undefined ? lead.signal_age_days + 'd old' : 'Fresh'}</div>
+                <div class="text-[10px] mt-0.5 font-medium">
+                  ${lead.is_fresh ? '<span class="text-emerald-700">&le; 180 days</span>' : '<span class="text-rose-600 font-bold">Stale (&gt;180d)</span>'}
+                </div>
+              </td>
+
+              <!-- Action Button -->
+              <td class="py-3 px-4 whitespace-nowrap text-right">
+                <button onclick="openReviewModal('${lead.candidate_id || lead.record_id}')" class="inline-flex items-center px-3 py-1.5 text-xs font-bold text-sky-700 bg-sky-50/80 hover:bg-sky-100/90 rounded-lg transition border border-sky-200/80 shadow-2xs group-hover:border-sky-300">
+                  <i data-lucide="edit-3" class="w-3 h-3 mr-1"></i>
+                  <span>Review</span>
+                </button>
+              </td>
+
+            </tr>
+          `;
+        }).join('');
+
+        lucide.createIcons();
+
+      } catch (err) {
+        console.error('Failed to load leads:', err);
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="7" class="py-12 text-center text-rose-500 font-semibold">
+              Failed to connect to backend leads service.
+            </td>
+          </tr>
+        `;
+      }
+    }
+
+    function clearAllFilters() {
+      document.getElementById('searchInput').value = '';
+      document.getElementById('clearSearchBtn').classList.add('hidden');
+      document.getElementById('stateFilter').value = 'all';
+      document.getElementById('locationStatusFilter').value = 'all';
+      applyFilters();
+    }
+
+    // 4. Load Processed Files Registry
+    async function loadProcessedFiles() {
+      const tbody = document.getElementById('processedFilesTableBody');
+      try {
+        const res = await fetch('/api/processed-files');
+        const data = await res.json();
+
+        const viewBadge = document.getElementById('currentViewBadge');
+        if (viewBadge) {
+          viewBadge.textContent = `${data.total_tracked} files`;
+          viewBadge.className = `badge-pill ${tabMetadata.files.badgeBg} font-bold tabular-nums`;
+        }
+
+        if (!data.files || data.files.length === 0) {
+          tbody.innerHTML = `
+            <tr>
+              <td colspan="5" class="py-10 text-center text-slate-400">
+                No input files detected in input/ directory.
+              </td>
+            </tr>
+          `;
+          return;
+        }
+
+        tbody.innerHTML = data.files.map(f => {
+          const statusBadge = f.is_processed
+            ? '<span class="badge-pill bg-emerald-50 text-emerald-800 border border-emerald-200"><span class="pulse-dot bg-emerald-500"></span>PROCESSED</span>'
+            : '<span class="badge-pill bg-amber-50 text-amber-800 border border-amber-200"><span class="pulse-dot bg-amber-500 animate-ping"></span>UNPROCESSED / NEW</span>';
+
+          const dateStr = f.processed_at ? new Date(f.processed_at).toLocaleString() : 'Pending Execution';
+
+          return `
+            <tr class="hover:bg-slate-50 transition">
+              <td class="py-3 px-4 font-mono text-xs font-bold text-slate-900">${f.filename}</td>
+              <td class="py-3 px-4">${statusBadge}</td>
+              <td class="py-3 px-4 text-xs font-semibold text-slate-700 tabular-nums">${f.records_count !== null ? f.records_count + ' records' : '-'}</td>
+              <td class="py-3 px-4 text-xs text-slate-500 tabular-nums">${dateStr}</td>
+              <td class="py-3 px-4 font-mono text-[11px] text-slate-400 truncate max-w-xs">${f.checksum_md5 || '-'}</td>
+            </tr>
+          `;
+        }).join('');
+
+        lucide.createIcons();
+      } catch (err) {
+        console.error('Failed to load processed files:', err);
+      }
+    }
+
+    // 5. Open Review Modal
+    async function openReviewModal(candidateId) {
+      currentActiveCandidateId = candidateId;
+      try {
+        const res = await fetch(`/api/leads/${candidateId}`);
+        if (!res.ok) {
+          showToast(`Candidate ${candidateId} not found`, true);
+          return;
+        }
+        const { lead } = await res.json();
+
+        // Header info
+        document.getElementById('modalHeaderScore').textContent = lead.score || 0;
+        document.getElementById('modalHeaderHandle').textContent = lead.public_name_or_handle || 'Unknown Prospect';
+        document.getElementById('modalHeaderMeta').textContent = `${lead.platform || 'Online'} • ID: ${lead.candidate_id || lead.record_id}`;
+
+        const statusBadge = document.getElementById('modalHeaderStatusBadge');
+        if (lead.qualification_status === 'Strong Signal') {
+          statusBadge.className = 'badge-pill bg-emerald-400/20 text-emerald-300 border border-emerald-400/30';
+          statusBadge.innerHTML = '<span class="pulse-dot bg-emerald-400"></span>Strong Signal';
+        } else if (lead.qualification_status === 'Needs Validation') {
+          statusBadge.className = 'badge-pill bg-amber-400/20 text-amber-300 border border-amber-400/30';
+          statusBadge.innerHTML = '<span class="pulse-dot bg-amber-400"></span>Needs Validation';
+        } else {
+          statusBadge.className = 'badge-pill bg-rose-400/20 text-rose-300 border border-rose-400/30';
+          statusBadge.innerHTML = '<span class="pulse-dot bg-rose-400"></span>Reject';
+        }
+
+        // Verbatim Statement & Source Link
+        document.getElementById('modalVerbatimStatement').textContent = `"${lead.dubai_property_evidence || 'No statement text recorded.'}"`;
+        const link = document.getElementById('modalSourceLink');
+        if (lead.source_link && lead.source_link !== 'None') {
+          link.href = lead.source_link;
+          link.classList.remove('hidden');
+        } else {
+          link.classList.add('hidden');
+        }
+
+        // 6-Point Matrix
+        document.getElementById('modalEvidenceIntent').textContent = lead.intent_evidence || 'No explicit purchase intent stated.';
+        document.getElementById('modalEvidenceReadiness').textContent = lead.readiness_evidence || 'No transactional readiness step confirmed.';
+        document.getElementById('modalEvidenceBudget').textContent = lead.budget_evidence || lead.ticket_size_budget || 'No budget stated.';
+        document.getElementById('modalEvidenceTimeline').textContent = lead.timeline_evidence || 'Timeline undefined.';
+        document.getElementById('modalEvidenceProject').textContent = lead.project_evidence || lead.preferred_areas || 'Specific projects/developers unspecified.';
+        document.getElementById('modalEvidenceFreshness').textContent = `${lead.signal_age_days}d old (${lead.original_publication_date || lead.discovery_date})`;
+
+        // Pills
+        document.getElementById('modalPillIntent').textContent = (lead.intent_evidence && lead.intent_evidence !== 'None') ? '30 / 30' : '0 / 30';
+        document.getElementById('modalPillReadiness').textContent = (lead.readiness_evidence && lead.readiness_evidence !== 'None') ? '20 / 20' : '0 / 20';
+        document.getElementById('modalPillBudget').textContent = (lead.ticket_size_budget && lead.ticket_size_budget !== 'None') ? '15 / 15' : '0 / 15';
+        document.getElementById('modalPillTimeline').textContent = (lead.timeline_evidence && lead.timeline_evidence !== 'None') ? '15 / 15' : '0 / 15';
+        document.getElementById('modalPillProject').textContent = (lead.preferred_areas && lead.preferred_areas !== 'None') ? '10 / 10' : '0 / 10';
+        document.getElementById('modalPillFreshness').textContent = lead.is_fresh ? '10 / 10' : '0 / 10';
+
+        // Form Fields
+        document.getElementById('modalInputLocStatus').value = lead.location_verification_status || 'LOCATION_UNVERIFIED';
+        document.getElementById('modalInputScore').value = lead.score || 0;
+        document.getElementById('modalInputLocEvidence').value = lead.location_evidence_text || '';
+        document.getElementById('modalInputNotes').value = lead.human_review_notes || '';
+
+        document.getElementById('reviewModal').classList.remove('hidden');
+        lucide.createIcons();
+
+      } catch (err) {
+        console.error('Failed to open modal:', err);
+        showToast('Error opening review modal', true);
+      }
+    }
+
+    function closeReviewModal() {
+      document.getElementById('reviewModal').classList.add('hidden');
+      currentActiveCandidateId = null;
+    }
+
+    // 6. Submit Review Decision
+    async function submitReviewAction(action) {
+      if (!currentActiveCandidateId) return;
+
+      const locStatus = document.getElementById('modalInputLocStatus').value;
+      const score = document.getElementById('modalInputScore').value;
+      const locEvidence = document.getElementById('modalInputLocEvidence').value;
+      const notes = document.getElementById('modalInputNotes').value;
+
+      try {
+        const res = await fetch(`/api/leads/${currentActiveCandidateId}/review`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            action: action,
+            location_verification_status: locStatus,
+            location_evidence_text: locEvidence,
+            score: score ? parseInt(score) : null,
+            notes: notes,
+            reviewer: 'Human Auditor (Executive Desk)'
+          })
+        });
+
+        const data = await res.json();
+        if (data.success) {
+          showToast(data.message || 'Lead decision updated and synchronized!');
+          closeReviewModal();
+          await loadStats();
+          await loadLeads();
+        } else {
+          showToast(data.error || 'Failed to update lead', true);
+        }
+      } catch (err) {
+        console.error('Review submit failed:', err);
+        showToast('Error submitting review action', true);
+      }
+    }
+
+    // 7. Pipeline Execution Modal & Raw Input Upload
+    let selectedPipelineFile = null;
+
+    function openPipelineModal() {
+      document.getElementById('pipelineLogsContainer').classList.add('hidden');
+      document.getElementById('pipelineRunningStatus').classList.add('hidden');
+      document.getElementById('startPipelineBtn').disabled = false;
+      document.getElementById('pipelineModal').classList.remove('hidden');
+      lucide.createIcons();
+    }
+
+    function closePipelineModal() {
+      document.getElementById('pipelineModal').classList.add('hidden');
+    }
+
+    function handleFileSelected(e) {
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      const files = (e.target && e.target.files) || (e.dataTransfer && e.dataTransfer.files);
+      if (!files || files.length === 0) return;
+      
+      const file = files[0];
+      const lower = file.name.toLowerCase();
+      if (!lower.endsWith('.csv') && !lower.endsWith('.json')) {
+        showToast('Please select a valid .csv or .json raw leads file', true);
+        return;
+      }
+
+      selectedPipelineFile = file;
+      document.getElementById('selectedFileName').textContent = file.name;
+      document.getElementById('selectedFileSize').textContent = formatBytes(file.size);
+      document.getElementById('selectedFileInfo').classList.remove('hidden');
+      document.getElementById('uploadPrompt').classList.add('hidden');
+
+      checkFileStatus(file);
+    }
+
+    async function checkFileStatus(file) {
+      const alertBox = document.getElementById('fileStatusAlert');
+      const badge = document.getElementById('selectedFileStatusBadge');
+
+      alertBox.className = 'p-3 rounded-xl border text-xs flex items-center space-x-2 bg-slate-50 border-slate-200 text-slate-600';
+      alertBox.innerHTML = '<i data-lucide="loader-2" class="w-3.5 h-3.5 animate-spin text-slate-500"></i><span>Checking processed files registry...</span>';
+      alertBox.classList.remove('hidden');
+      lucide.createIcons();
+
+      try {
+        const formData = new FormData();
+        formData.append('file', file);
+        const res = await fetch('/api/pipeline/check-file', {
+          method: 'POST',
+          body: formData
+        });
+        const data = await res.json();
+
+        if (data.already_processed) {
+          badge.textContent = 'Already Processed';
+          badge.className = 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 border border-amber-300';
+          badge.classList.remove('hidden');
+
+          alertBox.className = 'p-3 rounded-xl border text-xs flex items-start space-x-2.5 bg-amber-50 border-amber-200 text-amber-900';
+          alertBox.innerHTML = `
+            <i data-lucide="alert-triangle" class="w-4 h-4 text-amber-600 mt-0.5 shrink-0"></i>
+            <div>
+              <span class="font-bold">Already Processed File:</span>
+              <p class="mt-0.5 text-[11px] text-amber-800">${data.message}</p>
+              <p class="mt-1 text-[10px] text-amber-700 italic">Executing without 'Reset &amp; Reprocess All' will skip running to prevent duplicates.</p>
+            </div>
+          `;
+        } else {
+          badge.textContent = 'New Input File';
+          badge.className = 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300';
+          badge.classList.remove('hidden');
+
+          alertBox.className = 'p-3 rounded-xl border text-xs flex items-start space-x-2.5 bg-emerald-50 border-emerald-200 text-emerald-900';
+          alertBox.innerHTML = `
+            <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600 mt-0.5 shrink-0"></i>
+            <div>
+              <span class="font-bold">New Unprocessed File:</span>
+              <p class="mt-0.5 text-[11px] text-emerald-800">Upon execution, this file will be automatically moved into <code class="font-mono bg-emerald-100 px-1 py-0.5 rounded text-emerald-900">input/</code> and ingested into the pipeline.</p>
+            </div>
+          `;
+        }
+      } catch (err) {
+        alertBox.classList.add('hidden');
+        badge.classList.add('hidden');
+      } finally {
+        lucide.createIcons();
+      }
+    }
+
+    function clearSelectedFile(e) {
+      if (e) {
+        e.stopPropagation();
+      }
+      selectedPipelineFile = null;
+      const fileInput = document.getElementById('pipelineFileInput');
+      if (fileInput) fileInput.value = '';
+      document.getElementById('selectedFileInfo').classList.add('hidden');
+      document.getElementById('uploadPrompt').classList.remove('hidden');
+      document.getElementById('fileStatusAlert').classList.add('hidden');
+      document.getElementById('selectedFileStatusBadge').classList.add('hidden');
+      lucide.createIcons();
+    }
+
+    function formatBytes(bytes) {
+      if (!bytes || bytes === 0) return '0 B';
+      const k = 1024;
+      const sizes = ['B', 'KB', 'MB', 'GB'];
+      const i = Math.floor(Math.log(bytes) / Math.log(k));
+      return (bytes / Math.pow(k, i)).toFixed(1) + ' ' + sizes[i];
+    }
+
+    async function runPipelineTrigger() {
+      const resetAll = document.getElementById('pipelineResetCheckbox').checked;
+      const runningStatus = document.getElementById('pipelineRunningStatus');
+      const logsContainer = document.getElementById('pipelineLogsContainer');
+      const logsOutput = document.getElementById('pipelineLogsOutput');
+      const startBtn = document.getElementById('startPipelineBtn');
+
+      runningStatus.classList.remove('hidden');
+      logsContainer.classList.add('hidden');
+      startBtn.disabled = true;
+
+      try {
+        let res;
+        if (selectedPipelineFile) {
+          const formData = new FormData();
+          formData.append('file', selectedPipelineFile);
+          formData.append('reset', resetAll ? 'true' : 'false');
+          res = await fetch('/api/pipeline/run', {
+            method: 'POST',
+            body: formData
+          });
+        } else {
+          res = await fetch('/api/pipeline/run', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ reset: resetAll })
+          });
+        }
+
+        const data = await res.json();
+        runningStatus.classList.add('hidden');
+        logsContainer.classList.remove('hidden');
+        logsOutput.textContent = data.logs || (data.success ? 'Pipeline finished successfully.' : 'Execution failed.');
+
+        if (data.success) {
+          if (data.already_processed) {
+            showToast(data.message || 'File already processed. Skipped execution without re-running.', true);
+          } else {
+            showToast(`Pipeline execution completed! (Reset: ${resetAll ? 'YES' : 'NO'})`);
+            clearSelectedFile();
+            await loadStats();
+            await loadLeads();
+            await loadProcessedFiles();
+          }
+        } else {
+          showToast(`Pipeline error: ${data.error}`, true);
+        }
+      } catch (err) {
+        console.error('Pipeline run failed:', err);
+        runningStatus.classList.add('hidden');
+        logsContainer.classList.remove('hidden');
+        logsOutput.textContent = 'Error triggering pipeline: ' + err.message;
+        showToast('Pipeline execution request failed', true);
+      } finally {
+        startBtn.disabled = false;
+        lucide.createIcons();
+      }
+    }
+
+    function copyLogsToClipboard() {
+      const logs = document.getElementById('pipelineLogsOutput').textContent;
+      navigator.clipboard.writeText(logs).then(() => {
+        showToast('Logs copied to clipboard!');
+      });
+    }
+
+    async function triggerPipelineRun(reset) {
+      document.getElementById('pipelineResetCheckbox').checked = reset;
+      openPipelineModal();
+      await runPipelineTrigger();
+    }
+  </script>
+</body>
+</html>

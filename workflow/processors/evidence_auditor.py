@@ -186,7 +186,7 @@ class EvidenceAuditor:
         needs_val_sorted = sorted(
             needs_val_pool,
             key=lambda x: (
-                1 if "STALE_SIGNAL_GT_180D" in x.get("human_review_flags", []) else 0,
+                1 if "STALE_SIGNAL_GT_180D" in (x.get("human_review_flags") or []) else 0,
                 x.get("score", 0)
             ),
             reverse=True

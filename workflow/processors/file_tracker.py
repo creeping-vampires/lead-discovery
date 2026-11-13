@@ -82,6 +82,27 @@ class InputFileTracker:
 
         return True
 
+    def find_processed_entry(
+        self,
+        filename: Optional[str] = None,
+        checksum: Optional[str] = None
+    ) -> Optional[Dict[str, Any]]:
+        """
+        Looks up a processed entry by filename or by MD5 checksum.
+        Returns the entry dict if found with status == 'PROCESSED', else None.
+        """
+        if filename and filename in self.processed_data:
+            entry = self.processed_data[filename]
+            if entry.get("status") == "PROCESSED":
+                return entry
+
+        if checksum:
+            for entry in self.processed_data.values():
+                if entry.get("status") == "PROCESSED" and entry.get("checksum_md5") == checksum:
+                    return entry
+
+        return None
+
     def get_unprocessed_files(self, input_dir: str, check_checksum: bool = True) -> List[str]:
         """
         Discovers all supported input files (.csv, .json) in input_dir

@@ -60,6 +60,12 @@ class SourceVerifier:
             re.IGNORECASE
         )
 
+        # 6. LinkedIn Post / Pulse / Profile Pattern
+        self.linkedin_url_pattern = re.compile(
+            r'^https?://(?:[a-z]{2,3}\.)?linkedin\.com/(?:in|posts|pulse|feed/update)/([A-Za-z0-9_/-]+)',
+            re.IGNORECASE
+        )
+
         # Content deletion & removal indicators
         self.deletion_exact_pattern = re.compile(
             r'^\s*\[(?:deleted|removed)\]\s*$',
@@ -136,6 +142,12 @@ class SourceVerifier:
             if self.quora_url_pattern.match(url):
                 return True, "Valid Quora public Q&A answer link"
             return False, "Malformed Quora URL: does not match /<question>/answer/<author> structure"
+
+        # LinkedIn Posts, Pulse Articles, and Public Inquiries
+        if "linkedin" in domain or "linkedin" in p_lower:
+            if self.linkedin_url_pattern.match(url) or "linkedin.com" in url:
+                return True, "Valid LinkedIn post/profile reference"
+            return False, "Malformed LinkedIn URL"
 
         # Dubai Property Expos & Roadshows
         if any(d in domain for d in ("dubaipropertyshow", "dubaipropertyexpo", "teamexpo", "expoplatform")) or "expo" in p_lower:

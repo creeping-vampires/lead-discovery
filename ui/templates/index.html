@@ -1185,6 +1185,12 @@
         return `https://www.indianrealestateforum.com/forum/members/${encodeURIComponent(handle)}/`;
       }
 
+      // LinkedIn
+      if (p.includes('linkedin')) {
+        const clean = handle.replace(/^in\//i, '').trim();
+        return `https://www.linkedin.com/in/${encodeURIComponent(clean)}`;
+      }
+
       return null;
     }
 
@@ -1209,6 +1215,9 @@
       const s = sourceLink.toLowerCase();
       if (s.includes('youtube.com') || s.includes('youtu.be')) {
         return { url: sourceLink, label: 'Video', icon: 'video', colorClass: 'bg-rose-50 text-rose-700 border-rose-200/80 hover:bg-rose-100' };
+      }
+      if (s.includes('linkedin.com')) {
+        return { url: sourceLink, label: 'LinkedIn', icon: 'share-2', colorClass: 'bg-sky-50 text-sky-800 border-sky-200/80 hover:bg-sky-100' };
       }
       if (s.includes('reddit.com')) {
         return { url: sourceLink, label: 'Discussion', icon: 'message-circle', colorClass: 'bg-orange-50 text-orange-700 border-orange-200/80 hover:bg-orange-100' };

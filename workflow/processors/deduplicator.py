@@ -28,6 +28,8 @@ class Deduplicator:
             return "iref"
         elif "quora" in p:
             return "quora"
+        elif "linkedin" in p:
+            return "linkedin"
         elif "expo" in p or "roadshow" in p or "propertyshow" in p:
             return "expo"
         return p or "unknown"

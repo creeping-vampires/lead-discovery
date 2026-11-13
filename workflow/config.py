@@ -161,7 +161,9 @@ PERMITTED_SOURCE_DOMAINS: Set[str] = {
     "www.thehindu.com",
     "timesofindia.indiatimes.com",
     "gulfnews.com",
-    "www.gulfnews.com"
+    "www.gulfnews.com",
+    "linkedin.com",
+    "www.linkedin.com"
 }
 
 # Manual review sampling targets

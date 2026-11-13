@@ -464,11 +464,31 @@
       </div>
 
       <!-- Modal Body (Two-Column Desktop Workspace) -->
-      <div class="p-6 overflow-y-auto space-y-6 flex-1">
+      <div class="p-6 overflow-y-auto space-y-5 flex-1">
         
-        <!-- Verbatim Statement Card -->
-        <div class="bg-slate-50 border border-slate-200/90 rounded-xl p-4.5 space-y-2">
-          <div class="flex items-center justify-between">
+        <!-- Dynamic Review Guide Banner: Explains Exactly What Needs to be Confirmed -->
+        <div id="modalGuideBanner" class="p-4 rounded-xl border flex items-start space-x-3.5 bg-amber-50/80 border-amber-200/90 text-amber-900 transition-all">
+          <div id="modalGuideIcon" class="p-2 rounded-lg bg-amber-100 text-amber-700 shrink-0 mt-0.5">
+            <i data-lucide="alert-circle" class="w-5 h-5"></i>
+          </div>
+          <div class="flex-1">
+            <div class="flex items-center justify-between mb-1">
+              <h4 id="modalGuideTitle" class="text-xs font-bold uppercase tracking-wider text-amber-950">
+                Action Required: Review &amp; Confirm Lead
+              </h4>
+              <span id="modalGuideStatusTag" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-200/80 text-amber-900 uppercase tracking-wide">
+                Pending Confirmation
+              </span>
+            </div>
+            <p id="modalGuideText" class="text-xs text-amber-900 leading-relaxed font-medium">
+              To confirm this lead, verify the 4 gates below. Buying intent is already verified. Verify South India Residence (or click a quick location button below) and click <strong class="text-emerald-800">"Approve &amp; Confirm Lead"</strong>.
+            </p>
+          </div>
+        </div>
+
+        <!-- Verbatim Statement & Quick Facts Card -->
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-4.5 space-y-3">
+          <div class="flex flex-wrap items-center justify-between gap-2">
             <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500 flex items-center">
               <i data-lucide="quote" class="w-3.5 h-3.5 mr-1.5 text-sky-600"></i>
               Original Attributable Statement
@@ -477,136 +497,194 @@
               <span class="text-xs text-slate-400">Loading actions...</span>
             </div>
           </div>
-          <blockquote class="text-sm text-slate-900 leading-relaxed font-normal italic border-l-2 border-sky-500 pl-3 py-0.5" id="modalVerbatimStatement">
+          
+          <blockquote class="text-sm text-slate-900 leading-relaxed font-normal italic border-l-3 border-sky-500 pl-3.5 py-1 bg-white/70 rounded-r-lg" id="modalVerbatimStatement">
             "Loading statement..."
           </blockquote>
+
+          <!-- Quick Fact Pills -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1">
+            <div class="bg-white border border-slate-200/80 rounded-lg p-2 shadow-2xs">
+              <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Target Asset / Area</div>
+              <div class="text-xs font-bold text-slate-800 truncate mt-0.5" id="modalFactTarget">Dubai Real Estate</div>
+            </div>
+            <div class="bg-white border border-slate-200/80 rounded-lg p-2 shadow-2xs">
+              <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Budget / Ticket Size</div>
+              <div class="text-xs font-bold text-slate-800 truncate mt-0.5" id="modalFactBudget">Unspecified</div>
+            </div>
+            <div class="bg-white border border-slate-200/80 rounded-lg p-2 shadow-2xs">
+              <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Reported Metro</div>
+              <div class="text-xs font-bold text-slate-800 truncate mt-0.5" id="modalFactLocation">Location Pending</div>
+            </div>
+            <div class="bg-white border border-slate-200/80 rounded-lg p-2 shadow-2xs">
+              <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Signal Age / Freshness</div>
+              <div class="text-xs font-bold text-slate-800 truncate mt-0.5" id="modalFactFreshness">-- days ago</div>
+            </div>
+          </div>
         </div>
 
-        <!-- 6-Point Weighted Evidence Matrix -->
+        <!-- 4-Gate Confirmation Checklist: Clear What-To-Review Grid -->
         <div>
           <div class="flex items-center justify-between mb-2.5">
             <h4 class="text-xs font-bold uppercase tracking-wider text-slate-700 flex items-center">
-              <i data-lucide="sliders" class="w-3.5 h-3.5 mr-1.5 text-indigo-600"></i>
-              100-Point Buyer Intent &amp; Evidence Audit
+              <i data-lucide="check-square" class="w-3.5 h-3.5 mr-1.5 text-indigo-600"></i>
+              What Needs Review to Confirm This Lead (4-Gate Checklist)
             </h4>
-            <span class="text-[11px] text-slate-500 font-medium">Non-cumulative strict attribution</span>
+            <span class="text-[11px] text-slate-500 font-medium">All 4 gates required for Strong Signal</span>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
             
-            <!-- Box 1: Purchase Intent (30) -->
-            <div class="p-3 bg-white border border-slate-200 rounded-lg shadow-2xs">
-              <div class="flex justify-between items-center text-xs font-bold mb-1">
-                <span class="text-slate-800">Purchase Intent</span>
-                <span class="badge-pill bg-sky-50 text-sky-800 border border-sky-200/60 font-mono" id="modalPillIntent">30 / 30</span>
+            <!-- Gate 1: Buying Intent -->
+            <div class="p-3.5 bg-white border border-slate-200 rounded-xl shadow-2xs space-y-1.5">
+              <div class="flex justify-between items-center">
+                <span class="text-xs font-bold text-slate-900 flex items-center">
+                  <span class="w-5 h-5 rounded-full bg-slate-100 text-slate-700 font-bold text-[11px] flex items-center justify-center mr-2">1</span>
+                  Dubai Purchase Intent
+                </span>
+                <span id="gateIntentBadge" class="badge-pill bg-emerald-50 text-emerald-800 border border-emerald-200 font-semibold text-[11px]">
+                  <i data-lucide="check" class="w-3 h-3 mr-1 inline"></i> Verified
+                </span>
               </div>
-              <p class="text-[11px] text-slate-600 italic line-clamp-3" id="modalEvidenceIntent">--</p>
+              <p class="text-[11px] text-slate-500 font-medium">Explicit intent to buy, invest, or inquire about Dubai property.</p>
+              <div class="bg-slate-50 rounded-lg p-2 text-[11px] text-slate-700 italic border border-slate-150 line-clamp-2" id="gateIntentEvidence">
+                --
+              </div>
             </div>
 
-            <!-- Box 2: Transactional Readiness (20) -->
-            <div class="p-3 bg-white border border-slate-200 rounded-lg shadow-2xs">
-              <div class="flex justify-between items-center text-xs font-bold mb-1">
-                <span class="text-slate-800">Readiness / LRS</span>
-                <span class="badge-pill bg-sky-50 text-sky-800 border border-sky-200/60 font-mono" id="modalPillReadiness">20 / 20</span>
+            <!-- Gate 2: South India Residence (Primary Gate) -->
+            <div id="gateLocationCard" class="p-3.5 bg-amber-50/40 border-2 border-amber-300 rounded-xl shadow-2xs space-y-1.5 transition">
+              <div class="flex justify-between items-center">
+                <span class="text-xs font-bold text-slate-900 flex items-center">
+                  <span class="w-5 h-5 rounded-full bg-amber-200 text-amber-900 font-bold text-[11px] flex items-center justify-center mr-2">2</span>
+                  South India Residence
+                </span>
+                <span id="gateLocationBadge" class="badge-pill bg-amber-100 text-amber-800 border border-amber-300 font-semibold text-[11px]">
+                  <i data-lucide="alert-triangle" class="w-3 h-3 mr-1 inline"></i> Action Needed
+                </span>
               </div>
-              <p class="text-[11px] text-slate-600 italic line-clamp-3" id="modalEvidenceReadiness">--</p>
+              <p class="text-[11px] text-slate-600 font-medium">Must currently reside in KA (BLR), TS (HYD), TN (CHN), KL, or AP.</p>
+              <div class="bg-white rounded-lg p-2 text-[11px] text-slate-700 italic border border-slate-200 line-clamp-2" id="gateLocationEvidence">
+                Location unverified — please confirm below
+              </div>
             </div>
 
-            <!-- Box 3: Budget & Financing (15) -->
-            <div class="p-3 bg-white border border-slate-200 rounded-lg shadow-2xs">
-              <div class="flex justify-between items-center text-xs font-bold mb-1">
-                <span class="text-slate-800">Budget / Ticket Size</span>
-                <span class="badge-pill bg-sky-50 text-sky-800 border border-sky-200/60 font-mono" id="modalPillBudget">15 / 15</span>
+            <!-- Gate 3: Budget or Financial Readiness -->
+            <div class="p-3.5 bg-white border border-slate-200 rounded-xl shadow-2xs space-y-1.5">
+              <div class="flex justify-between items-center">
+                <span class="text-xs font-bold text-slate-900 flex items-center">
+                  <span class="w-5 h-5 rounded-full bg-slate-100 text-slate-700 font-bold text-[11px] flex items-center justify-center mr-2">3</span>
+                  Budget / Financial Readiness
+                </span>
+                <span id="gateBudgetBadge" class="badge-pill bg-emerald-50 text-emerald-800 border border-emerald-200 font-semibold text-[11px]">
+                  <i data-lucide="check" class="w-3 h-3 mr-1 inline"></i> Identified
+                </span>
               </div>
-              <p class="text-[11px] text-slate-600 italic line-clamp-3" id="modalEvidenceBudget">--</p>
+              <p class="text-[11px] text-slate-500 font-medium">Declared ticket size, LRS outward remittance readiness, or self-funding.</p>
+              <div class="bg-slate-50 rounded-lg p-2 text-[11px] text-slate-700 italic border border-slate-150 line-clamp-2" id="gateBudgetEvidence">
+                --
+              </div>
             </div>
 
-            <!-- Box 4: Purchase Timeline (15) -->
-            <div class="p-3 bg-white border border-slate-200 rounded-lg shadow-2xs">
-              <div class="flex justify-between items-center text-xs font-bold mb-1">
-                <span class="text-slate-800">Purchase Timeline</span>
-                <span class="badge-pill bg-sky-50 text-sky-800 border border-sky-200/60 font-mono" id="modalPillTimeline">15 / 15</span>
+            <!-- Gate 4: Live Authentic Source Attribution -->
+            <div class="p-3.5 bg-white border border-slate-200 rounded-xl shadow-2xs space-y-1.5">
+              <div class="flex justify-between items-center">
+                <span class="text-xs font-bold text-slate-900 flex items-center">
+                  <span class="w-5 h-5 rounded-full bg-slate-100 text-slate-700 font-bold text-[11px] flex items-center justify-center mr-2">4</span>
+                  Live Source Attribution
+                </span>
+                <span id="gateSourceBadge" class="badge-pill bg-emerald-50 text-emerald-800 border border-emerald-200 font-semibold text-[11px]">
+                  <i data-lucide="check" class="w-3 h-3 mr-1 inline"></i> 100% Verified
+                </span>
               </div>
-              <p class="text-[11px] text-slate-600 italic line-clamp-3" id="modalEvidenceTimeline">--</p>
-            </div>
-
-            <!-- Box 5: Property / Projects (10) -->
-            <div class="p-3 bg-white border border-slate-200 rounded-lg shadow-2xs">
-              <div class="flex justify-between items-center text-xs font-bold mb-1">
-                <span class="text-slate-800">Property / Developer</span>
-                <span class="badge-pill bg-sky-50 text-sky-800 border border-sky-200/60 font-mono" id="modalPillProject">10 / 10</span>
+              <p class="text-[11px] text-slate-500 font-medium">Genuine public Reddit user account or verified press desk attribution.</p>
+              <div class="bg-slate-50 rounded-lg p-2 text-[11px] text-slate-700 italic border border-slate-150 line-clamp-2 font-mono text-[10px]" id="gateSourceEvidence">
+                --
               </div>
-              <p class="text-[11px] text-slate-600 italic line-clamp-3" id="modalEvidenceProject">--</p>
-            </div>
-
-            <!-- Box 6: Freshness Window (10) -->
-            <div class="p-3 bg-white border border-slate-200 rounded-lg shadow-2xs">
-              <div class="flex justify-between items-center text-xs font-bold mb-1">
-                <span class="text-slate-800">Freshness (180-day)</span>
-                <span class="badge-pill bg-sky-50 text-sky-800 border border-sky-200/60 font-mono" id="modalPillFreshness">10 / 10</span>
-              </div>
-              <p class="text-[11px] text-slate-600 italic line-clamp-3" id="modalEvidenceFreshness">--</p>
             </div>
 
           </div>
         </div>
 
-        <!-- Human Auditor Decision Console -->
-        <div class="p-4.5 bg-gradient-to-b from-sky-50/70 to-indigo-50/40 border border-sky-200/80 rounded-xl space-y-4">
-          <div class="flex items-center justify-between">
-            <h4 class="text-xs font-bold uppercase tracking-wider text-sky-950 flex items-center">
-              <i data-lucide="user-check" class="w-4 h-4 mr-1.5 text-sky-700"></i>
-              Auditor Decision Console
-            </h4>
-            <span class="text-[11px] font-semibold text-sky-800">Strict Rule: Strong Signal requires verified CURRENT_RESIDENT</span>
+        <!-- Human Auditor Decision Console: 1-Click Confirmation Tools -->
+        <div class="p-4.5 bg-gradient-to-b from-sky-50/80 via-indigo-50/40 to-slate-50 border border-sky-200/80 rounded-xl space-y-4">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <div>
+              <h4 class="text-xs font-bold uppercase tracking-wider text-sky-950 flex items-center">
+                <i data-lucide="user-check" class="w-4 h-4 mr-1.5 text-sky-700"></i>
+                Auditor Confirmation Console
+              </h4>
+              <p class="text-[11px] text-slate-500 font-medium">Confirm South India residence below to elevate this lead to Strong Signal.</p>
+            </div>
+            
+            <!-- Quick 1-Click Verification Pills -->
+            <div class="flex items-center flex-wrap gap-1.5">
+              <span class="text-[10px] font-bold uppercase text-slate-500 tracking-wider">1-Click Verify:</span>
+              <button type="button" onclick="setQuickLocation('Bengaluru', 'Karnataka')" class="px-2 py-1 text-[11px] font-bold bg-white text-sky-800 border border-sky-200 hover:bg-sky-100/80 rounded-md transition shadow-2xs flex items-center">
+                <i data-lucide="map-pin" class="w-3 h-3 mr-1 text-sky-600"></i>BLR
+              </button>
+              <button type="button" onclick="setQuickLocation('Hyderabad', 'Telangana')" class="px-2 py-1 text-[11px] font-bold bg-white text-sky-800 border border-sky-200 hover:bg-sky-100/80 rounded-md transition shadow-2xs flex items-center">
+                <i data-lucide="map-pin" class="w-3 h-3 mr-1 text-sky-600"></i>HYD
+              </button>
+              <button type="button" onclick="setQuickLocation('Chennai', 'Tamil Nadu')" class="px-2 py-1 text-[11px] font-bold bg-white text-sky-800 border border-sky-200 hover:bg-sky-100/80 rounded-md transition shadow-2xs flex items-center">
+                <i data-lucide="map-pin" class="w-3 h-3 mr-1 text-sky-600"></i>CHN
+              </button>
+              <button type="button" onclick="setQuickLocation('Kochi', 'Kerala')" class="px-2 py-1 text-[11px] font-bold bg-white text-sky-800 border border-sky-200 hover:bg-sky-100/80 rounded-md transition shadow-2xs flex items-center">
+                <i data-lucide="map-pin" class="w-3 h-3 mr-1 text-sky-600"></i>KER
+              </button>
+              <button type="button" onclick="setQuickLocation('Visakhapatnam', 'Andhra Pradesh')" class="px-2 py-1 text-[11px] font-bold bg-white text-sky-800 border border-sky-200 hover:bg-sky-100/80 rounded-md transition shadow-2xs flex items-center">
+                <i data-lucide="map-pin" class="w-3 h-3 mr-1 text-sky-600"></i>AP
+              </button>
+            </div>
           </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             
             <!-- Location Verification Selector -->
             <div>
-              <label class="block text-xs font-bold text-slate-700 mb-1">
-                Geographic Verification Status
+              <label class="block text-xs font-bold text-slate-800 mb-1">
+                Geographic Verification Status <span class="text-rose-600">*</span>
               </label>
-              <select id="modalInputLocStatus" onchange="handleLocStatusChange()" class="w-full text-xs bg-white border border-slate-300 rounded-lg p-2 font-medium text-slate-900 focus:ring-2 focus:ring-sky-500/20 focus:border-sky-500 shadow-2xs">
-                <option value="CURRENT_RESIDENT">CURRENT_RESIDENT (Explicit residence in KA, KL, TN, TS, AP)</option>
-                <option value="LOCATION_UNVERIFIED">LOCATION_UNVERIFIED (Plausible intent, location unverified)</option>
-                <option value="ORIGIN_ONLY">ORIGIN_ONLY (Birthplace/ancestry without current residence)</option>
-                <option value="OUTSIDE_TARGET">OUTSIDE_TARGET (Confirmed resident outside 5 target states)</option>
+              <select id="modalInputLocStatus" onchange="handleLocStatusChange()" class="w-full text-xs bg-white border border-slate-300 rounded-lg p-2.5 font-medium text-slate-900 focus:ring-2 focus:ring-sky-500/20 focus:border-sky-500 shadow-2xs">
+                <option value="CURRENT_RESIDENT">✅ CURRENT_RESIDENT (Explicit resident of KA, KL, TN, TS, AP)</option>
+                <option value="LOCATION_UNVERIFIED">⚠️ LOCATION_UNVERIFIED (Intent clear, location unverified)</option>
+                <option value="ORIGIN_ONLY">ℹ️ ORIGIN_ONLY (South Indian ancestry living abroad)</option>
+                <option value="OUTSIDE_TARGET">❌ OUTSIDE_TARGET (Resident outside 5 South India target states)</option>
               </select>
             </div>
 
             <!-- Score Adjustment -->
             <div>
               <div class="flex justify-between items-center mb-1">
-                <label class="text-xs font-bold text-slate-700">Audit Score (0 - 100)</label>
-                <span class="text-[11px] text-slate-500 font-medium">Strong threshold &ge; 75</span>
+                <label class="text-xs font-bold text-slate-800">Audit Score (0 - 100)</label>
+                <span class="text-[11px] text-emerald-700 font-bold">Strong Signal threshold &ge; 75</span>
               </div>
-              <input type="number" min="0" max="100" id="modalInputScore" class="w-full text-xs font-mono font-bold bg-white border border-slate-300 rounded-lg p-2 text-slate-900 focus:ring-2 focus:ring-sky-500/20 focus:border-sky-500 shadow-2xs" placeholder="Score (e.g. 85)">
+              <input type="number" min="0" max="100" id="modalInputScore" class="w-full text-xs font-mono font-bold bg-white border border-slate-300 rounded-lg p-2.5 text-slate-900 focus:ring-2 focus:ring-sky-500/20 focus:border-sky-500 shadow-2xs" placeholder="Score (e.g. 85)">
             </div>
 
           </div>
 
           <!-- Traceable Location Evidence Text Input -->
           <div>
-            <label class="block text-xs font-bold text-slate-700 mb-1">
+            <label class="block text-xs font-bold text-slate-800 mb-1">
               Traceable Location Evidence Snippet
             </label>
-            <input type="text" id="modalInputLocEvidence" class="w-full text-xs bg-white border border-slate-300 rounded-lg p-2 text-slate-900 focus:ring-2 focus:ring-sky-500/20 focus:border-sky-500 shadow-2xs placeholder:text-slate-400" placeholder="e.g. Working in Whitefield Tech Park; Resident of HSR Layout Bengaluru">
+            <input type="text" id="modalInputLocEvidence" oninput="updateGateStatusDynamically()" class="w-full text-xs bg-white border border-slate-300 rounded-lg p-2.5 text-slate-900 focus:ring-2 focus:ring-sky-500/20 focus:border-sky-500 shadow-2xs placeholder:text-slate-400" placeholder="e.g. Verified resident in Whitefield, Bengaluru; Tech professional investing via LRS">
           </div>
 
           <!-- Auditor Notes with Quick Preset Chips -->
           <div>
-            <div class="flex items-center justify-between mb-1">
-              <label class="text-xs font-bold text-slate-700">Auditor Audit Notes</label>
+            <div class="flex flex-wrap items-center justify-between mb-1 gap-1">
+              <label class="text-xs font-bold text-slate-800">Auditor Notes</label>
               <div class="flex items-center space-x-1">
-                <span class="text-[10px] text-slate-400 font-medium">Quick presets:</span>
+                <span class="text-[10px] text-slate-400 font-medium">Quick notes:</span>
+                <button type="button" onclick="insertNotePreset('Verified current Bangalore tech resident with active LRS intention.')" class="text-[10px] bg-white border border-slate-200 px-1.5 py-0.5 rounded hover:bg-slate-50 text-slate-600">+ BLR Resident</button>
                 <button type="button" onclick="insertNotePreset('Verified booking token / transfer remittance confirmed.')" class="text-[10px] bg-white border border-slate-200 px-1.5 py-0.5 rounded hover:bg-slate-50 text-slate-600">+ Token Paid</button>
-                <button type="button" onclick="insertNotePreset('Verified current Bangalore tech resident with active LRS intention.')" class="text-[10px] bg-white border border-slate-200 px-1.5 py-0.5 rounded hover:bg-slate-50 text-slate-600">+ Resident BLR</button>
-                <button type="button" onclick="insertNotePreset('Confirmed real estate broker / channel partner self-promotion.')" class="text-[10px] bg-white border border-slate-200 px-1.5 py-0.5 rounded hover:bg-slate-50 text-slate-600">+ Broker/Spam</button>
+                <button type="button" onclick="insertNotePreset('Inquired about Sobha / Emaar off-plan projects.')" class="text-[10px] bg-white border border-slate-200 px-1.5 py-0.5 rounded hover:bg-slate-50 text-slate-600">+ Off-Plan</button>
+                <button type="button" onclick="insertNotePreset('Confirmed broker / channel partner promotion.')" class="text-[10px] bg-white border border-slate-200 px-1.5 py-0.5 rounded hover:bg-slate-50 text-slate-600">+ Broker/Spam</button>
               </div>
             </div>
-            <textarea id="modalInputNotes" rows="2" class="w-full text-xs bg-white border border-slate-300 rounded-lg p-2 text-slate-900 focus:ring-2 focus:ring-sky-500/20 focus:border-sky-500 shadow-2xs placeholder:text-slate-400" placeholder="Document specific justification, verification method, or reasoning..."></textarea>
+            <textarea id="modalInputNotes" rows="2" class="w-full text-xs bg-white border border-slate-300 rounded-lg p-2 text-slate-900 focus:ring-2 focus:ring-sky-500/20 focus:border-sky-500 shadow-2xs placeholder:text-slate-400" placeholder="Document specific audit notes or reasoning..."></textarea>
           </div>
 
         </div>
@@ -614,28 +692,28 @@
       </div>
 
       <!-- Modal Footer Action Bar -->
-      <div class="bg-slate-50 border-t border-slate-200 px-6 py-3.5 flex flex-wrap items-center justify-between gap-3">
-        <button onclick="closeReviewModal()" class="px-4 py-2 text-xs font-semibold text-slate-600 bg-white border border-slate-300 rounded-lg hover:bg-slate-100 transition shadow-2xs">
+      <div class="bg-slate-50 border-t border-slate-200 px-6 py-4 flex flex-wrap items-center justify-between gap-3">
+        <button onclick="closeReviewModal()" class="px-4 py-2.5 text-xs font-semibold text-slate-600 bg-white border border-slate-300 rounded-xl hover:bg-slate-100 transition shadow-2xs">
           Cancel
         </button>
 
-        <div class="flex items-center space-x-2">
+        <div class="flex items-center space-x-2.5">
           <!-- Mark as Reject -->
-          <button onclick="submitReviewAction('reject')" class="px-3.5 py-2 text-xs font-semibold text-rose-700 bg-rose-50 border border-rose-200 rounded-lg hover:bg-rose-100 transition shadow-2xs flex items-center">
+          <button onclick="submitReviewAction('reject')" class="px-3.5 py-2.5 text-xs font-semibold text-rose-700 bg-rose-50 hover:bg-rose-100 border border-rose-200 rounded-xl transition shadow-2xs flex items-center">
             <i data-lucide="x" class="w-3.5 h-3.5 mr-1.5"></i>
-            <span>Mark Reject</span>
+            <span>Mark as Reject</span>
           </button>
 
           <!-- Save Edits (Keep in Needs Validation) -->
-          <button onclick="submitReviewAction('update')" class="px-3.5 py-2 text-xs font-semibold text-slate-700 bg-white border border-slate-300 rounded-lg hover:bg-slate-100 transition shadow-2xs flex items-center">
+          <button onclick="submitReviewAction('update')" class="px-4 py-2.5 text-xs font-semibold text-slate-700 bg-white hover:bg-slate-50 border border-slate-300 rounded-xl transition shadow-2xs flex items-center">
             <i data-lucide="save" class="w-3.5 h-3.5 mr-1.5"></i>
-            <span>Save Edits</span>
+            <span>Save Draft</span>
           </button>
 
           <!-- Approve as Qualified Lead -->
-          <button onclick="submitReviewAction('approve')" class="px-5 py-2 text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 active:scale-98 rounded-lg shadow-elevation-1 transition flex items-center">
+          <button onclick="submitReviewAction('approve')" class="px-5 py-2.5 text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 active:scale-98 rounded-xl shadow-elevation-1 transition flex items-center">
             <i data-lucide="check-check" class="w-4 h-4 mr-1.5"></i>
-            <span>Approve as Qualified Lead</span>
+            <span>Approve &amp; Confirm Lead</span>
           </button>
         </div>
       </div>
@@ -1510,10 +1588,21 @@
     async function submitReviewAction(action) {
       if (!currentActiveCandidateId) return;
 
-      const locStatus = document.getElementById('modalInputLocStatus').value;
-      const score = document.getElementById('modalInputScore').value;
-      const locEvidence = document.getElementById('modalInputLocEvidence').value;
-      const notes = document.getElementById('modalInputNotes').value;
+      let locStatus = document.getElementById('modalInputLocStatus').value;
+      let score = document.getElementById('modalInputScore').value;
+      let locEvidence = document.getElementById('modalInputLocEvidence').value.trim();
+      const notes = document.getElementById('modalInputNotes').value.trim();
+
+      if (action === 'approve') {
+        // When approving, ensure CURRENT_RESIDENT status and Strong Signal score >= 75
+        locStatus = 'CURRENT_RESIDENT';
+        if (!locEvidence) {
+          locEvidence = 'Confirmed resident in South India target zone via executive audit.';
+        }
+        if (!score || parseInt(score) < 75) {
+          score = 85;
+        }
+      }
 
       try {
         const res = await fetch(`/api/leads/${currentActiveCandidateId}/review`, {

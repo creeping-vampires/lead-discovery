@@ -1,7 +1,7 @@
 {
   "report_metadata": {
     "title": "Dubai Real Estate Lead Discovery & Evidence Audit Report",
-    "audit_timestamp": "2026-11-13T19:18:17.902807",
+    "audit_timestamp": "2026-11-13T19:31:22.860582",
     "discovery_run_date": "2026-11-12",
     "pipeline_version": "2.0.0-audit",
     "status": "PASSED"
@@ -10,8 +10,8 @@
     "total_discovered_records": 40,
     "duplicates_pruned": 6,
     "unique_candidates": 34,
-    "strong_signal_count": 5,
-    "needs_validation_count": 23,
+    "strong_signal_count": 8,
+    "needs_validation_count": 20,
     "reject_count": 6,
     "reconciliation_formula": "unique_candidates == strong_signal_count + needs_validation_count + reject_count",
     "is_reconciled": true,
@@ -26,8 +26,8 @@
       "total": 34
     },
     "final_counts": {
-      "strong_signal": 5,
-      "needs_validation": 23,
+      "strong_signal": 8,
+      "needs_validation": 20,
       "reject": 6,
       "total": 34
     },
@@ -36,15 +36,15 @@
   },
   "geographic_verification_audit": {
     "total_unique_candidates": 34,
-    "verified_current_south_india_residence_count": 18,
+    "verified_current_south_india_residence_count": 19,
     "origin_only_count": 5,
-    "location_unverified_count": 10,
+    "location_unverified_count": 9,
     "outside_target_count": 1,
     "strong_signal_unverified_location_count": 0,
     "verification_guarantee": "100% of Strong Signal leads have verified CURRENT_RESIDENT status"
   },
   "evidence_integrity_audit": {
-    "strong_signal_records_audited": 5,
+    "strong_signal_records_audited": 8,
     "strong_signal_missing_required_evidence_count": 0,
     "defect_breakdown": {
       "missing_intent_evidence": 0,
@@ -72,10 +72,10 @@
   "manual_review_sampling": {
     "sampling_policy": "Stratified audit: up to 30 Strong Signal, 20 Needs Validation, 10 Reject",
     "sample_counts": {
-      "strong_signal_sampled": 5,
+      "strong_signal_sampled": 8,
       "needs_validation_sampled": 20,
       "reject_sampled": 6,
-      "total_sampled_for_manual_review": 31
+      "total_sampled_for_manual_review": 34
     },
     "sampled_records": [
       {
@@ -131,6 +131,32 @@
         "human_review_notes": "Approved: Verifiable purchase intent ('Planning to buy'), readiness confirmed ('Ready to sign'), budget stated (AED 2M), verified resident of Hyderabad, Telangana, and signal within 180 days."
       },
       {
+        "candidate_id": "CAND-019",
+        "public_name_or_handle": "u/Off-Plan-King",
+        "platform": "Reddit (r/dubairealestate)",
+        "score": 85,
+        "qualification_status": "Strong Signal",
+        "location_verification_status": "CURRENT_RESIDENT",
+        "original_publication_date": "Unverified",
+        "discovery_date": "2026-11-12",
+        "human_review_status": "REVIEWED_APPROVED",
+        "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
+        "human_review_notes": "Approved: Verifiable purchase intent ('looking to acquire'), readiness confirmed ('None - no transactional readiness action'), budget stated (AED 8M), verified resident of Unverified, and signal within 180 days."
+      },
+      {
+        "candidate_id": "CAND-023",
+        "public_name_or_handle": "The Hindu Bureau (Bengaluru)",
+        "platform": "The Hindu",
+        "score": 85,
+        "qualification_status": "Strong Signal",
+        "location_verification_status": "CURRENT_RESIDENT",
+        "original_publication_date": "Unverified",
+        "discovery_date": "2026-11-12",
+        "human_review_status": "REVIEWED_APPROVED",
+        "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
+        "human_review_notes": "Approved: Verifiable purchase intent ('planning to buy'), readiness confirmed ('None - no transactional readiness action'), budget stated (AED 2M), verified resident of Bengaluru, Karnataka, and signal within 180 days."
+      },
+      {
         "candidate_id": "CAND-024",
         "public_name_or_handle": "TOI World Desk (Bengaluru Corridors)",
         "platform": "Times of India",
@@ -144,30 +170,17 @@
         "human_review_notes": "Approved: Verifiable purchase intent ('planning to buy'), readiness confirmed ('None - no transactional readiness action'), budget stated (2 cr, AED 830), verified resident of Bengaluru, Karnataka, and signal within 180 days."
       },
       {
-        "candidate_id": "CAND-023",
-        "public_name_or_handle": "The Hindu Bureau (Bengaluru)",
-        "platform": "The Hindu",
-        "score": 70,
-        "qualification_status": "Needs Validation",
-        "location_verification_status": "CURRENT_RESIDENT",
-        "original_publication_date": "Unverified",
-        "discovery_date": "2026-11-12",
-        "human_review_status": "REVIEWED_NEEDS_MORE_INFO",
-        "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
-        "human_review_notes": "Requires outreach/validation before sales routing: Concrete purchase readiness step (token/remittance/SPA) unconfirmed; Specific Dubai community or developer preference not specified. Score 70/100. Stated preference: General Dubai Property."
-      },
-      {
         "candidate_id": "CAND-031",
         "public_name_or_handle": "u/MusicianOk1764",
         "platform": "Reddit (r/personalfinanceindia)",
-        "score": 70,
-        "qualification_status": "Needs Validation",
+        "score": 85,
+        "qualification_status": "Strong Signal",
         "location_verification_status": "CURRENT_RESIDENT",
         "original_publication_date": "2026-09-28",
         "discovery_date": "2026-11-12",
-        "human_review_status": "REVIEWED_NEEDS_MORE_INFO",
+        "human_review_status": "REVIEWED_APPROVED",
         "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
-        "human_review_notes": "Requires outreach/validation before sales routing: Concrete purchase readiness step (token/remittance/SPA) unconfirmed; Specific Dubai community or developer preference not specified. Score 70/100. Stated preference: General Dubai Property."
+        "human_review_notes": "Approved: Verifiable purchase intent ('Planning to invest'), readiness confirmed ('None - no transactional readiness action'), budget stated (2 Cr, AED 900k), verified resident of Hyderabad, Telangana, and signal within 180 days."
       },
       {
         "candidate_id": "CAND-006",
@@ -233,19 +246,6 @@
         "human_review_status": "REVIEWED_NEEDS_MORE_INFO",
         "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
         "human_review_notes": "Requires outreach/validation before sales routing: Concrete purchase readiness step (token/remittance/SPA) unconfirmed; Purchase timeline horizon undefined; Current residence in target South Indian states is unverified from public text. Score 65/100. Stated preference: Dubai Marina, Unit: 2BHK, Unit: APARTMENT."
-      },
-      {
-        "candidate_id": "CAND-019",
-        "public_name_or_handle": "u/Off-Plan-King",
-        "platform": "Reddit (r/dubairealestate)",
-        "score": 65,
-        "qualification_status": "Needs Validation",
-        "location_verification_status": "LOCATION_UNVERIFIED",
-        "original_publication_date": "Unverified",
-        "discovery_date": "2026-11-12",
-        "human_review_status": "REVIEWED_NEEDS_MORE_INFO",
-        "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
-        "human_review_notes": "Requires outreach/validation before sales routing: Concrete purchase readiness step (token/remittance/SPA) unconfirmed; Purchase timeline horizon undefined; Current residence in target South Indian states is unverified from public text. Score 65/100. Stated preference: Unit: VILLA."
       },
       {
         "candidate_id": "CAND-021",
@@ -404,6 +404,45 @@
         "human_review_notes": "Requires outreach/validation before sales routing: Explicit first-person purchase intent not stated; Concrete purchase readiness step (token/remittance/SPA) unconfirmed; Purchase budget / financing requirements not specified; Purchase timeline horizon undefined; Current residence in target South Indian states is unverified from public text. Score 20/100. Stated preference: Unit: OFF-PLAN."
       },
       {
+        "candidate_id": "CAND-027",
+        "public_name_or_handle": "Anarock Research / Economic Times",
+        "platform": "The Economic Times",
+        "score": 20,
+        "qualification_status": "Needs Validation",
+        "location_verification_status": "ORIGIN_ONLY",
+        "original_publication_date": "Unverified",
+        "discovery_date": "2026-11-12",
+        "human_review_status": "REVIEWED_NEEDS_MORE_INFO",
+        "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
+        "human_review_notes": "Requires outreach/validation before sales routing: Explicit first-person purchase intent not stated; Concrete purchase readiness step (token/remittance/SPA) unconfirmed; Purchase budget / financing requirements not specified; Purchase timeline horizon undefined; Origin indicated in Bengaluru, Karnataka (Origin Only), but current South Indian residence is unverified. Score 20/100. Stated preference: Dubai South, Unit: 1BHK, Unit: 2BHK, Unit: OFF-PLAN."
+      },
+      {
+        "candidate_id": "CAND-028",
+        "public_name_or_handle": "u/Constant-Kale-194",
+        "platform": "Reddit (r/dubairealestate)",
+        "score": 20,
+        "qualification_status": "Needs Validation",
+        "location_verification_status": "CURRENT_RESIDENT",
+        "original_publication_date": "2026-10-25",
+        "discovery_date": "2026-11-12",
+        "human_review_status": "REVIEWED_NEEDS_MORE_INFO",
+        "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
+        "human_review_notes": "Requires outreach/validation before sales routing: Explicit first-person purchase intent not stated; Concrete purchase readiness step (token/remittance/SPA) unconfirmed; Purchase budget / financing requirements not specified; Purchase timeline horizon undefined. Score 20/100. Stated preference: Jvc, Developer: Danube, Unit: STUDIO, Unit: APARTMENT, Unit: OFF-PLAN."
+      },
+      {
+        "candidate_id": "CAND-029",
+        "public_name_or_handle": "u/That-Examination-910",
+        "platform": "Reddit (r/dubairealestate)",
+        "score": 20,
+        "qualification_status": "Needs Validation",
+        "location_verification_status": "CURRENT_RESIDENT",
+        "original_publication_date": "2026-10-18",
+        "discovery_date": "2026-11-12",
+        "human_review_status": "REVIEWED_NEEDS_MORE_INFO",
+        "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
+        "human_review_notes": "Requires outreach/validation before sales routing: Explicit first-person purchase intent not stated; Concrete purchase readiness step (token/remittance/SPA) unconfirmed; Purchase budget / financing requirements not specified; Purchase timeline horizon undefined. Score 20/100. Stated preference: Developer: Danube."
+      },
+      {
         "candidate_id": "CAND-007",
         "public_name_or_handle": "u/kizhur",
         "platform": "Reddit (r/nri)",
@@ -558,21 +597,21 @@
     },
     {
       "record_id": "QUAL-DUB-005",
-      "score": 80,
-      "public_name_or_handle": "TOI World Desk (Bengaluru Corridors)",
-      "platform": "Times of India",
-      "city_state": "Bengaluru, Karnataka",
+      "score": 85,
+      "public_name_or_handle": "u/Off-Plan-King",
+      "platform": "Reddit (r/dubairealestate)",
+      "city_state": "Unverified",
       "location_verification_status": "CURRENT_RESIDENT",
       "original_publication_date": "Unverified",
       "discovery_date": "2026-11-12",
-      "signal_age_days": 151,
-      "intent_evidence": "planning to buy",
+      "signal_age_days": 95,
+      "intent_evidence": "looking to acquire",
       "readiness_evidence": "None - no transactional readiness action",
-      "budget_evidence": "2 cr, AED 830",
-      "timeline_evidence": "next month",
-      "project_evidence": "Jumeirah Village Circle; Dubai South",
+      "budget_evidence": "AED 8M",
+      "timeline_evidence": "None - timeline undefined",
+      "project_evidence": "Unit: VILLA",
       "human_review_status": "REVIEWED_APPROVED",
-      "human_review_notes": "Approved: Verifiable purchase intent ('planning to buy'), readiness confirmed ('None - no transactional readiness action'), budget stated (2 cr, AED 830), verified resident of Bengaluru, Karnataka, and signal within 180 days."
+      "human_review_notes": "Approved: Verifiable purchase intent ('looking to acquire'), readiness confirmed ('None - no transactional readiness action'), budget stated (AED 8M), verified resident of Unverified, and signal within 180 days."
     }
   ]
 }

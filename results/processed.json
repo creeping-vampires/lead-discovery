@@ -38,5 +38,13 @@
     "processed_at": "2026-11-13T19:18:17.903326",
     "records_count": 7,
     "checksum_md5": "b77ddbd7f9f5f2535d608a6594f4c43e"
+  },
+  "raw_leads_batch_4_authentic_intent.csv": {
+    "filename": "raw_leads_batch_4_authentic_intent.csv",
+    "status": "PROCESSED",
+    "file_path": "input/raw_leads_batch_4_authentic_intent.csv",
+    "processed_at": "2026-11-14T02:26:22.751888",
+    "records_count": 12,
+    "checksum_md5": "97b74a3a5c6ea9da71c3e2cd981bb1f3"
   }
 }

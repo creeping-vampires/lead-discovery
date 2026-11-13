@@ -1,18 +1,18 @@
 {
   "report_metadata": {
     "title": "Dubai Real Estate Lead Discovery & Evidence Audit Report",
-    "audit_timestamp": "2026-11-13T19:31:22.860582",
+    "audit_timestamp": "2026-11-14T02:26:22.751376",
     "discovery_run_date": "2026-11-12",
     "pipeline_version": "2.0.0-audit",
     "status": "PASSED"
   },
   "funnel_reconciliation": {
-    "total_discovered_records": 40,
+    "total_discovered_records": 52,
     "duplicates_pruned": 6,
-    "unique_candidates": 34,
+    "unique_candidates": 46,
     "strong_signal_count": 8,
-    "needs_validation_count": 20,
-    "reject_count": 6,
+    "needs_validation_count": 23,
+    "reject_count": 15,
     "reconciliation_formula": "unique_candidates == strong_signal_count + needs_validation_count + reject_count",
     "is_reconciled": true,
     "unreconciled_delta": 0
@@ -21,24 +21,24 @@
     "freshness_window_days": 180,
     "pre_freshness_counts": {
       "strong_signal": 5,
-      "needs_validation": 23,
-      "reject": 6,
-      "total": 34
+      "needs_validation": 26,
+      "reject": 15,
+      "total": 46
     },
     "final_counts": {
       "strong_signal": 8,
-      "needs_validation": 20,
-      "reject": 6,
-      "total": 34
+      "needs_validation": 23,
+      "reject": 15,
+      "total": 46
     },
     "records_downgraded_by_180_day_rule": 0,
     "downgraded_records_list": []
   },
   "geographic_verification_audit": {
-    "total_unique_candidates": 34,
-    "verified_current_south_india_residence_count": 19,
-    "origin_only_count": 5,
-    "location_unverified_count": 9,
+    "total_unique_candidates": 46,
+    "verified_current_south_india_residence_count": 27,
+    "origin_only_count": 6,
+    "location_unverified_count": 12,
     "outside_target_count": 1,
     "strong_signal_unverified_location_count": 0,
     "verification_guarantee": "100% of Strong Signal leads have verified CURRENT_RESIDENT status"
@@ -60,10 +60,10 @@
     "evidence_integrity_passed": true
   },
   "source_url_and_permission_audit": {
-    "total_urls_audited": 34,
-    "urls_present_count": 34,
-    "urls_permitted_use_count": 34,
-    "urls_pointing_to_correct_post_count": 34,
+    "total_urls_audited": 46,
+    "urls_present_count": 46,
+    "urls_permitted_use_count": 46,
+    "urls_pointing_to_correct_post_count": 46,
     "deleted_author_count": 0,
     "removed_moderator_count": 0,
     "invalid_dead_urls_count": 0,
@@ -74,8 +74,8 @@
     "sample_counts": {
       "strong_signal_sampled": 8,
       "needs_validation_sampled": 20,
-      "reject_sampled": 6,
-      "total_sampled_for_manual_review": 34
+      "reject_sampled": 10,
+      "total_sampled_for_manual_review": 38
     },
     "sampled_records": [
       {
@@ -176,7 +176,7 @@
         "score": 85,
         "qualification_status": "Strong Signal",
         "location_verification_status": "CURRENT_RESIDENT",
-        "original_publication_date": "2026-09-28",
+        "original_publication_date": "Unverified",
         "discovery_date": "2026-11-12",
         "human_review_status": "REVIEWED_APPROVED",
         "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
@@ -274,6 +274,19 @@
         "human_review_notes": "Requires outreach/validation before sales routing: Concrete purchase readiness step (token/remittance/SPA) unconfirmed; Purchase timeline horizon undefined. Score 65/100. Stated preference: Downtown, Business Bay."
       },
       {
+        "candidate_id": "CAND-037",
+        "public_name_or_handle": "u/starkweb3",
+        "platform": "Reddit (r/nri)",
+        "score": 65,
+        "qualification_status": "Needs Validation",
+        "location_verification_status": "CURRENT_RESIDENT",
+        "original_publication_date": "2026-11-08",
+        "discovery_date": "2026-11-12",
+        "human_review_status": "REVIEWED_NEEDS_MORE_INFO",
+        "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
+        "human_review_notes": "Requires outreach/validation before sales routing: Concrete purchase readiness step (token/remittance/SPA) unconfirmed; Purchase timeline horizon undefined. Score 65/100. Stated preference: Dubai Marina, Jlt, Unit: 1BHK."
+      },
+      {
         "candidate_id": "CAND-004",
         "public_name_or_handle": "u/Boring-Base-1966",
         "platform": "Reddit (r/bangalore)",
@@ -306,7 +319,7 @@
         "score": 55,
         "qualification_status": "Needs Validation",
         "location_verification_status": "CURRENT_RESIDENT",
-        "original_publication_date": "2026-10-31",
+        "original_publication_date": "Unverified",
         "discovery_date": "2026-11-12",
         "human_review_status": "REVIEWED_NEEDS_MORE_INFO",
         "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
@@ -423,24 +436,11 @@
         "score": 20,
         "qualification_status": "Needs Validation",
         "location_verification_status": "CURRENT_RESIDENT",
-        "original_publication_date": "2026-10-25",
+        "original_publication_date": "Unverified",
         "discovery_date": "2026-11-12",
         "human_review_status": "REVIEWED_NEEDS_MORE_INFO",
         "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
         "human_review_notes": "Requires outreach/validation before sales routing: Explicit first-person purchase intent not stated; Concrete purchase readiness step (token/remittance/SPA) unconfirmed; Purchase budget / financing requirements not specified; Purchase timeline horizon undefined. Score 20/100. Stated preference: Jvc, Developer: Danube, Unit: STUDIO, Unit: APARTMENT, Unit: OFF-PLAN."
-      },
-      {
-        "candidate_id": "CAND-029",
-        "public_name_or_handle": "u/That-Examination-910",
-        "platform": "Reddit (r/dubairealestate)",
-        "score": 20,
-        "qualification_status": "Needs Validation",
-        "location_verification_status": "CURRENT_RESIDENT",
-        "original_publication_date": "2026-10-18",
-        "discovery_date": "2026-11-12",
-        "human_review_status": "REVIEWED_NEEDS_MORE_INFO",
-        "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
-        "human_review_notes": "Requires outreach/validation before sales routing: Explicit first-person purchase intent not stated; Concrete purchase readiness step (token/remittance/SPA) unconfirmed; Purchase budget / financing requirements not specified; Purchase timeline horizon undefined. Score 20/100. Stated preference: Developer: Danube."
       },
       {
         "candidate_id": "CAND-007",
@@ -488,7 +488,7 @@
         "score": 10,
         "qualification_status": "Reject",
         "location_verification_status": "CURRENT_RESIDENT",
-        "original_publication_date": "2026-10-12",
+        "original_publication_date": "Unverified",
         "discovery_date": "2026-11-12",
         "human_review_status": "REVIEWED_CONFIRMED_REJECT",
         "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
@@ -501,7 +501,7 @@
         "score": 10,
         "qualification_status": "Reject",
         "location_verification_status": "CURRENT_RESIDENT",
-        "original_publication_date": "2026-10-15",
+        "original_publication_date": "Unverified",
         "discovery_date": "2026-11-12",
         "human_review_status": "REVIEWED_CONFIRMED_REJECT",
         "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
@@ -514,11 +514,63 @@
         "score": 10,
         "qualification_status": "Reject",
         "location_verification_status": "CURRENT_RESIDENT",
-        "original_publication_date": "2026-10-22",
+        "original_publication_date": "Unverified",
         "discovery_date": "2026-11-12",
         "human_review_status": "REVIEWED_CONFIRMED_REJECT",
         "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
         "human_review_notes": "Confirmed Reject: Rejected [10/100 pts]: No meaningful buying intent or irrelevant enquiry. Recent buying signal (22 days old <= 180 days); Verified current residence in Bengaluru, Karnataka ('Living in Bengaluru and Chennai')"
+      },
+      {
+        "candidate_id": "CAND-035",
+        "public_name_or_handle": "u/Active-Insect-8145",
+        "platform": "Reddit (r/dubairealestate)",
+        "score": 10,
+        "qualification_status": "Reject",
+        "location_verification_status": "CURRENT_RESIDENT",
+        "original_publication_date": "2026-10-30",
+        "discovery_date": "2026-11-12",
+        "human_review_status": "REVIEWED_CONFIRMED_REJECT",
+        "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
+        "human_review_notes": "Confirmed Reject: Rejected [10/100 pts]: No meaningful buying intent or irrelevant enquiry. Recent buying signal (15 days old <= 180 days); Verified current residence in Hyderabad, Telangana ('Resident of Hyderabad')"
+      },
+      {
+        "candidate_id": "CAND-038",
+        "public_name_or_handle": "u/Gurgaon_analyst",
+        "platform": "Reddit (r/nri)",
+        "score": 10,
+        "qualification_status": "Reject",
+        "location_verification_status": "CURRENT_RESIDENT",
+        "original_publication_date": "2026-11-06",
+        "discovery_date": "2026-11-12",
+        "human_review_status": "REVIEWED_CONFIRMED_REJECT",
+        "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
+        "human_review_notes": "Confirmed Reject: Rejected [10/100 pts]: No meaningful buying intent or irrelevant enquiry. Recent buying signal (8 days old <= 180 days); Verified current residence in Bengaluru, Karnataka ('Tech professional based in Whitefield')"
+      },
+      {
+        "candidate_id": "CAND-039",
+        "public_name_or_handle": "u/Bitter-Round-8893",
+        "platform": "Reddit (r/dubairealestate)",
+        "score": 10,
+        "qualification_status": "Reject",
+        "location_verification_status": "CURRENT_RESIDENT",
+        "original_publication_date": "2026-11-12",
+        "discovery_date": "2026-11-12",
+        "human_review_status": "REVIEWED_CONFIRMED_REJECT",
+        "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
+        "human_review_notes": "Confirmed Reject: Rejected [10/100 pts]: No meaningful buying intent or irrelevant enquiry. Recent buying signal (2 days old <= 180 days); Verified current residence in Chennai, Tamil Nadu ('Resident of Chennai')"
+      },
+      {
+        "candidate_id": "CAND-040",
+        "public_name_or_handle": "u/A_D_A_M_1994",
+        "platform": "Reddit (r/dubairealestate)",
+        "score": 10,
+        "qualification_status": "Reject",
+        "location_verification_status": "LOCATION_UNVERIFIED",
+        "original_publication_date": "2026-10-18",
+        "discovery_date": "2026-11-12",
+        "human_review_status": "REVIEWED_CONFIRMED_REJECT",
+        "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
+        "human_review_notes": "Confirmed Reject: Rejected [10/100 pts]: No meaningful buying intent or irrelevant enquiry. Recent buying signal (27 days old <= 180 days)"
       }
     ]
   },

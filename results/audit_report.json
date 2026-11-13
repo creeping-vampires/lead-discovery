@@ -1,18 +1,18 @@
 {
   "report_metadata": {
     "title": "Dubai Real Estate Lead Discovery & Evidence Audit Report",
-    "audit_timestamp": "2026-11-13T12:25:24.446397",
+    "audit_timestamp": "2026-11-13T18:28:43.357090",
     "discovery_run_date": "2026-11-12",
     "pipeline_version": "2.0.0-audit",
     "status": "PASSED"
   },
   "funnel_reconciliation": {
-    "total_discovered_records": 264,
-    "duplicates_pruned": 11,
-    "unique_candidates": 253,
+    "total_discovered_records": 194,
+    "duplicates_pruned": 20,
+    "unique_candidates": 174,
     "strong_signal_count": 24,
-    "needs_validation_count": 127,
-    "reject_count": 102,
+    "needs_validation_count": 83,
+    "reject_count": 67,
     "reconciliation_formula": "unique_candidates == strong_signal_count + needs_validation_count + reject_count",
     "is_reconciled": true,
     "unreconciled_delta": 0
@@ -21,15 +21,15 @@
     "freshness_window_days": 180,
     "pre_freshness_counts": {
       "strong_signal": 32,
-      "needs_validation": 130,
-      "reject": 91,
-      "total": 253
+      "needs_validation": 86,
+      "reject": 56,
+      "total": 174
     },
     "final_counts": {
       "strong_signal": 24,
-      "needs_validation": 127,
-      "reject": 102,
-      "total": 253
+      "needs_validation": 83,
+      "reject": 67,
+      "total": 174
     },
     "records_downgraded_by_180_day_rule": 8,
     "downgraded_records_list": [
@@ -44,7 +44,7 @@
         "downgrade_reason": "Signal age (221 days) exceeds 180-day limit; downgraded to Needs Validation."
       },
       {
-        "candidate_id": "CAND-060",
+        "candidate_id": "CAND-058",
         "public_name_or_handle": "u/hyderabad_inv_18",
         "original_publication_date": "2026-05-06",
         "discovery_date": "2026-11-12",
@@ -54,7 +54,7 @@
         "downgrade_reason": "Signal age (191 days) exceeds 180-day limit; downgraded to Needs Validation."
       },
       {
-        "candidate_id": "CAND-072",
+        "candidate_id": "CAND-069",
         "public_name_or_handle": "u/karimnagar_inv_30",
         "original_publication_date": "2026-03-07",
         "discovery_date": "2026-11-12",
@@ -64,7 +64,7 @@
         "downgrade_reason": "Signal age (251 days) exceeds 180-day limit; downgraded to Needs Validation."
       },
       {
-        "candidate_id": "CAND-084",
+        "candidate_id": "CAND-080",
         "public_name_or_handle": "u/kozhikode_inv_42",
         "original_publication_date": "2026-04-06",
         "discovery_date": "2026-11-12",
@@ -74,7 +74,7 @@
         "downgrade_reason": "Signal age (221 days) exceeds 180-day limit; downgraded to Needs Validation."
       },
       {
-        "candidate_id": "CAND-096",
+        "candidate_id": "CAND-090",
         "public_name_or_handle": "u/chennai_inv_54",
         "original_publication_date": "2026-05-06",
         "discovery_date": "2026-11-12",
@@ -84,7 +84,7 @@
         "downgrade_reason": "Signal age (191 days) exceeds 180-day limit; downgraded to Needs Validation."
       },
       {
-        "candidate_id": "CAND-108",
+        "candidate_id": "CAND-101",
         "public_name_or_handle": "u/tiruchirappalli_inv_66",
         "original_publication_date": "2026-03-07",
         "discovery_date": "2026-11-12",
@@ -94,7 +94,7 @@
         "downgrade_reason": "Signal age (251 days) exceeds 180-day limit; downgraded to Needs Validation."
       },
       {
-        "candidate_id": "CAND-120",
+        "candidate_id": "CAND-112",
         "public_name_or_handle": "u/vijayawada_inv_78",
         "original_publication_date": "2026-04-06",
         "discovery_date": "2026-11-12",
@@ -104,7 +104,7 @@
         "downgrade_reason": "Signal age (221 days) exceeds 180-day limit; downgraded to Needs Validation."
       },
       {
-        "candidate_id": "CAND-132",
+        "candidate_id": "CAND-122",
         "public_name_or_handle": "u/nellore_inv_90",
         "original_publication_date": "2026-05-06",
         "discovery_date": "2026-11-12",
@@ -116,10 +116,10 @@
     ]
   },
   "geographic_verification_audit": {
-    "total_unique_candidates": 253,
-    "verified_current_south_india_residence_count": 106,
-    "origin_only_count": 17,
-    "location_unverified_count": 128,
+    "total_unique_candidates": 174,
+    "verified_current_south_india_residence_count": 86,
+    "origin_only_count": 12,
+    "location_unverified_count": 74,
     "outside_target_count": 2,
     "strong_signal_unverified_location_count": 0,
     "verification_guarantee": "100% of Strong Signal leads have verified CURRENT_RESIDENT status"
@@ -141,12 +141,12 @@
     "evidence_integrity_passed": true
   },
   "source_url_and_permission_audit": {
-    "total_urls_audited": 253,
-    "urls_present_count": 253,
-    "urls_permitted_use_count": 253,
-    "urls_pointing_to_correct_post_count": 246,
-    "deleted_author_count": 17,
-    "removed_moderator_count": 10,
+    "total_urls_audited": 174,
+    "urls_present_count": 174,
+    "urls_permitted_use_count": 174,
+    "urls_pointing_to_correct_post_count": 174,
+    "deleted_author_count": 10,
+    "removed_moderator_count": 17,
     "invalid_dead_urls_count": 0,
     "permission_compliance_percentage": 100.0
   },
@@ -277,7 +277,7 @@
         "human_review_notes": "Approved: Verifiable purchase intent ('Actively looking to purchase'), readiness confirmed ('liquid capital of'), budget stated (3.95 Cr, AED 1750k), verified resident of Mangaluru, Karnataka, and signal within 180 days."
       },
       {
-        "candidate_id": "CAND-056",
+        "candidate_id": "CAND-055",
         "public_name_or_handle": "u/hubballi_inv_14",
         "platform": "Reddit (r/bangalore)",
         "score": 100,
@@ -290,7 +290,7 @@
         "human_review_notes": "Approved: Verifiable purchase intent ('Actively looking to purchase'), readiness confirmed ('liquid capital of'), budget stated (4.86 Cr, AED 2150k), verified resident of Hubballi, Karnataka, and signal within 180 days."
       },
       {
-        "candidate_id": "CAND-064",
+        "candidate_id": "CAND-062",
         "public_name_or_handle": "u/secunderabad_inv_22",
         "platform": "Reddit (r/hyderabad)",
         "score": 100,
@@ -303,7 +303,7 @@
         "human_review_notes": "Approved: Verifiable purchase intent ('Actively looking to purchase'), readiness confirmed ('liquid capital of'), budget stated (3.28 Cr, AED 1450k), verified resident of Secunderabad, Telangana, and signal within 180 days."
       },
       {
-        "candidate_id": "CAND-068",
+        "candidate_id": "CAND-065",
         "public_name_or_handle": "u/warangal_inv_26",
         "platform": "Reddit (r/hyderabad)",
         "score": 100,
@@ -316,7 +316,7 @@
         "human_review_notes": "Approved: Verifiable purchase intent ('Actively looking to purchase'), readiness confirmed ('liquid capital of'), budget stated (4.18 Cr, AED 1850k), verified resident of Warangal, Telangana, and signal within 180 days."
       },
       {
-        "candidate_id": "CAND-076",
+        "candidate_id": "CAND-073",
         "public_name_or_handle": "u/kochi_inv_34",
         "platform": "Reddit (r/kerala)",
         "score": 100,
@@ -329,7 +329,7 @@
         "human_review_notes": "Approved: Verifiable purchase intent ('Actively looking to purchase'), readiness confirmed ('liquid capital of'), budget stated (2.6 Cr, AED 1150k), verified resident of Kochi, Kerala, and signal within 180 days."
       },
       {
-        "candidate_id": "CAND-080",
+        "candidate_id": "CAND-076",
         "public_name_or_handle": "u/thiruvananthapuram_inv_38",
         "platform": "Reddit (r/kerala)",
         "score": 100,
@@ -342,7 +342,7 @@
         "human_review_notes": "Approved: Verifiable purchase intent ('Actively looking to purchase'), readiness confirmed ('liquid capital of'), budget stated (3.5 Cr, AED 1550k), verified resident of Thiruvananthapuram, Kerala, and signal within 180 days."
       },
       {
-        "candidate_id": "CAND-088",
+        "candidate_id": "CAND-084",
         "public_name_or_handle": "u/thrissur_inv_46",
         "platform": "Reddit (r/kerala)",
         "score": 100,
@@ -355,7 +355,7 @@
         "human_review_notes": "Approved: Verifiable purchase intent ('Actively looking to purchase'), readiness confirmed ('liquid capital of'), budget stated (1.92 Cr, AED 850k), verified resident of Thrissur, Kerala, and signal within 180 days."
       },
       {
-        "candidate_id": "CAND-092",
+        "candidate_id": "CAND-087",
         "public_name_or_handle": "u/kannur_inv_50",
         "platform": "Reddit (r/kerala)",
         "score": 100,
@@ -368,7 +368,7 @@
         "human_review_notes": "Approved: Verifiable purchase intent ('Actively looking to purchase'), readiness confirmed ('liquid capital of'), budget stated (2.82 Cr, AED 1250k), verified resident of Kannur, Kerala, and signal within 180 days."
       },
       {
-        "candidate_id": "CAND-100",
+        "candidate_id": "CAND-094",
         "public_name_or_handle": "u/coimbatore_inv_58",
         "platform": "Reddit (r/chennai)",
         "score": 100,
@@ -381,7 +381,7 @@
         "human_review_notes": "Approved: Verifiable purchase intent ('Actively looking to purchase'), readiness confirmed ('liquid capital of'), budget stated (4.63 Cr, AED 2050k), verified resident of Coimbatore, Tamil Nadu, and signal within 180 days."
       },
       {
-        "candidate_id": "CAND-104",
+        "candidate_id": "CAND-097",
         "public_name_or_handle": "u/madurai_inv_62",
         "platform": "Reddit (r/chennai)",
         "score": 100,
@@ -394,7 +394,7 @@
         "human_review_notes": "Approved: Verifiable purchase intent ('Actively looking to purchase'), readiness confirmed ('liquid capital of'), budget stated (2.15 Cr, AED 950k), verified resident of Madurai, Tamil Nadu, and signal within 180 days."
       },
       {
-        "candidate_id": "CAND-112",
+        "candidate_id": "CAND-105",
         "public_name_or_handle": "u/salem_inv_70",
         "platform": "Reddit (r/chennai)",
         "score": 100,
@@ -407,7 +407,7 @@
         "human_review_notes": "Approved: Verifiable purchase intent ('Actively looking to purchase'), readiness confirmed ('liquid capital of'), budget stated (3.95 Cr, AED 1750k), verified resident of Salem, Tamil Nadu, and signal within 180 days."
       },
       {
-        "candidate_id": "CAND-116",
+        "candidate_id": "CAND-108",
         "public_name_or_handle": "u/visakhapatnam_inv_74",
         "platform": "Reddit (r/IndiaInvestments)",
         "score": 100,
@@ -420,7 +420,7 @@
         "human_review_notes": "Approved: Verifiable purchase intent ('Actively looking to purchase'), readiness confirmed ('liquid capital of'), budget stated (4.86 Cr, AED 2150k), verified resident of Visakhapatnam, Andhra Pradesh, and signal within 180 days."
       },
       {
-        "candidate_id": "CAND-124",
+        "candidate_id": "CAND-116",
         "public_name_or_handle": "u/guntur_inv_82",
         "platform": "Reddit (r/IndiaInvestments)",
         "score": 100,
@@ -433,7 +433,7 @@
         "human_review_notes": "Approved: Verifiable purchase intent ('Actively looking to purchase'), readiness confirmed ('liquid capital of'), budget stated (3.28 Cr, AED 1450k), verified resident of Guntur, Andhra Pradesh, and signal within 180 days."
       },
       {
-        "candidate_id": "CAND-128",
+        "candidate_id": "CAND-119",
         "public_name_or_handle": "u/tirupati_inv_86",
         "platform": "Reddit (r/IndiaInvestments)",
         "score": 100,
@@ -446,7 +446,7 @@
         "human_review_notes": "Approved: Verifiable purchase intent ('Actively looking to purchase'), readiness confirmed ('liquid capital of'), budget stated (4.18 Cr, AED 1850k), verified resident of Tirupati, Andhra Pradesh, and signal within 180 days."
       },
       {
-        "candidate_id": "CAND-197",
+        "candidate_id": "CAND-126",
         "public_name_or_handle": "iref_blr_techie_77",
         "platform": "IndianRealEstateForum (IREF)",
         "score": 85,
@@ -459,7 +459,7 @@
         "human_review_notes": "Approved: Verifiable purchase intent ('Looking to buy'), readiness confirmed ('LRS transfer'), budget stated (AED 900k, 2 Cr), verified resident of Bengaluru, Karnataka, and signal within 180 days."
       },
       {
-        "candidate_id": "CAND-199",
+        "candidate_id": "CAND-128",
         "public_name_or_handle": "iref_chennai_omr_owner",
         "platform": "IndianRealEstateForum (IREF)",
         "score": 85,
@@ -485,7 +485,7 @@
         "human_review_notes": "Requires outreach/validation before sales routing: Signal age (221 days) exceeds 180-day freshness limit. Score 90/100. Stated preference: Arjan, Developer: Emaar, Unit: 1BHK, Unit: 2BHK, Unit: OFF-PLAN, Unit: APARTMENT."
       },
       {
-        "candidate_id": "CAND-060",
+        "candidate_id": "CAND-058",
         "public_name_or_handle": "u/hyderabad_inv_18",
         "platform": "Reddit (r/hyderabad)",
         "score": 90,
@@ -498,7 +498,7 @@
         "human_review_notes": "Requires outreach/validation before sales routing: Signal age (191 days) exceeds 180-day freshness limit. Score 90/100. Stated preference: Dubai Marina, Developer: Emaar, Unit: 1BHK, Unit: 2BHK, Unit: OFF-PLAN, Unit: APARTMENT."
       },
       {
-        "candidate_id": "CAND-072",
+        "candidate_id": "CAND-069",
         "public_name_or_handle": "u/karimnagar_inv_30",
         "platform": "Reddit (r/hyderabad)",
         "score": 90,
@@ -511,7 +511,7 @@
         "human_review_notes": "Requires outreach/validation before sales routing: Signal age (251 days) exceeds 180-day freshness limit. Score 90/100. Stated preference: Arjan, Developer: Emaar, Unit: 1BHK, Unit: 2BHK, Unit: OFF-PLAN, Unit: APARTMENT."
       },
       {
-        "candidate_id": "CAND-084",
+        "candidate_id": "CAND-080",
         "public_name_or_handle": "u/kozhikode_inv_42",
         "platform": "Reddit (r/kerala)",
         "score": 90,
@@ -524,7 +524,7 @@
         "human_review_notes": "Requires outreach/validation before sales routing: Signal age (221 days) exceeds 180-day freshness limit. Score 90/100. Stated preference: Dubai Marina, Developer: Emaar, Unit: 1BHK, Unit: 2BHK, Unit: OFF-PLAN, Unit: APARTMENT."
       },
       {
-        "candidate_id": "CAND-096",
+        "candidate_id": "CAND-090",
         "public_name_or_handle": "u/chennai_inv_54",
         "platform": "Reddit (r/chennai)",
         "score": 90,
@@ -537,7 +537,7 @@
         "human_review_notes": "Requires outreach/validation before sales routing: Signal age (191 days) exceeds 180-day freshness limit. Score 90/100. Stated preference: Arjan, Developer: Emaar, Unit: 1BHK, Unit: 2BHK, Unit: OFF-PLAN, Unit: APARTMENT."
       },
       {
-        "candidate_id": "CAND-108",
+        "candidate_id": "CAND-101",
         "public_name_or_handle": "u/tiruchirappalli_inv_66",
         "platform": "Reddit (r/chennai)",
         "score": 90,
@@ -550,7 +550,7 @@
         "human_review_notes": "Requires outreach/validation before sales routing: Signal age (251 days) exceeds 180-day freshness limit. Score 90/100. Stated preference: Dubai Marina, Developer: Emaar, Unit: 1BHK, Unit: 2BHK, Unit: OFF-PLAN, Unit: APARTMENT."
       },
       {
-        "candidate_id": "CAND-120",
+        "candidate_id": "CAND-112",
         "public_name_or_handle": "u/vijayawada_inv_78",
         "platform": "Reddit (r/IndiaInvestments)",
         "score": 90,
@@ -563,7 +563,7 @@
         "human_review_notes": "Requires outreach/validation before sales routing: Signal age (221 days) exceeds 180-day freshness limit. Score 90/100. Stated preference: Arjan, Developer: Emaar, Unit: 1BHK, Unit: 2BHK, Unit: OFF-PLAN, Unit: APARTMENT."
       },
       {
-        "candidate_id": "CAND-132",
+        "candidate_id": "CAND-122",
         "public_name_or_handle": "u/nellore_inv_90",
         "platform": "Reddit (r/IndiaInvestments)",
         "score": 90,
@@ -576,72 +576,7 @@
         "human_review_notes": "Requires outreach/validation before sales routing: Signal age (191 days) exceeds 180-day freshness limit. Score 90/100. Stated preference: Dubai Marina, Developer: Emaar, Unit: 1BHK, Unit: 2BHK, Unit: OFF-PLAN, Unit: APARTMENT."
       },
       {
-        "candidate_id": "CAND-149",
-        "public_name_or_handle": "@kochi_investor_15",
-        "platform": "YouTube Public Comments",
-        "score": 70,
-        "qualification_status": "Needs Validation",
-        "location_verification_status": "ORIGIN_ONLY",
-        "original_publication_date": "2026-04-06",
-        "discovery_date": "2026-11-12",
-        "human_review_status": "REVIEWED_NEEDS_MORE_INFO",
-        "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
-        "human_review_notes": "Requires outreach/validation before sales routing: Concrete purchase readiness step (token/remittance/SPA) unconfirmed; Signal age (221 days) exceeds 180-day freshness limit; Origin indicated in Kochi, Kerala (Origin Only), but current South Indian residence is unverified. Score 70/100. Stated preference: Business Bay, Developer: Emaar, Unit: 1BHK, Unit: OFF-PLAN."
-      },
-      {
-        "candidate_id": "CAND-150",
-        "public_name_or_handle": "@dr_kochi_hni_16",
-        "platform": "YouTube Public Comments",
-        "score": 70,
-        "qualification_status": "Needs Validation",
-        "location_verification_status": "LOCATION_UNVERIFIED",
-        "original_publication_date": "2026-04-25",
-        "discovery_date": "2026-11-12",
-        "human_review_status": "REVIEWED_NEEDS_MORE_INFO",
-        "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
-        "human_review_notes": "Requires outreach/validation before sales routing: Concrete purchase readiness step (token/remittance/SPA) unconfirmed; Signal age (202 days) exceeds 180-day freshness limit; Current residence in target South Indian states is unverified from public text. Score 70/100. Stated preference: Business Bay, Unit: 1BHK, Unit: OFF-PLAN."
-      },
-      {
-        "candidate_id": "CAND-167",
-        "public_name_or_handle": "@coimbatore_investor_36",
-        "platform": "YouTube Public Comments",
-        "score": 70,
-        "qualification_status": "Needs Validation",
-        "location_verification_status": "LOCATION_UNVERIFIED",
-        "original_publication_date": "2026-04-19",
-        "discovery_date": "2026-11-12",
-        "human_review_status": "REVIEWED_NEEDS_MORE_INFO",
-        "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
-        "human_review_notes": "Requires outreach/validation before sales routing: Concrete purchase readiness step (token/remittance/SPA) unconfirmed; Signal age (208 days) exceeds 180-day freshness limit; Current residence in target South Indian states is unverified from public text. Score 70/100. Stated preference: Business Bay, Sobha Hartland, Developer: Sobha, Unit: 1BHK."
-      },
-      {
-        "candidate_id": "CAND-174",
-        "public_name_or_handle": "@dr_kozhikode_hni_44",
-        "platform": "YouTube Public Comments",
-        "score": 70,
-        "qualification_status": "Needs Validation",
-        "location_verification_status": "LOCATION_UNVERIFIED",
-        "original_publication_date": "2026-04-27",
-        "discovery_date": "2026-11-12",
-        "human_review_status": "REVIEWED_NEEDS_MORE_INFO",
-        "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
-        "human_review_notes": "Requires outreach/validation before sales routing: Concrete purchase readiness step (token/remittance/SPA) unconfirmed; Signal age (200 days) exceeds 180-day freshness limit; Current residence in target South Indian states is unverified from public text. Score 70/100. Stated preference: Business Bay, Unit: 1BHK, Unit: OFF-PLAN."
-      },
-      {
-        "candidate_id": "CAND-185",
-        "public_name_or_handle": "@mysuru_investor_57",
-        "platform": "YouTube Public Comments",
-        "score": 70,
-        "qualification_status": "Needs Validation",
-        "location_verification_status": "LOCATION_UNVERIFIED",
-        "original_publication_date": "2026-02-11",
-        "discovery_date": "2026-11-12",
-        "human_review_status": "REVIEWED_NEEDS_MORE_INFO",
-        "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
-        "human_review_notes": "Requires outreach/validation before sales routing: Concrete purchase readiness step (token/remittance/SPA) unconfirmed; Signal age (275 days) exceeds 180-day freshness limit; Current residence in target South Indian states is unverified from public text. Score 70/100. Stated preference: Business Bay, Developer: Danube, Unit: 1BHK, Unit: OFF-PLAN."
-      },
-      {
-        "candidate_id": "CAND-221",
+        "candidate_id": "CAND-145",
         "public_name_or_handle": "delhi_punjab_investor_12",
         "platform": "Quora Public Q&A",
         "score": 55,
@@ -654,33 +589,7 @@
         "human_review_notes": "Requires outreach/validation before sales routing: Concrete purchase readiness step (token/remittance/SPA) unconfirmed; Purchase timeline horizon undefined; Signal age (268 days) exceeds 180-day freshness limit; Current residence in target South Indian states is unverified from public text. Score 55/100. Stated preference: Jvc."
       },
       {
-        "candidate_id": "CAND-233",
-        "public_name_or_handle": "delhi_punjab_investor_24",
-        "platform": "Quora Public Q&A",
-        "score": 55,
-        "qualification_status": "Needs Validation",
-        "location_verification_status": "LOCATION_UNVERIFIED",
-        "original_publication_date": "2026-03-03",
-        "discovery_date": "2026-11-12",
-        "human_review_status": "REVIEWED_NEEDS_MORE_INFO",
-        "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
-        "human_review_notes": "Requires outreach/validation before sales routing: Concrete purchase readiness step (token/remittance/SPA) unconfirmed; Purchase timeline horizon undefined; Signal age (255 days) exceeds 180-day freshness limit; Current residence in target South Indian states is unverified from public text. Score 55/100. Stated preference: Jvc."
-      },
-      {
-        "candidate_id": "CAND-245",
-        "public_name_or_handle": "delhi_punjab_investor_36",
-        "platform": "Quora Public Q&A",
-        "score": 55,
-        "qualification_status": "Needs Validation",
-        "location_verification_status": "LOCATION_UNVERIFIED",
-        "original_publication_date": "2026-03-16",
-        "discovery_date": "2026-11-12",
-        "human_review_status": "REVIEWED_NEEDS_MORE_INFO",
-        "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
-        "human_review_notes": "Requires outreach/validation before sales routing: Concrete purchase readiness step (token/remittance/SPA) unconfirmed; Purchase timeline horizon undefined; Signal age (242 days) exceeds 180-day freshness limit; Current residence in target South Indian states is unverified from public text. Score 55/100. Stated preference: Jvc."
-      },
-      {
-        "candidate_id": "CAND-218",
+        "candidate_id": "CAND-142",
         "public_name_or_handle": "forum_buyer_kochi_9",
         "platform": "IndianRealEstateForum (IREF)",
         "score": 40,
@@ -693,7 +602,7 @@
         "human_review_notes": "Requires outreach/validation before sales routing: Explicit first-person purchase intent not stated; Concrete purchase readiness step (token/remittance/SPA) unconfirmed; Signal age (250 days) exceeds 180-day freshness limit; Origin indicated in Kochi, Kerala (Origin Only), but current South Indian residence is unverified. Score 40/100. Stated preference: Dubai Hills Estate, Developer: Damac, Unit: OFF-PLAN, Unit: 1BHK."
       },
       {
-        "candidate_id": "CAND-230",
+        "candidate_id": "CAND-152",
         "public_name_or_handle": "forum_buyer_coimbatore_21",
         "platform": "IndianRealEstateForum (IREF)",
         "score": 40,
@@ -706,7 +615,7 @@
         "human_review_notes": "Requires outreach/validation before sales routing: Explicit first-person purchase intent not stated; Concrete purchase readiness step (token/remittance/SPA) unconfirmed; Signal age (237 days) exceeds 180-day freshness limit; Current residence in target South Indian states is unverified from public text. Score 40/100. Stated preference: Dubai Hills Estate, Developer: Sobha, Unit: OFF-PLAN, Unit: 1BHK."
       },
       {
-        "candidate_id": "CAND-242",
+        "candidate_id": "CAND-161",
         "public_name_or_handle": "forum_buyer_vijayawada_33",
         "platform": "IndianRealEstateForum (IREF)",
         "score": 40,
@@ -730,6 +639,97 @@
         "human_review_status": "REVIEWED_NEEDS_MORE_INFO",
         "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
         "human_review_notes": "Requires outreach/validation before sales routing: Purchase timeline horizon undefined; Current residence in target South Indian states is unverified from public text. Score 85/100. Stated preference: Emaar South, Developer: Emaar, Unit: OFF-PLAN."
+      },
+      {
+        "candidate_id": "CAND-012",
+        "public_name_or_handle": "u/reddy_hitec_invest",
+        "platform": "Reddit (r/hyderabad)",
+        "score": 85,
+        "qualification_status": "Needs Validation",
+        "location_verification_status": "LOCATION_UNVERIFIED",
+        "original_publication_date": "2026-09-08",
+        "discovery_date": "2026-11-12",
+        "human_review_status": "REVIEWED_NEEDS_MORE_INFO",
+        "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
+        "human_review_notes": "Requires outreach/validation before sales routing: Purchase timeline horizon undefined; Current residence in target South Indian states is unverified from public text. Score 85/100. Stated preference: Jumeirah Village Circle, Developer: Danube."
+      },
+      {
+        "candidate_id": "CAND-015",
+        "public_name_or_handle": "u/tellapur_investor",
+        "platform": "Reddit (r/hyderabad)",
+        "score": 70,
+        "qualification_status": "Needs Validation",
+        "location_verification_status": "CURRENT_RESIDENT",
+        "original_publication_date": "2026-08-24",
+        "discovery_date": "2026-11-12",
+        "human_review_status": "REVIEWED_NEEDS_MORE_INFO",
+        "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
+        "human_review_notes": "Requires outreach/validation before sales routing: Purchase budget / financing requirements not specified; Purchase timeline horizon undefined. Score 70/100. Stated preference: Meydan, Developer: Sobha, Unit: OFF-PLAN, Unit: APARTMENT."
+      },
+      {
+        "candidate_id": "CAND-001",
+        "public_name_or_handle": "u/karthik_tech_blr",
+        "platform": "Reddit (r/bangalore)",
+        "score": 65,
+        "qualification_status": "Needs Validation",
+        "location_verification_status": "CURRENT_RESIDENT",
+        "original_publication_date": "2026-11-02",
+        "discovery_date": "2026-11-12",
+        "human_review_status": "REVIEWED_NEEDS_MORE_INFO",
+        "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
+        "human_review_notes": "Requires outreach/validation before sales routing: Concrete purchase readiness step (token/remittance/SPA) unconfirmed; Purchase timeline horizon undefined. Score 65/100. Stated preference: Jvc, Developer: Danube, Developer: Sobha, Unit: OFF-PLAN, Unit: 1BHK, Unit: FLAT."
+      },
+      {
+        "candidate_id": "CAND-003",
+        "public_name_or_handle": "u/sriram_sarjapur",
+        "platform": "Reddit (r/personalfinanceindia)",
+        "score": 65,
+        "qualification_status": "Needs Validation",
+        "location_verification_status": "CURRENT_RESIDENT",
+        "original_publication_date": "2026-10-23",
+        "discovery_date": "2026-11-12",
+        "human_review_status": "REVIEWED_NEEDS_MORE_INFO",
+        "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
+        "human_review_notes": "Requires outreach/validation before sales routing: Concrete purchase readiness step (token/remittance/SPA) unconfirmed; Purchase timeline horizon undefined. Score 65/100. Stated preference: Arjan, Jvc, Developer: Binghatti, Developer: Danube, Unit: OFF-PLAN."
+      },
+      {
+        "candidate_id": "CAND-006",
+        "public_name_or_handle": "u/deepak_koramangala",
+        "platform": "Reddit (r/IndiaInvestments)",
+        "score": 65,
+        "qualification_status": "Needs Validation",
+        "location_verification_status": "CURRENT_RESIDENT",
+        "original_publication_date": "2026-10-08",
+        "discovery_date": "2026-11-12",
+        "human_review_status": "REVIEWED_NEEDS_MORE_INFO",
+        "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
+        "human_review_notes": "Requires outreach/validation before sales routing: Concrete purchase readiness step (token/remittance/SPA) unconfirmed; Purchase timeline horizon undefined. Score 65/100. Stated preference: Dubai Silicon Oasis, Dso, Unit: STUDIO."
+      },
+      {
+        "candidate_id": "CAND-013",
+        "public_name_or_handle": "u/jubilee_hills_cap",
+        "platform": "Reddit (r/dubairealestate)",
+        "score": 65,
+        "qualification_status": "Needs Validation",
+        "location_verification_status": "CURRENT_RESIDENT",
+        "original_publication_date": "2026-09-03",
+        "discovery_date": "2026-11-12",
+        "human_review_status": "REVIEWED_NEEDS_MORE_INFO",
+        "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
+        "human_review_notes": "Requires outreach/validation before sales routing: Concrete purchase readiness step (token/remittance/SPA) unconfirmed; Purchase timeline horizon undefined. Score 65/100. Stated preference: Dubai Hills Estate, Palm Jumeirah, Developer: Emaar, Unit: VILLA."
+      },
+      {
+        "candidate_id": "CAND-017",
+        "public_name_or_handle": "u/banjara_prop_h",
+        "platform": "Reddit (r/dubairealestate)",
+        "score": 65,
+        "qualification_status": "Needs Validation",
+        "location_verification_status": "LOCATION_UNVERIFIED",
+        "original_publication_date": "2026-08-14",
+        "discovery_date": "2026-11-12",
+        "human_review_status": "REVIEWED_NEEDS_MORE_INFO",
+        "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
+        "human_review_notes": "Requires outreach/validation before sales routing: Concrete purchase readiness step (token/remittance/SPA) unconfirmed; Purchase timeline horizon undefined; Current residence in target South Indian states is unverified from public text. Score 65/100. Stated preference: Business Bay, Unit: 2BHK."
       },
       {
         "candidate_id": "CAND-040",
@@ -769,19 +769,6 @@
         "human_review_status": "REVIEWED_CONFIRMED_REJECT",
         "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
         "human_review_notes": "Confirmed Reject: Disqualified: Removed by community moderators: Post content was removed by Reddit filters or moderators."
-      },
-      {
-        "candidate_id": "CAND-055",
-        "public_name_or_handle": "u/mangaluru_user_13",
-        "platform": "Reddit (r/bangalore)",
-        "score": 0,
-        "qualification_status": "Reject",
-        "location_verification_status": "LOCATION_UNVERIFIED",
-        "original_publication_date": "2026-08-03",
-        "discovery_date": "2026-11-12",
-        "human_review_status": "REVIEWED_CONFIRMED_REJECT",
-        "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
-        "human_review_notes": "Confirmed Reject: Disqualified: Source URL no longer exists: Link is dead or marked as deleted."
       },
       {
         "candidate_id": "CAND-038",
@@ -860,6 +847,19 @@
         "human_review_status": "REVIEWED_CONFIRMED_REJECT",
         "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
         "human_review_notes": "Confirmed Reject: Disqualified: Identified as property seller/broker or job seeker ('We are authorized channel partners')."
+      },
+      {
+        "candidate_id": "CAND-042",
+        "public_name_or_handle": "u/kochi_prop_del",
+        "platform": "Reddit (r/kerala)",
+        "score": 0,
+        "qualification_status": "Reject",
+        "location_verification_status": "LOCATION_UNVERIFIED",
+        "original_publication_date": "2026-09-28",
+        "discovery_date": "2026-11-12",
+        "human_review_status": "REVIEWED_CONFIRMED_REJECT",
+        "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
+        "human_review_notes": "Confirmed Reject: Disqualified: Disqualified: Post was deleted or removed from the community ('Sorry, this post has been removed')."
       }
     ]
   },

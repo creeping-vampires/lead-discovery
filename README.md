@@ -180,9 +180,8 @@ real-estate-leads-assignment/
 ├── app.py                                     # UI dashboard entrypoint
 ├── input/
 │   ├── raw_discovered_candidates.csv          # Base discovery dataset
-│   ├── raw_leads_batch_2.csv                  # Incremental batch 2
-│   ├── raw_leads_batch_south_india_dubai.csv  # Incremental batch 3 (CSV)
-│   └── raw_leads_batch_south_india_dubai.json # Incremental batch 3 (JSON)
+│   ├── raw_leads_batch_2.csv                  # Incremental batch 1
+│   ├── raw_leads_batch_south_india_dubai.csv  # Incremental batch 2 (CSV)
 ├── workflow/
 │   ├── __init__.py
 │   ├── config.py                              # Configuration, gates, thresholds, and keyword maps

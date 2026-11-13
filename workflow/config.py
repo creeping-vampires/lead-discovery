@@ -154,7 +154,14 @@ PERMITTED_SOURCE_DOMAINS: Set[str] = {
     "teamexpo.ae",
     "www.teamexpo.ae",
     "expoplatform.com",
-    "www.expoplatform.com"
+    "www.expoplatform.com",
+    "economictimes.indiatimes.com",
+    "m.economictimes.com",
+    "thehindu.com",
+    "www.thehindu.com",
+    "timesofindia.indiatimes.com",
+    "gulfnews.com",
+    "www.gulfnews.com"
 }
 
 # Manual review sampling targets

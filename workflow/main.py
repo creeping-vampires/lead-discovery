@@ -630,10 +630,9 @@ def run_pipeline(
             else:
                 raise FileNotFoundError(f"No input files found in '{input_dir}' to process.")
 
-    # 1. Initialize Components
+    # 1. Initialize Components (Focus on Reddit and Forums/Blogs; YouTube removed per instruction)
     harvesters = [
         RedditHarvester(),
-        YouTubeHarvester(),
         ForumHarvester()
     ]
     deduplicator = Deduplicator()

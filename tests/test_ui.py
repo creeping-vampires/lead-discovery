@@ -231,6 +231,21 @@ class TestUIDashboard(unittest.TestCase):
         self.assertEqual(data["files"][0]["filename"], "test_leads.csv")
         self.assertTrue(data["files"][0]["is_processed"])
 
+    def test_standalone_browser_view(self):
+        # Fetch first lead ID from leads list
+        res_leads = self.client.get("/api/leads")
+        data = res_leads.get_json()
+        lead = data["leads"][0]
+        cid = lead["candidate_id"]
+
+        res = self.client.get(f"/leads/{cid}/browser-view")
+        self.assertEqual(res.status_code, 302)
+        self.assertTrue(res.headers.get("Location").startswith("https://www.reddit.com/r/"))
+
+        # 404 for unknown lead
+        res_404 = self.client.get("/leads/NON_EXISTENT_ID/browser-view")
+        self.assertEqual(res_404.status_code, 404)
+
     def test_download_artifacts(self):
         for ftype in ["excel", "top5", "all", "audit", "processed"]:
             res = self.client.get(f"/api/download/{ftype}")

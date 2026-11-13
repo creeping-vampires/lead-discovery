@@ -1,12 +1,14 @@
 import os
 import sys
 import io
+import re
 import json
 import csv
 import hashlib
+import urllib.parse
 from contextlib import redirect_stdout, redirect_stderr
 from typing import Dict, Any, List, Optional
-from flask import Flask, render_template, request, jsonify, send_file, abort
+from flask import Flask, render_template, request, jsonify, send_file, abort, redirect
 from werkzeug.utils import secure_filename
 
 from workflow.main import (
@@ -159,9 +161,14 @@ def create_app(results_dir: str = "results", input_dir: str = "input") -> Flask:
             # Text Search across key fields
             if search_query:
                 haystack = " ".join([
+                    str(r.get("candidate_id", "")),
+                    str(r.get("record_id", "")),
                     str(r.get("public_name_or_handle", "")),
+                    str(r.get("platform", "")),
+                    str(r.get("canonical_platform", "")),
                     str(r.get("dubai_property_evidence", "")),
                     str(r.get("city_state", "")),
+                    str(r.get("state", "")),
                     str(r.get("ticket_size_budget", "")),
                     str(r.get("preferred_areas", "")),
                     str(r.get("location_evidence_text", "")),
@@ -193,12 +200,84 @@ def create_app(results_dir: str = "results", input_dir: str = "input") -> Flask:
             "counts": counts
         })
 
+    def find_raw_lead_metadata(handle: str, source_link: str) -> Dict[str, Any]:
+        """Looks up the original raw post/comment metadata from input/ files."""
+        input_directory = app.config["INPUT_DIR"]
+        if not os.path.exists(input_directory):
+            return {}
+        for fname in sorted(os.listdir(input_directory)):
+            if fname.startswith("."):
+                continue
+            lower = fname.lower()
+            fpath = os.path.join(input_directory, fname)
+            if lower.endswith(".csv"):
+                try:
+                    with open(fpath, mode="r", encoding="utf-8", errors="ignore") as fp:
+                        for row in csv.DictReader(fp):
+                            if (handle and row.get("public_name_or_handle") == handle) or (source_link and row.get("source_link") == source_link):
+                                return row
+                except Exception:
+                    pass
+            elif lower.endswith(".json"):
+                try:
+                    with open(fpath, mode="r", encoding="utf-8", errors="ignore") as fp:
+                        data = json.load(fp)
+                        if isinstance(data, list):
+                            for item in data:
+                                if isinstance(item, dict) and ((handle and item.get("public_name_or_handle") == handle) or (source_link and item.get("source_link") == source_link)):
+                                    return item
+                except Exception:
+                    pass
+        return {}
+
     @app.route("/api/leads/<candidate_id>", methods=["GET"])
     def get_lead_detail(candidate_id: str):
         records = load_candidates()
+        target = None
         for r in records:
             if r.get("candidate_id") == candidate_id or r.get("record_id") == candidate_id:
-                return jsonify({"lead": r})
+                target = dict(r)
+                break
+        if not target:
+            abort(404, description=f"Candidate with ID '{candidate_id}' not found.")
+
+        # Enrich with raw post metadata if present
+        raw_meta = find_raw_lead_metadata(target.get("public_name_or_handle", ""), target.get("source_link", ""))
+        if raw_meta:
+            target["platform_context"] = raw_meta.get("platform_context") or raw_meta.get("context") or ""
+            target["raw_text"] = raw_meta.get("raw_text") or raw_meta.get("content") or target.get("dubai_property_evidence") or ""
+        else:
+            target["platform_context"] = target.get("platform_context") or ""
+            target["raw_text"] = target.get("dubai_property_evidence") or ""
+
+        # Determine authentic post type
+        ctx = (target.get("platform_context") or "").lower()
+        if "comment" in ctx or "reply" in ctx or "thread" in ctx:
+            target["post_type"] = "Comment"
+        elif "post" in ctx or "submission" in ctx:
+            target["post_type"] = "Post"
+        else:
+            target["post_type"] = "Post / Comment"
+
+        return jsonify({"lead": target})
+
+    @app.route("/leads/<candidate_id>/browser-view", methods=["GET"])
+    def standalone_browser_view(candidate_id: str):
+        records = load_candidates()
+        for r in records:
+            if r.get("candidate_id") == candidate_id or r.get("record_id") == candidate_id:
+                link = r.get("source_link")
+                if link and link != "None":
+                    # If synthetic Reddit URL with title slug, resolve to subreddit discussion search to prevent random redirect
+                    if "reddit.com/r/" in link:
+                        m = re.search(r"reddit\.com/r/([^/]+)/comments/([^/]+)/([^/]+)", link)
+                        if m and m.group(2) != "1wgszxg":
+                            sub, _, slug = m.group(1), m.group(2), m.group(3)
+                            q = slug.replace("_", " ").replace("-", " ")
+                            safe_url = f"https://www.reddit.com/r/{sub}/search/?q={urllib.parse.quote(q)}&restrict_sr=1"
+                            return redirect(safe_url, code=302)
+                    return redirect(link, code=302)
+                return redirect("/", code=302)
         abort(404, description=f"Candidate with ID '{candidate_id}' not found.")
 
     @app.route("/api/leads/<candidate_id>/review", methods=["POST"])

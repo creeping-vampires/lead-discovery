@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" class="h-full bg-slate-50">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dubai Real Estate Leads Qualification Dashboard | Executive Auditor Desk</title>
-  
+
   <!-- Inter font & Tailwind CSS CDN -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
-  
+
   <script>
     tailwind.config = {
       theme: {
@@ -50,23 +53,26 @@
       -moz-osx-font-smoothing: grayscale;
       text-rendering: optimizeLegibility;
     }
-    
+
     .tabular-nums {
       font-variant-numeric: tabular-nums;
     }
-    
+
     /* Scrollbar Polish */
     ::-webkit-scrollbar {
       width: 6px;
       height: 6px;
     }
+
     ::-webkit-scrollbar-track {
       background: #f1f5f9;
     }
+
     ::-webkit-scrollbar-thumb {
       background: #cbd5e1;
       border-radius: 4px;
     }
+
     ::-webkit-scrollbar-thumb:hover {
       background: #94a3b8;
     }
@@ -92,9 +98,15 @@
 
     /* Skeleton shimmer */
     @keyframes shimmer {
-      0% { background-position: -200% 0; }
-      100% { background-position: 200% 0; }
+      0% {
+        background-position: -200% 0;
+      }
+
+      100% {
+        background-position: 200% 0;
+      }
     }
+
     .skeleton {
       background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
       background-size: 200% 100%;
@@ -102,6 +114,7 @@
     }
   </style>
 </head>
+
 <body class="h-full flex flex-col font-sans bg-slate-50 text-slate-800">
 
   <!-- ========================================================================= -->
@@ -109,10 +122,11 @@
   <!-- ========================================================================= -->
   <header class="bg-white border-b border-slate-200/90 sticky top-0 z-30 shadow-xs backdrop-blur-md bg-white/95">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-      
+
       <!-- Brand & Pipeline Identifier -->
       <div class="flex items-center space-x-3.5">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-slate-900 via-sky-900 to-indigo-900 flex items-center justify-center text-white shadow-elevation-1 ring-1 ring-white/20">
+        <div
+          class="w-10 h-10 rounded-xl bg-gradient-to-tr from-slate-900 via-sky-900 to-indigo-900 flex items-center justify-center text-white shadow-elevation-1 ring-1 ring-white/20">
           <i data-lucide="building-2" class="w-5 h-5 text-sky-300"></i>
         </div>
         <div>
@@ -123,7 +137,8 @@
               South India NRI Corridors
             </span>
           </div>
-          <p class="text-xs text-slate-500 font-medium">KA &bull; KL &bull; TN &bull; TS &bull; AP High-Intent Buyer Discovery Pipeline</p>
+          <p class="text-xs text-slate-500 font-medium">KA &bull; KL &bull; TN &bull; TS &bull; AP High-Intent Buyer
+            Discovery Pipeline</p>
         </div>
       </div>
 
@@ -131,27 +146,33 @@
       <div class="flex items-center space-x-2.5">
 
         <!-- Keyboard Search Hint (Desktop) -->
-        <button onclick="focusSearch()" class="hidden md:flex items-center space-x-2 px-3 py-1.5 text-xs text-slate-500 bg-slate-100/80 hover:bg-slate-200/60 border border-slate-200/80 rounded-lg transition">
+        <button onclick="focusSearch()"
+          class="hidden md:flex items-center space-x-2 px-3 py-1.5 text-xs text-slate-500 bg-slate-100/80 hover:bg-slate-200/60 border border-slate-200/80 rounded-lg transition">
           <i data-lucide="search" class="w-3.5 h-3.5 text-slate-400"></i>
           <span>Search leads</span>
-          <kbd class="font-mono text-[10px] px-1.5 py-0.5 bg-white border border-slate-300 rounded text-slate-600 shadow-2xs">/</kbd>
+          <kbd
+            class="font-mono text-[10px] px-1.5 py-0.5 bg-white border border-slate-300 rounded text-slate-600 shadow-2xs">/</kbd>
         </button>
 
         <!-- Download Deliverables Dropdown -->
         <div class="relative inline-block text-left" id="downloadDropdownContainer">
-          <button id="downloadBtn" onclick="toggleDownloadMenu()" class="inline-flex items-center px-3.5 py-2 text-xs font-semibold text-slate-700 bg-white border border-slate-300 hover:border-slate-400 rounded-lg shadow-2xs hover:bg-slate-50/80 transition focus:outline-none focus:ring-2 focus:ring-sky-500/20">
+          <button id="downloadBtn" onclick="toggleDownloadMenu()"
+            class="inline-flex items-center px-3.5 py-2 text-xs font-semibold text-slate-700 bg-white border border-slate-300 hover:border-slate-400 rounded-lg shadow-2xs hover:bg-slate-50/80 transition focus:outline-none focus:ring-2 focus:ring-sky-500/20">
             <i data-lucide="download" class="w-3.5 h-3.5 mr-2 text-slate-500"></i>
             <span>Export Deliverables</span>
             <i data-lucide="chevron-down" class="w-3.5 h-3.5 ml-1.5 text-slate-400"></i>
           </button>
-          
-          <div id="downloadMenu" class="hidden absolute right-0 mt-2 w-72 bg-white rounded-xl shadow-elevation-3 border border-slate-200/90 py-1.5 z-50">
+
+          <div id="downloadMenu"
+            class="hidden absolute right-0 mt-2 w-72 bg-white rounded-xl shadow-elevation-3 border border-slate-200/90 py-1.5 z-50">
             <div class="px-3.5 py-1.5">
               <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Export Deliverables</p>
             </div>
             <div class="py-0.5">
-              <a href="/api/download/excel" download class="group flex items-center px-3.5 py-2.5 text-slate-700 hover:bg-sky-50/80 hover:text-sky-900 transition">
-                <div class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center mr-3 group-hover:scale-105 transition-transform">
+              <a href="/api/download/excel" download
+                class="group flex items-center px-3.5 py-2.5 text-slate-700 hover:bg-sky-50/80 hover:text-sky-900 transition">
+                <div
+                  class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center mr-3 group-hover:scale-105 transition-transform">
                   <i data-lucide="file-spreadsheet" class="w-4 h-4"></i>
                 </div>
                 <div class="flex-1 min-w-0">
@@ -159,8 +180,10 @@
                   <p class="text-[11px] font-mono text-slate-400 truncate">qualified_dubai_leads.xlsx</p>
                 </div>
               </a>
-              <a href="/api/download/top5" download class="group flex items-center px-3.5 py-2.5 text-slate-700 hover:bg-sky-50/80 hover:text-sky-900 transition">
-                <div class="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center mr-3 group-hover:scale-105 transition-transform">
+              <a href="/api/download/top5" download
+                class="group flex items-center px-3.5 py-2.5 text-slate-700 hover:bg-sky-50/80 hover:text-sky-900 transition">
+                <div
+                  class="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center mr-3 group-hover:scale-105 transition-transform">
                   <i data-lucide="star" class="w-4 h-4"></i>
                 </div>
                 <div class="flex-1 min-w-0">
@@ -168,8 +191,10 @@
                   <p class="text-[11px] font-mono text-slate-400 truncate">top_5_leads.csv</p>
                 </div>
               </a>
-              <a href="/api/download/all" download class="group flex items-center px-3.5 py-2.5 text-slate-700 hover:bg-sky-50/80 hover:text-sky-900 transition">
-                <div class="w-8 h-8 rounded-lg bg-slate-100 text-slate-600 flex items-center justify-center mr-3 group-hover:scale-105 transition-transform">
+              <a href="/api/download/all" download
+                class="group flex items-center px-3.5 py-2.5 text-slate-700 hover:bg-sky-50/80 hover:text-sky-900 transition">
+                <div
+                  class="w-8 h-8 rounded-lg bg-slate-100 text-slate-600 flex items-center justify-center mr-3 group-hover:scale-105 transition-transform">
                   <i data-lucide="users" class="w-4 h-4"></i>
                 </div>
                 <div class="flex-1 min-w-0">
@@ -182,7 +207,8 @@
         </div>
 
         <!-- Trigger Pipeline Button -->
-        <button onclick="openPipelineModal()" class="inline-flex items-center px-4 py-2 text-xs font-semibold text-white bg-slate-900 hover:bg-slate-800 rounded-lg shadow-elevation-1 transition focus:outline-none focus:ring-2 focus:ring-sky-500/20 active:scale-98">
+        <button onclick="openPipelineModal()"
+          class="inline-flex items-center px-4 py-2 text-xs font-semibold text-white bg-slate-900 hover:bg-slate-800 rounded-lg shadow-elevation-1 transition focus:outline-none focus:ring-2 focus:ring-sky-500/20 active:scale-98">
           <i data-lucide="play" class="w-3.5 h-3.5 mr-1.5 text-sky-400 fill-current"></i>
           <span>Run Pipeline</span>
         </button>
@@ -198,45 +224,54 @@
 
     <!-- Interactive Metric Selection Cards Row -->
     <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3.5" id="statsCardsContainer">
-      
+
       <!-- Card 1: Qualified Leads (24) -->
-      <div onclick="setTab('qualified')" id="card-qualified" role="button" tabindex="0" class="card-selector p-4 rounded-xl transition cursor-pointer relative select-none bg-emerald-50/50 border-2 border-emerald-500 shadow-elevation-2">
+      <div onclick="setTab('qualified')" id="card-qualified" role="button" tabindex="0"
+        class="card-selector p-4 rounded-xl transition cursor-pointer relative select-none bg-emerald-50/50 border-2 border-emerald-500 shadow-elevation-2">
         <div class="flex items-center justify-between text-slate-500 mb-2">
           <span class="text-[11px] font-bold uppercase tracking-wider text-slate-700">Qualified Leads</span>
-          <div class="w-7 h-7 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center transition-transform">
+          <div
+            class="w-7 h-7 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center transition-transform">
             <i data-lucide="badge-check" class="w-4 h-4"></i>
           </div>
         </div>
         <div class="flex items-baseline justify-between">
           <div class="text-2xl font-extrabold text-slate-900 tabular-nums tracking-tight" id="statStrongCount">-</div>
-          <span class="text-xs font-bold text-emerald-800 bg-emerald-100/80 px-2 py-0.5 rounded-full" id="statStrongPct">--%</span>
+          <span class="text-xs font-bold text-emerald-800 bg-emerald-100/80 px-2 py-0.5 rounded-full"
+            id="statStrongPct">--%</span>
         </div>
         <div class="text-[11px] text-slate-500 font-medium mt-1.5 flex items-center justify-between">
-          <span class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-1.5"></span>Score &ge; 75 &bull; Verified</span>
+          <span class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-1.5"></span>Score &ge;
+            75 &bull; Verified</span>
           <span class="card-active-indicator text-[10px] font-bold uppercase text-emerald-700">Active</span>
         </div>
       </div>
 
       <!-- Card 2: Needs Review (127) -->
-      <div onclick="setTab('needs_review')" id="card-needs_review" role="button" tabindex="0" class="card-selector bg-white p-4 rounded-xl border border-slate-200/90 shadow-elevation-1 hover:border-slate-300 hover:shadow-elevation-2 transition cursor-pointer relative select-none opacity-85 hover:opacity-100">
+      <div onclick="setTab('needs_review')" id="card-needs_review" role="button" tabindex="0"
+        class="card-selector bg-white p-4 rounded-xl border border-slate-200/90 shadow-elevation-1 hover:border-slate-300 hover:shadow-elevation-2 transition cursor-pointer relative select-none opacity-85 hover:opacity-100">
         <div class="flex items-center justify-between text-slate-500 mb-2">
           <span class="text-[11px] font-bold uppercase tracking-wider text-slate-600">Needs Review</span>
-          <div class="w-7 h-7 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center transition-transform">
+          <div
+            class="w-7 h-7 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center transition-transform">
             <i data-lucide="help-circle" class="w-4 h-4"></i>
           </div>
         </div>
         <div class="flex items-baseline justify-between">
           <div class="text-2xl font-extrabold text-slate-900 tabular-nums tracking-tight" id="statNeedsValCount">-</div>
-          <span class="text-[11px] font-semibold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full">Review Queue</span>
+          <span class="text-[11px] font-semibold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full">Review
+            Queue</span>
         </div>
         <div class="text-[11px] text-slate-500 font-medium mt-1.5 flex items-center justify-between">
-          <span class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-amber-500 mr-1.5"></span>Plausible / Pending</span>
+          <span class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-amber-500 mr-1.5"></span>Plausible /
+            Pending</span>
           <span class="card-active-indicator text-[10px] font-bold uppercase text-amber-700 hidden">Active</span>
         </div>
       </div>
 
       <!-- Card 3: All Candidates (253) -->
-      <div onclick="setTab('all')" id="card-all" role="button" tabindex="0" class="card-selector bg-white p-4 rounded-xl border border-slate-200/90 shadow-elevation-1 hover:border-slate-300 hover:shadow-elevation-2 transition cursor-pointer relative select-none opacity-85 hover:opacity-100">
+      <div onclick="setTab('all')" id="card-all" role="button" tabindex="0"
+        class="card-selector bg-white p-4 rounded-xl border border-slate-200/90 shadow-elevation-1 hover:border-slate-300 hover:shadow-elevation-2 transition cursor-pointer relative select-none opacity-85 hover:opacity-100">
         <div class="flex items-center justify-between text-slate-500 mb-2">
           <span class="text-[11px] font-bold uppercase tracking-wider text-slate-600">All Candidates</span>
           <div class="w-7 h-7 rounded-lg bg-sky-50 text-sky-600 flex items-center justify-center transition-transform">
@@ -248,16 +283,19 @@
           <span class="text-[11px] font-semibold text-sky-700 bg-sky-50 px-2 py-0.5 rounded-full">Total Pool</span>
         </div>
         <div class="text-[11px] text-slate-500 font-medium mt-1.5 flex items-center justify-between">
-          <span class="flex items-center truncate"><span class="w-1.5 h-1.5 rounded-full bg-sky-500 mr-1.5"></span>Evaluated Leads</span>
+          <span class="flex items-center truncate"><span
+              class="w-1.5 h-1.5 rounded-full bg-sky-500 mr-1.5"></span>Evaluated Leads</span>
           <span class="card-active-indicator text-[10px] font-bold uppercase text-sky-700 hidden">Active</span>
         </div>
       </div>
 
       <!-- Card 4: Rejected Leads (102) -->
-      <div onclick="setTab('reject')" id="card-reject" role="button" tabindex="0" class="card-selector bg-white p-4 rounded-xl border border-slate-200/90 shadow-elevation-1 hover:border-slate-300 hover:shadow-elevation-2 transition cursor-pointer relative select-none opacity-85 hover:opacity-100">
+      <div onclick="setTab('reject')" id="card-reject" role="button" tabindex="0"
+        class="card-selector bg-white p-4 rounded-xl border border-slate-200/90 shadow-elevation-1 hover:border-slate-300 hover:shadow-elevation-2 transition cursor-pointer relative select-none opacity-85 hover:opacity-100">
         <div class="flex items-center justify-between text-slate-500 mb-2">
           <span class="text-[11px] font-bold uppercase tracking-wider text-slate-600">Rejected Leads</span>
-          <div class="w-7 h-7 rounded-lg bg-rose-50 text-rose-600 flex items-center justify-center transition-transform">
+          <div
+            class="w-7 h-7 rounded-lg bg-rose-50 text-rose-600 flex items-center justify-center transition-transform">
             <i data-lucide="x-circle" class="w-4 h-4"></i>
           </div>
         </div>
@@ -266,24 +304,29 @@
           <span class="text-[11px] font-semibold text-rose-700 bg-rose-50 px-2 py-0.5 rounded-full">Disqualified</span>
         </div>
         <div class="text-[11px] text-slate-500 font-medium mt-1.5 flex items-center justify-between">
-          <span class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-rose-500 mr-1.5"></span>Brokers / Spam</span>
+          <span class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-rose-500 mr-1.5"></span>Brokers /
+            Spam</span>
           <span class="card-active-indicator text-[10px] font-bold uppercase text-rose-700 hidden">Active</span>
         </div>
       </div>
 
       <!-- Card 5: Processed Files (4) -->
-      <div onclick="setTab('files')" id="card-files" role="button" tabindex="0" class="card-selector bg-white p-4 rounded-xl border border-slate-200/90 shadow-elevation-1 hover:border-slate-300 hover:shadow-elevation-2 transition cursor-pointer relative select-none col-span-2 md:col-span-4 lg:col-span-1 opacity-85 hover:opacity-100">
+      <div onclick="setTab('files')" id="card-files" role="button" tabindex="0"
+        class="card-selector bg-white p-4 rounded-xl border border-slate-200/90 shadow-elevation-1 hover:border-slate-300 hover:shadow-elevation-2 transition cursor-pointer relative select-none col-span-2 md:col-span-4 lg:col-span-1 opacity-85 hover:opacity-100">
         <div class="flex items-center justify-between text-slate-500 mb-2">
           <span class="text-[11px] font-bold uppercase tracking-wider text-slate-600">Processed Files</span>
-          <div class="w-7 h-7 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center transition-transform">
+          <div
+            class="w-7 h-7 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center transition-transform">
             <i data-lucide="folder-check" class="w-4 h-4"></i>
           </div>
         </div>
         <div class="flex items-baseline space-x-2">
-          <span class="text-2xl font-extrabold text-slate-900 tabular-nums tracking-tight" id="statProcessedFiles">-</span>
+          <span class="text-2xl font-extrabold text-slate-900 tabular-nums tracking-tight"
+            id="statProcessedFiles">-</span>
           <span class="text-xs text-slate-500 font-medium">files</span>
         </div>
-        <div class="text-[11px] font-medium mt-1.5 flex items-center justify-between" id="statUnprocessedAlertContainer">
+        <div class="text-[11px] font-medium mt-1.5 flex items-center justify-between"
+          id="statUnprocessedAlertContainer">
           <div id="statUnprocessedAlert"><span class="text-slate-400">Loading...</span></div>
           <span class="card-active-indicator text-[10px] font-bold uppercase text-purple-700 hidden">Active</span>
         </div>
@@ -297,21 +340,24 @@
     <div class="bg-white border border-slate-200/90 rounded-2xl shadow-elevation-1 overflow-hidden">
 
       <!-- Filtration & Search Toolbelt (Clean header: search & filters only, selected via cards) -->
-      <div class="border-b border-slate-200 px-4 sm:px-6 py-3.5 flex flex-col md:flex-row md:items-center md:justify-between gap-3.5 bg-slate-50/60">
-        
+      <div
+        class="border-b border-slate-200 px-4 sm:px-6 py-3.5 flex flex-col md:flex-row md:items-center md:justify-between gap-3.5 bg-slate-50/60">
+
         <!-- Active View Status Indicator (Left) -->
         <div class="flex items-center space-x-2.5">
           <span class="text-xs font-bold uppercase tracking-wider text-slate-400">View:</span>
           <span id="currentViewTitle" class="text-xs font-bold text-slate-900">Qualified Leads</span>
-          <span id="currentViewBadge" class="badge-pill bg-emerald-100 text-emerald-800 font-bold tabular-nums">0 leads</span>
+          <span id="currentViewBadge" class="badge-pill bg-emerald-100 text-emerald-800 font-bold tabular-nums">0
+            leads</span>
         </div>
 
         <!-- Filter & Search Controls (Right) -->
         <div id="leadsFilterControls" class="flex flex-wrap items-center gap-2.5">
-          
+
           <!-- State Filter -->
           <div class="relative">
-            <select id="stateFilter" onchange="applyFilters()" class="text-xs bg-white border border-slate-300 rounded-lg pl-2.5 pr-8 py-1.5 text-slate-700 font-medium appearance-none focus:outline-none focus:ring-2 focus:ring-sky-500/20 focus:border-sky-500 shadow-2xs">
+            <select id="stateFilter" onchange="applyFilters()"
+              class="text-xs bg-white border border-slate-300 rounded-lg pl-2.5 pr-8 py-1.5 text-slate-700 font-medium appearance-none focus:outline-none focus:ring-2 focus:ring-sky-500/20 focus:border-sky-500 shadow-2xs">
               <option value="all">All States</option>
               <option value="Karnataka">Karnataka</option>
               <option value="Kerala">Kerala</option>
@@ -319,26 +365,31 @@
               <option value="Telangana">Telangana</option>
               <option value="Andhra Pradesh">Andhra Pradesh</option>
             </select>
-            <i data-lucide="chevron-down" class="w-3 h-3 text-slate-400 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none"></i>
+            <i data-lucide="chevron-down"
+              class="w-3 h-3 text-slate-400 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none"></i>
           </div>
 
           <!-- Location Status Filter -->
           <div class="relative">
-            <select id="locationStatusFilter" onchange="applyFilters()" class="text-xs bg-white border border-slate-300 rounded-lg pl-2.5 pr-8 py-1.5 text-slate-700 font-medium appearance-none focus:outline-none focus:ring-2 focus:ring-sky-500/20 focus:border-sky-500 shadow-2xs">
+            <select id="locationStatusFilter" onchange="applyFilters()"
+              class="text-xs bg-white border border-slate-300 rounded-lg pl-2.5 pr-8 py-1.5 text-slate-700 font-medium appearance-none focus:outline-none focus:ring-2 focus:ring-sky-500/20 focus:border-sky-500 shadow-2xs">
               <option value="all">All Location Statuses</option>
               <option value="CURRENT_RESIDENT">CURRENT_RESIDENT</option>
               <option value="LOCATION_UNVERIFIED">LOCATION_UNVERIFIED</option>
               <option value="ORIGIN_ONLY">ORIGIN_ONLY</option>
               <option value="OUTSIDE_TARGET">OUTSIDE_TARGET</option>
             </select>
-            <i data-lucide="chevron-down" class="w-3 h-3 text-slate-400 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none"></i>
+            <i data-lucide="chevron-down"
+              class="w-3 h-3 text-slate-400 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none"></i>
           </div>
 
           <!-- Live Text Search Input -->
           <div class="relative flex-1 sm:w-60">
             <i data-lucide="search" class="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
-            <input type="text" id="searchInput" oninput="debounceSearch()" placeholder="Search handle, area, budget..." class="w-full text-xs pl-8 pr-7 py-1.5 bg-white border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500/20 focus:border-sky-500 font-medium placeholder:text-slate-400 shadow-2xs">
-            <button id="clearSearchBtn" onclick="clearSearch()" class="hidden absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600">
+            <input type="text" id="searchInput" oninput="debounceSearch()" placeholder="Search handle, area, budget..."
+              class="w-full text-xs pl-8 pr-7 py-1.5 bg-white border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500/20 focus:border-sky-500 font-medium placeholder:text-slate-400 shadow-2xs">
+            <button id="clearSearchBtn" onclick="clearSearch()"
+              class="hidden absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600">
               <i data-lucide="x" class="w-3 h-3"></i>
             </button>
           </div>
@@ -353,7 +404,8 @@
       <div id="leadsTableSection">
         <div class="overflow-x-auto min-h-[440px]">
           <table class="min-w-full divide-y divide-slate-200 text-left text-xs">
-            <thead class="bg-slate-50/90 text-slate-500 font-bold uppercase tracking-wider text-[11px] border-b border-slate-200">
+            <thead
+              class="bg-slate-50/90 text-slate-500 font-bold uppercase tracking-wider text-[11px] border-b border-slate-200">
               <tr>
                 <th scope="col" class="py-3 px-4 w-32">Score &amp; ID</th>
                 <th scope="col" class="py-3 px-4 w-48">Prospect &amp; Source</th>
@@ -379,18 +431,24 @@
         </div>
 
         <!-- Pagination & Footer Stats -->
-        <div class="px-4 sm:px-6 py-3 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500 bg-slate-50/50">
+        <div
+          class="px-4 sm:px-6 py-3 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500 bg-slate-50/50">
           <div>
-            Showing <span id="pageShowingStart" class="font-bold text-slate-700 tabular-nums">0</span> to <span id="pageShowingEnd" class="font-bold text-slate-700 tabular-nums">0</span> of <span id="pageTotalCount" class="font-bold text-slate-700 tabular-nums">0</span> evaluated leads
+            Showing <span id="pageShowingStart" class="font-bold text-slate-700 tabular-nums">0</span> to <span
+              id="pageShowingEnd" class="font-bold text-slate-700 tabular-nums">0</span> of <span id="pageTotalCount"
+              class="font-bold text-slate-700 tabular-nums">0</span> evaluated leads
           </div>
           <div class="flex items-center space-x-2">
-            <button id="prevPageBtn" onclick="changePage(-1)" class="px-3 py-1.5 border border-slate-300 rounded-lg hover:bg-slate-100 disabled:opacity-40 disabled:cursor-not-allowed font-medium text-slate-700 shadow-2xs transition">
+            <button id="prevPageBtn" onclick="changePage(-1)"
+              class="px-3 py-1.5 border border-slate-300 rounded-lg hover:bg-slate-100 disabled:opacity-40 disabled:cursor-not-allowed font-medium text-slate-700 shadow-2xs transition">
               Previous
             </button>
             <span class="px-2 font-medium text-slate-600">
-              Page <span id="currentPageNum" class="font-bold text-slate-900 tabular-nums">1</span> of <span id="totalPagesNum" class="font-bold text-slate-900 tabular-nums">1</span>
+              Page <span id="currentPageNum" class="font-bold text-slate-900 tabular-nums">1</span> of <span
+                id="totalPagesNum" class="font-bold text-slate-900 tabular-nums">1</span>
             </span>
-            <button id="nextPageBtn" onclick="changePage(1)" class="px-3 py-1.5 border border-slate-300 rounded-lg hover:bg-slate-100 disabled:opacity-40 disabled:cursor-not-allowed font-medium text-slate-700 shadow-2xs transition">
+            <button id="nextPageBtn" onclick="changePage(1)"
+              class="px-3 py-1.5 border border-slate-300 rounded-lg hover:bg-slate-100 disabled:opacity-40 disabled:cursor-not-allowed font-medium text-slate-700 shadow-2xs transition">
               Next
             </button>
           </div>
@@ -404,9 +462,12 @@
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-3 border-b border-slate-200">
           <div>
             <h3 class="text-sm font-bold text-slate-900">Incremental Processing Registry</h3>
-            <p class="text-xs text-slate-500">Tracked in <code class="font-mono bg-slate-100 px-1 py-0.5 rounded text-slate-700">results/processed.json</code> to ensure idempotent batch processing.</p>
+            <p class="text-xs text-slate-500">Tracked in <code
+                class="font-mono bg-slate-100 px-1 py-0.5 rounded text-slate-700">results/processed.json</code> to
+              ensure idempotent batch processing.</p>
           </div>
-          <button onclick="triggerPipelineRun(false)" class="inline-flex items-center px-3.5 py-1.5 text-xs font-semibold text-sky-700 bg-sky-50 border border-sky-200 rounded-lg hover:bg-sky-100 transition shadow-2xs">
+          <button onclick="triggerPipelineRun(false)"
+            class="inline-flex items-center px-3.5 py-1.5 text-xs font-semibold text-sky-700 bg-sky-50 border border-sky-200 rounded-lg hover:bg-sky-100 transition shadow-2xs">
             <i data-lucide="refresh-cw" class="w-3.5 h-3.5 mr-1.5"></i>
             Scan for New Input Files
           </button>
@@ -436,13 +497,17 @@
   <!-- ========================================================================= -->
   <!-- Comprehensive Human Auditor Lead Review Modal -->
   <!-- ========================================================================= -->
-  <div id="reviewModal" class="hidden fixed inset-0 z-50 overflow-y-auto bg-slate-950/70 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4">
-    <div class="bg-white rounded-2xl shadow-elevation-modal max-w-4xl w-full border border-slate-200 overflow-hidden transform transition-all my-6 flex flex-col max-h-[92vh]">
-      
+  <div id="reviewModal"
+    class="hidden fixed inset-0 z-50 overflow-y-auto bg-slate-950/70 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4">
+    <div
+      class="bg-white rounded-2xl shadow-elevation-modal max-w-4xl w-full border border-slate-200 overflow-hidden transform transition-all my-6 flex flex-col max-h-[92vh]">
+
       <!-- Modal Executive Header -->
-      <div class="bg-gradient-to-r from-slate-900 via-slate-800 to-indigo-950 text-white px-6 py-4 flex items-center justify-between border-b border-slate-800">
+      <div
+        class="bg-gradient-to-r from-slate-900 via-slate-800 to-indigo-950 text-white px-6 py-4 flex items-center justify-between border-b border-slate-800">
         <div class="flex items-center space-x-3.5">
-          <div class="w-11 h-11 rounded-xl bg-sky-500/10 text-sky-400 border border-sky-500/30 flex flex-col items-center justify-center font-extrabold tabular-nums">
+          <div
+            class="w-11 h-11 rounded-xl bg-sky-500/10 text-sky-400 border border-sky-500/30 flex flex-col items-center justify-center font-extrabold tabular-nums">
             <span class="text-sm leading-none" id="modalHeaderScore">--</span>
             <span class="text-[9px] uppercase font-bold text-slate-400 tracking-wider">pts</span>
           </div>
@@ -454,41 +519,22 @@
             <p class="text-xs text-slate-300 font-medium" id="modalHeaderMeta">Platform &bull; ID: CAND-000</p>
           </div>
         </div>
-        
+
         <div class="flex items-center space-x-2">
           <span class="text-[10px] text-slate-400 font-mono hidden sm:inline">ESC to close</span>
-          <button onclick="closeReviewModal()" class="text-slate-400 hover:text-white rounded-lg p-1.5 hover:bg-slate-800 transition">
+          <button onclick="closeReviewModal()"
+            class="text-slate-400 hover:text-white rounded-lg p-1.5 hover:bg-slate-800 transition">
             <i data-lucide="x" class="w-5 h-5"></i>
           </button>
         </div>
       </div>
 
       <!-- Modal Body (Two-Column Desktop Workspace) -->
-      <div class="p-6 overflow-y-auto space-y-5 flex-1">
-        
-        <!-- Dynamic Review Guide Banner: Explains Exactly What Needs to be Confirmed -->
-        <div id="modalGuideBanner" class="p-4 rounded-xl border flex items-start space-x-3.5 bg-amber-50/80 border-amber-200/90 text-amber-900 transition-all">
-          <div id="modalGuideIcon" class="p-2 rounded-lg bg-amber-100 text-amber-700 shrink-0 mt-0.5">
-            <i data-lucide="alert-circle" class="w-5 h-5"></i>
-          </div>
-          <div class="flex-1">
-            <div class="flex items-center justify-between mb-1">
-              <h4 id="modalGuideTitle" class="text-xs font-bold uppercase tracking-wider text-amber-950">
-                Action Required: Review &amp; Confirm Lead
-              </h4>
-              <span id="modalGuideStatusTag" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-200/80 text-amber-900 uppercase tracking-wide">
-                Pending Confirmation
-              </span>
-            </div>
-            <p id="modalGuideText" class="text-xs text-amber-900 leading-relaxed font-medium">
-              To confirm this lead, verify the 4 gates below. Buying intent is already verified. Verify South India Residence (or click a quick location button below) and click <strong class="text-emerald-800">"Approve &amp; Confirm Lead"</strong>.
-            </p>
-          </div>
-        </div>
+      <div class="p-6 overflow-y-auto space-y-6 flex-1">
 
-        <!-- Verbatim Statement & Quick Facts Card -->
-        <div class="bg-slate-50 border border-slate-200 rounded-xl p-4.5 space-y-3">
-          <div class="flex flex-wrap items-center justify-between gap-2">
+        <!-- Verbatim Statement Card -->
+        <div class="bg-slate-50 border border-slate-200/90 rounded-xl p-4.5 space-y-2">
+          <div class="flex items-center justify-between">
             <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500 flex items-center">
               <i data-lucide="quote" class="w-3.5 h-3.5 mr-1.5 text-sky-600"></i>
               Original Attributable Statement
@@ -497,194 +543,162 @@
               <span class="text-xs text-slate-400">Loading actions...</span>
             </div>
           </div>
-          
-          <blockquote class="text-sm text-slate-900 leading-relaxed font-normal italic border-l-3 border-sky-500 pl-3.5 py-1 bg-white/70 rounded-r-lg" id="modalVerbatimStatement">
+          <blockquote
+            class="text-sm text-slate-900 leading-relaxed font-normal italic border-l-2 border-sky-500 pl-3 py-0.5"
+            id="modalVerbatimStatement">
             "Loading statement..."
           </blockquote>
-
-          <!-- Quick Fact Pills -->
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1">
-            <div class="bg-white border border-slate-200/80 rounded-lg p-2 shadow-2xs">
-              <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Target Asset / Area</div>
-              <div class="text-xs font-bold text-slate-800 truncate mt-0.5" id="modalFactTarget">Dubai Real Estate</div>
-            </div>
-            <div class="bg-white border border-slate-200/80 rounded-lg p-2 shadow-2xs">
-              <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Budget / Ticket Size</div>
-              <div class="text-xs font-bold text-slate-800 truncate mt-0.5" id="modalFactBudget">Unspecified</div>
-            </div>
-            <div class="bg-white border border-slate-200/80 rounded-lg p-2 shadow-2xs">
-              <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Reported Metro</div>
-              <div class="text-xs font-bold text-slate-800 truncate mt-0.5" id="modalFactLocation">Location Pending</div>
-            </div>
-            <div class="bg-white border border-slate-200/80 rounded-lg p-2 shadow-2xs">
-              <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Signal Age / Freshness</div>
-              <div class="text-xs font-bold text-slate-800 truncate mt-0.5" id="modalFactFreshness">-- days ago</div>
-            </div>
-          </div>
         </div>
 
-        <!-- 4-Gate Confirmation Checklist: Clear What-To-Review Grid -->
+        <!-- 6-Point Weighted Evidence Matrix -->
         <div>
           <div class="flex items-center justify-between mb-2.5">
             <h4 class="text-xs font-bold uppercase tracking-wider text-slate-700 flex items-center">
-              <i data-lucide="check-square" class="w-3.5 h-3.5 mr-1.5 text-indigo-600"></i>
-              What Needs Review to Confirm This Lead (4-Gate Checklist)
+              <i data-lucide="sliders" class="w-3.5 h-3.5 mr-1.5 text-indigo-600"></i>
+              100-Point Buyer Intent &amp; Evidence Audit
             </h4>
-            <span class="text-[11px] text-slate-500 font-medium">All 4 gates required for Strong Signal</span>
+            <span class="text-[11px] text-slate-500 font-medium">Non-cumulative strict attribution</span>
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-            
-            <!-- Gate 1: Buying Intent -->
-            <div class="p-3.5 bg-white border border-slate-200 rounded-xl shadow-2xs space-y-1.5">
-              <div class="flex justify-between items-center">
-                <span class="text-xs font-bold text-slate-900 flex items-center">
-                  <span class="w-5 h-5 rounded-full bg-slate-100 text-slate-700 font-bold text-[11px] flex items-center justify-center mr-2">1</span>
-                  Dubai Purchase Intent
-                </span>
-                <span id="gateIntentBadge" class="badge-pill bg-emerald-50 text-emerald-800 border border-emerald-200 font-semibold text-[11px]">
-                  <i data-lucide="check" class="w-3 h-3 mr-1 inline"></i> Verified
-                </span>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+
+            <!-- Box 1: Purchase Intent (30) -->
+            <div class="p-3 bg-white border border-slate-200 rounded-lg shadow-2xs">
+              <div class="flex justify-between items-center text-xs font-bold mb-1">
+                <span class="text-slate-800">Purchase Intent</span>
+                <span class="badge-pill bg-sky-50 text-sky-800 border border-sky-200/60 font-mono"
+                  id="modalPillIntent">30 / 30</span>
               </div>
-              <p class="text-[11px] text-slate-500 font-medium">Explicit intent to buy, invest, or inquire about Dubai property.</p>
-              <div class="bg-slate-50 rounded-lg p-2 text-[11px] text-slate-700 italic border border-slate-150 line-clamp-2" id="gateIntentEvidence">
-                --
-              </div>
+              <p class="text-[11px] text-slate-600 italic line-clamp-3" id="modalEvidenceIntent">--</p>
             </div>
 
-            <!-- Gate 2: South India Residence (Primary Gate) -->
-            <div id="gateLocationCard" class="p-3.5 bg-amber-50/40 border-2 border-amber-300 rounded-xl shadow-2xs space-y-1.5 transition">
-              <div class="flex justify-between items-center">
-                <span class="text-xs font-bold text-slate-900 flex items-center">
-                  <span class="w-5 h-5 rounded-full bg-amber-200 text-amber-900 font-bold text-[11px] flex items-center justify-center mr-2">2</span>
-                  South India Residence
-                </span>
-                <span id="gateLocationBadge" class="badge-pill bg-amber-100 text-amber-800 border border-amber-300 font-semibold text-[11px]">
-                  <i data-lucide="alert-triangle" class="w-3 h-3 mr-1 inline"></i> Action Needed
-                </span>
+            <!-- Box 2: Transactional Readiness (20) -->
+            <div class="p-3 bg-white border border-slate-200 rounded-lg shadow-2xs">
+              <div class="flex justify-between items-center text-xs font-bold mb-1">
+                <span class="text-slate-800">Readiness / LRS</span>
+                <span class="badge-pill bg-sky-50 text-sky-800 border border-sky-200/60 font-mono"
+                  id="modalPillReadiness">20 / 20</span>
               </div>
-              <p class="text-[11px] text-slate-600 font-medium">Must currently reside in KA (BLR), TS (HYD), TN (CHN), KL, or AP.</p>
-              <div class="bg-white rounded-lg p-2 text-[11px] text-slate-700 italic border border-slate-200 line-clamp-2" id="gateLocationEvidence">
-                Location unverified — please confirm below
-              </div>
+              <p class="text-[11px] text-slate-600 italic line-clamp-3" id="modalEvidenceReadiness">--</p>
             </div>
 
-            <!-- Gate 3: Budget or Financial Readiness -->
-            <div class="p-3.5 bg-white border border-slate-200 rounded-xl shadow-2xs space-y-1.5">
-              <div class="flex justify-between items-center">
-                <span class="text-xs font-bold text-slate-900 flex items-center">
-                  <span class="w-5 h-5 rounded-full bg-slate-100 text-slate-700 font-bold text-[11px] flex items-center justify-center mr-2">3</span>
-                  Budget / Financial Readiness
-                </span>
-                <span id="gateBudgetBadge" class="badge-pill bg-emerald-50 text-emerald-800 border border-emerald-200 font-semibold text-[11px]">
-                  <i data-lucide="check" class="w-3 h-3 mr-1 inline"></i> Identified
-                </span>
+            <!-- Box 3: Budget & Financing (15) -->
+            <div class="p-3 bg-white border border-slate-200 rounded-lg shadow-2xs">
+              <div class="flex justify-between items-center text-xs font-bold mb-1">
+                <span class="text-slate-800">Budget / Ticket Size</span>
+                <span class="badge-pill bg-sky-50 text-sky-800 border border-sky-200/60 font-mono"
+                  id="modalPillBudget">15 / 15</span>
               </div>
-              <p class="text-[11px] text-slate-500 font-medium">Declared ticket size, LRS outward remittance readiness, or self-funding.</p>
-              <div class="bg-slate-50 rounded-lg p-2 text-[11px] text-slate-700 italic border border-slate-150 line-clamp-2" id="gateBudgetEvidence">
-                --
-              </div>
+              <p class="text-[11px] text-slate-600 italic line-clamp-3" id="modalEvidenceBudget">--</p>
             </div>
 
-            <!-- Gate 4: Live Authentic Source Attribution -->
-            <div class="p-3.5 bg-white border border-slate-200 rounded-xl shadow-2xs space-y-1.5">
-              <div class="flex justify-between items-center">
-                <span class="text-xs font-bold text-slate-900 flex items-center">
-                  <span class="w-5 h-5 rounded-full bg-slate-100 text-slate-700 font-bold text-[11px] flex items-center justify-center mr-2">4</span>
-                  Live Source Attribution
-                </span>
-                <span id="gateSourceBadge" class="badge-pill bg-emerald-50 text-emerald-800 border border-emerald-200 font-semibold text-[11px]">
-                  <i data-lucide="check" class="w-3 h-3 mr-1 inline"></i> 100% Verified
-                </span>
+            <!-- Box 4: Purchase Timeline (15) -->
+            <div class="p-3 bg-white border border-slate-200 rounded-lg shadow-2xs">
+              <div class="flex justify-between items-center text-xs font-bold mb-1">
+                <span class="text-slate-800">Purchase Timeline</span>
+                <span class="badge-pill bg-sky-50 text-sky-800 border border-sky-200/60 font-mono"
+                  id="modalPillTimeline">15 / 15</span>
               </div>
-              <p class="text-[11px] text-slate-500 font-medium">Genuine public Reddit user account or verified press desk attribution.</p>
-              <div class="bg-slate-50 rounded-lg p-2 text-[11px] text-slate-700 italic border border-slate-150 line-clamp-2 font-mono text-[10px]" id="gateSourceEvidence">
-                --
+              <p class="text-[11px] text-slate-600 italic line-clamp-3" id="modalEvidenceTimeline">--</p>
+            </div>
+
+            <!-- Box 5: Property / Projects (10) -->
+            <div class="p-3 bg-white border border-slate-200 rounded-lg shadow-2xs">
+              <div class="flex justify-between items-center text-xs font-bold mb-1">
+                <span class="text-slate-800">Property / Developer</span>
+                <span class="badge-pill bg-sky-50 text-sky-800 border border-sky-200/60 font-mono"
+                  id="modalPillProject">10 / 10</span>
               </div>
+              <p class="text-[11px] text-slate-600 italic line-clamp-3" id="modalEvidenceProject">--</p>
+            </div>
+
+            <!-- Box 6: Freshness Window (10) -->
+            <div class="p-3 bg-white border border-slate-200 rounded-lg shadow-2xs">
+              <div class="flex justify-between items-center text-xs font-bold mb-1">
+                <span class="text-slate-800">Freshness (180-day)</span>
+                <span class="badge-pill bg-sky-50 text-sky-800 border border-sky-200/60 font-mono"
+                  id="modalPillFreshness">10 / 10</span>
+              </div>
+              <p class="text-[11px] text-slate-600 italic line-clamp-3" id="modalEvidenceFreshness">--</p>
             </div>
 
           </div>
         </div>
 
-        <!-- Human Auditor Decision Console: 1-Click Confirmation Tools -->
-        <div class="p-4.5 bg-gradient-to-b from-sky-50/80 via-indigo-50/40 to-slate-50 border border-sky-200/80 rounded-xl space-y-4">
-          <div class="flex flex-wrap items-center justify-between gap-2">
-            <div>
-              <h4 class="text-xs font-bold uppercase tracking-wider text-sky-950 flex items-center">
-                <i data-lucide="user-check" class="w-4 h-4 mr-1.5 text-sky-700"></i>
-                Auditor Confirmation Console
-              </h4>
-              <p class="text-[11px] text-slate-500 font-medium">Confirm South India residence below to elevate this lead to Strong Signal.</p>
-            </div>
-            
-            <!-- Quick 1-Click Verification Pills -->
-            <div class="flex items-center flex-wrap gap-1.5">
-              <span class="text-[10px] font-bold uppercase text-slate-500 tracking-wider">1-Click Verify:</span>
-              <button type="button" onclick="setQuickLocation('Bengaluru', 'Karnataka')" class="px-2 py-1 text-[11px] font-bold bg-white text-sky-800 border border-sky-200 hover:bg-sky-100/80 rounded-md transition shadow-2xs flex items-center">
-                <i data-lucide="map-pin" class="w-3 h-3 mr-1 text-sky-600"></i>BLR
-              </button>
-              <button type="button" onclick="setQuickLocation('Hyderabad', 'Telangana')" class="px-2 py-1 text-[11px] font-bold bg-white text-sky-800 border border-sky-200 hover:bg-sky-100/80 rounded-md transition shadow-2xs flex items-center">
-                <i data-lucide="map-pin" class="w-3 h-3 mr-1 text-sky-600"></i>HYD
-              </button>
-              <button type="button" onclick="setQuickLocation('Chennai', 'Tamil Nadu')" class="px-2 py-1 text-[11px] font-bold bg-white text-sky-800 border border-sky-200 hover:bg-sky-100/80 rounded-md transition shadow-2xs flex items-center">
-                <i data-lucide="map-pin" class="w-3 h-3 mr-1 text-sky-600"></i>CHN
-              </button>
-              <button type="button" onclick="setQuickLocation('Kochi', 'Kerala')" class="px-2 py-1 text-[11px] font-bold bg-white text-sky-800 border border-sky-200 hover:bg-sky-100/80 rounded-md transition shadow-2xs flex items-center">
-                <i data-lucide="map-pin" class="w-3 h-3 mr-1 text-sky-600"></i>KER
-              </button>
-              <button type="button" onclick="setQuickLocation('Visakhapatnam', 'Andhra Pradesh')" class="px-2 py-1 text-[11px] font-bold bg-white text-sky-800 border border-sky-200 hover:bg-sky-100/80 rounded-md transition shadow-2xs flex items-center">
-                <i data-lucide="map-pin" class="w-3 h-3 mr-1 text-sky-600"></i>AP
-              </button>
-            </div>
+        <!-- Human Auditor Decision Console -->
+        <div
+          class="p-4.5 bg-gradient-to-b from-sky-50/70 to-indigo-50/40 border border-sky-200/80 rounded-xl space-y-4">
+          <div class="flex items-center justify-between">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-sky-950 flex items-center">
+              <i data-lucide="user-check" class="w-4 h-4 mr-1.5 text-sky-700"></i>
+              Auditor Decision Console
+            </h4>
+            <span class="text-[11px] font-semibold text-sky-800">Strict Rule: Strong Signal requires verified
+              CURRENT_RESIDENT</span>
           </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            
+
             <!-- Location Verification Selector -->
             <div>
-              <label class="block text-xs font-bold text-slate-800 mb-1">
-                Geographic Verification Status <span class="text-rose-600">*</span>
+              <label class="block text-xs font-bold text-slate-700 mb-1">
+                Geographic Verification Status
               </label>
-              <select id="modalInputLocStatus" onchange="handleLocStatusChange()" class="w-full text-xs bg-white border border-slate-300 rounded-lg p-2.5 font-medium text-slate-900 focus:ring-2 focus:ring-sky-500/20 focus:border-sky-500 shadow-2xs">
-                <option value="CURRENT_RESIDENT">✅ CURRENT_RESIDENT (Explicit resident of KA, KL, TN, TS, AP)</option>
-                <option value="LOCATION_UNVERIFIED">⚠️ LOCATION_UNVERIFIED (Intent clear, location unverified)</option>
-                <option value="ORIGIN_ONLY">ℹ️ ORIGIN_ONLY (South Indian ancestry living abroad)</option>
-                <option value="OUTSIDE_TARGET">❌ OUTSIDE_TARGET (Resident outside 5 South India target states)</option>
+              <select id="modalInputLocStatus" onchange="handleLocStatusChange()"
+                class="w-full text-xs bg-white border border-slate-300 rounded-lg p-2 font-medium text-slate-900 focus:ring-2 focus:ring-sky-500/20 focus:border-sky-500 shadow-2xs">
+                <option value="CURRENT_RESIDENT">CURRENT_RESIDENT (Explicit residence in KA, KL, TN, TS, AP)</option>
+                <option value="LOCATION_UNVERIFIED">LOCATION_UNVERIFIED (Plausible intent, location unverified)</option>
+                <option value="ORIGIN_ONLY">ORIGIN_ONLY (Birthplace/ancestry without current residence)</option>
+                <option value="OUTSIDE_TARGET">OUTSIDE_TARGET (Confirmed resident outside 5 target states)</option>
               </select>
             </div>
 
             <!-- Score Adjustment -->
             <div>
               <div class="flex justify-between items-center mb-1">
-                <label class="text-xs font-bold text-slate-800">Audit Score (0 - 100)</label>
-                <span class="text-[11px] text-emerald-700 font-bold">Strong Signal threshold &ge; 75</span>
+                <label class="text-xs font-bold text-slate-700">Audit Score (0 - 100)</label>
+                <span class="text-[11px] text-slate-500 font-medium">Strong threshold &ge; 75</span>
               </div>
-              <input type="number" min="0" max="100" id="modalInputScore" class="w-full text-xs font-mono font-bold bg-white border border-slate-300 rounded-lg p-2.5 text-slate-900 focus:ring-2 focus:ring-sky-500/20 focus:border-sky-500 shadow-2xs" placeholder="Score (e.g. 85)">
+              <input type="number" min="0" max="100" id="modalInputScore"
+                class="w-full text-xs font-mono font-bold bg-white border border-slate-300 rounded-lg p-2 text-slate-900 focus:ring-2 focus:ring-sky-500/20 focus:border-sky-500 shadow-2xs"
+                placeholder="Score (e.g. 85)">
             </div>
 
           </div>
 
           <!-- Traceable Location Evidence Text Input -->
           <div>
-            <label class="block text-xs font-bold text-slate-800 mb-1">
+            <label class="block text-xs font-bold text-slate-700 mb-1">
               Traceable Location Evidence Snippet
             </label>
-            <input type="text" id="modalInputLocEvidence" oninput="updateGateStatusDynamically()" class="w-full text-xs bg-white border border-slate-300 rounded-lg p-2.5 text-slate-900 focus:ring-2 focus:ring-sky-500/20 focus:border-sky-500 shadow-2xs placeholder:text-slate-400" placeholder="e.g. Verified resident in Whitefield, Bengaluru; Tech professional investing via LRS">
+            <input type="text" id="modalInputLocEvidence"
+              class="w-full text-xs bg-white border border-slate-300 rounded-lg p-2 text-slate-900 focus:ring-2 focus:ring-sky-500/20 focus:border-sky-500 shadow-2xs placeholder:text-slate-400"
+              placeholder="e.g. Working in Whitefield Tech Park; Resident of HSR Layout Bengaluru">
           </div>
 
           <!-- Auditor Notes with Quick Preset Chips -->
           <div>
-            <div class="flex flex-wrap items-center justify-between mb-1 gap-1">
-              <label class="text-xs font-bold text-slate-800">Auditor Notes</label>
+            <div class="flex items-center justify-between mb-1">
+              <label class="text-xs font-bold text-slate-700">Auditor Audit Notes</label>
               <div class="flex items-center space-x-1">
-                <span class="text-[10px] text-slate-400 font-medium">Quick notes:</span>
-                <button type="button" onclick="insertNotePreset('Verified current Bangalore tech resident with active LRS intention.')" class="text-[10px] bg-white border border-slate-200 px-1.5 py-0.5 rounded hover:bg-slate-50 text-slate-600">+ BLR Resident</button>
-                <button type="button" onclick="insertNotePreset('Verified booking token / transfer remittance confirmed.')" class="text-[10px] bg-white border border-slate-200 px-1.5 py-0.5 rounded hover:bg-slate-50 text-slate-600">+ Token Paid</button>
-                <button type="button" onclick="insertNotePreset('Inquired about Sobha / Emaar off-plan projects.')" class="text-[10px] bg-white border border-slate-200 px-1.5 py-0.5 rounded hover:bg-slate-50 text-slate-600">+ Off-Plan</button>
-                <button type="button" onclick="insertNotePreset('Confirmed broker / channel partner promotion.')" class="text-[10px] bg-white border border-slate-200 px-1.5 py-0.5 rounded hover:bg-slate-50 text-slate-600">+ Broker/Spam</button>
+                <span class="text-[10px] text-slate-400 font-medium">Quick presets:</span>
+                <button type="button"
+                  onclick="insertNotePreset('Verified booking token / transfer remittance confirmed.')"
+                  class="text-[10px] bg-white border border-slate-200 px-1.5 py-0.5 rounded hover:bg-slate-50 text-slate-600">+
+                  Token Paid</button>
+                <button type="button"
+                  onclick="insertNotePreset('Verified current Bangalore tech resident with active LRS intention.')"
+                  class="text-[10px] bg-white border border-slate-200 px-1.5 py-0.5 rounded hover:bg-slate-50 text-slate-600">+
+                  Resident BLR</button>
+                <button type="button"
+                  onclick="insertNotePreset('Confirmed real estate broker / channel partner self-promotion.')"
+                  class="text-[10px] bg-white border border-slate-200 px-1.5 py-0.5 rounded hover:bg-slate-50 text-slate-600">+
+                  Broker/Spam</button>
               </div>
             </div>
-            <textarea id="modalInputNotes" rows="2" class="w-full text-xs bg-white border border-slate-300 rounded-lg p-2 text-slate-900 focus:ring-2 focus:ring-sky-500/20 focus:border-sky-500 shadow-2xs placeholder:text-slate-400" placeholder="Document specific audit notes or reasoning..."></textarea>
+            <textarea id="modalInputNotes" rows="2"
+              class="w-full text-xs bg-white border border-slate-300 rounded-lg p-2 text-slate-900 focus:ring-2 focus:ring-sky-500/20 focus:border-sky-500 shadow-2xs placeholder:text-slate-400"
+              placeholder="Document specific justification, verification method, or reasoning..."></textarea>
           </div>
 
         </div>
@@ -692,28 +706,32 @@
       </div>
 
       <!-- Modal Footer Action Bar -->
-      <div class="bg-slate-50 border-t border-slate-200 px-6 py-4 flex flex-wrap items-center justify-between gap-3">
-        <button onclick="closeReviewModal()" class="px-4 py-2.5 text-xs font-semibold text-slate-600 bg-white border border-slate-300 rounded-xl hover:bg-slate-100 transition shadow-2xs">
+      <div class="bg-slate-50 border-t border-slate-200 px-6 py-3.5 flex flex-wrap items-center justify-between gap-3">
+        <button onclick="closeReviewModal()"
+          class="px-4 py-2 text-xs font-semibold text-slate-600 bg-white border border-slate-300 rounded-lg hover:bg-slate-100 transition shadow-2xs">
           Cancel
         </button>
 
-        <div class="flex items-center space-x-2.5">
+        <div class="flex items-center space-x-2">
           <!-- Mark as Reject -->
-          <button onclick="submitReviewAction('reject')" class="px-3.5 py-2.5 text-xs font-semibold text-rose-700 bg-rose-50 hover:bg-rose-100 border border-rose-200 rounded-xl transition shadow-2xs flex items-center">
+          <button onclick="submitReviewAction('reject')"
+            class="px-3.5 py-2 text-xs font-semibold text-rose-700 bg-rose-50 border border-rose-200 rounded-lg hover:bg-rose-100 transition shadow-2xs flex items-center">
             <i data-lucide="x" class="w-3.5 h-3.5 mr-1.5"></i>
-            <span>Mark as Reject</span>
+            <span>Mark Reject</span>
           </button>
 
           <!-- Save Edits (Keep in Needs Validation) -->
-          <button onclick="submitReviewAction('update')" class="px-4 py-2.5 text-xs font-semibold text-slate-700 bg-white hover:bg-slate-50 border border-slate-300 rounded-xl transition shadow-2xs flex items-center">
+          <button onclick="submitReviewAction('update')"
+            class="px-3.5 py-2 text-xs font-semibold text-slate-700 bg-white border border-slate-300 rounded-lg hover:bg-slate-100 transition shadow-2xs flex items-center">
             <i data-lucide="save" class="w-3.5 h-3.5 mr-1.5"></i>
-            <span>Save Draft</span>
+            <span>Save Edits</span>
           </button>
 
           <!-- Approve as Qualified Lead -->
-          <button onclick="submitReviewAction('approve')" class="px-5 py-2.5 text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 active:scale-98 rounded-xl shadow-elevation-1 transition flex items-center">
+          <button onclick="submitReviewAction('approve')"
+            class="px-5 py-2 text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 active:scale-98 rounded-lg shadow-elevation-1 transition flex items-center">
             <i data-lucide="check-check" class="w-4 h-4 mr-1.5"></i>
-            <span>Approve &amp; Confirm Lead</span>
+            <span>Approve as Qualified Lead</span>
           </button>
         </div>
       </div>
@@ -726,27 +744,32 @@
   <!-- ========================================================================= -->
   <!-- Pipeline Execution Modal -->
   <!-- ========================================================================= -->
-  <div id="pipelineModal" class="hidden fixed inset-0 z-50 overflow-y-auto bg-slate-950/70 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4">
-    <div class="bg-white rounded-2xl shadow-elevation-modal max-w-2xl w-full border border-slate-200 overflow-hidden transform transition-all my-6">
-      
+  <div id="pipelineModal"
+    class="hidden fixed inset-0 z-50 overflow-y-auto bg-slate-950/70 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4">
+    <div
+      class="bg-white rounded-2xl shadow-elevation-modal max-w-2xl w-full border border-slate-200 overflow-hidden transform transition-all my-6">
+
       <!-- Modal Header -->
-      <div class="bg-gradient-to-r from-slate-900 to-indigo-950 text-white px-6 py-4 flex items-center justify-between border-b border-slate-800">
+      <div
+        class="bg-gradient-to-r from-slate-900 to-indigo-950 text-white px-6 py-4 flex items-center justify-between border-b border-slate-800">
         <div class="flex items-center space-x-2.5">
           <div class="w-8 h-8 rounded-lg bg-sky-500/20 text-sky-400 flex items-center justify-center">
             <i data-lucide="cpu" class="w-4 h-4"></i>
           </div>
           <div>
             <h3 class="text-sm font-bold text-white tracking-tight">Run Qualification &amp; Evidence Engine</h3>
-            <p class="text-[11px] text-slate-400 font-medium">Harvesters &bull; URL Audit &bull; Geo Verification &bull; Scoring</p>
+            <p class="text-[11px] text-slate-400 font-medium">Harvesters &bull; URL Audit &bull; Geo Verification &bull;
+              Scoring</p>
           </div>
         </div>
-        <button onclick="closePipelineModal()" class="text-slate-400 hover:text-white rounded-lg p-1.5 hover:bg-slate-800 transition">
+        <button onclick="closePipelineModal()"
+          class="text-slate-400 hover:text-white rounded-lg p-1.5 hover:bg-slate-800 transition">
           <i data-lucide="x" class="w-5 h-5"></i>
         </button>
       </div>
 
       <div class="p-6 space-y-4">
-        
+
         <!-- Workflow Stage Stepper Visualization -->
         <div class="grid grid-cols-5 gap-1.5 text-center text-[10px] font-bold text-slate-500 pb-2">
           <div class="p-2 bg-slate-100 rounded-lg">1. Ingest Raw</div>
@@ -767,23 +790,29 @@
           </div>
 
           <!-- Drag & Drop / File Input Box -->
-          <div id="dropZone" onclick="document.getElementById('pipelineFileInput').click()" class="border-2 border-dashed border-slate-300 hover:border-sky-500 rounded-xl p-4 text-center cursor-pointer bg-slate-50/70 hover:bg-sky-50/40 transition group relative">
-            <input type="file" id="pipelineFileInput" accept=".csv,.json" class="hidden" onchange="handleFileSelected(event)">
-            
+          <div id="dropZone" onclick="document.getElementById('pipelineFileInput').click()"
+            class="border-2 border-dashed border-slate-300 hover:border-sky-500 rounded-xl p-4 text-center cursor-pointer bg-slate-50/70 hover:bg-sky-50/40 transition group relative">
+            <input type="file" id="pipelineFileInput" accept=".csv,.json" class="hidden"
+              onchange="handleFileSelected(event)">
+
             <div id="uploadPrompt" class="flex flex-col items-center justify-center space-y-1.5">
-              <div class="w-9 h-9 rounded-lg bg-white border border-slate-200 shadow-2xs flex items-center justify-center text-slate-500 group-hover:text-sky-600 group-hover:border-sky-300 transition-colors">
+              <div
+                class="w-9 h-9 rounded-lg bg-white border border-slate-200 shadow-2xs flex items-center justify-center text-slate-500 group-hover:text-sky-600 group-hover:border-sky-300 transition-colors">
                 <i data-lucide="file-up" class="w-5 h-5"></i>
               </div>
               <p class="text-xs font-semibold text-slate-700 group-hover:text-sky-900">
                 Click to browse or drag and drop raw CSV file
               </p>
               <p class="text-[11px] text-slate-400">
-                New files will be automatically moved to <code class="font-mono bg-slate-200/70 px-1 py-0.5 rounded text-slate-700">input/</code> and ingested
+                New files will be automatically moved to <code
+                  class="font-mono bg-slate-200/70 px-1 py-0.5 rounded text-slate-700">input/</code> and ingested
               </p>
             </div>
 
             <!-- Selected File Preview Badge -->
-            <div id="selectedFileInfo" class="hidden flex items-center justify-between bg-white border border-slate-200 rounded-lg p-2.5 shadow-2xs text-left" onclick="event.stopPropagation()">
+            <div id="selectedFileInfo"
+              class="hidden flex items-center justify-between bg-white border border-slate-200 rounded-lg p-2.5 shadow-2xs text-left"
+              onclick="event.stopPropagation()">
               <div class="flex items-center space-x-2.5 truncate mr-2">
                 <div class="w-8 h-8 rounded-lg bg-sky-50 text-sky-600 flex items-center justify-center shrink-0">
                   <i data-lucide="file-spreadsheet" class="w-4 h-4"></i>
@@ -793,10 +822,11 @@
                   <p class="text-[10px] text-slate-400 font-mono" id="selectedFileSize">0 KB</p>
                 </div>
               </div>
-              
+
               <div class="flex items-center space-x-2 shrink-0">
                 <span id="selectedFileStatusBadge" class="hidden text-[10px] font-bold px-2 py-0.5 rounded-full"></span>
-                <button type="button" onclick="clearSelectedFile(event)" class="text-slate-400 hover:text-slate-600 p-1 rounded hover:bg-slate-100" title="Remove file">
+                <button type="button" onclick="clearSelectedFile(event)"
+                  class="text-slate-400 hover:text-slate-600 p-1 rounded hover:bg-slate-100" title="Remove file">
                   <i data-lucide="x" class="w-3.5 h-3.5"></i>
                 </button>
               </div>
@@ -810,13 +840,18 @@
 
         <!-- Reset Checkbox Card -->
         <div class="p-4 bg-amber-50/80 border border-amber-200 rounded-xl flex items-start space-x-3.5">
-          <input type="checkbox" id="pipelineResetCheckbox" class="mt-1 w-4 h-4 text-sky-600 border-slate-300 rounded focus:ring-sky-500">
+          <input type="checkbox" id="pipelineResetCheckbox"
+            class="mt-1 w-4 h-4 text-sky-600 border-slate-300 rounded focus:ring-sky-500">
           <div>
             <label for="pipelineResetCheckbox" class="text-xs font-bold text-amber-950 cursor-pointer">
               Reset &amp; Reprocess All (Rerun Qualifications &amp; Reset processed.json)
             </label>
             <p class="text-[11px] text-amber-800 mt-1 leading-relaxed">
-              When checked, completely clears <code class="font-mono bg-amber-100 px-1 py-0.5 rounded text-amber-900">results/processed.json</code>, re-parses every raw CSV and JSON file in <code class="font-mono bg-amber-100 px-1 py-0.5 rounded text-amber-900">input/</code> from scratch, recalculates intent scores, and regenerates all deliverable artifacts.
+              When checked, completely clears <code
+                class="font-mono bg-amber-100 px-1 py-0.5 rounded text-amber-900">results/processed.json</code>,
+              re-parses every raw CSV and JSON file in <code
+                class="font-mono bg-amber-100 px-1 py-0.5 rounded text-amber-900">input/</code> from scratch,
+              recalculates intent scores, and regenerates all deliverable artifacts.
             </p>
           </div>
         </div>
@@ -829,7 +864,8 @@
               <i data-lucide="copy" class="w-3 h-3 mr-1"></i> Copy
             </button>
           </div>
-          <pre id="pipelineLogsOutput" class="p-4 bg-slate-950 text-slate-200 font-mono text-[11px] rounded-xl overflow-x-auto max-h-64 leading-relaxed border border-slate-800 select-all"></pre>
+          <pre id="pipelineLogsOutput"
+            class="p-4 bg-slate-950 text-slate-200 font-mono text-[11px] rounded-xl overflow-x-auto max-h-64 leading-relaxed border border-slate-800 select-all"></pre>
         </div>
 
         <!-- Running Indicator Spinner -->
@@ -837,7 +873,8 @@
           <i data-lucide="loader-2" class="w-8 h-8 animate-spin text-sky-600 mx-auto"></i>
           <div>
             <p class="text-xs font-bold text-slate-800">Processing pipeline execution...</p>
-            <p class="text-[11px] text-slate-500 mt-0.5">Harvesting, auditing evidence gates, and updating deliverables.</p>
+            <p class="text-[11px] text-slate-500 mt-0.5">Harvesting, auditing evidence gates, and updating deliverables.
+            </p>
           </div>
         </div>
 
@@ -845,10 +882,12 @@
 
       <!-- Footer Actions -->
       <div class="bg-slate-50 border-t border-slate-200 px-6 py-3.5 flex items-center justify-between">
-        <button onclick="closePipelineModal()" class="px-4 py-2 text-xs font-semibold text-slate-600 bg-white border border-slate-300 rounded-lg hover:bg-slate-100 transition shadow-2xs">
+        <button onclick="closePipelineModal()"
+          class="px-4 py-2 text-xs font-semibold text-slate-600 bg-white border border-slate-300 rounded-lg hover:bg-slate-100 transition shadow-2xs">
           Close
         </button>
-        <button id="startPipelineBtn" onclick="runPipelineTrigger()" class="px-5 py-2 text-xs font-bold text-white bg-slate-900 hover:bg-slate-800 rounded-lg shadow-elevation-1 transition flex items-center active:scale-98">
+        <button id="startPipelineBtn" onclick="runPipelineTrigger()"
+          class="px-5 py-2 text-xs font-bold text-white bg-slate-900 hover:bg-slate-800 rounded-lg shadow-elevation-1 transition flex items-center active:scale-98">
           <i data-lucide="play" class="w-3.5 h-3.5 mr-1.5 text-sky-400 fill-current"></i>
           <span>Execute Pipeline</span>
         </button>
@@ -858,7 +897,8 @@
   </div>
 
   <!-- Toast Notification System -->
-  <div id="toastNotification" class="hidden fixed bottom-5 right-5 z-50 bg-slate-900 text-white px-4 py-3 rounded-xl shadow-elevation-3 border border-slate-800 flex items-center space-x-3 transition-all transform duration-200">
+  <div id="toastNotification"
+    class="hidden fixed bottom-5 right-5 z-50 bg-slate-900 text-white px-4 py-3 rounded-xl shadow-elevation-3 border border-slate-800 flex items-center space-x-3 transition-all transform duration-200">
     <div id="toastIcon" class="text-emerald-400">
       <i data-lucide="check-circle-2" class="w-4 h-4"></i>
     </div>
@@ -1055,7 +1095,7 @@
         const card = document.getElementById(`card-${t}`);
         if (!card) return;
         const indicator = card.querySelector('.card-active-indicator');
-        
+
         if (t === tab) {
           const meta = tabMetadata[t] || tabMetadata.qualified;
           card.className = meta.activeCardClass;
@@ -1120,7 +1160,7 @@
       }
 
       const p = (platform || '').toLowerCase();
-      
+
       // Reddit handle: u/username or username
       if (handle.startsWith('u/') || p.includes('reddit')) {
         const username = handle.replace(/^u\//i, '').trim();
@@ -1655,7 +1695,7 @@
       }
       const files = (e.target && e.target.files) || (e.dataTransfer && e.dataTransfer.files);
       if (!files || files.length === 0) return;
-      
+
       const file = files[0];
       const lower = file.name.toLowerCase();
       if (!lower.endsWith('.csv') && !lower.endsWith('.json')) {
@@ -1822,4 +1862,5 @@
 
   </script>
 </body>
+
 </html>

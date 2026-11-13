@@ -1,18 +1,18 @@
 {
   "report_metadata": {
     "title": "Dubai Real Estate Lead Discovery & Evidence Audit Report",
-    "audit_timestamp": "2026-11-14T02:26:22.751376",
+    "audit_timestamp": "2026-11-14T02:36:55.534750",
     "discovery_run_date": "2026-11-12",
     "pipeline_version": "2.0.0-audit",
     "status": "PASSED"
   },
   "funnel_reconciliation": {
-    "total_discovered_records": 52,
+    "total_discovered_records": 62,
     "duplicates_pruned": 6,
-    "unique_candidates": 46,
+    "unique_candidates": 56,
     "strong_signal_count": 8,
-    "needs_validation_count": 23,
-    "reject_count": 15,
+    "needs_validation_count": 28,
+    "reject_count": 20,
     "reconciliation_formula": "unique_candidates == strong_signal_count + needs_validation_count + reject_count",
     "is_reconciled": true,
     "unreconciled_delta": 0
@@ -21,23 +21,23 @@
     "freshness_window_days": 180,
     "pre_freshness_counts": {
       "strong_signal": 5,
-      "needs_validation": 26,
-      "reject": 15,
-      "total": 46
+      "needs_validation": 31,
+      "reject": 20,
+      "total": 56
     },
     "final_counts": {
       "strong_signal": 8,
-      "needs_validation": 23,
-      "reject": 15,
-      "total": 46
+      "needs_validation": 28,
+      "reject": 20,
+      "total": 56
     },
     "records_downgraded_by_180_day_rule": 0,
     "downgraded_records_list": []
   },
   "geographic_verification_audit": {
-    "total_unique_candidates": 46,
-    "verified_current_south_india_residence_count": 27,
-    "origin_only_count": 6,
+    "total_unique_candidates": 56,
+    "verified_current_south_india_residence_count": 36,
+    "origin_only_count": 7,
     "location_unverified_count": 12,
     "outside_target_count": 1,
     "strong_signal_unverified_location_count": 0,
@@ -60,10 +60,10 @@
     "evidence_integrity_passed": true
   },
   "source_url_and_permission_audit": {
-    "total_urls_audited": 46,
-    "urls_present_count": 46,
-    "urls_permitted_use_count": 46,
-    "urls_pointing_to_correct_post_count": 46,
+    "total_urls_audited": 56,
+    "urls_present_count": 56,
+    "urls_permitted_use_count": 56,
+    "urls_pointing_to_correct_post_count": 56,
     "deleted_author_count": 0,
     "removed_moderator_count": 0,
     "invalid_dead_urls_count": 0,
@@ -280,7 +280,7 @@
         "score": 65,
         "qualification_status": "Needs Validation",
         "location_verification_status": "CURRENT_RESIDENT",
-        "original_publication_date": "2026-11-08",
+        "original_publication_date": "Unverified",
         "discovery_date": "2026-11-12",
         "human_review_status": "REVIEWED_NEEDS_MORE_INFO",
         "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
@@ -350,6 +350,19 @@
         "human_review_status": "REVIEWED_NEEDS_MORE_INFO",
         "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
         "human_review_notes": "Requires outreach/validation before sales routing: Explicit first-person purchase intent not stated; Purchase timeline horizon undefined; Specific Dubai community or developer preference not specified; Origin indicated in Bengaluru, Karnataka (Origin Only), but current South Indian residence is unverified. Score 45/100. Stated preference: General Dubai Property."
+      },
+      {
+        "candidate_id": "CAND-049",
+        "public_name_or_handle": "u/Stunning-Image7202",
+        "platform": "Reddit (r/dubairealestate)",
+        "score": 40,
+        "qualification_status": "Needs Validation",
+        "location_verification_status": "ORIGIN_ONLY",
+        "original_publication_date": "2026-10-15",
+        "discovery_date": "2026-11-12",
+        "human_review_status": "REVIEWED_NEEDS_MORE_INFO",
+        "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
+        "human_review_notes": "Requires outreach/validation before sales routing: Explicit first-person purchase intent not stated; Purchase budget / financing requirements not specified; Purchase timeline horizon undefined; Origin indicated in Chennai, Tamil Nadu (Origin Only), but current South Indian residence is unverified. Score 40/100. Stated preference: Unit: OFF-PLAN, Unit: APARTMENT."
       },
       {
         "candidate_id": "CAND-020",
@@ -428,19 +441,6 @@
         "human_review_status": "REVIEWED_NEEDS_MORE_INFO",
         "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
         "human_review_notes": "Requires outreach/validation before sales routing: Explicit first-person purchase intent not stated; Concrete purchase readiness step (token/remittance/SPA) unconfirmed; Purchase budget / financing requirements not specified; Purchase timeline horizon undefined; Origin indicated in Bengaluru, Karnataka (Origin Only), but current South Indian residence is unverified. Score 20/100. Stated preference: Dubai South, Unit: 1BHK, Unit: 2BHK, Unit: OFF-PLAN."
-      },
-      {
-        "candidate_id": "CAND-028",
-        "public_name_or_handle": "u/Constant-Kale-194",
-        "platform": "Reddit (r/dubairealestate)",
-        "score": 20,
-        "qualification_status": "Needs Validation",
-        "location_verification_status": "CURRENT_RESIDENT",
-        "original_publication_date": "Unverified",
-        "discovery_date": "2026-11-12",
-        "human_review_status": "REVIEWED_NEEDS_MORE_INFO",
-        "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
-        "human_review_notes": "Requires outreach/validation before sales routing: Explicit first-person purchase intent not stated; Concrete purchase readiness step (token/remittance/SPA) unconfirmed; Purchase budget / financing requirements not specified; Purchase timeline horizon undefined. Score 20/100. Stated preference: Jvc, Developer: Danube, Unit: STUDIO, Unit: APARTMENT, Unit: OFF-PLAN."
       },
       {
         "candidate_id": "CAND-007",
@@ -527,7 +527,7 @@
         "score": 10,
         "qualification_status": "Reject",
         "location_verification_status": "CURRENT_RESIDENT",
-        "original_publication_date": "2026-10-30",
+        "original_publication_date": "Unverified",
         "discovery_date": "2026-11-12",
         "human_review_status": "REVIEWED_CONFIRMED_REJECT",
         "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
@@ -540,7 +540,7 @@
         "score": 10,
         "qualification_status": "Reject",
         "location_verification_status": "CURRENT_RESIDENT",
-        "original_publication_date": "2026-11-06",
+        "original_publication_date": "Unverified",
         "discovery_date": "2026-11-12",
         "human_review_status": "REVIEWED_CONFIRMED_REJECT",
         "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
@@ -553,7 +553,7 @@
         "score": 10,
         "qualification_status": "Reject",
         "location_verification_status": "CURRENT_RESIDENT",
-        "original_publication_date": "2026-11-12",
+        "original_publication_date": "Unverified",
         "discovery_date": "2026-11-12",
         "human_review_status": "REVIEWED_CONFIRMED_REJECT",
         "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
@@ -566,7 +566,7 @@
         "score": 10,
         "qualification_status": "Reject",
         "location_verification_status": "LOCATION_UNVERIFIED",
-        "original_publication_date": "2026-10-18",
+        "original_publication_date": "Unverified",
         "discovery_date": "2026-11-12",
         "human_review_status": "REVIEWED_CONFIRMED_REJECT",
         "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",

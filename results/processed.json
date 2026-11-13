@@ -3,15 +3,15 @@
     "filename": "raw_discovered_candidates.csv",
     "status": "PROCESSED",
     "file_path": "input/raw_discovered_candidates.csv",
-    "processed_at": "2026-11-13T18:28:43.358137",
-    "records_count": 188,
-    "checksum_md5": "06f683f3ba9ff52dbace0967542ac2ee"
+    "processed_at": "2026-11-13T18:59:36.375321",
+    "records_count": 27,
+    "checksum_md5": "c49b88d2f9ba96c14885174a116bbfad"
   },
   "raw_leads_batch_2.csv": {
     "filename": "raw_leads_batch_2.csv",
     "status": "PROCESSED",
     "file_path": "input/raw_leads_batch_2.csv",
-    "processed_at": "2026-11-13T18:28:43.358346",
+    "processed_at": "2026-11-13T18:59:36.375575",
     "records_count": 2,
     "checksum_md5": "2521a1d600882c3d5d37dfb38c366fc9"
   },
@@ -19,7 +19,7 @@
     "filename": "raw_leads_batch_south_india_dubai.csv",
     "status": "PROCESSED",
     "file_path": "input/raw_leads_batch_south_india_dubai.csv",
-    "processed_at": "2026-11-13T18:28:43.358433",
+    "processed_at": "2026-11-13T18:59:36.375720",
     "records_count": 2,
     "checksum_md5": "631b2146ad76c322e1b14adc93aa8d3b"
   },
@@ -27,7 +27,7 @@
     "filename": "raw_leads_batch_south_india_dubai.json",
     "status": "PROCESSED",
     "file_path": "input/raw_leads_batch_south_india_dubai.json",
-    "processed_at": "2026-11-13T18:28:43.358520",
+    "processed_at": "2026-11-13T18:59:36.375827",
     "records_count": 2,
     "checksum_md5": "4233be5c87261608ec3cbb0dd28db245"
   }

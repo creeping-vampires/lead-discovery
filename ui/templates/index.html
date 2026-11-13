@@ -1220,9 +1220,14 @@
                       <span class="truncate">${handle}</span>
                       <i data-lucide="external-link" class="w-3.5 h-3.5 ml-1 text-sky-500 group-hover/profile:text-sky-700 shrink-0"></i>
                     </a>
+                  ` : (lead.source_link && lead.source_link !== 'None' ? `
+                    <a href="${lead.source_link}" target="_blank" rel="noopener noreferrer" class="font-bold text-slate-900 hover:text-indigo-700 transition-colors inline-flex items-center truncate" title="Open source article in new tab">
+                      <span class="truncate">${handle}</span>
+                      <i data-lucide="external-link" class="w-3.5 h-3.5 ml-1 text-slate-400 shrink-0"></i>
+                    </a>
                   ` : `
                     <span class="font-bold text-slate-900 truncate">${handle}</span>
-                  `}
+                  `)}
                   <button onclick="navigator.clipboard.writeText('${handle}'); showToast('Handle copied!')" class="text-slate-400 hover:text-slate-700 p-0.5 rounded hover:bg-slate-100 transition shrink-0" title="Copy exact handle">
                     <i data-lucide="copy" class="w-3.5 h-3.5"></i>
                   </button>
@@ -1396,6 +1401,18 @@
                 <i data-lucide="external-link" class="w-4 h-4 ml-1.5 text-sky-400"></i>
               </a>
               <button onclick="navigator.clipboard.writeText('${handle}'); showToast('Handle ${handle} copied!')" class="text-slate-400 hover:text-white p-1 rounded hover:bg-slate-700/60 transition" title="Copy exact handle">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          `;
+        } else if (lead.source_link && lead.source_link !== 'None') {
+          handleElem.innerHTML = `
+            <div class="flex items-center space-x-2">
+              <a href="${lead.source_link}" target="_blank" rel="noopener noreferrer" class="hover:underline inline-flex items-center text-white font-bold text-base" title="Open source article in new tab">
+                <span>${handle}</span>
+                <i data-lucide="external-link" class="w-4 h-4 ml-1.5 text-emerald-300"></i>
+              </a>
+              <button onclick="navigator.clipboard.writeText('${handle}'); showToast('Source copied!')" class="text-slate-400 hover:text-white p-1 rounded hover:bg-slate-700/60 transition" title="Copy exact name">
                 <i data-lucide="copy" class="w-3.5 h-3.5"></i>
               </button>
             </div>

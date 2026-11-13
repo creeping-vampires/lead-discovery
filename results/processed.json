@@ -30,5 +30,13 @@
     "processed_at": "2026-11-13T18:59:36.375827",
     "records_count": 2,
     "checksum_md5": "4233be5c87261608ec3cbb0dd28db245"
+  },
+  "raw_leads_batch_3_south_india_dubai.csv": {
+    "filename": "raw_leads_batch_3_south_india_dubai.csv",
+    "status": "PROCESSED",
+    "file_path": "input/raw_leads_batch_3_south_india_dubai.csv",
+    "processed_at": "2026-11-13T19:18:17.903326",
+    "records_count": 7,
+    "checksum_md5": "b77ddbd7f9f5f2535d608a6594f4c43e"
   }
 }

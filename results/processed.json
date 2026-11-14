@@ -94,5 +94,13 @@
     "processed_at": "2026-11-14T12:42:43.161752",
     "records_count": 20,
     "checksum_md5": "fb45e8c2258215d48c28e7b55ddb9405"
+  },
+  "raw_leads_batch_11_authentic_buyers.csv": {
+    "filename": "raw_leads_batch_11_authentic_buyers.csv",
+    "status": "PROCESSED",
+    "file_path": "input/raw_leads_batch_11_authentic_buyers.csv",
+    "processed_at": "2026-11-14T12:47:03.715761",
+    "records_count": 20,
+    "checksum_md5": "f7339c81f28d36d1c1c3fe29988cf404"
   }
 }

@@ -1,18 +1,18 @@
 {
   "report_metadata": {
     "title": "Dubai Real Estate Lead Discovery & Evidence Audit Report",
-    "audit_timestamp": "2026-11-14T12:42:43.161286",
+    "audit_timestamp": "2026-11-14T12:47:03.715297",
     "discovery_run_date": "2026-11-12",
     "pipeline_version": "2.0.0-audit",
     "status": "PASSED"
   },
   "funnel_reconciliation": {
-    "total_discovered_records": 162,
+    "total_discovered_records": 182,
     "duplicates_pruned": 6,
-    "unique_candidates": 156,
+    "unique_candidates": 176,
     "strong_signal_count": 10,
-    "needs_validation_count": 79,
-    "reject_count": 67,
+    "needs_validation_count": 89,
+    "reject_count": 77,
     "reconciliation_formula": "unique_candidates == strong_signal_count + needs_validation_count + reject_count",
     "is_reconciled": true,
     "unreconciled_delta": 0
@@ -21,22 +21,22 @@
     "freshness_window_days": 180,
     "pre_freshness_counts": {
       "strong_signal": 7,
-      "needs_validation": 82,
-      "reject": 67,
-      "total": 156
+      "needs_validation": 92,
+      "reject": 77,
+      "total": 176
     },
     "final_counts": {
       "strong_signal": 10,
-      "needs_validation": 79,
-      "reject": 67,
-      "total": 156
+      "needs_validation": 89,
+      "reject": 77,
+      "total": 176
     },
     "records_downgraded_by_180_day_rule": 0,
     "downgraded_records_list": []
   },
   "geographic_verification_audit": {
-    "total_unique_candidates": 156,
-    "verified_current_south_india_residence_count": 124,
+    "total_unique_candidates": 176,
+    "verified_current_south_india_residence_count": 144,
     "origin_only_count": 11,
     "location_unverified_count": 20,
     "outside_target_count": 1,
@@ -60,10 +60,10 @@
     "evidence_integrity_passed": true
   },
   "source_url_and_permission_audit": {
-    "total_urls_audited": 156,
-    "urls_present_count": 156,
-    "urls_permitted_use_count": 156,
-    "urls_pointing_to_correct_post_count": 156,
+    "total_urls_audited": 176,
+    "urls_present_count": 176,
+    "urls_permitted_use_count": 176,
+    "urls_pointing_to_correct_post_count": 176,
     "deleted_author_count": 0,
     "removed_moderator_count": 0,
     "invalid_dead_urls_count": 0,

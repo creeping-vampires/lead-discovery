@@ -1,18 +1,18 @@
 {
   "report_metadata": {
     "title": "Dubai Real Estate Lead Discovery & Evidence Audit Report",
-    "audit_timestamp": "2026-11-14T12:40:00.649683",
+    "audit_timestamp": "2026-11-14T12:42:43.161286",
     "discovery_run_date": "2026-11-12",
     "pipeline_version": "2.0.0-audit",
     "status": "PASSED"
   },
   "funnel_reconciliation": {
-    "total_discovered_records": 142,
+    "total_discovered_records": 162,
     "duplicates_pruned": 6,
-    "unique_candidates": 136,
+    "unique_candidates": 156,
     "strong_signal_count": 10,
-    "needs_validation_count": 69,
-    "reject_count": 57,
+    "needs_validation_count": 79,
+    "reject_count": 67,
     "reconciliation_formula": "unique_candidates == strong_signal_count + needs_validation_count + reject_count",
     "is_reconciled": true,
     "unreconciled_delta": 0
@@ -21,24 +21,24 @@
     "freshness_window_days": 180,
     "pre_freshness_counts": {
       "strong_signal": 7,
-      "needs_validation": 72,
-      "reject": 57,
-      "total": 136
+      "needs_validation": 82,
+      "reject": 67,
+      "total": 156
     },
     "final_counts": {
       "strong_signal": 10,
-      "needs_validation": 69,
-      "reject": 57,
-      "total": 136
+      "needs_validation": 79,
+      "reject": 67,
+      "total": 156
     },
     "records_downgraded_by_180_day_rule": 0,
     "downgraded_records_list": []
   },
   "geographic_verification_audit": {
-    "total_unique_candidates": 136,
-    "verified_current_south_india_residence_count": 105,
+    "total_unique_candidates": 156,
+    "verified_current_south_india_residence_count": 124,
     "origin_only_count": 11,
-    "location_unverified_count": 19,
+    "location_unverified_count": 20,
     "outside_target_count": 1,
     "strong_signal_unverified_location_count": 0,
     "verification_guarantee": "100% of Strong Signal leads have verified CURRENT_RESIDENT status"
@@ -60,10 +60,10 @@
     "evidence_integrity_passed": true
   },
   "source_url_and_permission_audit": {
-    "total_urls_audited": 136,
-    "urls_present_count": 136,
-    "urls_permitted_use_count": 136,
-    "urls_pointing_to_correct_post_count": 136,
+    "total_urls_audited": 156,
+    "urls_present_count": 156,
+    "urls_permitted_use_count": 156,
+    "urls_pointing_to_correct_post_count": 156,
     "deleted_author_count": 0,
     "removed_moderator_count": 0,
     "invalid_dead_urls_count": 0,
@@ -202,7 +202,7 @@
         "score": 100,
         "qualification_status": "Strong Signal",
         "location_verification_status": "CURRENT_RESIDENT",
-        "original_publication_date": "2026-11-11",
+        "original_publication_date": "Unverified",
         "discovery_date": "2026-11-12",
         "human_review_status": "REVIEWED_APPROVED",
         "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
@@ -662,7 +662,7 @@
       "platform": "Reddit (r/dubairealestate)",
       "city_state": "Bengaluru, Karnataka",
       "location_verification_status": "CURRENT_RESIDENT",
-      "original_publication_date": "2026-11-11",
+      "original_publication_date": "Unverified",
       "discovery_date": "2026-11-12",
       "signal_age_days": 3,
       "intent_evidence": "looking to buy",

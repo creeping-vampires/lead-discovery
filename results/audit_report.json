@@ -1,18 +1,18 @@
 {
   "report_metadata": {
     "title": "Dubai Real Estate Lead Discovery & Evidence Audit Report",
-    "audit_timestamp": "2026-11-14T02:47:17.138900",
+    "audit_timestamp": "2026-11-14T11:45:57.472654",
     "discovery_run_date": "2026-11-12",
     "pipeline_version": "2.0.0-audit",
     "status": "PASSED"
   },
   "funnel_reconciliation": {
-    "total_discovered_records": 82,
+    "total_discovered_records": 102,
     "duplicates_pruned": 6,
-    "unique_candidates": 76,
-    "strong_signal_count": 8,
-    "needs_validation_count": 44,
-    "reject_count": 24,
+    "unique_candidates": 96,
+    "strong_signal_count": 9,
+    "needs_validation_count": 52,
+    "reject_count": 35,
     "reconciliation_formula": "unique_candidates == strong_signal_count + needs_validation_count + reject_count",
     "is_reconciled": true,
     "unreconciled_delta": 0
@@ -20,31 +20,31 @@
   "freshness_audit": {
     "freshness_window_days": 180,
     "pre_freshness_counts": {
-      "strong_signal": 5,
-      "needs_validation": 47,
-      "reject": 24,
-      "total": 76
+      "strong_signal": 6,
+      "needs_validation": 55,
+      "reject": 35,
+      "total": 96
     },
     "final_counts": {
-      "strong_signal": 8,
-      "needs_validation": 44,
-      "reject": 24,
-      "total": 76
+      "strong_signal": 9,
+      "needs_validation": 52,
+      "reject": 35,
+      "total": 96
     },
     "records_downgraded_by_180_day_rule": 0,
     "downgraded_records_list": []
   },
   "geographic_verification_audit": {
-    "total_unique_candidates": 76,
-    "verified_current_south_india_residence_count": 53,
-    "origin_only_count": 9,
-    "location_unverified_count": 13,
+    "total_unique_candidates": 96,
+    "verified_current_south_india_residence_count": 70,
+    "origin_only_count": 11,
+    "location_unverified_count": 14,
     "outside_target_count": 1,
     "strong_signal_unverified_location_count": 0,
     "verification_guarantee": "100% of Strong Signal leads have verified CURRENT_RESIDENT status"
   },
   "evidence_integrity_audit": {
-    "strong_signal_records_audited": 8,
+    "strong_signal_records_audited": 9,
     "strong_signal_missing_required_evidence_count": 0,
     "defect_breakdown": {
       "missing_intent_evidence": 0,
@@ -60,10 +60,10 @@
     "evidence_integrity_passed": true
   },
   "source_url_and_permission_audit": {
-    "total_urls_audited": 76,
-    "urls_present_count": 76,
-    "urls_permitted_use_count": 76,
-    "urls_pointing_to_correct_post_count": 76,
+    "total_urls_audited": 96,
+    "urls_present_count": 96,
+    "urls_permitted_use_count": 96,
+    "urls_pointing_to_correct_post_count": 96,
     "deleted_author_count": 0,
     "removed_moderator_count": 0,
     "invalid_dead_urls_count": 0,
@@ -72,10 +72,10 @@
   "manual_review_sampling": {
     "sampling_policy": "Stratified audit: up to 30 Strong Signal, 20 Needs Validation, 10 Reject",
     "sample_counts": {
-      "strong_signal_sampled": 8,
+      "strong_signal_sampled": 9,
       "needs_validation_sampled": 20,
       "reject_sampled": 10,
-      "total_sampled_for_manual_review": 38
+      "total_sampled_for_manual_review": 39
     },
     "sampled_records": [
       {
@@ -181,6 +181,19 @@
         "human_review_status": "REVIEWED_APPROVED",
         "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
         "human_review_notes": "Approved: Verifiable purchase intent ('Planning to invest'), readiness confirmed ('None - no transactional readiness action'), budget stated (2 Cr, AED 900k), verified resident of Hyderabad, Telangana, and signal within 180 days."
+      },
+      {
+        "candidate_id": "CAND-077",
+        "public_name_or_handle": "u/G1bst",
+        "platform": "Reddit (r/dubairealestate)",
+        "score": 80,
+        "qualification_status": "Strong Signal",
+        "location_verification_status": "CURRENT_RESIDENT",
+        "original_publication_date": "2026-11-14",
+        "discovery_date": "2026-11-12",
+        "human_review_status": "REVIEWED_APPROVED",
+        "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
+        "human_review_notes": "Approved: Verifiable purchase intent ('Looking to buy'), readiness confirmed ('None - no transactional readiness action'), budget stated (AED 500, 1.1 Cr), verified resident of Bengaluru, Karnataka, and signal within 180 days."
       },
       {
         "candidate_id": "CAND-006",
@@ -293,7 +306,7 @@
         "score": 65,
         "qualification_status": "Needs Validation",
         "location_verification_status": "CURRENT_RESIDENT",
-        "original_publication_date": "2026-11-12",
+        "original_publication_date": "Unverified",
         "discovery_date": "2026-11-12",
         "human_review_status": "REVIEWED_NEEDS_MORE_INFO",
         "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
@@ -358,7 +371,7 @@
         "score": 50,
         "qualification_status": "Needs Validation",
         "location_verification_status": "CURRENT_RESIDENT",
-        "original_publication_date": "2026-11-12",
+        "original_publication_date": "Unverified",
         "discovery_date": "2026-11-12",
         "human_review_status": "REVIEWED_NEEDS_MORE_INFO",
         "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
@@ -397,7 +410,7 @@
         "score": 40,
         "qualification_status": "Needs Validation",
         "location_verification_status": "CURRENT_RESIDENT",
-        "original_publication_date": "2026-11-13",
+        "original_publication_date": "Unverified",
         "discovery_date": "2026-11-12",
         "human_review_status": "REVIEWED_NEEDS_MORE_INFO",
         "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
@@ -410,7 +423,7 @@
         "score": 35,
         "qualification_status": "Needs Validation",
         "location_verification_status": "CURRENT_RESIDENT",
-        "original_publication_date": "2026-11-13",
+        "original_publication_date": "Unverified",
         "discovery_date": "2026-11-12",
         "human_review_status": "REVIEWED_NEEDS_MORE_INFO",
         "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
@@ -423,7 +436,7 @@
         "score": 35,
         "qualification_status": "Needs Validation",
         "location_verification_status": "CURRENT_RESIDENT",
-        "original_publication_date": "2026-11-13",
+        "original_publication_date": "Unverified",
         "discovery_date": "2026-11-12",
         "human_review_status": "REVIEWED_NEEDS_MORE_INFO",
         "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
@@ -436,7 +449,7 @@
         "score": 35,
         "qualification_status": "Needs Validation",
         "location_verification_status": "CURRENT_RESIDENT",
-        "original_publication_date": "2026-11-13",
+        "original_publication_date": "Unverified",
         "discovery_date": "2026-11-12",
         "human_review_status": "REVIEWED_NEEDS_MORE_INFO",
         "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",

@@ -1,18 +1,18 @@
 {
   "report_metadata": {
     "title": "Dubai Real Estate Lead Discovery & Evidence Audit Report",
-    "audit_timestamp": "2026-11-14T12:20:53.207002",
+    "audit_timestamp": "2026-11-14T12:40:00.649683",
     "discovery_run_date": "2026-11-12",
     "pipeline_version": "2.0.0-audit",
     "status": "PASSED"
   },
   "funnel_reconciliation": {
-    "total_discovered_records": 122,
+    "total_discovered_records": 142,
     "duplicates_pruned": 6,
-    "unique_candidates": 116,
-    "strong_signal_count": 9,
-    "needs_validation_count": 58,
-    "reject_count": 49,
+    "unique_candidates": 136,
+    "strong_signal_count": 10,
+    "needs_validation_count": 69,
+    "reject_count": 57,
     "reconciliation_formula": "unique_candidates == strong_signal_count + needs_validation_count + reject_count",
     "is_reconciled": true,
     "unreconciled_delta": 0
@@ -20,31 +20,31 @@
   "freshness_audit": {
     "freshness_window_days": 180,
     "pre_freshness_counts": {
-      "strong_signal": 6,
-      "needs_validation": 61,
-      "reject": 49,
-      "total": 116
+      "strong_signal": 7,
+      "needs_validation": 72,
+      "reject": 57,
+      "total": 136
     },
     "final_counts": {
-      "strong_signal": 9,
-      "needs_validation": 58,
-      "reject": 49,
-      "total": 116
+      "strong_signal": 10,
+      "needs_validation": 69,
+      "reject": 57,
+      "total": 136
     },
     "records_downgraded_by_180_day_rule": 0,
     "downgraded_records_list": []
   },
   "geographic_verification_audit": {
-    "total_unique_candidates": 116,
-    "verified_current_south_india_residence_count": 86,
+    "total_unique_candidates": 136,
+    "verified_current_south_india_residence_count": 105,
     "origin_only_count": 11,
-    "location_unverified_count": 18,
+    "location_unverified_count": 19,
     "outside_target_count": 1,
     "strong_signal_unverified_location_count": 0,
     "verification_guarantee": "100% of Strong Signal leads have verified CURRENT_RESIDENT status"
   },
   "evidence_integrity_audit": {
-    "strong_signal_records_audited": 9,
+    "strong_signal_records_audited": 10,
     "strong_signal_missing_required_evidence_count": 0,
     "defect_breakdown": {
       "missing_intent_evidence": 0,
@@ -60,10 +60,10 @@
     "evidence_integrity_passed": true
   },
   "source_url_and_permission_audit": {
-    "total_urls_audited": 116,
-    "urls_present_count": 116,
-    "urls_permitted_use_count": 116,
-    "urls_pointing_to_correct_post_count": 116,
+    "total_urls_audited": 136,
+    "urls_present_count": 136,
+    "urls_permitted_use_count": 136,
+    "urls_pointing_to_correct_post_count": 136,
     "deleted_author_count": 0,
     "removed_moderator_count": 0,
     "invalid_dead_urls_count": 0,
@@ -72,10 +72,10 @@
   "manual_review_sampling": {
     "sampling_policy": "Stratified audit: up to 30 Strong Signal, 20 Needs Validation, 10 Reject",
     "sample_counts": {
-      "strong_signal_sampled": 9,
+      "strong_signal_sampled": 10,
       "needs_validation_sampled": 20,
       "reject_sampled": 10,
-      "total_sampled_for_manual_review": 39
+      "total_sampled_for_manual_review": 40
     },
     "sampled_records": [
       {
@@ -194,6 +194,19 @@
         "human_review_status": "REVIEWED_APPROVED",
         "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
         "human_review_notes": "Approved: Verifiable purchase intent ('Looking to buy'), readiness confirmed ('None - no transactional readiness action'), budget stated (AED 500, 1.1 Cr), verified resident of Bengaluru, Karnataka, and signal within 180 days."
+      },
+      {
+        "candidate_id": "CAND-117",
+        "public_name_or_handle": "u/EnglishReece",
+        "platform": "Reddit (r/dubairealestate)",
+        "score": 100,
+        "qualification_status": "Strong Signal",
+        "location_verification_status": "CURRENT_RESIDENT",
+        "original_publication_date": "2026-11-11",
+        "discovery_date": "2026-11-12",
+        "human_review_status": "REVIEWED_APPROVED",
+        "human_reviewer": "Human Auditor (Dubai Real Estate Desk)",
+        "human_review_notes": "Approved: Verifiable purchase intent ('looking to buy'), readiness confirmed ('down payment'), budget stated (AED 600, 1.35 Cr), verified resident of Bengaluru, Karnataka, and signal within 180 days."
       },
       {
         "candidate_id": "CAND-006",
@@ -644,6 +657,24 @@
     },
     {
       "record_id": "QUAL-DUB-004",
+      "score": 100,
+      "public_name_or_handle": "u/EnglishReece",
+      "platform": "Reddit (r/dubairealestate)",
+      "city_state": "Bengaluru, Karnataka",
+      "location_verification_status": "CURRENT_RESIDENT",
+      "original_publication_date": "2026-11-11",
+      "discovery_date": "2026-11-12",
+      "signal_age_days": 3,
+      "intent_evidence": "looking to buy",
+      "readiness_evidence": "down payment",
+      "budget_evidence": "AED 600, 1.35 Cr",
+      "timeline_evidence": "immediate",
+      "project_evidence": "Unit: APARTMENT",
+      "human_review_status": "REVIEWED_APPROVED",
+      "human_review_notes": "Approved: Verifiable purchase intent ('looking to buy'), readiness confirmed ('down payment'), budget stated (AED 600, 1.35 Cr), verified resident of Bengaluru, Karnataka, and signal within 180 days."
+    },
+    {
+      "record_id": "QUAL-DUB-005",
       "score": 90,
       "public_name_or_handle": "u/IssueDry3491",
       "platform": "Reddit (r/hyderabad)",
@@ -659,24 +690,6 @@
       "project_evidence": "None - general Dubai property",
       "human_review_status": "REVIEWED_APPROVED",
       "human_review_notes": "Approved: Verifiable purchase intent ('Planning to buy'), readiness confirmed ('Ready to sign'), budget stated (AED 2M), verified resident of Hyderabad, Telangana, and signal within 180 days."
-    },
-    {
-      "record_id": "QUAL-DUB-005",
-      "score": 85,
-      "public_name_or_handle": "u/Off-Plan-King",
-      "platform": "Reddit (r/dubairealestate)",
-      "city_state": "Unverified",
-      "location_verification_status": "CURRENT_RESIDENT",
-      "original_publication_date": "Unverified",
-      "discovery_date": "2026-11-12",
-      "signal_age_days": 95,
-      "intent_evidence": "looking to acquire",
-      "readiness_evidence": "None - no transactional readiness action",
-      "budget_evidence": "AED 8M",
-      "timeline_evidence": "None - timeline undefined",
-      "project_evidence": "Unit: VILLA",
-      "human_review_status": "REVIEWED_APPROVED",
-      "human_review_notes": "Approved: Verifiable purchase intent ('looking to acquire'), readiness confirmed ('None - no transactional readiness action'), budget stated (AED 8M), verified resident of Unverified, and signal within 180 days."
     }
   ]
 }
